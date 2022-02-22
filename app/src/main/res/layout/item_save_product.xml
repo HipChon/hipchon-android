@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_item_save_product_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="19dp"
+            android:text="러스틱 카페"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_item_save_product_thumbnail"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_item_save_product_address"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="29dp"
+            android:background="@color/black"
+            app:layout_constraintStart_toStartOf="@id/tv_item_save_product_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_save_product_title" />
+
+        <TextView
+            android:id="@+id/tv_item_save_product_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:text="맛집 | 서울특별시 용산구 서빙고"
+            app:layout_constraintBottom_toBottomOf="@id/iv_item_save_product_address"
+            app:layout_constraintStart_toEndOf="@id/iv_item_save_product_address"
+            app:layout_constraintTop_toTopOf="@id/iv_item_save_product_address" />
+
+        <ImageView
+            android:id="@+id/iv_item_save_product_save"
+            android:layout_width="15dp"
+            android:layout_height="17dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/iv_item_save_product_address"
+            app:layout_constraintStart_toStartOf="@id/iv_item_save_product_address"
+            app:layout_constraintTop_toBottomOf="@id/iv_item_save_product_address" />
+
+        <TextView
+            android:id="@+id/tv_item_save_product_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="저장 150"
+            app:layout_constraintBottom_toBottomOf="@id/iv_item_save_product_save"
+            app:layout_constraintStart_toStartOf="@id/tv_item_save_product_address"
+            app:layout_constraintTop_toTopOf="@id/iv_item_save_product_save" />
+
+        <TextView
+            android:id="@+id/tv_save_product_memo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/bg_rectangle_radius_5"
+            android:backgroundTint="@color/gray06"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="14dp"
+            android:text="메모"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_item_save_product_thumbnail" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
