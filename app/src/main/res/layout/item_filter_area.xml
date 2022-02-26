@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_filter_area_title"
+        style="@style/Gmarket.Weight500"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="지역"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/spacing_20"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/tv_filter_area_title">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_filter_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipSpacingHorizontal="20dp"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                style="@style/Chip.Radius17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="제주" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Chip.Radius17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="제주" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Chip.Radius17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="제주" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Chip.Radius17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="제주" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
