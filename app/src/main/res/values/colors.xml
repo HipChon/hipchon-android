@@ -17,4 +17,7 @@
     <color name="gray05">#6C6E78</color>
     <color name="gray06">#484950</color>
     <color name="gray07">#36373C</color>
+
+    <!--  Special Color  -->
+    <color name="gray_border">#E5E5E5</color>
 </resources>

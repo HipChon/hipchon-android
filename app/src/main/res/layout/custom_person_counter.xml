@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_person_counter"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rectangle_radius_17"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_person_counter_minus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bg_minus"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_person_counter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/person_counter_one"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_person_counter_plus"
+                app:layout_constraintStart_toEndOf="@id/iv_person_counter_minus"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_person_counter_plus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bg_plus"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_person_counter_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/person_counter_help"
+            android:textColor="@color/gray04"
+            android:textSize="@dimen/text_size_10"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@id/cl_person_counter"
+            app:layout_constraintStart_toStartOf="@id/cl_person_counter"
+            app:layout_constraintTop_toBottomOf="@id/cl_person_counter" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
