@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.HipChon" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary_green_500</item>
-        <item name="colorPrimaryVariant">@color/primary_green_700</item>
+        <item name="colorPrimary">@color/primary_green</item>
+        <item name="colorPrimaryVariant">@color/primary_green</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondary_orange</item>
-        <item name="colorSecondaryVariant">@color/secondary_blue</item>
+        <item name="colorSecondary">@color/secondary_yellow</item>
+        <item name="colorSecondaryVariant">@color/secondary_red</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/white</item>
