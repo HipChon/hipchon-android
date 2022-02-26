@@ -9,4 +9,10 @@
     <string name="person_counter_one">나만의</string>
     <string name="person_counter_over_one">%d명</string>
     <string name="person_counter_help">최대 검색 가능 인원 : 9명</string>
+
+    <!--  Filter  -->
+    <string name="filter_person_title">인원</string>
+    <string name="filter_person_animal">반려동물</string>
+
+    <string name="filter_area_title">지역</string>
 </resources>

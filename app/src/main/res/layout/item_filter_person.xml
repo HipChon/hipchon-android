@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="인원"
+        android:text="@string/filter_person_title"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_20"
-        android:text="반려동물"
+        android:text="@string/filter_person_animal"
         app:layout_constraintStart_toEndOf="@id/cpc_filter_person"
         app:layout_constraintTop_toTopOf="@id/cpc_filter_person" />
 </androidx.constraintlayout.widget.ConstraintLayout>
