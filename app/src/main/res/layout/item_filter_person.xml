@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_filter_person_title"
+        style="@style/Gmarket.Weight500"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="인원"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.gritbus.hipchon.ui.custom.CustomPersonCounter
+        android:id="@+id/cpc_filter_person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/tv_filter_person_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_filter_person_title"
+        app:layout_goneMarginTop="18dp" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_filter_person_animal"
+        style="@style/Chip.Radius17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_20"
+        android:text="반려동물"
+        app:layout_constraintStart_toEndOf="@id/cpc_filter_person"
+        app:layout_constraintTop_toTopOf="@id/cpc_filter_person" />
+</androidx.constraintlayout.widget.ConstraintLayout>

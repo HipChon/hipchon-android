@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  FontTextView  -->
+    <style name="Gmarket.Weight500" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/gmarket_sans_medium</item>
+    </style>
+
+    <style name="Gmarket.Weight700" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/gmarket_sans_bold</item>
+    </style>
+
+    <!--  Chip  -->
+    <style name="Chip.Radius17" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipCornerRadius">17dp</item>
+        <item name="chipEndPadding">32dp</item>
+        <item name="chipStartPadding">32dp</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipBackgroundColor">@color/selector_chip_background</item>
+        <item name="android:textColor">@color/selector_chip_text</item>
+        <item name="chipStrokeColor">@color/selector_chip_stroke</item>
+        <item name="ensureMinTouchTargetSize">false</item>
+        <item name="textStartPadding">0dp</item>
+        <item name="textEndPadding">0dp</item>
+        <item name="rippleColor">@color/black</item>
+    </style>
+</resources>
