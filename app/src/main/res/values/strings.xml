@@ -15,4 +15,6 @@
     <string name="filter_person_animal">반려동물</string>
 
     <string name="filter_area_title">지역</string>
+
+    <string name="filter_type_title">유형</string>
 </resources>
