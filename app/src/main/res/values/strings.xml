@@ -5,6 +5,10 @@
     <string name="bottom_nav_save">저장</string>
     <string name="bottom_nav_my">마이</string>
 
+    <!--  QuickSearch  -->
+    <string name="quick_search_title">빠른 검색</string>
+    <string name="quick_search_reset">초기화</string>
+
     <!--  PersonCounter  -->
     <string name="person_counter_one">나만의</string>
     <string name="person_counter_over_one">%d명</string>
