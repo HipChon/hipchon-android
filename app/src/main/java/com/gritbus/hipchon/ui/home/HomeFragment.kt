@@ -13,5 +13,18 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         initView()
     }
 
-    override fun initView() {}
+    override fun initView() {
+        setOnClickListener()
+    }
+
+    private fun setOnClickListener() {
+        binding.mbHomeSearchBar.setOnClickListener {
+            startQuickSearch()
+        }
+    }
+
+    private fun startQuickSearch() {
+        val homeQuickSearchFragment = HomeQuickSearchFragment()
+        homeQuickSearchFragment.show(parentFragmentManager, homeQuickSearchFragment.tag)
+    }
 }

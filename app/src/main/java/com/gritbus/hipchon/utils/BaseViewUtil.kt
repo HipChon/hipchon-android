@@ -1,5 +1,6 @@
 package com.gritbus.hipchon.utils
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 sealed class BaseViewUtil {
     abstract class BaseFragment<T : ViewDataBinding>(private val layout: Int) : Fragment() {
@@ -41,6 +44,34 @@ sealed class BaseViewUtil {
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             binding = DataBindingUtil.setContentView(this, layout)
+        }
+
+        abstract fun initView()
+    }
+
+    abstract class BaseBottomSheetDialogFragment<T : ViewDataBinding>(private val layout: Int) :
+        BottomSheetDialogFragment() {
+
+        private var _binding: T? = null
+        protected val binding
+            get() = _binding ?: error("binding 초기화 필요")
+
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            _binding = DataBindingUtil.inflate(inflater, layout, container, false)
+            return binding.root
+        }
+
+        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+            return BottomSheetDialog(requireContext())
+        }
+
+        override fun onDestroy() {
+            super.onDestroy()
+            _binding = null
         }
 
         abstract fun initView()
