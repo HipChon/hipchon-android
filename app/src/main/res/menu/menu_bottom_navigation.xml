@@ -6,8 +6,8 @@
         android:title="@string/bottom_nav_home" />
     <item
         android:icon="@drawable/selector_feed"
-        android:id="@+id/bottom_nav_review"
-        android:title="@string/bottom_nav_review" />
+        android:id="@+id/bottom_nav_feed"
+        android:title="@string/bottom_nav_feed" />
     <item
         android:icon="@drawable/selector_save"
         android:id="@+id/bottom_nav_save"

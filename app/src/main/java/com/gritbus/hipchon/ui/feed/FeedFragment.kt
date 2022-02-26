@@ -1,4 +1,4 @@
-package com.gritbus.hipchon.ui.review
+package com.gritbus.hipchon.ui.feed
 
 import android.os.Bundle
 import android.view.View
@@ -6,7 +6,7 @@ import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentReviewBinding
 import com.gritbus.hipchon.utils.BaseViewUtil
 
-class ReviewFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.fragment_review) {
+class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.fragment_review) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

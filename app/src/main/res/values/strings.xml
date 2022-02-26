@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">HipChon</string>
     <string name="bottom_nav_home">홈</string>
-    <string name="bottom_nav_review">후기</string>
+    <string name="bottom_nav_feed">후기</string>
     <string name="bottom_nav_save">저장</string>
     <string name="bottom_nav_my">마이</string>
 </resources>

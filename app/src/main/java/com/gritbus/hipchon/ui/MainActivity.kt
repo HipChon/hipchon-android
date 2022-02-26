@@ -5,7 +5,7 @@ import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityMainBinding
 import com.gritbus.hipchon.ui.home.HomeFragment
 import com.gritbus.hipchon.ui.my.MyFragment
-import com.gritbus.hipchon.ui.review.ReviewFragment
+import com.gritbus.hipchon.ui.feed.FeedFragment
 import com.gritbus.hipchon.ui.save.SaveFragment
 import com.gritbus.hipchon.utils.BaseViewUtil
 import com.gritbus.hipchon.utils.replaceFragment
@@ -14,7 +14,7 @@ class MainActivity :
     BaseViewUtil.BaseAppCompatActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val homeFragment: HomeFragment by lazy { HomeFragment() }
-    private val reviewFragment: ReviewFragment by lazy { ReviewFragment() }
+    private val feedFragment: FeedFragment by lazy { FeedFragment() }
     private val saveFragment: SaveFragment by lazy { SaveFragment() }
     private val myFragment: MyFragment by lazy { MyFragment() }
 
@@ -36,8 +36,8 @@ class MainActivity :
                     replaceFragment(binding.fcvMain.id, homeFragment)
                     true
                 }
-                R.id.bottom_nav_review -> {
-                    replaceFragment(binding.fcvMain.id, reviewFragment)
+                R.id.bottom_nav_feed -> {
+                    replaceFragment(binding.fcvMain.id, feedFragment)
                     true
                 }
                 R.id.bottom_nav_save -> {
