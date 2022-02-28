@@ -29,5 +29,18 @@ class PlaceResultActivity :
         binding.mtPlaceResultTitle.setNavigationOnClickListener {
             finish()
         }
+        binding.mtPlaceResultTitle.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.place_result_filter -> {
+                    val placeResultFilterFragment = PlaceResultFilterFragment()
+                    placeResultFilterFragment.show(
+                        supportFragmentManager,
+                        placeResultFilterFragment.tag
+                    )
+                    true
+                }
+                else -> false
+            }
+        }
     }
 }
