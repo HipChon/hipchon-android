@@ -1,5 +1,6 @@
 package com.gritbus.hipchon.ui.home.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -7,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentHomeQuickSearchBinding
 import com.gritbus.hipchon.ui.home.viewmodel.HomeQuickSearchViewModel
+import com.gritbus.hipchon.ui.place.view.PlaceResultActivity
 import com.gritbus.hipchon.utils.BaseViewUtil
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,7 +38,7 @@ class HomeQuickSearchFragment :
             resetAllFilter()
         }
         binding.tvHomeQuickSearchApply.setOnClickListener {
-            // TODO 적용누르면 바로 공간리스트 검색결과 페이지로 이동
+            startActivity(Intent(requireContext(), PlaceResultActivity::class.java))
             dialog?.dismiss()
         }
     }
