@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.gritbus.hipchon.ui.home.HomeQuickSearchViewModel" />
+            type="com.gritbus.hipchon.ui.home.viewmodel.HomeQuickSearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_top_radius_15"
-        tools:context=".ui.home.HomeQuickSearchFragment">
+        tools:context=".ui.home.view.HomeQuickSearchFragment">
 
         <TextView
             android:id="@+id/tv_home_quick_search_title"

@@ -1,4 +1,4 @@
-package com.gritbus.hipchon.ui.home
+package com.gritbus.hipchon.ui.home.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

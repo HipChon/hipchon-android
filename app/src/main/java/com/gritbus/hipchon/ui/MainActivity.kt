@@ -3,10 +3,10 @@ package com.gritbus.hipchon.ui
 import android.os.Bundle
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityMainBinding
-import com.gritbus.hipchon.ui.feed.FeedFragment
-import com.gritbus.hipchon.ui.home.HomeFragment
-import com.gritbus.hipchon.ui.my.MyFragment
-import com.gritbus.hipchon.ui.save.SaveFragment
+import com.gritbus.hipchon.ui.feed.view.FeedFragment
+import com.gritbus.hipchon.ui.home.view.HomeFragment
+import com.gritbus.hipchon.ui.my.view.MyFragment
+import com.gritbus.hipchon.ui.save.view.SaveFragment
 import com.gritbus.hipchon.utils.BaseViewUtil
 import com.gritbus.hipchon.utils.replaceFragment
 import dagger.hilt.android.AndroidEntryPoint

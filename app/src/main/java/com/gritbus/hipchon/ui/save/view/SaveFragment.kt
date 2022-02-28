@@ -1,12 +1,12 @@
-package com.gritbus.hipchon.ui.feed
+package com.gritbus.hipchon.ui.save.view
 
 import android.os.Bundle
 import android.view.View
 import com.gritbus.hipchon.R
-import com.gritbus.hipchon.databinding.FragmentReviewBinding
+import com.gritbus.hipchon.databinding.FragmentSaveBinding
 import com.gritbus.hipchon.utils.BaseViewUtil
 
-class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.fragment_review) {
+class SaveFragment : BaseViewUtil.BaseFragment<FragmentSaveBinding>(R.layout.fragment_save) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

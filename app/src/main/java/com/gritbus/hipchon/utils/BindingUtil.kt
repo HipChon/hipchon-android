@@ -9,7 +9,7 @@ import com.gritbus.hipchon.R
 import com.gritbus.hipchon.domain.model.Area
 import com.gritbus.hipchon.domain.model.FilterType
 import com.gritbus.hipchon.domain.model.Hashtag
-import com.gritbus.hipchon.ui.home.HomeQuickSearchViewModel
+import com.gritbus.hipchon.ui.home.viewmodel.HomeQuickSearchViewModel
 
 @BindingAdapter("countText")
 fun setCountText(view: TextView, count: Int) {

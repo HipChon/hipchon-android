@@ -1,4 +1,4 @@
-package com.gritbus.hipchon.ui.home
+package com.gritbus.hipchon.ui.home.view
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentHomeQuickSearchBinding
+import com.gritbus.hipchon.ui.home.viewmodel.HomeQuickSearchViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
 import dagger.hilt.android.AndroidEntryPoint
 

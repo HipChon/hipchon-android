@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.gritbus.hipchon.ui.home.HomeQuickSearchViewModel" />
+            type="com.gritbus.hipchon.ui.home.viewmodel.HomeQuickSearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

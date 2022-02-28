@@ -1,4 +1,4 @@
-package com.gritbus.hipchon.ui.home
+package com.gritbus.hipchon.ui.home.view
 
 import android.os.Bundle
 import android.view.View
