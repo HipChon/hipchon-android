@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gritbus.hipchon.domain.model.Area
 import com.gritbus.hipchon.domain.model.Hashtag
+import com.gritbus.hipchon.utils.getAreaWithId
 
 class HomeQuickSearchViewModel : ViewModel() {
 
@@ -31,6 +32,7 @@ class HomeQuickSearchViewModel : ViewModel() {
                 it
             }
         }
+        checkFilterChange()
     }
 
     fun plusPersonCount() {
@@ -41,17 +43,17 @@ class HomeQuickSearchViewModel : ViewModel() {
                 it
             }
         }
+        checkFilterChange()
     }
 
     fun setWithAnimal(isChecked: Boolean) {
         _withAnimal.value = isChecked
+        checkFilterChange()
     }
 
-    fun checkFilterChange() {
-        _isFilterChange.value = _personCount.value != 1 ||
-                _withAnimal.value != false ||
-                _area.value != Area.ALL ||
-                _hashtag.value != Hashtag.NOTHING
+    fun setArea(checkedId: Int?) {
+        _area.value = getAreaWithId(checkedId)
+        checkFilterChange()
     }
 
     fun resetAllFilter() {
@@ -59,5 +61,13 @@ class HomeQuickSearchViewModel : ViewModel() {
         _withAnimal.value = false
         _area.value = Area.ALL
         _hashtag.value = Hashtag.NOTHING
+        checkFilterChange()
+    }
+
+    private fun checkFilterChange() {
+        _isFilterChange.value = _personCount.value != 1 ||
+                _withAnimal.value != false ||
+                _area.value != Area.ALL ||
+                _hashtag.value != Hashtag.NOTHING
     }
 }

@@ -1,60 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/tv_filter_area_title"
-        style="@style/Gmarket.Weight500"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:text="@string/filter_area_title"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <HorizontalScrollView
+        <import type="com.gritbus.hipchon.domain.model.Area" />
+
+        <variable
+            name="viewModel"
+            type="com.gritbus.hipchon.ui.home.HomeQuickSearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:clipToPadding="false"
-        android:paddingStart="@dimen/spacing_20"
-        android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@id/tv_filter_area_title">
+        android:background="@color/white">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/cg_filter_area"
+        <TextView
+            android:id="@+id/tv_filter_area_title"
+            style="@style/Gmarket.Weight500"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:chipSpacingHorizontal="20dp"
-            app:singleSelection="true">
+            android:layout_marginStart="30dp"
+            android:text="@string/filter_area_title"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Chip.Radius17"
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/spacing_20"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/tv_filter_area_title">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cg_filter_area"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="제주" />
+                app:checkedArea="@{viewModel.area}"
+                app:chipSpacingHorizontal="20dp"
+                app:onCheckedChanged="@{viewModel}"
+                app:singleSelection="true">
 
-            <com.google.android.material.chip.Chip
-                style="@style/Chip.Radius17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="제주" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_filter_area_jeju"
+                    style="@style/Chip.Radius17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="제주" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Chip.Radius17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="제주" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_filter_area_sokcho_goseong"
+                    style="@style/Chip.Radius17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="속초/고성" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Chip.Radius17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="제주" />
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_filter_area_gangneung"
+                    style="@style/Chip.Radius17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="강릉" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
