@@ -38,7 +38,11 @@ class HomeQuickSearchFragment :
             resetAllFilter()
         }
         binding.tvHomeQuickSearchApply.setOnClickListener {
-            startActivity(Intent(requireContext(), PlaceResultActivity::class.java))
+            viewModel.getSearchFilter()?.let { filterData ->
+                startActivity(Intent(requireContext(), PlaceResultActivity::class.java).apply {
+                    putExtra(QUICK_SEARCH_FILTER, filterData)
+                })
+            }
             dialog?.dismiss()
         }
     }
@@ -69,5 +73,9 @@ class HomeQuickSearchFragment :
 
     private fun resetAllFilter() {
         viewModel.resetAllFilter()
+    }
+
+    companion object {
+        const val QUICK_SEARCH_FILTER = "com.gritbus.hipchon.ui.home.view"
     }
 }

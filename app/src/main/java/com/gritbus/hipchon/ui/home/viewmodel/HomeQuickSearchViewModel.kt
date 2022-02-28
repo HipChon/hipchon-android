@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gritbus.hipchon.domain.model.Area
 import com.gritbus.hipchon.domain.model.Hashtag
+import com.gritbus.hipchon.domain.model.PlaceSearchFilterData
 import com.gritbus.hipchon.utils.getAreaWithId
 import com.gritbus.hipchon.utils.getHashtagWithId
 
@@ -75,5 +76,19 @@ class HomeQuickSearchViewModel : ViewModel() {
                 _withAnimal.value != false ||
                 _area.value != Area.ALL ||
                 _hashtag.value != Hashtag.NOTHING
+    }
+
+    fun getSearchFilter(): PlaceSearchFilterData? {
+        val personCountData = _personCount.value ?: return null
+        val withAnimalData = _withAnimal.value ?: return null
+        val areaData = _area.value ?: return null
+        val hashtagData = _hashtag.value ?: return null
+
+        return PlaceSearchFilterData(
+            personCountData,
+            withAnimalData,
+            areaData,
+            hashtagData
+        )
     }
 }
