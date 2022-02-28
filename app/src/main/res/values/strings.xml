@@ -8,6 +8,7 @@
     <!--  QuickSearch  -->
     <string name="quick_search_title">빠른 검색</string>
     <string name="quick_search_reset">초기화</string>
+    <string name="quick_search_apply">적용</string>
 
     <!--  PersonCounter  -->
     <string name="person_counter_one">나만의</string>

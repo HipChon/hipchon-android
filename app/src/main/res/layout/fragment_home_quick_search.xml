@@ -85,7 +85,7 @@
             android:background="@drawable/bg_quick_search_apply_default"
             android:paddingTop="17dp"
             android:paddingBottom="50dp"
-            android:text="적용"
+            android:text="@string/quick_search_apply"
             android:textAlignment="center"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/tv_home_quick_search_reset" />
