@@ -5,7 +5,9 @@ import android.view.View
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentHomeBinding
 import com.gritbus.hipchon.utils.BaseViewUtil
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

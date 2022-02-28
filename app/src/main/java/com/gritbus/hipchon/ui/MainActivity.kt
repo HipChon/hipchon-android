@@ -3,13 +3,15 @@ package com.gritbus.hipchon.ui
 import android.os.Bundle
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityMainBinding
+import com.gritbus.hipchon.ui.feed.FeedFragment
 import com.gritbus.hipchon.ui.home.HomeFragment
 import com.gritbus.hipchon.ui.my.MyFragment
-import com.gritbus.hipchon.ui.feed.FeedFragment
 import com.gritbus.hipchon.ui.save.SaveFragment
 import com.gritbus.hipchon.utils.BaseViewUtil
 import com.gritbus.hipchon.utils.replaceFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity :
     BaseViewUtil.BaseAppCompatActivity<ActivityMainBinding>(R.layout.activity_main) {
 

@@ -1,37 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/tv_filter_person_title"
-        style="@style/Gmarket.Weight500"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:text="@string/filter_person_title"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <com.gritbus.hipchon.ui.custom.CustomPersonCounter
-        android:id="@+id/cpc_filter_person"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@id/tv_filter_person_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_filter_person_title"
-        app:layout_goneMarginTop="18dp" />
+        <variable
+            name="viewModel"
+            type="com.gritbus.hipchon.ui.home.HomeQuickSearchViewModel" />
+    </data>
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_filter_person_animal"
-        style="@style/Chip.Radius17"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_20"
-        android:text="@string/filter_person_animal"
-        app:layout_constraintStart_toEndOf="@id/cpc_filter_person"
-        app:layout_constraintTop_toTopOf="@id/cpc_filter_person" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_filter_person_title"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/filter_person_title"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_person_counter"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_rectangle_radius_17"
+            android:padding="5dp"
+            app:layout_constraintStart_toStartOf="@id/tv_filter_person_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_filter_person_title">
+
+            <ImageView
+                android:id="@+id/iv_person_counter_minus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.minusPersonCount()}"
+                android:src="@drawable/bg_minus"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_person_counter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_person_counter_plus"
+                app:layout_constraintStart_toEndOf="@id/iv_person_counter_minus"
+                app:layout_constraintTop_toTopOf="parent"
+                app:countText="@{viewModel.personCount}" />
+
+            <ImageView
+                android:id="@+id/iv_person_counter_plus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.plusPersonCount()}"
+                android:src="@drawable/bg_plus"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_person_counter_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/person_counter_help"
+            android:textColor="@color/gray04"
+            android:textSize="@dimen/text_size_10"
+            app:layout_constraintEnd_toEndOf="@id/cl_person_counter"
+            app:layout_constraintStart_toStartOf="@id/cl_person_counter"
+            app:layout_constraintTop_toBottomOf="@id/cl_person_counter"
+            app:visible="@{viewModel.personCount}" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_filter_person_animal"
+            style="@style/Chip.Radius17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:checked="@{viewModel.withAnimal}"
+            android:onCheckedChanged="@{(chip, checked) -> viewModel.setWithAnimal(checked)}"
+            android:text="@string/filter_person_animal"
+            app:layout_constraintStart_toEndOf="@id/cl_person_counter"
+            app:layout_constraintTop_toTopOf="@id/cl_person_counter" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
