@@ -21,5 +21,7 @@
     <!--  Special Color  -->
     <color name="gray_border">#E5E5E5</color>
     <color name="gray_border_apply_button">#F0F0F0</color>
+    <color name="gray_border_place_result_title">#D3D3D3</color>
     <color name="gray_place_distance">#999999</color>
+
 </resources>

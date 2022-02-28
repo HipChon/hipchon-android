@@ -7,9 +7,11 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:layout_marginVertical="@dimen/spacing_8"
+        android:layout_marginHorizontal="30dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="4dp">
 
@@ -19,9 +21,9 @@
 
             <ImageView
                 android:id="@+id/iv_item_home_place_thumbnail"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="166dp"
-                android:background="@drawable/ic_launcher_background"
+                android:background="@color/primary_green"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -60,7 +62,7 @@
 
             <TextView
                 android:id="@+id/tv_item_home_place_title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
@@ -70,7 +72,7 @@
 
             <TextView
                 android:id="@+id/tv_item_home_place_desc"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="9dp"
                 android:text="거리 정보"
