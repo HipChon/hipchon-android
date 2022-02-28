@@ -49,6 +49,7 @@
                 app:layout_constraintTop_toTopOf="@id/iv_item_home_place_thumbnail" />
 
             <TextView
+                android:id="@+id/tv_item_home_place_thumbnail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"

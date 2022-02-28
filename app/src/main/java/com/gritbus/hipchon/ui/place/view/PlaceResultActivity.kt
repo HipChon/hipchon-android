@@ -2,8 +2,11 @@ package com.gritbus.hipchon.ui.place.view
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.os.bundleOf
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityPlaceResultBinding
+import com.gritbus.hipchon.domain.model.PlaceData
+import com.gritbus.hipchon.domain.model.PlaceOrderType
 import com.gritbus.hipchon.ui.place.adapter.PlaceResultAdapter
 import com.gritbus.hipchon.ui.place.viewmodel.PlaceResultViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
@@ -11,9 +14,11 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PlaceResultActivity :
-    BaseViewUtil.BaseAppCompatActivity<ActivityPlaceResultBinding>(R.layout.activity_place_result) {
+    BaseViewUtil.BaseAppCompatActivity<ActivityPlaceResultBinding>(R.layout.activity_place_result),
+    PlaceResultFilterFragment.OnOrderTypeClickListener {
 
     private val viewModel: PlaceResultViewModel by viewModels()
+    private lateinit var placeResultAdapter: PlaceResultAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +29,7 @@ class PlaceResultActivity :
         setObserver()
         setAdapter()
         setOnClickListener()
+        viewModel.getPlaceData()
     }
 
     private fun setObserver() {
@@ -35,12 +41,18 @@ class PlaceResultActivity :
                 it.hashtag.value
             )
         }
+        viewModel.placeAllData.observe(this) {
+            placeResultAdapter.submitList(it)
+        }
     }
 
     private fun setAdapter() {
-        binding.rvPlaceResult.adapter = PlaceResultAdapter().apply {
-            submitList(mutableListOf("test", "test", "test", "test", "test", "test", "test"))
-        }
+        placeResultAdapter = PlaceResultAdapter(::placeSaveCallback)
+        binding.rvPlaceResult.adapter = placeResultAdapter
+    }
+
+    private fun placeSaveCallback(selectedPlaceData: PlaceData) {
+        viewModel.updateSave(selectedPlaceData)
     }
 
     private fun setOnClickListener() {
@@ -50,7 +62,9 @@ class PlaceResultActivity :
         binding.mtPlaceResultTitle.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.place_result_filter -> {
-                    val placeResultFilterFragment = PlaceResultFilterFragment()
+                    val placeResultFilterFragment = PlaceResultFilterFragment().apply {
+                        arguments = bundleOf(PLACE_ORDER_TYPE to viewModel.placeOrderType.value)
+                    }
                     placeResultFilterFragment.show(
                         supportFragmentManager,
                         placeResultFilterFragment.tag
@@ -60,5 +74,13 @@ class PlaceResultActivity :
                 else -> false
             }
         }
+    }
+
+    override fun onClick(orderType: PlaceOrderType) {
+        viewModel.setOrderType(orderType)
+    }
+
+    companion object {
+        const val PLACE_ORDER_TYPE = "com.gritbus.hipchon.ui.place.view"
     }
 }

@@ -38,6 +38,7 @@
             android:id="@+id/rv_place_result"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:clipToPadding="false"
             android:paddingTop="@dimen/spacing_12"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -28,4 +28,6 @@
     <string name="place_result_filter_save">저장순</string>
     <string name="place_result_filter_feed">후기순</string>
     <string name="place_result_filter_distance">거리순</string>
+
+    <string name="place_result_thumbnail_count">%d / %d</string>
 </resources>
