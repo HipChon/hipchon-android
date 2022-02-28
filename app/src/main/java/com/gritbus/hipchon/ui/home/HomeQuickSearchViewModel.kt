@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.gritbus.hipchon.domain.model.Area
 import com.gritbus.hipchon.domain.model.Hashtag
 import com.gritbus.hipchon.utils.getAreaWithId
+import com.gritbus.hipchon.utils.getHashtagWithId
 
 class HomeQuickSearchViewModel : ViewModel() {
 
@@ -53,6 +54,11 @@ class HomeQuickSearchViewModel : ViewModel() {
 
     fun setArea(checkedId: Int?) {
         _area.value = getAreaWithId(checkedId)
+        checkFilterChange()
+    }
+
+    fun setHashtag(checkedId: Int?) {
+        _hashtag.value = getHashtagWithId(checkedId)
         checkFilterChange()
     }
 

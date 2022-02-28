@@ -1,60 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/tv_filter_type_title"
-        style="@style/Gmarket.Weight500"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:text="@string/filter_type_title"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <HorizontalScrollView
+        <import type="com.gritbus.hipchon.domain.model.FilterType" />
+
+        <variable
+            name="viewModel"
+            type="com.gritbus.hipchon.ui.home.HomeQuickSearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:clipToPadding="false"
-        android:paddingStart="@dimen/spacing_20"
-        android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@id/tv_filter_type_title">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/cg_filter_type"
+        <TextView
+            android:id="@+id/tv_filter_type_title"
+            style="@style/Gmarket.Weight500"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:chipSpacingHorizontal="20dp"
-            app:singleSelection="true">
+            android:layout_marginStart="30dp"
+            android:text="@string/filter_type_title"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Chip.Radius17"
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/spacing_20"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/tv_filter_type_title">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cg_filter_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="불멍" />
+                app:checkedHashtag="@{viewModel.hashtag}"
+                app:chipSpacingHorizontal="20dp"
+                app:singleSelection="true"
+                app:type="@{FilterType.HASHTAG}"
+                app:viewModel="@{viewModel}">
 
-            <com.google.android.material.chip.Chip
-                style="@style/Chip.Radius17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="불멍" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_filter_type_fire"
+                    style="@style/Chip.Radius17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="불멍" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Chip.Radius17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="불멍" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_filter_type_water"
+                    style="@style/Chip.Radius17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="물멍" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Chip.Radius17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="불멍" />
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_filter_type_field"
+                    style="@style/Chip.Radius17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="논밭뷰" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_filter_type_vacation"
+                    style="@style/Chip.Radius17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="촌캉스" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

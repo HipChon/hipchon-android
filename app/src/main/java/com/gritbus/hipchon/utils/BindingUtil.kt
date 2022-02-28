@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import com.google.android.material.chip.ChipGroup
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.domain.model.Area
+import com.gritbus.hipchon.domain.model.FilterType
+import com.gritbus.hipchon.domain.model.Hashtag
 import com.gritbus.hipchon.ui.home.HomeQuickSearchViewModel
 
 @BindingAdapter("countText")
@@ -25,10 +27,13 @@ fun setVisible(view: TextView, count: Int) {
     }
 }
 
-@BindingAdapter("onCheckedChanged")
-fun setOnCheckedChanged(view: ChipGroup, viewModel: ViewModel) {
+@BindingAdapter("viewModel", "type")
+fun setOnCheckedChanged(view: ChipGroup, viewModel: ViewModel, type: FilterType) {
     view.setOnCheckedChangeListener { _, checkedId ->
-        (viewModel as? HomeQuickSearchViewModel)?.setArea(checkedId)
+        when (type) {
+            FilterType.AREA -> (viewModel as? HomeQuickSearchViewModel)?.setArea(checkedId)
+            FilterType.HASHTAG -> (viewModel as? HomeQuickSearchViewModel)?.setHashtag(checkedId)
+        }
     }
 }
 
@@ -41,3 +46,15 @@ fun setCheckedArea(view: ChipGroup, area: Area) {
         Area.GANGNEUNG -> view.check(R.id.chip_filter_area_gangneung)
     }
 }
+
+@BindingAdapter("checkedHashtag")
+fun setCheckedHashtag(view: ChipGroup, hashtag: Hashtag) {
+    when (hashtag) {
+        Hashtag.NOTHING -> view.clearCheck()
+        Hashtag.FIRE -> view.check(R.id.chip_filter_type_fire)
+        Hashtag.WATER -> view.check(R.id.chip_filter_type_water)
+        Hashtag.FIELD -> view.check(R.id.chip_filter_type_field)
+        Hashtag.VACATION -> view.check(R.id.chip_filter_type_vacation)
+    }
+}
+

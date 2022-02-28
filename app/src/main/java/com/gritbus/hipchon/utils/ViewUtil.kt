@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.domain.model.Area
+import com.gritbus.hipchon.domain.model.Hashtag
 
 fun AppCompatActivity.replaceFragment(navigationViewId: Int, fragment: Fragment) {
     supportFragmentManager
@@ -18,5 +19,15 @@ fun getAreaWithId(viewId: Int?): Area {
         R.id.chip_filter_area_sokcho_goseong -> Area.SOKCHO_GOSEONG
         R.id.chip_filter_area_gangneung -> Area.GANGNEUNG
         else -> Area.ALL
+    }
+}
+
+fun getHashtagWithId(viewId: Int?): Hashtag {
+    return when (viewId) {
+        R.id.chip_filter_type_fire -> Hashtag.FIRE
+        R.id.chip_filter_type_water -> Hashtag.WATER
+        R.id.chip_filter_type_field -> Hashtag.FIELD
+        R.id.chip_filter_type_vacation -> Hashtag.VACATION
+        else -> Hashtag.NOTHING
     }
 }

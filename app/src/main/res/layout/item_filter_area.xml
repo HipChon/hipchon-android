@@ -4,7 +4,7 @@
 
     <data>
 
-        <import type="com.gritbus.hipchon.domain.model.Area" />
+        <import type="com.gritbus.hipchon.domain.model.FilterType" />
 
         <variable
             name="viewModel"
@@ -42,8 +42,9 @@
                 android:layout_height="wrap_content"
                 app:checkedArea="@{viewModel.area}"
                 app:chipSpacingHorizontal="20dp"
-                app:onCheckedChanged="@{viewModel}"
-                app:singleSelection="true">
+                app:singleSelection="true"
+                app:type="@{FilterType.AREA}"
+                app:viewModel="@{viewModel}">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_filter_area_jeju"
