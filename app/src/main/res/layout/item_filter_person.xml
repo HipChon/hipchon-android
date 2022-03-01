@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.gritbus.hipchon.ui.home.viewmodel.HomeQuickSearchViewModel" />
+            type="com.gritbus.hipchon.utils.QuickSearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,11 +39,14 @@
                 android:id="@+id/iv_person_counter_minus"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:foreground="@drawable/bg_counter_round_ripple"
+                android:clickable="true"
                 android:onClick="@{() -> viewModel.minusPersonCount()}"
                 android:src="@drawable/bg_minus"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:focusable="true" />
 
             <TextView
                 android:id="@+id/tv_person_counter"
@@ -52,21 +55,24 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_14"
+                app:countText="@{viewModel.personCount}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/iv_person_counter_plus"
                 app:layout_constraintStart_toEndOf="@id/iv_person_counter_minus"
-                app:layout_constraintTop_toTopOf="parent"
-                app:countText="@{viewModel.personCount}" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/iv_person_counter_plus"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:foreground="@drawable/bg_counter_round_ripple"
                 android:onClick="@{() -> viewModel.plusPersonCount()}"
                 android:src="@drawable/bg_plus"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:focusable="true" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView

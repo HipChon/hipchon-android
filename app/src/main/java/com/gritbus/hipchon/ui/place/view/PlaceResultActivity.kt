@@ -74,6 +74,15 @@ class PlaceResultActivity :
                 else -> false
             }
         }
+        binding.tvPlaceResult.setOnClickListener {
+            val placeQuickSearchFragment = PlaceQuickSearchFragment().apply {
+                arguments = bundleOf(PLACE_QUICK_SEARCH to viewModel.getSearchFilter())
+            }
+            placeQuickSearchFragment.show(
+                supportFragmentManager,
+                placeQuickSearchFragment.tag
+            )
+        }
     }
 
     override fun onClick(orderType: PlaceOrderType) {
@@ -81,6 +90,7 @@ class PlaceResultActivity :
     }
 
     companion object {
-        const val PLACE_ORDER_TYPE = "com.gritbus.hipchon.ui.place.view"
+        const val PLACE_ORDER_TYPE = "com.gritbus.hipchon.ui.place.view PLACE_ORDER_TYPE"
+        const val PLACE_QUICK_SEARCH = "com.gritbus.hipchon.ui.place.view PLACE_QUICK_SEARCH"
     }
 }

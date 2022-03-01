@@ -30,6 +30,10 @@ class PlaceResultViewModel @Inject constructor(
             savedStateHandle.get<PlaceSearchFilterData>(HomeQuickSearchFragment.QUICK_SEARCH_FILTER)
     }
 
+    fun updateFilterData(filterData: PlaceSearchFilterData) {
+        _placeSearchFilterData.value = filterData
+    }
+
     fun setOrderType(orderType: PlaceOrderType) {
         _placeOrderType.value = orderType
         getPlaceData()
@@ -55,6 +59,10 @@ class PlaceResultViewModel @Inject constructor(
             PlaceOrderType.FEED -> fakeDataSet.sortedByDescending { it.feedCount }
             PlaceOrderType.DISTANCE -> fakeDataSet.sortedByDescending { it.distance }
         }
+    }
+
+    fun getSearchFilter(): PlaceSearchFilterData? {
+        return _placeSearchFilterData.value
     }
 
     // 서버 연결시 삭제할 부분

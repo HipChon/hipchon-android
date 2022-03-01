@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.gritbus.hipchon.ui.home.viewmodel.HomeQuickSearchViewModel" />
+            type="com.gritbus.hipchon.utils.QuickSearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -3,13 +3,11 @@ package com.gritbus.hipchon.utils
 import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.ViewModel
 import com.google.android.material.chip.ChipGroup
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.domain.model.Area
 import com.gritbus.hipchon.domain.model.FilterType
 import com.gritbus.hipchon.domain.model.Hashtag
-import com.gritbus.hipchon.ui.home.viewmodel.HomeQuickSearchViewModel
 
 @BindingAdapter("countText")
 fun setCountText(view: TextView, count: Int) {
@@ -28,11 +26,11 @@ fun setVisible(view: TextView, count: Int) {
 }
 
 @BindingAdapter("viewModel", "type")
-fun setOnCheckedChanged(view: ChipGroup, viewModel: ViewModel, type: FilterType) {
+fun setOnCheckedChanged(view: ChipGroup, viewModel: QuickSearchViewModel, type: FilterType) {
     view.setOnCheckedChangeListener { _, checkedId ->
         when (type) {
-            FilterType.AREA -> (viewModel as? HomeQuickSearchViewModel)?.setArea(checkedId)
-            FilterType.HASHTAG -> (viewModel as? HomeQuickSearchViewModel)?.setHashtag(checkedId)
+            FilterType.AREA -> viewModel.setArea(checkedId)
+            FilterType.HASHTAG -> viewModel.setHashtag(checkedId)
         }
     }
 }
