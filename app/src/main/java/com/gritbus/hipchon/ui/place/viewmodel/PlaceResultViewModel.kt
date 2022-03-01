@@ -22,7 +22,7 @@ class PlaceResultViewModel @Inject constructor(
     private val _placeAllData = MutableLiveData<List<PlaceData>>()
     val placeAllData: LiveData<List<PlaceData>> = _placeAllData
 
-    private val _placeOrderType = MutableLiveData(PlaceOrderType.SAVE)
+    private val _placeOrderType = MutableLiveData(PlaceOrderType.FEED)
     val placeOrderType: LiveData<PlaceOrderType> = _placeOrderType
 
     init {
