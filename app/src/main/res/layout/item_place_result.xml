@@ -39,8 +39,8 @@
 
             <ImageView
                 android:id="@+id/iv_item_home_place_save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="15dp"
+                android:layout_height="18dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/ic_save"
@@ -56,8 +56,10 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/bg_rectangle_radius_9"
                 android:paddingHorizontal="5dp"
+                android:paddingVertical="1dp"
                 android:text="1 / 8"
                 android:textColor="@color/white"
+                android:textSize="@dimen/text_size_12"
                 app:layout_constraintBottom_toBottomOf="@id/iv_item_home_place_thumbnail"
                 app:layout_constraintEnd_toEndOf="@id/iv_item_home_place_thumbnail" />
 
@@ -68,6 +70,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="[강원도] 러스틱 라이프 카페"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_item_home_place_thumbnail" />
 
@@ -78,43 +82,53 @@
                 android:layout_marginStart="9dp"
                 android:text="거리 정보"
                 android:textColor="@color/gray04"
+                android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_item_home_place_title"
                 app:layout_constraintStart_toEndOf="@id/tv_item_home_place_title"
                 app:layout_constraintTop_toTopOf="@id/tv_item_home_place_title" />
 
             <TextView
                 android:id="@+id/tv_item_home_place_keyword_1st"
+                style="@style/Gmarket.Weight500"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_rectangle_radius_15"
                 android:backgroundTint="@color/primary_green"
                 android:paddingHorizontal="7dp"
+                android:paddingVertical="5dp"
                 android:text="3인가능"
+                android:textSize="@dimen/text_size_10"
                 app:layout_constraintStart_toStartOf="@id/tv_item_home_place_title"
                 app:layout_constraintTop_toBottomOf="@id/tv_item_home_place_title" />
 
             <TextView
                 android:id="@+id/tv_item_home_place_keyword_2nd"
+                style="@style/Gmarket.Weight500"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/bg_rectangle_radius_15"
                 android:backgroundTint="@color/secondary_yellow"
                 android:paddingHorizontal="7dp"
+                android:paddingVertical="5dp"
                 android:text="3인가능"
+                android:textSize="@dimen/text_size_10"
                 app:layout_constraintStart_toEndOf="@id/tv_item_home_place_keyword_1st"
                 app:layout_constraintTop_toTopOf="@id/tv_item_home_place_keyword_1st" />
 
             <TextView
                 android:id="@+id/tv_item_home_place_keyword_3rd"
+                style="@style/Gmarket.Weight500"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/bg_rectangle_radius_15"
                 android:backgroundTint="@color/secondary_blue"
                 android:paddingHorizontal="7dp"
+                android:paddingVertical="5dp"
                 android:text="3인가능"
+                android:textSize="@dimen/text_size_10"
                 app:layout_constraintStart_toEndOf="@id/tv_item_home_place_keyword_2nd"
                 app:layout_constraintTop_toTopOf="@id/tv_item_home_place_keyword_1st" />
 
@@ -138,6 +152,7 @@
                 android:layout_marginStart="12dp"
                 android:text="52"
                 android:textColor="@color/gray04"
+                android:textSize="@dimen/text_size_12"
                 app:layout_constraintBottom_toBottomOf="@id/iv_item_home_place_save_count"
                 app:layout_constraintStart_toEndOf="@id/iv_item_home_place_save_count"
                 app:layout_constraintTop_toTopOf="@id/iv_item_home_place_save_count" />
@@ -160,6 +175,7 @@
                 android:layout_marginStart="12dp"
                 android:text="13"
                 android:textColor="@color/gray04"
+                android:textSize="@dimen/text_size_12"
                 app:layout_constraintBottom_toBottomOf="@id/tv_item_home_place_save_count"
                 app:layout_constraintStart_toEndOf="@id/iv_item_home_place_feed_count"
                 app:layout_constraintTop_toTopOf="@id/tv_item_home_place_save_count" />
@@ -170,6 +186,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="1,000,000원부터"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/iv_item_home_place_save_count"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/iv_item_home_place_save_count" />
