@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ItemPlaceResultBinding
 import com.gritbus.hipchon.domain.model.PlaceData
@@ -36,7 +37,10 @@ class PlaceResultAdapter(
             binding.ivItemHomePlaceSave.setOnClickListener {
                 saveClickCallback(placeData)
             }
-
+            Glide.with(binding.root.context)
+                .load(placeData.thumbnail[1])
+                .placeholder(R.color.gray02)
+                .into(binding.ivItemHomePlaceThumbnail)
             binding.ivItemHomePlaceSave.background = when (placeData.isSave) {
                 true -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save_filled)
                 false -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save)

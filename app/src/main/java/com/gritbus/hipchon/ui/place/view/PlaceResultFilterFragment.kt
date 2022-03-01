@@ -1,5 +1,6 @@
 package com.gritbus.hipchon.ui.place.view
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -96,8 +97,14 @@ class PlaceResultFilterFragment :
     private fun setOptionView(textView: TextView, imageView: ImageView, isActive: Boolean) {
         imageView.visibility = when (isActive) {
             true -> View.VISIBLE
-            else -> View.INVISIBLE
+            false -> View.INVISIBLE
         }
+        textView.setTypeface(
+            null, when (isActive) {
+                true -> Typeface.BOLD
+                false -> Typeface.NORMAL
+            }
+        )
     }
 
     private fun setOnClickListener() {
