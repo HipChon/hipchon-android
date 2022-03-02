@@ -1,10 +1,12 @@
 package com.gritbus.hipchon.utils
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.domain.model.Area
 import com.gritbus.hipchon.domain.model.Hashtag
+import kotlin.math.roundToInt
 
 fun AppCompatActivity.replaceFragment(navigationViewId: Int, fragment: Fragment) {
     supportFragmentManager
@@ -30,4 +32,9 @@ fun getHashtagWithId(viewId: Int?): Hashtag {
         R.id.chip_filter_type_vacation -> Hashtag.VACATION
         else -> Hashtag.NOTHING
     }
+}
+
+fun dpToPx(context: Context, dp: Int): Int {
+    val density = context.resources.displayMetrics.density
+    return (dp.toFloat() * density).roundToInt()
 }
