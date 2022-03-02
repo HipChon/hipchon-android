@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentHomeBinding
+import com.gritbus.hipchon.domain.model.WeeklyHipPlaceData
 import com.gritbus.hipchon.ui.home.adapter.LocalHipsterAdapter
 import com.gritbus.hipchon.ui.home.adapter.WeeklyHipPlaceAdapter
 import com.gritbus.hipchon.ui.home.viewmodel.HomeViewModel
@@ -58,10 +59,14 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
 
     private fun setAdapter() {
         localHipsterAdapter = LocalHipsterAdapter()
-        weeklyHipPlaceAdapter = WeeklyHipPlaceAdapter()
+        weeklyHipPlaceAdapter = WeeklyHipPlaceAdapter(::placeSaveCallback)
 
         binding.rvHomeLocalHipsterPick.adapter = localHipsterAdapter
         binding.rvHomeWeeklyHipPlace.adapter = weeklyHipPlaceAdapter
+    }
+
+    private fun placeSaveCallback(weeklyHipPlaceData: WeeklyHipPlaceData) {
+        viewModel.updateSave(weeklyHipPlaceData)
     }
 
     private fun setObserver() {

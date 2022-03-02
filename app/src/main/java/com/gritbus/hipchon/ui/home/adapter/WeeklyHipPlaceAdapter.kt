@@ -11,8 +11,9 @@ import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ItemHomeWeeklyHipPlaceBinding
 import com.gritbus.hipchon.domain.model.WeeklyHipPlaceData
 
-class WeeklyHipPlaceAdapter :
-    ListAdapter<WeeklyHipPlaceData, WeeklyHipPlaceAdapter.WeeklyHipPlaceViewHolder>(diffUtil) {
+class WeeklyHipPlaceAdapter(
+    private val saveClickCallback: (WeeklyHipPlaceData) -> (Unit)
+) : ListAdapter<WeeklyHipPlaceData, WeeklyHipPlaceAdapter.WeeklyHipPlaceViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeeklyHipPlaceViewHolder {
         return WeeklyHipPlaceViewHolder(
@@ -25,14 +26,20 @@ class WeeklyHipPlaceAdapter :
     }
 
     override fun onBindViewHolder(holder: WeeklyHipPlaceViewHolder, position: Int) {
-        holder.bind(currentList[position])
+        holder.bind(currentList[position], saveClickCallback)
     }
 
     class WeeklyHipPlaceViewHolder(
         private val binding: ItemHomeWeeklyHipPlaceBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(weeklyHipPlaceData: WeeklyHipPlaceData) {
+        fun bind(
+            weeklyHipPlaceData: WeeklyHipPlaceData,
+            saveClickCallback: (WeeklyHipPlaceData) -> Unit
+        ) {
+            binding.ivHomeWeeklyHipPlaceSave.setOnClickListener {
+                saveClickCallback(weeklyHipPlaceData)
+            }
             binding.tvHomeWeeklyHipPlaceTitle.text = weeklyHipPlaceData.title
             binding.tvHomeWeeklyHipPlaceArea.text = weeklyHipPlaceData.area.value
             binding.tvHomeWeeklyHipPlaceKeyword1st.text = weeklyHipPlaceData.keywordFirst

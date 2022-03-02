@@ -26,6 +26,17 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         _weeklyHipPlaceAllData.value = fakeWeeklyHipPlaceAllData
     }
 
+    fun updateSave(selectedPlaceData: WeeklyHipPlaceData) {
+        fakeWeeklyHipPlaceAllData = fakeWeeklyHipPlaceAllData.map {
+            if (it.id == selectedPlaceData.id) {
+                it.copy(isSave = !it.isSave)
+            } else {
+                it
+            }
+        }
+        getWeeklyHipPlaceAllData()
+    }
+
     // 서버 연결시 FAKE 데이터 삭제
     private val fakeUrl = "https://source.unsplash.com/random"
     private val fakeLocalHipsterAllData: List<LocalHipsterData> = listOf(
@@ -35,7 +46,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         LocalHipsterData(4, Area.JEJU, "제주의 맛맛맛", "제주 해녀의 부엌 외 5곳", fakeUrl),
         LocalHipsterData(5, Area.JEJU, "제주의 맛맛맛", "제주 해녀의 부엌 외 5곳", fakeUrl),
     )
-    private val fakeWeeklyHipPlaceAllData: List<WeeklyHipPlaceData> = listOf(
+    private var fakeWeeklyHipPlaceAllData: List<WeeklyHipPlaceData> = listOf(
         WeeklyHipPlaceData(1, "제주맛집", Area.JEJU, "3인가능", "3인가능", 10, 12, false, fakeUrl),
         WeeklyHipPlaceData(2, "제주맛집", Area.JEJU, "3인가능", "3인가능", 10, 12, false, fakeUrl),
         WeeklyHipPlaceData(3, "제주맛집", Area.JEJU, "3인가능", "3인가능", 10, 12, false, fakeUrl),
