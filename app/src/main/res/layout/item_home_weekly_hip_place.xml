@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="296dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_16"
+        app:cardCornerRadius="@dimen/spacing_2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="7">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:src="@color/black" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4">
+
+                <TextView
+                    android:id="@+id/tv_home_weekly_hip_place_title"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:layout_marginTop="22dp"
+                    android:text="장소명"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_home_weekly_hip_place_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/spacing_20"
+                    android:background="@drawable/ic_save"
+                    android:backgroundTint="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_home_weekly_hip_place_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_home_weekly_hip_place_title" />
+
+                <TextView
+                    android:id="@+id/tv_home_weekly_hip_place_area"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_8"
+                    android:text="지역"
+                    android:textColor="@color/gray05"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintStart_toStartOf="@id/tv_home_weekly_hip_place_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_home_weekly_hip_place_title" />
+
+                <TextView
+                    android:id="@+id/tv_home_weekly_hip_place_keyword_1st"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_rectangle_radius_15"
+                    android:backgroundTint="@color/gray02"
+                    android:paddingHorizontal="7dp"
+                    android:paddingVertical="5dp"
+                    android:text="3인가능"
+                    android:textSize="@dimen/text_size_10"
+                    app:layout_constraintStart_toStartOf="@id/tv_home_weekly_hip_place_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_home_weekly_hip_place_area" />
+
+                <TextView
+                    android:id="@+id/tv_home_weekly_hip_place_keyword_2nd"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_8"
+                    android:background="@drawable/bg_rectangle_radius_15"
+                    android:backgroundTint="@color/gray02"
+                    android:paddingHorizontal="7dp"
+                    android:paddingVertical="5dp"
+                    android:text="3인가능"
+                    android:textSize="@dimen/text_size_10"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_home_weekly_hip_place_keyword_1st"
+                    app:layout_constraintStart_toEndOf="@id/tv_home_weekly_hip_place_keyword_1st"
+                    app:layout_constraintTop_toTopOf="@id/tv_home_weekly_hip_place_keyword_1st" />
+
+                <TextView
+                    android:id="@+id/tv_home_weekly_hip_place_save"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="34dp"
+                    android:layout_marginBottom="@dimen/spacing_12"
+                    android:text="저장 52"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_home_weekly_hip_place_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_home_weekly_hip_place_keyword_1st" />
+
+                <TextView
+                    android:id="@+id/tv_home_weekly_hip_place_feed"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:text="후기 52"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_home_weekly_hip_place_save"
+                    app:layout_constraintStart_toEndOf="@id/tv_home_weekly_hip_place_save"
+                    app:layout_constraintTop_toTopOf="@id/tv_home_weekly_hip_place_save" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

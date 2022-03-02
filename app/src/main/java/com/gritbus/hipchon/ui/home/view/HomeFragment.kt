@@ -20,7 +20,7 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
     }
 
     private fun setOnClickListener() {
-        binding.mbHomeSearchBar.setOnClickListener {
+        binding.tvHomeSearchBar.setOnClickListener {
             startQuickSearch()
         }
     }

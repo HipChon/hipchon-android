@@ -13,11 +13,302 @@
         android:background="@color/white"
         tools:context=".ui.home.view.HomeFragment">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/mb_home_search_bar"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mt_home_search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="빠른검색 테스트 버튼"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:background="@drawable/bg_place_result_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_home_search_bar"
+                style="@style/Gmarket.Weight500"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_rectangle_radius_21"
+                android:drawablePadding="17dp"
+                android:minHeight="1dp"
+                android:paddingVertical="10dp"
+                android:paddingStart="17dp"
+                android:paddingEnd="71dp"
+                android:text="@string/home_search_bar"
+                android:textColor="@color/gray03"
+                app:backgroundTint="@null"
+                app:drawableStartCompat="@drawable/ic_search"
+                app:layout_constraintHorizontal_chainStyle="spread_inside" />
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mt_home_search_bar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_home_hashtag_fire"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginTop="18dp"
+                    android:src="@drawable/ic_fire"
+                    app:layout_constraintEnd_toStartOf="@id/iv_home_hashtag_water"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_home_hashtag_fire"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/hashtag_fire"
+                    app:layout_constraintEnd_toEndOf="@id/iv_home_hashtag_fire"
+                    app:layout_constraintStart_toStartOf="@id/iv_home_hashtag_fire"
+                    app:layout_constraintTop_toBottomOf="@id/iv_home_hashtag_fire" />
+
+                <ImageView
+                    android:id="@+id/iv_home_hashtag_water"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_water"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_home_hashtag_fire"
+                    app:layout_constraintEnd_toStartOf="@id/iv_home_hashtag_field"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toEndOf="@id/iv_home_hashtag_fire"
+                    app:layout_constraintTop_toTopOf="@id/iv_home_hashtag_fire" />
+
+                <TextView
+                    android:id="@+id/tv_home_hashtag_water"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hashtag_water"
+                    app:layout_constraintEnd_toEndOf="@id/iv_home_hashtag_water"
+                    app:layout_constraintStart_toStartOf="@id/iv_home_hashtag_water"
+                    app:layout_constraintTop_toTopOf="@id/tv_home_hashtag_fire" />
+
+                <ImageView
+                    android:id="@+id/iv_home_hashtag_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="6dp"
+                    android:src="@drawable/ic_field"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_home_hashtag_fire"
+                    app:layout_constraintEnd_toStartOf="@id/iv_home_hashtag_vacation"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toEndOf="@id/iv_home_hashtag_water"
+                    app:layout_constraintTop_toTopOf="@id/iv_home_hashtag_fire" />
+
+                <TextView
+                    android:id="@+id/tv_home_hashtag_field"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hashtag_field"
+                    app:layout_constraintEnd_toEndOf="@id/iv_home_hashtag_field"
+                    app:layout_constraintStart_toStartOf="@id/iv_home_hashtag_field"
+                    app:layout_constraintTop_toTopOf="@id/tv_home_hashtag_fire" />
+
+                <ImageView
+                    android:id="@+id/iv_home_hashtag_vacation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="33dp"
+                    android:src="@drawable/ic_vacation"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_home_hashtag_fire"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toEndOf="@id/iv_home_hashtag_field"
+                    app:layout_constraintTop_toTopOf="@id/iv_home_hashtag_fire" />
+
+                <TextView
+                    android:id="@+id/tv_home_hashtag_vacation"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hashtag_vacation"
+                    app:layout_constraintEnd_toEndOf="@id/iv_home_hashtag_vacation"
+                    app:layout_constraintStart_toStartOf="@id/iv_home_hashtag_vacation"
+                    app:layout_constraintTop_toTopOf="@id/tv_home_hashtag_fire" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_home_local_hipster_pick"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/gray_home_local_hipster_pick"
+                    app:layout_constraintTop_toBottomOf="@id/tv_home_hashtag_fire">
+
+                    <TextView
+                        android:id="@+id/tv_home_local_hipster_pick_title"
+                        style="@style/Gmarket.Weight500"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="21dp"
+                        android:layout_marginTop="19dp"
+                        android:text="@string/home_local_hipster_pick"
+                        android:textSize="@dimen/text_size_20"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_home_local_hipster_pick_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_20"
+                        android:text="@string/see_all"
+                        android:textColor="@color/gray04"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_home_local_hipster_pick_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_home_local_hipster_pick_title" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_home_local_hipster_pick"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginBottom="@dimen/spacing_20"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/spacing_20"
+                        android:scrollbarFadeDuration="0"
+                        android:scrollbars="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_home_local_hipster_pick_title"
+                        tools:listitem="@layout/item_home_hipster_pick" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:id="@+id/iv_home_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="126dp"
+                    android:scaleType="centerCrop"
+                    android:src="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/cl_home_local_hipster_pick" />
+
+                <TextView
+                    android:id="@+id/tv_home_best_feed_title"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_20"
+                    android:layout_marginTop="@dimen/spacing_20"
+                    android:text="@string/home_best_feed"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_home_banner" />
+
+                <ImageView
+                    android:id="@+id/iv_home_best_feed"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginHorizontal="@dimen/spacing_20"
+                    android:layout_marginTop="9dp"
+                    android:background="@color/primary_green"
+                    app:layout_constraintStart_toStartOf="@id/tv_home_best_feed_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_home_best_feed_title" />
+
+                <TextView
+                    android:id="@+id/tv_home_week_hip_place_title"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_20"
+                    android:text="@string/home_weekly_feed"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintStart_toStartOf="@id/tv_home_best_feed_title"
+                    app:layout_constraintTop_toBottomOf="@id/iv_home_best_feed" />
+
+                <TextView
+                    android:id="@+id/tv_home_week_hip_place_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="28dp"
+                    android:text="@string/see_detail"
+                    android:textColor="@color/gray04"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_home_week_hip_place_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_home_week_hip_place_title" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_home_weekly_hip_place"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/spacing_20"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/tv_home_week_hip_place_title"
+                    tools:listitem="@layout/item_home_weekly_hip_place" />
+
+                <TextView
+                    android:id="@+id/tv_home_kakao_counseling"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_40"
+                    android:text="@string/home_kakao_counseling_desc"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_home_weekly_hip_place" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mb_home_kakao_counseling"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_20"
+                    android:layout_marginTop="14dp"
+                    android:backgroundTint="@color/yellow_kakao_counseling"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="@string/home_kakao_counseling"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16"
+                    app:cornerRadius="5dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_home_kakao_counseling" />
+
+                <TextView
+                    android:id="@+id/tv_home_place_register_question"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_20"
+                    android:text="@string/home_place_register_question_desc"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mb_home_kakao_counseling" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mb_home_place_register_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_20"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="68dp"
+                    android:backgroundTint="@color/gray02"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="@string/home_place_register_question"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16"
+                    app:cornerRadius="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_home_place_register_question" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

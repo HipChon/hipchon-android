@@ -5,6 +5,15 @@
     <string name="bottom_nav_save">저장</string>
     <string name="bottom_nav_my">마이</string>
 
+    <!--  Hashtag  -->
+    <string name="hashtag_fire">불멍</string>
+    <string name="hashtag_water">물멍</string>
+    <string name="hashtag_field">논밭뷰</string>
+    <string name="hashtag_vacation">촌캉스</string>
+
+    <!--  Home  -->
+    <string name="home_search_bar">인원, 지역, 유형을 검색하세요</string>
+
     <!--  QuickSearch  -->
     <string name="quick_search_title">빠른 검색</string>
     <string name="quick_search_reset">초기화</string>
@@ -30,4 +39,13 @@
     <string name="place_result_filter_distance">거리순</string>
 
     <string name="place_result_thumbnail_count">%d / %d</string>
+    <string name="home_local_hipster_pick">로컬 힙스터 픽</string>
+    <string name="see_all">전체 보기</string>
+    <string name="home_best_feed">베스트 후기</string>
+    <string name="home_weekly_feed">주간 힙플</string>
+    <string name="see_detail">자세히 보기</string>
+    <string name="home_kakao_counseling_desc">어디서 살지 못 정하셨나요?</string>
+    <string name="home_kakao_counseling">카카오톡 상담하기</string>
+    <string name="home_place_register_question_desc">고객지원</string>
+    <string name="home_place_register_question">공간 등록 문의</string>
 </resources>
