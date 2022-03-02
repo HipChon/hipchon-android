@@ -1,14 +1,18 @@
 package com.gritbus.hipchon.ui.home.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentHomeBinding
+import com.gritbus.hipchon.domain.model.Hashtag
+import com.gritbus.hipchon.domain.model.PlaceSearchFilterData
 import com.gritbus.hipchon.domain.model.WeeklyHipPlaceData
 import com.gritbus.hipchon.ui.home.adapter.LocalHipsterAdapter
 import com.gritbus.hipchon.ui.home.adapter.WeeklyHipPlaceAdapter
 import com.gritbus.hipchon.ui.home.viewmodel.HomeViewModel
+import com.gritbus.hipchon.ui.place.view.PlaceResultActivity
 import com.gritbus.hipchon.utils.BaseViewUtil
 import com.gritbus.hipchon.utils.ItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,18 +36,35 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         setObserver()
     }
 
-    private fun setItemDecoration() {
-        binding.rvHomeLocalHipsterPick.addItemDecoration(ItemDecoration(LOCAL_HIPSTER_ITEM_SPACING))
-    }
-
     override fun onResume() {
         super.onResume()
         initData()
     }
 
+    private fun initData() {
+        viewModel.getLocalHipsterAllData()
+        viewModel.getWeeklyHipPlaceAllData()
+    }
+
+    private fun setItemDecoration() {
+        binding.rvHomeLocalHipsterPick.addItemDecoration(ItemDecoration(LOCAL_HIPSTER_ITEM_SPACING))
+    }
+
     private fun setOnClickListener() {
         binding.tvHomeSearchBar.setOnClickListener {
             startQuickSearch()
+        }
+        binding.ivHomeHashtagFire.setOnClickListener {
+            quickHashtagSearch(Hashtag.FIRE)
+        }
+        binding.ivHomeHashtagWater.setOnClickListener {
+            quickHashtagSearch(Hashtag.WATER)
+        }
+        binding.ivHomeHashtagField.setOnClickListener {
+            quickHashtagSearch(Hashtag.FIELD)
+        }
+        binding.ivHomeHashtagVacation.setOnClickListener {
+            quickHashtagSearch(Hashtag.VACATION)
         }
     }
 
@@ -52,9 +73,13 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         homeQuickSearchFragment.show(parentFragmentManager, homeQuickSearchFragment.tag)
     }
 
-    private fun initData() {
-        viewModel.getLocalHipsterAllData()
-        viewModel.getWeeklyHipPlaceAllData()
+    private fun quickHashtagSearch(hashtag: Hashtag) {
+        startActivity(Intent(requireContext(), PlaceResultActivity::class.java).apply {
+            putExtra(
+                HomeQuickSearchFragment.QUICK_SEARCH_FILTER,
+                PlaceSearchFilterData(hashtag = hashtag)
+            )
+        })
     }
 
     private fun setAdapter() {
