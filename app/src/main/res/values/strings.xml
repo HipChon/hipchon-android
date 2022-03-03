@@ -14,6 +14,7 @@
     <!--  Home  -->
     <string name="see_all">전체 보기</string>
     <string name="see_detail">자세히 보기</string>
+    <string name="see_more">…더보기</string>
 
     <string name="home_search_bar">인원, 지역, 유형을 검색하세요</string>
     <string name="home_local_hipster_pick">로컬 힙스터 픽</string>

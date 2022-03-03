@@ -10,6 +10,7 @@ import com.gritbus.hipchon.domain.model.Hashtag
 import com.gritbus.hipchon.domain.model.PlaceSearchFilterData
 import com.gritbus.hipchon.domain.model.WeeklyHipPlaceData
 import com.gritbus.hipchon.ui.home.adapter.BannerViewPagerAdapter
+import com.gritbus.hipchon.ui.home.adapter.BestFeedViewPagerAdapter
 import com.gritbus.hipchon.ui.home.adapter.LocalHipsterAdapter
 import com.gritbus.hipchon.ui.home.adapter.WeeklyHipPlaceAdapter
 import com.gritbus.hipchon.ui.home.viewmodel.HomeViewModel
@@ -45,6 +46,7 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
     private fun initData() {
         viewModel.getLocalHipsterAllData()
         viewModel.getBannerAllData()
+        viewModel.getBestFeedAllData()
         viewModel.getWeeklyHipPlaceAllData()
     }
 
@@ -103,6 +105,9 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         viewModel.bannerAllData.observe(viewLifecycleOwner) {
             setBanner(it)
         }
+        viewModel.bestFeedAllData.observe(viewLifecycleOwner) {
+            setBestFeed(it)
+        }
         viewModel.weeklyHipPlaceAllData.observe(viewLifecycleOwner) {
             weeklyHipPlaceAdapter.submitList(it)
         }
@@ -114,6 +119,16 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
             childFragmentManager,
             viewLifecycleOwner.lifecycle
         )
+    }
+
+    private fun setBestFeed(bestFeedAllData: List<Pair<String, Hashtag>>) {
+        binding.vpHomeBestFeed.adapter =
+            BestFeedViewPagerAdapter(
+                bestFeedAllData,
+                childFragmentManager,
+                viewLifecycleOwner.lifecycle
+            )
+        binding.diHomeBestFeed.setViewPager2(binding.vpHomeBestFeed)
     }
 
     companion object {

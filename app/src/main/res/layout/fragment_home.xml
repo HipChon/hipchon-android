@@ -209,15 +209,29 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/vp_home_banner" />
 
-                <ImageView
-                    android:id="@+id/iv_home_best_feed"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_home_best_feed"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_marginHorizontal="@dimen/spacing_20"
+                    android:layout_height="88dp"
                     android:layout_marginTop="9dp"
-                    android:background="@color/primary_green"
+                    android:paddingHorizontal="@dimen/spacing_20"
                     app:layout_constraintStart_toStartOf="@id/tv_home_best_feed_title"
                     app:layout_constraintTop_toBottomOf="@id/tv_home_best_feed_title" />
+
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/di_home_best_feed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_8"
+                    app:dotsColor="@color/white"
+                    app:dotsCornerRadius="@dimen/spacing_2"
+                    app:dotsSize="3dp"
+                    app:dotsSpacing="@dimen/spacing_2"
+                    app:dotsWidthFactor="3"
+                    app:layout_constraintBottom_toBottomOf="@id/vp_home_best_feed"
+                    app:layout_constraintEnd_toEndOf="@id/vp_home_best_feed"
+                    app:layout_constraintStart_toStartOf="@id/vp_home_best_feed"
+                    app:selectedDotColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_home_week_hip_place_title"
@@ -228,7 +242,7 @@
                     android:text="@string/home_weekly_feed"
                     android:textSize="@dimen/text_size_20"
                     app:layout_constraintStart_toStartOf="@id/tv_home_best_feed_title"
-                    app:layout_constraintTop_toBottomOf="@id/iv_home_best_feed" />
+                    app:layout_constraintTop_toBottomOf="@id/vp_home_best_feed" />
 
                 <TextView
                     android:id="@+id/tv_home_week_hip_place_detail"
