@@ -191,12 +191,10 @@
                         tools:listitem="@layout/item_home_hipster_pick" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageView
-                    android:id="@+id/iv_home_banner"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_home_banner"
                     android:layout_width="match_parent"
                     android:layout_height="126dp"
-                    android:scaleType="centerCrop"
-                    android:src="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/cl_home_local_hipster_pick" />
 
                 <TextView
@@ -209,7 +207,7 @@
                     android:text="@string/home_best_feed"
                     android:textSize="@dimen/text_size_20"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_home_banner" />
+                    app:layout_constraintTop_toBottomOf="@id/vp_home_banner" />
 
                 <ImageView
                     android:id="@+id/iv_home_best_feed"

@@ -15,11 +15,18 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     private val _localHipsterAllData = MutableLiveData<List<LocalHipsterData>>()
     val localHipsterAllData: LiveData<List<LocalHipsterData>> = _localHipsterAllData
 
+    private val _bannerAllData = MutableLiveData<List<String>>()
+    val bannerAllData: LiveData<List<String>> = _bannerAllData
+
     private val _weeklyHipPlaceAllData = MutableLiveData<List<WeeklyHipPlaceData>>()
     val weeklyHipPlaceAllData: LiveData<List<WeeklyHipPlaceData>> = _weeklyHipPlaceAllData
 
     fun getLocalHipsterAllData() {
         _localHipsterAllData.value = fakeLocalHipsterAllData
+    }
+
+    fun getBannerAllData() {
+        _bannerAllData.value = fakeBannerAllData
     }
 
     fun getWeeklyHipPlaceAllData() {
@@ -38,6 +45,8 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     }
 
     // 서버 연결시 FAKE 데이터 삭제
+    private val fakeBannerUrl =
+        "https://user-images.githubusercontent.com/64943924/156609871-0f94812a-286d-4120-989c-91e8ddbb1086.png"
     private val fakeUrl = "https://source.unsplash.com/random"
     private val fakeLocalHipsterAllData: List<LocalHipsterData> = listOf(
         LocalHipsterData(1, Area.JEJU, "제주의 맛맛맛", "제주 해녀의 부엌 외 5곳", fakeUrl),
@@ -45,6 +54,16 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         LocalHipsterData(3, Area.JEJU, "제주의 맛맛맛", "제주 해녀의 부엌 외 5곳", fakeUrl),
         LocalHipsterData(4, Area.JEJU, "제주의 맛맛맛", "제주 해녀의 부엌 외 5곳", fakeUrl),
         LocalHipsterData(5, Area.JEJU, "제주의 맛맛맛", "제주 해녀의 부엌 외 5곳", fakeUrl),
+    )
+    private val fakeBannerAllData: List<String> = listOf(
+        fakeBannerUrl,
+        fakeBannerUrl,
+        fakeBannerUrl,
+        fakeBannerUrl,
+        fakeBannerUrl,
+        fakeBannerUrl,
+        fakeBannerUrl,
+        fakeBannerUrl
     )
     private var fakeWeeklyHipPlaceAllData: List<WeeklyHipPlaceData> = listOf(
         WeeklyHipPlaceData(1, "제주맛집", Area.JEJU, "3인가능", "3인가능", 10, 12, false, fakeUrl),

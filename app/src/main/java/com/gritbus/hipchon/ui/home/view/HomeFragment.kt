@@ -9,6 +9,7 @@ import com.gritbus.hipchon.databinding.FragmentHomeBinding
 import com.gritbus.hipchon.domain.model.Hashtag
 import com.gritbus.hipchon.domain.model.PlaceSearchFilterData
 import com.gritbus.hipchon.domain.model.WeeklyHipPlaceData
+import com.gritbus.hipchon.ui.home.adapter.BannerViewPagerAdapter
 import com.gritbus.hipchon.ui.home.adapter.LocalHipsterAdapter
 import com.gritbus.hipchon.ui.home.adapter.WeeklyHipPlaceAdapter
 import com.gritbus.hipchon.ui.home.viewmodel.HomeViewModel
@@ -43,6 +44,7 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
 
     private fun initData() {
         viewModel.getLocalHipsterAllData()
+        viewModel.getBannerAllData()
         viewModel.getWeeklyHipPlaceAllData()
     }
 
@@ -98,9 +100,20 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         viewModel.localHipsterAllData.observe(viewLifecycleOwner) {
             localHipsterAdapter.submitList(it)
         }
+        viewModel.bannerAllData.observe(viewLifecycleOwner) {
+            setBanner(it)
+        }
         viewModel.weeklyHipPlaceAllData.observe(viewLifecycleOwner) {
             weeklyHipPlaceAdapter.submitList(it)
         }
+    }
+
+    private fun setBanner(bannerAllData: List<String>) {
+        binding.vpHomeBanner.adapter = BannerViewPagerAdapter(
+            bannerAllData,
+            childFragmentManager,
+            viewLifecycleOwner.lifecycle
+        )
     }
 
     companion object {
