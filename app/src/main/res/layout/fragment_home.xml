@@ -180,6 +180,7 @@
                         android:clipToPadding="false"
                         android:orientation="horizontal"
                         android:paddingHorizontal="@dimen/spacing_20"
+                        android:saveEnabled="false"
                         android:scrollbarFadeDuration="0"
                         android:scrollbarSize="2dp"
                         android:scrollbarThumbHorizontal="@color/black"
@@ -195,6 +196,7 @@
                     android:id="@+id/vp_home_banner"
                     android:layout_width="match_parent"
                     android:layout_height="126dp"
+                    android:saveEnabled="false"
                     app:layout_constraintTop_toBottomOf="@id/cl_home_local_hipster_pick" />
 
                 <TextView
@@ -215,6 +217,7 @@
                     android:layout_height="88dp"
                     android:layout_marginTop="9dp"
                     android:paddingHorizontal="@dimen/spacing_20"
+                    android:saveEnabled="false"
                     app:layout_constraintStart_toStartOf="@id/tv_home_best_feed_title"
                     app:layout_constraintTop_toBottomOf="@id/tv_home_best_feed_title" />
 
@@ -266,6 +269,7 @@
                     android:overScrollMode="never"
                     android:paddingStart="@dimen/spacing_20"
                     android:paddingBottom="5dp"
+                    android:saveEnabled="false"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/tv_home_week_hip_place_title"
                     tools:listitem="@layout/item_home_weekly_hip_place" />
