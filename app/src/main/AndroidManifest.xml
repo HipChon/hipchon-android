@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gritbus.hipchon">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".HipChonApplication"
         android:allowBackup="true"
@@ -12,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HipChon">
+        <activity
+            android:name=".ui.place.view.PlaceDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.place.view.PlaceResultActivity"
             android:exported="true" />
