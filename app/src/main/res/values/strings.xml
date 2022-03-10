@@ -54,4 +54,13 @@
     <string name="place_result_filter_distance">거리순</string>
 
     <string name="place_result_thumbnail_count">%d / %d</string>
+
+    <!--  Place Detail  -->
+    <string name="place_detail_call">전화</string>
+    <string name="place_detail_share">공유</string>
+    <string name="place_detail_place_update_suggest"><![CDATA[정보 수정 제안 >]]></string>
+    <string name="place_detail_map">지도</string>
+    <string name="place_detail_map_copy">복사</string>
+    <string name="place_detail_keyword">키워드 리뷰</string>
+    <string name="place_detail_review">리뷰</string>
 </resources>
