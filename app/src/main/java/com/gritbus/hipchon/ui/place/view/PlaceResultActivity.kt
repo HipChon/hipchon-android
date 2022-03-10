@@ -1,5 +1,6 @@
 package com.gritbus.hipchon.ui.place.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.os.bundleOf
@@ -47,12 +48,16 @@ class PlaceResultActivity :
     }
 
     private fun setAdapter() {
-        placeResultAdapter = PlaceResultAdapter(::placeSaveCallback)
+        placeResultAdapter = PlaceResultAdapter(::placeDetailCallback, ::placeSaveCallback)
         binding.rvPlaceResult.adapter = placeResultAdapter
     }
 
     private fun placeSaveCallback(selectedPlaceData: PlaceData) {
         viewModel.updateSave(selectedPlaceData)
+    }
+
+    private fun placeDetailCallback(selectedPlaceData: PlaceData) {
+        startActivity(Intent(baseContext, PlaceDetailActivity::class.java))
     }
 
     private fun setOnClickListener() {

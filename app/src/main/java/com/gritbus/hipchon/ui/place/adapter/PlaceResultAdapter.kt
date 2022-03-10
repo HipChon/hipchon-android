@@ -12,6 +12,7 @@ import com.gritbus.hipchon.databinding.ItemPlaceResultBinding
 import com.gritbus.hipchon.domain.model.PlaceData
 
 class PlaceResultAdapter(
+    private val detailClickCallback: (PlaceData) -> (Unit),
     private val saveClickCallback: (PlaceData) -> (Unit)
 ) : ListAdapter<PlaceData, PlaceResultAdapter.PlaceResultViewHolder>(diffUtil) {
 
@@ -26,14 +27,21 @@ class PlaceResultAdapter(
     }
 
     override fun onBindViewHolder(holder: PlaceResultViewHolder, position: Int) {
-        holder.bind(currentList[position], saveClickCallback)
+        holder.bind(currentList[position], detailClickCallback, saveClickCallback)
     }
 
     class PlaceResultViewHolder(
         private val binding: ItemPlaceResultBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(placeData: PlaceData, saveClickCallback: (PlaceData) -> (Unit)) {
+        fun bind(
+            placeData: PlaceData,
+            detailClickCallback: (PlaceData) -> (Unit),
+            saveClickCallback: (PlaceData) -> (Unit)
+        ) {
+            binding.root.setOnClickListener {
+                detailClickCallback(placeData)
+            }
             binding.ivItemHomePlaceSave.setOnClickListener {
                 saveClickCallback(placeData)
             }

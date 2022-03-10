@@ -30,6 +30,7 @@
                     android:src="@color/primary_green" />
 
                 <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/mt_place_detail"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
@@ -38,9 +39,11 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_place_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-15dp"
+            android:overScrollMode="never"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -429,7 +432,7 @@
                     android:layout_marginTop="@dimen/spacing_20"
                     android:background="@drawable/bg_place_detail_more"
                     android:paddingVertical="13dp"
-                    android:text="@string/see_more"
+                    android:text="@string/see_more_without_dot"
                     android:textAlignment="center"
                     android:textColor="@color/gray05"
                     android:textSize="@dimen/text_size_16"
@@ -473,7 +476,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_place_detail_more"
                     android:paddingVertical="13dp"
-                    android:text="@string/see_more"
+                    android:text="@string/see_more_without_dot"
                     android:textAlignment="center"
                     android:textColor="@color/gray05"
                     android:textSize="@dimen/text_size_16"
