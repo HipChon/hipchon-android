@@ -24,10 +24,25 @@
                 app:contentScrim="@drawable/bg_place_result_title"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <ImageView
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_place_detail_thumb"
                     android:layout_width="match_parent"
-                    android:layout_height="260dp"
-                    android:src="@color/primary_green" />
+                    android:layout_height="260dp" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tl_place_detail_thumb"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_2"
+                    android:layout_gravity="bottom"
+                    android:layout_marginHorizontal="63dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@null"
+                    app:tabBackground="@color/white_alpha_50"
+                    app:tabGravity="fill"
+                    app:tabIndicatorColor="@color/white"
+                    app:tabIndicatorFullWidth="true"
+                    app:tabIndicatorGravity="stretch"
+                    app:tabMode="fixed" />
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/mt_place_detail"

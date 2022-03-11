@@ -11,8 +11,10 @@ import android.os.Bundle
 import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import com.google.android.material.tabs.TabLayoutMediator
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityPlaceDetailBinding
+import com.gritbus.hipchon.ui.place.adapter.PlaceDetailThumbAdapter
 import com.gritbus.hipchon.ui.place.viewmodel.PlaceDetailViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,9 +31,14 @@ class PlaceDetailActivity :
     }
 
     override fun initView() {
+        initData()
         setMapScrolling()
         setOnClickListener()
         setObserver()
+    }
+
+    private fun initData() {
+        viewModel.initData()
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -91,9 +98,26 @@ class PlaceDetailActivity :
     }
 
     private fun setObserver() {
+        viewModel.thumbImages.observe(this) {
+            setThumbAdapter(it)
+        }
         viewModel.isSave.observe(this) {
             updateSaveView(it)
         }
+    }
+
+    private fun setThumbAdapter(imageList: List<String>) {
+        binding.vpPlaceDetailThumb.adapter = PlaceDetailThumbAdapter(
+            imageList, supportFragmentManager, lifecycle
+        )
+        setTabLayout()
+    }
+
+    private fun setTabLayout() {
+        TabLayoutMediator(
+            binding.tlPlaceDetailThumb,
+            binding.vpPlaceDetailThumb
+        ) { _, _ -> }.attach()
     }
 
     private fun updateSaveView(isSave: Boolean) {
