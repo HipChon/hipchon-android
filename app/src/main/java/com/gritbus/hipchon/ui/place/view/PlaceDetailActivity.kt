@@ -1,6 +1,9 @@
 package com.gritbus.hipchon.ui.place.view
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.net.Uri
@@ -79,6 +82,11 @@ class PlaceDetailActivity :
         }
         binding.acbPlaceDetailLink.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://www.naver.com")))
+        }
+        binding.tvPlaceDetailMapCopy.setOnClickListener {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("주소", binding.tvPlaceDetailMapCopyAddress.text)
+            clipboard.setPrimaryClip(clip)
         }
     }
 
