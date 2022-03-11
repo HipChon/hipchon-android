@@ -1,9 +1,11 @@
 package com.gritbus.hipchon.ui.place.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
+import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.gritbus.hipchon.R
@@ -24,8 +26,32 @@ class PlaceDetailActivity :
     }
 
     override fun initView() {
+        setMapScrolling()
         setOnClickListener()
         setObserver()
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setMapScrolling() {
+        binding.ivPlaceDetailMapPreview.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.nsvPlaceDetail.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                MotionEvent.ACTION_UP -> {
+                    binding.nsvPlaceDetail.requestDisallowInterceptTouchEvent(false)
+                    true
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    binding.nsvPlaceDetail.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                else -> {
+                    true
+                }
+            }
+        }
     }
 
     private fun setOnClickListener() {

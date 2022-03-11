@@ -320,13 +320,22 @@
                     app:layout_constraintStart_toEndOf="@id/iv_place_detail_map"
                     app:layout_constraintTop_toTopOf="@id/iv_place_detail_map" />
 
+                <fragment
+                    android:id="@+id/view_place_detail_map_preview"
+                    android:name="com.naver.maps.map.MapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_marginHorizontal="@dimen/spacing_20"
+                    android:layout_marginTop="22dp"
+                    app:layout_constraintTop_toBottomOf="@id/iv_place_detail_map" />
+
                 <ImageView
                     android:id="@+id/iv_place_detail_map_preview"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
                     android:layout_marginHorizontal="@dimen/spacing_20"
                     android:layout_marginTop="22dp"
-                    android:src="@color/secondary_yellow"
+                    android:src="@android:color/transparent"
                     app:layout_constraintTop_toBottomOf="@id/iv_place_detail_map" />
 
                 <ImageView
@@ -335,8 +344,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_20"
                     android:src="@drawable/ic_time"
-                    app:layout_constraintStart_toStartOf="@id/iv_place_detail_map_preview"
-                    app:layout_constraintTop_toBottomOf="@id/iv_place_detail_map_preview" />
+                    app:layout_constraintStart_toStartOf="@id/view_place_detail_map_preview"
+                    app:layout_constraintTop_toBottomOf="@id/view_place_detail_map_preview" />
 
                 <TextView
                     android:id="@+id/tv_place_detail_map_copy_address"
