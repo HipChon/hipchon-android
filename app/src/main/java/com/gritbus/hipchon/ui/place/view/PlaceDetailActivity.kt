@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.tabs.TabLayoutMediator
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityPlaceDetailBinding
+import com.gritbus.hipchon.ui.feed.adapter.FeedAdapter
 import com.gritbus.hipchon.ui.place.adapter.PlaceDetailThumbAdapter
 import com.gritbus.hipchon.ui.place.viewmodel.PlaceDetailViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
@@ -24,6 +25,7 @@ class PlaceDetailActivity :
     BaseViewUtil.BaseAppCompatActivity<ActivityPlaceDetailBinding>(R.layout.activity_place_detail) {
 
     private val viewModel: PlaceDetailViewModel by viewModels()
+    private lateinit var reviewAdapter: FeedAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +33,16 @@ class PlaceDetailActivity :
     }
 
     override fun initView() {
+        setReviewAdapter()
         initData()
         setMapScrolling()
         setOnClickListener()
         setObserver()
+    }
+
+    private fun setReviewAdapter() {
+        reviewAdapter = FeedAdapter()
+        binding.rvPlaceDetailReview.adapter = reviewAdapter
     }
 
     private fun initData() {
@@ -103,6 +111,9 @@ class PlaceDetailActivity :
         }
         viewModel.isSave.observe(this) {
             updateSaveView(it)
+        }
+        viewModel.reviewPreview.observe(this){
+            reviewAdapter.submitList(it)
         }
     }
 

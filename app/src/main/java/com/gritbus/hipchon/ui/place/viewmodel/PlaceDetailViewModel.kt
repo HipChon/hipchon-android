@@ -15,9 +15,13 @@ class PlaceDetailViewModel @Inject constructor() : ViewModel() {
     private val _isSave = MutableLiveData<Boolean>(false)
     val isSave: LiveData<Boolean> = _isSave
 
+    private val _reviewPreview = MutableLiveData<List<Int>>()
+    val reviewPreview: LiveData<List<Int>> = _reviewPreview
+
     fun initData() {
         val fakeUrl = "https://source.unsplash.com/random"
         _thumbImages.value = listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl)
+        _reviewPreview.value = listOf(1, 2, 3)
     }
 
     fun setSave() {
