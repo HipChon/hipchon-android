@@ -26,5 +26,6 @@
     <color name="gray_place_distance">#999999</color>
     <color name="gray_home_local_hipster_pick">#F5F5F5</color>
     <color name="yellow_kakao_counseling">#F5E04C</color>
+    <color name="gray_review_place">#F8F8FA</color>
 
 </resources>

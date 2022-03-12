@@ -490,9 +490,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/spacing_20"
+                    android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/iv_place_detail_review" />
+                    app:layout_constraintTop_toBottomOf="@id/iv_place_detail_review"
+                    tools:listitem="@layout/item_feed_preview" />
 
                 <TextView
                     android:id="@+id/tv_place_detail_review_more"
