@@ -313,6 +313,68 @@
                     android:background="@color/gray02"
                     app:layout_constraintTop_toBottomOf="@id/tv_place_detail_place_update_suggest" />
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_place_detail_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/view_between_info_and_map">
+
+                    <ImageView
+                        android:id="@+id/iv_place_detail_menu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_20"
+                        android:layout_marginTop="@dimen/spacing_24"
+                        android:src="@drawable/ic_feed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        style="@style/Gmarket.Weight500"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:text="메뉴"
+                        android:textSize="@dimen/text_size_22"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_place_detail_menu"
+                        app:layout_constraintStart_toEndOf="@id/iv_place_detail_menu"
+                        app:layout_constraintTop_toTopOf="@id/iv_place_detail_menu" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_place_detail_menu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="14dp"
+                        android:layout_marginTop="@dimen/spacing_20"
+                        android:overScrollMode="never"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@id/iv_place_detail_menu"
+                        app:spanCount="2"
+                        tools:listitem="@layout/item_place_menu" />
+
+                    <TextView
+                        android:id="@+id/tv_place_detail_menu_more"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_8"
+                        android:background="@drawable/bg_place_detail_more"
+                        android:paddingVertical="13dp"
+                        android:text="@string/see_more_without_dot"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray05"
+                        android:textSize="@dimen/text_size_16"
+                        app:layout_constraintTop_toBottomOf="@id/rv_place_detail_menu" />
+
+                    <View
+                        android:id="@+id/view_between_menu_and_map"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_8"
+                        android:background="@color/gray02"
+                        app:layout_constraintTop_toBottomOf="@id/tv_place_detail_menu_more" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <ImageView
                     android:id="@+id/iv_place_detail_map"
                     android:layout_width="wrap_content"
@@ -321,7 +383,7 @@
                     android:layout_marginTop="@dimen/spacing_24"
                     android:src="@drawable/ic_feed"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view_between_info_and_map"
+                    app:layout_constraintTop_toBottomOf="@id/cl_place_detail_menu"
                     app:tint="@color/black" />
 
                 <TextView

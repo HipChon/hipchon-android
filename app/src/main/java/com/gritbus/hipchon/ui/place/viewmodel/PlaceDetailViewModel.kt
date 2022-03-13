@@ -12,6 +12,9 @@ class PlaceDetailViewModel @Inject constructor() : ViewModel() {
     private val _thumbImages = MutableLiveData<List<String>>()
     val thumbImages: LiveData<List<String>> = _thumbImages
 
+    private val _menuAllData = MutableLiveData<List<String>>()
+    val menuAllData: LiveData<List<String>> = _menuAllData
+
     private val _isSave = MutableLiveData<Boolean>(false)
     val isSave: LiveData<Boolean> = _isSave
 
@@ -21,6 +24,7 @@ class PlaceDetailViewModel @Inject constructor() : ViewModel() {
     fun initData() {
         val fakeUrl = "https://source.unsplash.com/random"
         _thumbImages.value = listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl)
+        _menuAllData.value = listOf("1","2","3","4")
         _reviewPreview.value = listOf(1, 2, 3)
     }
 

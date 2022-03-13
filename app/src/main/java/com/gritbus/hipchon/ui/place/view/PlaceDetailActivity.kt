@@ -16,6 +16,7 @@ import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityPlaceDetailBinding
 import com.gritbus.hipchon.ui.feed.adapter.FeedAdapter
 import com.gritbus.hipchon.ui.place.adapter.PlaceDetailThumbAdapter
+import com.gritbus.hipchon.ui.place.adapter.PlaceMenuAdapter
 import com.gritbus.hipchon.ui.place.viewmodel.PlaceDetailViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +26,7 @@ class PlaceDetailActivity :
     BaseViewUtil.BaseAppCompatActivity<ActivityPlaceDetailBinding>(R.layout.activity_place_detail) {
 
     private val viewModel: PlaceDetailViewModel by viewModels()
+    private lateinit var menuAdapter: PlaceMenuAdapter
     private lateinit var reviewAdapter: FeedAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +35,17 @@ class PlaceDetailActivity :
     }
 
     override fun initView() {
+        setMenuAdapter()
         setReviewAdapter()
         initData()
         setMapScrolling()
         setOnClickListener()
         setObserver()
+    }
+
+    private fun setMenuAdapter() {
+        menuAdapter = PlaceMenuAdapter()
+        binding.rvPlaceDetailMenu.adapter = menuAdapter
     }
 
     private fun setReviewAdapter() {
@@ -111,6 +119,9 @@ class PlaceDetailActivity :
         }
         viewModel.isSave.observe(this) {
             updateSaveView(it)
+        }
+        viewModel.menuAllData.observe(this){
+            menuAdapter.submitList(it)
         }
         viewModel.reviewPreview.observe(this){
             reviewAdapter.submitList(it)
