@@ -27,6 +27,7 @@ class FeedDetailActivity :
         viewModel.getCommentAll()
         setAdapter()
         setObserver()
+        setOnClickListener()
     }
 
     private fun setAdapter() {
@@ -37,6 +38,12 @@ class FeedDetailActivity :
     private fun setObserver() {
         viewModel.commentAllData.observe(this) {
             commentAdapter.submitList(it)
+        }
+    }
+
+    private fun setOnClickListener() {
+        binding.mtFeedDetail.setNavigationOnClickListener {
+            finish()
         }
     }
 }
