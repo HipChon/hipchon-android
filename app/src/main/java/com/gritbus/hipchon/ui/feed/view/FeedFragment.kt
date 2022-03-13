@@ -1,5 +1,6 @@
 package com.gritbus.hipchon.ui.feed.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -32,9 +33,13 @@ class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.f
     }
 
     private fun setAdapter() {
-        feedAdapter = FeedAdapter()
+        feedAdapter = FeedAdapter(::moveToFeedDetail)
         binding.rvReview.adapter = feedAdapter
         binding.rvReview.addItemDecoration(ItemDecorationWithStroke())
+    }
+
+    private fun moveToFeedDetail() {
+        startActivity(Intent(requireContext(), FeedDetailActivity::class.java))
     }
 
     private fun setObserver() {

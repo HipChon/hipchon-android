@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gritbus.hipchon.databinding.ItemFeedPreviewBinding
 
-class FeedAdapter : ListAdapter<Int, FeedAdapter.FeedViewHolder>(diffUtil) {
+class FeedAdapter(
+    private val clickListener: () -> (Unit)
+) : ListAdapter<Int, FeedAdapter.FeedViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
         return FeedViewHolder(
@@ -18,14 +20,18 @@ class FeedAdapter : ListAdapter<Int, FeedAdapter.FeedViewHolder>(diffUtil) {
     }
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
-        holder.bind()
+        holder.bind(clickListener)
     }
 
     class FeedViewHolder(
         private val binding: ItemFeedPreviewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind() {}
+        fun bind(clickListener: () -> Unit) {
+            binding.root.setOnClickListener {
+                clickListener()
+            }
+        }
     }
 
     companion object {

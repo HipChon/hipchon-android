@@ -15,11 +15,12 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityPlaceDetailBinding
 import com.gritbus.hipchon.ui.feed.adapter.FeedAdapter
-import com.gritbus.hipchon.utils.ItemDecorationWithStroke
+import com.gritbus.hipchon.ui.feed.view.FeedDetailActivity
 import com.gritbus.hipchon.ui.place.adapter.PlaceDetailThumbAdapter
 import com.gritbus.hipchon.ui.place.adapter.PlaceMenuAdapter
 import com.gritbus.hipchon.ui.place.viewmodel.PlaceDetailViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
+import com.gritbus.hipchon.utils.ItemDecorationWithStroke
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -50,9 +51,13 @@ class PlaceDetailActivity :
     }
 
     private fun setReviewAdapter() {
-        reviewAdapter = FeedAdapter()
+        reviewAdapter = FeedAdapter(::moveToFeedDetail)
         binding.rvPlaceDetailReview.adapter = reviewAdapter
         binding.rvPlaceDetailReview.addItemDecoration(ItemDecorationWithStroke())
+    }
+
+    private fun moveToFeedDetail() {
+        startActivity(Intent(baseContext, FeedDetailActivity::class.java))
     }
 
     private fun initData() {

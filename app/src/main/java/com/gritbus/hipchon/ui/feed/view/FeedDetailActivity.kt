@@ -7,6 +7,7 @@ import com.gritbus.hipchon.databinding.ActivityFeedDetailBinding
 import com.gritbus.hipchon.ui.feed.adapter.CommentAdapter
 import com.gritbus.hipchon.ui.feed.viewmodel.FeedDetailViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
+import com.gritbus.hipchon.utils.ItemDecorationWithVerticalSpacing
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +23,7 @@ class FeedDetailActivity :
     }
 
     override fun initView() {
+        binding.rvFeedDetailComment.addItemDecoration(ItemDecorationWithVerticalSpacing(24))
         viewModel.getCommentAll()
         setAdapter()
         setObserver()
