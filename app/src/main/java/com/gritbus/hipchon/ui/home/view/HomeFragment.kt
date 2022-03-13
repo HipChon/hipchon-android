@@ -16,7 +16,7 @@ import com.gritbus.hipchon.ui.home.adapter.WeeklyHipPlaceAdapter
 import com.gritbus.hipchon.ui.home.viewmodel.HomeViewModel
 import com.gritbus.hipchon.ui.place.view.PlaceResultActivity
 import com.gritbus.hipchon.utils.BaseViewUtil
-import com.gritbus.hipchon.utils.ItemDecoration
+import com.gritbus.hipchon.utils.ItemDecorationWithSpacing
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,7 +51,7 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
     }
 
     private fun setItemDecoration() {
-        binding.rvHomeLocalHipsterPick.addItemDecoration(ItemDecoration(LOCAL_HIPSTER_ITEM_SPACING))
+        binding.rvHomeLocalHipsterPick.addItemDecoration(ItemDecorationWithSpacing(LOCAL_HIPSTER_ITEM_SPACING))
     }
 
     private fun setOnClickListener() {

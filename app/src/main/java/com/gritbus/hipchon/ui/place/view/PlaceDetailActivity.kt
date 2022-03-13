@@ -15,6 +15,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityPlaceDetailBinding
 import com.gritbus.hipchon.ui.feed.adapter.FeedAdapter
+import com.gritbus.hipchon.utils.ItemDecorationWithStroke
 import com.gritbus.hipchon.ui.place.adapter.PlaceDetailThumbAdapter
 import com.gritbus.hipchon.ui.place.adapter.PlaceMenuAdapter
 import com.gritbus.hipchon.ui.place.viewmodel.PlaceDetailViewModel
@@ -51,6 +52,7 @@ class PlaceDetailActivity :
     private fun setReviewAdapter() {
         reviewAdapter = FeedAdapter()
         binding.rvPlaceDetailReview.adapter = reviewAdapter
+        binding.rvPlaceDetailReview.addItemDecoration(ItemDecorationWithStroke())
     }
 
     private fun initData() {
@@ -120,10 +122,10 @@ class PlaceDetailActivity :
         viewModel.isSave.observe(this) {
             updateSaveView(it)
         }
-        viewModel.menuAllData.observe(this){
+        viewModel.menuAllData.observe(this) {
             menuAdapter.submitList(it)
         }
-        viewModel.reviewPreview.observe(this){
+        viewModel.reviewPreview.observe(this) {
             reviewAdapter.submitList(it)
         }
     }
