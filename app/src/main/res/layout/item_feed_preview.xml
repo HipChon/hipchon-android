@@ -8,25 +8,19 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <View
-            android:id="@+id/view_decoration"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="@dimen/spacing_20"
-            android:background="@color/gray02"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/iv_feed_preview_profile"
             android:layout_width="45dp"
             android:layout_height="45dp"
+            android:layout_marginHorizontal="@dimen/spacing_20"
             android:layout_marginStart="@dimen/spacing_20"
             android:layout_marginTop="@dimen/spacing_24"
             android:background="@drawable/ic_profile_default"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/view_decoration" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_feed_preview_nickname"

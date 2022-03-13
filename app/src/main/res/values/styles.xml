@@ -31,7 +31,15 @@
         <item name="bottomSheetStyle">@style/BottomSheet</item>
         <item name="android:colorBackground">@color/white</item>
     </style>
+
     <style name="BottomSheet" parent="Widget.MaterialComponents.BottomSheet.Modal">
         <item name="backgroundTint">@android:color/transparent</item>
+    </style>
+
+    <!--  Toolbar Title Text  -->
+    <style name="MaterialToolbar.Gmarket.Weight500.24" parent="@style/Base.TextAppearance.AppCompat.Title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/gmarket_sans_medium</item>
     </style>
 </resources>
