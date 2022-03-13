@@ -11,6 +11,10 @@
         <item name="fontFamily">@font/gmarket_sans_bold</item>
     </style>
 
+    <style name="TextAppearance.12" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/text_size_12</item>
+    </style>
+
     <!--  Chip  -->
     <style name="Chip.Radius17" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipCornerRadius">17dp</item>
