@@ -335,7 +335,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_8"
-                        android:text="메뉴"
+                        android:text="@string/place_detail_menu"
                         android:textSize="@dimen/text_size_22"
                         app:layout_constraintBottom_toBottomOf="@id/iv_place_detail_menu"
                         app:layout_constraintStart_toEndOf="@id/iv_place_detail_menu"
