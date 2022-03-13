@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_feed_comment_profile"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/bg_circle_black_alpha_50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_feed_comment_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:text="닉네임"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/iv_feed_comment_profile"
+            app:layout_constraintTop_toTopOf="@id/iv_feed_comment_profile" />
+
+        <TextView
+            android:id="@+id/tv_feed_comment_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="@dimen/spacing_8"
+            android:text="너무 좋아보여요! 꼭 가봐야겠어요"
+            android:textColor="@color/gray06"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintEnd_toStartOf="@id/iv_feed_comment_like"
+            app:layout_constraintStart_toStartOf="@id/tv_feed_comment_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_feed_comment_name" />
+
+        <ImageView
+            android:id="@+id/iv_feed_comment_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_favorite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_feed_comment_content" />
+
+        <TextView
+            android:id="@+id/tv_feed_comment_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="29분"
+            android:textColor="@color/gray04"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@id/tv_feed_comment_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_feed_comment_content" />
+
+        <ImageView
+            android:id="@+id/iv_feed_comment_reply"
+            android:layout_width="14dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:background="@drawable/ic_comment"
+            android:backgroundTint="@color/gray04"
+            app:layout_constraintBottom_toBottomOf="@id/tv_feed_comment_time"
+            app:layout_constraintStart_toEndOf="@id/tv_feed_comment_time"
+            app:layout_constraintTop_toTopOf="@id/tv_feed_comment_time" />
+
+        <TextView
+            android:id="@+id/tv_feed_comment_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_12"
+            android:text="@string/feed_comment_reply"
+            android:textColor="@color/gray04"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_feed_comment_time"
+            app:layout_constraintStart_toEndOf="@id/iv_feed_comment_reply"
+            app:layout_constraintTop_toTopOf="@id/tv_feed_comment_time" />
+
+        <ImageView
+            android:id="@+id/iv_feed_comment_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:background="@drawable/ic_report"
+            android:backgroundTint="@color/gray04"
+            app:layout_constraintBottom_toBottomOf="@id/tv_feed_comment_time"
+            app:layout_constraintStart_toEndOf="@id/tv_feed_comment_reply"
+            app:layout_constraintTop_toTopOf="@id/tv_feed_comment_time" />
+
+        <TextView
+            android:id="@+id/tv_feed_comment_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_12"
+            android:text="@string/feed_comment_report"
+            android:textColor="@color/gray04"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_feed_comment_time"
+            app:layout_constraintStart_toEndOf="@id/iv_feed_comment_report"
+            app:layout_constraintTop_toTopOf="@id/tv_feed_comment_time" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

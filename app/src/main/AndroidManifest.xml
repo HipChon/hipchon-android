@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HipChon">
         <activity
+            android:name=".ui.feed.view.FeedDetailActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" />
+        <activity
             android:name=".ui.place.view.PlaceDetailActivity"
             android:exported="false" />
         <activity

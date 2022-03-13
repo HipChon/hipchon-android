@@ -66,4 +66,10 @@
     <string name="place_detail_menu">메뉴</string>
     <string name="place_detail_keyword">키워드 리뷰</string>
     <string name="place_detail_review">리뷰</string>
+
+    <!--  Feed  -->
+    <string name="feed_comment_report">신고</string>
+    <string name="feed_comment_reply">답글 달기</string>
+    <string name="feed_comment_input">댓글 달기 ...</string>
+    <string name="feed_comment_register">등록</string>
 </resources>
