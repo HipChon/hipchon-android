@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.my.view.MyUpdateFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mt_my_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_chevron_left" />
+
+        <TextView
+            android:id="@+id/tv_my_update_title"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:layout_marginTop="45dp"
+            android:text="닉네임 설정"
+            android:textSize="@dimen/text_size_22"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mt_my_update" />
+
+        <ImageView
+            android:id="@+id/iv_my_update"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="55dp"
+            android:background="@drawable/bg_circle_black_alpha_50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_update_title" />
+
+        <EditText
+            android:id="@+id/et_my_update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_20"
+            android:layout_marginTop="35dp"
+            android:text="닉네임"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_my_update" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/acb_my_update"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_20"
+            android:background="@drawable/bg_rectangle_radius_5"
+            android:backgroundTint="@color/gray02"
+            android:paddingVertical="13dp"
+            android:text="확인"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_my_update" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
