@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HipChon">
         <activity
+            android:name=".ui.feed.view.FeedCreatePlaceActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.feed.view.FeedCreateActivity"
             android:exported="true" />
         <activity
