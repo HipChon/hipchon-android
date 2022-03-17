@@ -12,8 +12,8 @@
         android:layout_marginBottom="@dimen/spacing_32">
 
         <TextView
-            style="@style/Gmarket.Weight500"
             android:id="@+id/tv_keyword_title"
+            style="@style/Gmarket.Weight500"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="시설"
@@ -27,32 +27,6 @@
             android:layout_marginTop="@dimen/spacing_16"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="@id/tv_keyword_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_keyword_title">
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="화장실이 청결해요" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="주차하기 용이해요" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="매장이 넓어요" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="좌석이 편해요" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="인터넷 접속이 원활해요" />
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@id/tv_keyword_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

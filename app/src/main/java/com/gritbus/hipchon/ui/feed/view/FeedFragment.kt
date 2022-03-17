@@ -66,7 +66,7 @@ class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.f
             }
         }
         binding.fabReviewCreate.setOnClickListener {
-            startActivity(Intent(requireContext(), FeedCreateActivity::class.java))
+            startActivity(Intent(requireContext(), FeedCreatePlaceActivity::class.java))
         }
     }
 }
