@@ -183,15 +183,20 @@
                         app:layout_constraintStart_toStartOf="@id/tv_feed_create_review_content_title"
                         app:layout_constraintTop_toBottomOf="@id/et_feed_create_review_content" />
 
-                    <ImageView
-                        android:layout_width="0dp"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_feed_create_select_image"
+                        android:layout_width="match_parent"
                         android:layout_height="110dp"
                         android:layout_marginTop="@dimen/spacing_12"
-                        android:background="@color/gray05"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/spacing_20"
                         android:visibility="gone"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/tv_feed_create_review_content_title"
-                        app:layout_constraintTop_toBottomOf="@id/acb_feed_create_review_content_photo" />
+                        app:layout_constraintTop_toBottomOf="@id/acb_feed_create_review_content_photo"
+                        tools:listitem="@layout/item_feed_create_photo" />
 
                     <TextView
                         android:id="@+id/tv_feed_create_review_content_count"

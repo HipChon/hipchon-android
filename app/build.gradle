@@ -44,6 +44,8 @@ android {
 }
 
 dependencies {
+    // Image Picker
+    implementation 'com.zhihu.android:matisse:0.5.3-beta3'
 
     // View More Text
     implementation 'kr.co.prnd:readmore-textview:1.0.0'
