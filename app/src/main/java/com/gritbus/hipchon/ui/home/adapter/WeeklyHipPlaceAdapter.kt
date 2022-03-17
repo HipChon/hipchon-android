@@ -12,6 +12,7 @@ import com.gritbus.hipchon.databinding.ItemHomeWeeklyHipPlaceBinding
 import com.gritbus.hipchon.domain.model.WeeklyHipPlaceData
 
 class WeeklyHipPlaceAdapter(
+    private val clickListener: () -> (Unit),
     private val saveClickCallback: (WeeklyHipPlaceData) -> (Unit)
 ) : ListAdapter<WeeklyHipPlaceData, WeeklyHipPlaceAdapter.WeeklyHipPlaceViewHolder>(diffUtil) {
 
@@ -26,7 +27,7 @@ class WeeklyHipPlaceAdapter(
     }
 
     override fun onBindViewHolder(holder: WeeklyHipPlaceViewHolder, position: Int) {
-        holder.bind(currentList[position], saveClickCallback)
+        holder.bind(clickListener, currentList[position], saveClickCallback)
     }
 
     class WeeklyHipPlaceViewHolder(
@@ -34,9 +35,13 @@ class WeeklyHipPlaceAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
+            clickListener: () -> (Unit),
             weeklyHipPlaceData: WeeklyHipPlaceData,
             saveClickCallback: (WeeklyHipPlaceData) -> Unit
         ) {
+            binding.root.setOnClickListener {
+                clickListener()
+            }
             binding.ivHomeWeeklyHipPlaceSave.setOnClickListener {
                 saveClickCallback(weeklyHipPlaceData)
             }

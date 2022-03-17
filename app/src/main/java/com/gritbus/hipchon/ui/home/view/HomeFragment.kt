@@ -15,6 +15,7 @@ import com.gritbus.hipchon.ui.home.adapter.BestFeedViewPagerAdapter
 import com.gritbus.hipchon.ui.home.adapter.HomeLocalHipsterAdapter
 import com.gritbus.hipchon.ui.home.adapter.WeeklyHipPlaceAdapter
 import com.gritbus.hipchon.ui.home.viewmodel.HomeViewModel
+import com.gritbus.hipchon.ui.place.view.PlaceDetailActivity
 import com.gritbus.hipchon.ui.place.view.PlaceResultActivity
 import com.gritbus.hipchon.utils.BaseViewUtil
 import com.gritbus.hipchon.utils.ItemDecorationWithHorizontalSpacing
@@ -98,7 +99,7 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
 
     private fun setAdapter() {
         localHipsterAdapter = HomeLocalHipsterAdapter(::localHipsterPickCallback)
-        weeklyHipPlaceAdapter = WeeklyHipPlaceAdapter(::placeSaveCallback)
+        weeklyHipPlaceAdapter = WeeklyHipPlaceAdapter(::hipPlaceClickCallback, ::placeSaveCallback)
 
         binding.rvHomeLocalHipsterPick.adapter = localHipsterAdapter
         binding.rvHomeWeeklyHipPlace.adapter = weeklyHipPlaceAdapter
@@ -106,6 +107,10 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
 
     private fun localHipsterPickCallback() {
         startActivity(Intent(requireContext(), LocalHipsterPickActivity::class.java))
+    }
+
+    private fun hipPlaceClickCallback() {
+        startActivity(Intent(requireContext(), PlaceDetailActivity::class.java))
     }
 
     private fun placeSaveCallback(weeklyHipPlaceData: WeeklyHipPlaceData) {
