@@ -15,5 +15,12 @@ class MyUpdateFragment :
     }
 
     override fun initView() {
+        setOnClickListener()
+    }
+
+    private fun setOnClickListener() {
+        binding.mtMyUpdate.setNavigationOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 }

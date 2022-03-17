@@ -53,17 +53,17 @@
             android:layout_marginTop="30dp"
             android:background="@color/white"
             app:layout_constraintTop_toBottomOf="@id/iv_my_profile"
-            app:tabBackground="@color/white_alpha_50"
-            app:tabGravity="fill"
+            app:tabBackground="@color/white"
             app:tabIndicatorColor="@color/black"
             app:tabIndicatorFullWidth="true"
-            app:tabIndicatorGravity="stretch"
-            app:tabMode="fixed" />
+            app:tabMode="fixed"
+            app:tabTextColor="@color/black" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_my"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:saveEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tl_my" />
 

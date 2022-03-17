@@ -1,6 +1,7 @@
 package com.gritbus.hipchon.ui
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityMainBinding
 import com.gritbus.hipchon.ui.feed.view.FeedFragment
@@ -8,6 +9,7 @@ import com.gritbus.hipchon.ui.home.view.HomeFragment
 import com.gritbus.hipchon.ui.my.view.MyFragment
 import com.gritbus.hipchon.ui.save.view.SaveFragment
 import com.gritbus.hipchon.utils.BaseViewUtil
+import com.gritbus.hipchon.utils.addFragment
 import com.gritbus.hipchon.utils.replaceFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -59,5 +61,9 @@ class MainActivity :
 
     private fun initHomeFragment() {
         replaceFragment(binding.fcvMain.id, homeFragment)
+    }
+
+    fun addFragment(fragment: Fragment){
+        addFragment(binding.fcvMain.id, fragment)
     }
 }

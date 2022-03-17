@@ -15,6 +15,14 @@ fun AppCompatActivity.replaceFragment(navigationViewId: Int, fragment: Fragment)
         .commit()
 }
 
+fun AppCompatActivity.addFragment(navigationViewId: Int, fragment: Fragment) {
+    supportFragmentManager
+        .beginTransaction()
+        .add(navigationViewId, fragment)
+        .addToBackStack(null)
+        .commit()
+}
+
 fun getAreaWithId(viewId: Int?): Area {
     return when (viewId) {
         R.id.chip_filter_area_jeju -> Area.JEJU

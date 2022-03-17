@@ -13,11 +13,12 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_my_review"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/item_my_review"
             android:paddingHorizontal="@dimen/spacing_16"
-            android:paddingTop="@dimen/spacing_20"
+            android:paddingTop="11dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2" />
 
