@@ -294,10 +294,10 @@
                     style="@style/Gmarket.Weight500"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_20"
                     android:layout_marginTop="35dp"
                     android:text="@string/home_kakao_counseling_desc"
                     android:textSize="@dimen/text_size_16"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rv_home_weekly_hip_place" />
 
@@ -317,33 +317,67 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_home_kakao_counseling" />
 
                 <TextView
-                    android:id="@+id/tv_home_place_register_question"
+                    android:id="@+id/tv_home_help_customer"
                     style="@style/Gmarket.Weight500"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_20"
                     android:layout_marginTop="@dimen/spacing_20"
                     android:text="@string/home_place_register_question_desc"
                     android:textSize="@dimen/text_size_16"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/mb_home_kakao_counseling" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/mb_home_place_register_question"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_20"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginBottom="68dp"
-                    android:backgroundTint="@color/gray02"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:text="@string/home_place_register_question"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_16"
-                    app:cornerRadius="5dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="99dp"
+                    android:background="@drawable/bg_rectangle_radius_5_filled"
+                    android:backgroundTint="@color/gray03"
+                    android:gravity="center"
+                    android:paddingVertical="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_home_place_register_question" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_home_help_customer">
+
+                    <TextView
+                        android:id="@+id/tv_home_place_register"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="공간 등록 문의"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray07" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="25dp"
+                        android:background="@color/gray04" />
+
+                    <TextView
+                        android:id="@+id/tv_home_terms"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="이용약관"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray07" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="25dp"
+                        android:background="@color/gray04" />
+
+                    <TextView
+                        android:id="@+id/tv_home_place_privacy"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="개인정보 취급방침"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray07" />
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
