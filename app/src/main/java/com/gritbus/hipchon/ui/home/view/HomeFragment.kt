@@ -11,7 +11,7 @@ import com.gritbus.hipchon.domain.model.PlaceSearchFilterData
 import com.gritbus.hipchon.domain.model.WeeklyHipPlaceData
 import com.gritbus.hipchon.ui.home.adapter.BannerViewPagerAdapter
 import com.gritbus.hipchon.ui.home.adapter.BestFeedViewPagerAdapter
-import com.gritbus.hipchon.ui.home.adapter.LocalHipsterAdapter
+import com.gritbus.hipchon.ui.home.adapter.HomeLocalHipsterAdapter
 import com.gritbus.hipchon.ui.home.adapter.WeeklyHipPlaceAdapter
 import com.gritbus.hipchon.ui.home.viewmodel.HomeViewModel
 import com.gritbus.hipchon.ui.place.view.PlaceResultActivity
@@ -24,7 +24,7 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
     BannerFragment.OnSwipeListener {
 
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var localHipsterAdapter: LocalHipsterAdapter
+    private lateinit var localHipsterAdapter: HomeLocalHipsterAdapter
     private lateinit var weeklyHipPlaceAdapter: WeeklyHipPlaceAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -96,11 +96,15 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
     }
 
     private fun setAdapter() {
-        localHipsterAdapter = LocalHipsterAdapter()
+        localHipsterAdapter = HomeLocalHipsterAdapter(::localHipsterPickCallback)
         weeklyHipPlaceAdapter = WeeklyHipPlaceAdapter(::placeSaveCallback)
 
         binding.rvHomeLocalHipsterPick.adapter = localHipsterAdapter
         binding.rvHomeWeeklyHipPlace.adapter = weeklyHipPlaceAdapter
+    }
+
+    private fun localHipsterPickCallback() {
+        startActivity(Intent(requireContext(), LocalHipsterPickActivity::class.java))
     }
 
     private fun placeSaveCallback(weeklyHipPlaceData: WeeklyHipPlaceData) {

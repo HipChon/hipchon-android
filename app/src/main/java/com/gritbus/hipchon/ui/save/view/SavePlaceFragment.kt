@@ -24,7 +24,7 @@ class SavePlaceFragment : BaseViewUtil.BaseFragment<FragmentSavePlaceBinding>(R.
     private fun setAdapter() {
         savePlaceAdapter = SavePlaceAdapter()
         binding.rvSavePlace.adapter = savePlaceAdapter
-        binding.rvSavePlace.addItemDecoration(ItemDecorationWithStroke())
+        binding.rvSavePlace.addItemDecoration(ItemDecorationWithStroke(false))
         savePlaceAdapter.submitList(listOf(1, 2, 3, 4, 5))
     }
 }

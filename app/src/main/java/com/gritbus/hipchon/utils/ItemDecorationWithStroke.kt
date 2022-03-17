@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.gritbus.hipchon.R
 
-class ItemDecorationWithStroke() : RecyclerView.ItemDecoration() {
+class ItemDecorationWithStroke(private val withHeader: Boolean) : RecyclerView.ItemDecoration() {
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
@@ -17,7 +17,11 @@ class ItemDecorationWithStroke() : RecyclerView.ItemDecoration() {
             color = ContextCompat.getColor(parent.context, R.color.gray02)
         }
 
-        for (i in 0 until parent.childCount) {
+        val startPosition = when(withHeader){
+            true -> 1
+            false -> 0
+        }
+        for (i in startPosition until parent.childCount) {
             val child = parent.getChildAt(i)
             val params = child.layoutParams as RecyclerView.LayoutParams
             val top = (child.bottom + params.bottomMargin).toFloat()
