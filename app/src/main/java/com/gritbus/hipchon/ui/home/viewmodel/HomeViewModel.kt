@@ -81,11 +81,11 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         "정선에서 역대급\n힐링 불멍 스팟을 찾다5" to Hashtag.FIRE
     )
     private var fakeWeeklyHipPlaceAllData: List<WeeklyHipPlaceData> = listOf(
-        WeeklyHipPlaceData(1, "제주맛집", Area.JEJU, "3인가능", "3인가능", 10, 12, false, fakeUrl),
-        WeeklyHipPlaceData(2, "제주맛집", Area.JEJU, "3인가능", "3인가능", 10, 12, false, fakeUrl),
-        WeeklyHipPlaceData(3, "제주맛집", Area.JEJU, "3인가능", "3인가능", 10, 12, false, fakeUrl),
-        WeeklyHipPlaceData(4, "제주맛집", Area.JEJU, "3인가능", "3인가능", 10, 12, false, fakeUrl),
-        WeeklyHipPlaceData(5, "제주맛집", Area.JEJU, "3인가능", "3인가능", 10, 12, false, fakeUrl),
-        WeeklyHipPlaceData(6, "제주맛집", Area.JEJU, "3인가능", "3인가능", 10, 12, false, fakeUrl),
+        WeeklyHipPlaceData(1, "제주맛집", Area.JEJU, "주차하기 용이해요", 10, 12, false, fakeUrl),
+        WeeklyHipPlaceData(2, "제주맛집", Area.JEJU, "주차하기 용이해요",  10, 12, false, fakeUrl),
+        WeeklyHipPlaceData(3, "제주맛집", Area.JEJU, "주차하기 용이해요", 10, 12, false, fakeUrl),
+        WeeklyHipPlaceData(4, "제주맛집", Area.JEJU, "주차하기 용이해요",  10, 12, false, fakeUrl),
+        WeeklyHipPlaceData(5, "제주맛집", Area.JEJU, "주차하기 용이해요",  10, 12, false, fakeUrl),
+        WeeklyHipPlaceData(6, "제주맛집", Area.JEJU, "주차하기 용이해요",  10, 12, false, fakeUrl),
     )
 }

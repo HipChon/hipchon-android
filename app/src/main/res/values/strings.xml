@@ -27,10 +27,6 @@
     <string name="home_place_register_question_desc">고객지원</string>
     <string name="home_place_register_question">공간 등록 문의</string>
 
-    <!--  Weekly Hip Place  -->
-    <string name="weekly_hip_place_save_count">저장 %d</string>
-    <string name="weekly_hip_place_feed_count">후기 %d</string>
-
     <!--  QuickSearch  -->
     <string name="quick_search_title">빠른 검색</string>
     <string name="quick_search_reset">초기화</string>

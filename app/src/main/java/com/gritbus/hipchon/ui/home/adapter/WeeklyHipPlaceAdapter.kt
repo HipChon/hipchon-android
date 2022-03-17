@@ -42,20 +42,13 @@ class WeeklyHipPlaceAdapter(
             }
             binding.tvHomeWeeklyHipPlaceTitle.text = weeklyHipPlaceData.title
             binding.tvHomeWeeklyHipPlaceArea.text = weeklyHipPlaceData.area.value
-            binding.tvHomeWeeklyHipPlaceKeyword1st.text = weeklyHipPlaceData.keywordFirst
-            binding.tvHomeWeeklyHipPlaceKeyword2nd.text = weeklyHipPlaceData.keywordSecond
+            binding.tvHomeWeeklyHipPlaceKeyword.text = weeklyHipPlaceData.keyword
             binding.ivHomeWeeklyHipPlaceSave.background = when (weeklyHipPlaceData.isSave) {
                 true -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save_filled)
                 false -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save)
             }
-            binding.tvHomeWeeklyHipPlaceSave.text = binding.root.context.resources.getString(
-                R.string.weekly_hip_place_save_count,
-                weeklyHipPlaceData.saveCount
-            )
-            binding.tvHomeWeeklyHipPlaceFeed.text = binding.root.context.resources.getString(
-                R.string.weekly_hip_place_feed_count,
-                weeklyHipPlaceData.feedCount
-            )
+            binding.tvHomeWeeklyHipPlaceSaveCount.text = weeklyHipPlaceData.saveCount.toString()
+            binding.tvHomeWeeklyHipPlaceFeedCount.text = weeklyHipPlaceData.feedCount.toString()
             Glide.with(binding.root.context)
                 .load(weeklyHipPlaceData.imageUrl)
                 .into(binding.ivHomeWeeklyHipPlaceThumbnail)
