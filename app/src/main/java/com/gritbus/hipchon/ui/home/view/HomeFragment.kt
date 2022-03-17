@@ -20,7 +20,8 @@ import com.gritbus.hipchon.utils.ItemDecorationWithHorizontalSpacing
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
+class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
+    BannerFragment.OnSwipeListener {
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var localHipsterAdapter: LocalHipsterAdapter
@@ -43,6 +44,10 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         initData()
     }
 
+    override fun onSwipe(position: Int, imageCount: Int) {
+        binding.tvHomeBanner.text = resources.getString(R.string.home_banner, position, imageCount)
+    }
+
     private fun initData() {
         viewModel.getLocalHipsterAllData()
         viewModel.getBannerAllData()
@@ -51,7 +56,11 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
     }
 
     private fun setItemDecoration() {
-        binding.rvHomeLocalHipsterPick.addItemDecoration(ItemDecorationWithHorizontalSpacing(LOCAL_HIPSTER_ITEM_SPACING))
+        binding.rvHomeLocalHipsterPick.addItemDecoration(
+            ItemDecorationWithHorizontalSpacing(
+                LOCAL_HIPSTER_ITEM_SPACING
+            )
+        )
     }
 
     private fun setOnClickListener() {

@@ -19,21 +19,5 @@
             android:scaleType="centerCrop"
             android:src="@color/black" />
 
-        <TextView
-            android:id="@+id/tv_home_banner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="22dp"
-            android:layout_marginBottom="22dp"
-            android:background="@drawable/bg_rectangle_radius_9"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="1dp"
-            android:text="1 / 8"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_12"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

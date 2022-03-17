@@ -19,6 +19,7 @@
 
     <string name="home_search_bar">인원, 지역, 유형을 검색하세요</string>
     <string name="home_local_hipster_pick">로컬 힙스터 픽</string>
+    <string name="home_banner">%d / %d</string>
     <string name="home_best_feed">베스트 후기</string>
     <string name="home_weekly_feed">주간 힙플</string>
     <string name="home_kakao_counseling_desc">어디서 살지 못 정하셨나요?</string>

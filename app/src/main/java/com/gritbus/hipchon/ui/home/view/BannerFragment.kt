@@ -15,6 +15,10 @@ class BannerFragment : BaseViewUtil.BaseFragment<FragmentBannerBinding>(R.layout
     private var currentPosition by Delegates.notNull<Int>()
     private var imageCount by Delegates.notNull<Int>()
 
+    interface OnSwipeListener {
+        fun onSwipe(position: Int, imageCount: Int)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -23,7 +27,11 @@ class BannerFragment : BaseViewUtil.BaseFragment<FragmentBannerBinding>(R.layout
     override fun initView() {
         initImageUrl()
         setBannerImage()
-        setBannerCount()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (parentFragment as? HomeFragment)?.onSwipe(currentPosition, imageCount)
     }
 
     private fun initImageUrl() {
@@ -36,11 +44,6 @@ class BannerFragment : BaseViewUtil.BaseFragment<FragmentBannerBinding>(R.layout
         (arguments?.get(BANNER_IMAGE_COUNT) as? Int)?.let {
             imageCount = it
         }
-    }
-
-    private fun setBannerCount() {
-        binding.tvHomeBanner.text =
-            resources.getString(R.string.place_result_thumbnail_count, currentPosition, imageCount)
     }
 
     private fun setBannerImage() {
