@@ -12,6 +12,7 @@
         android:layout_marginBottom="@dimen/spacing_32">
 
         <TextView
+            style="@style/Gmarket.Weight500"
             android:id="@+id/tv_keyword_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
