@@ -38,6 +38,7 @@
             android:id="@+id/vp_save"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:saveEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tl_save" />
 
