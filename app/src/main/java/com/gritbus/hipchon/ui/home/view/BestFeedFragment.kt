@@ -13,13 +13,18 @@ class BestFeedFragment :
 
     private lateinit var feedTitle: String
     private lateinit var feedHashtag: Hashtag
+
+    interface OnClickListener {
+        fun onClick()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
     }
-
     override fun initView() {
         initFeedData()
+        setOnClickListener()
         setView()
     }
 
@@ -32,10 +37,16 @@ class BestFeedFragment :
         }
     }
 
+    private fun setOnClickListener() {
+        binding.root.setOnClickListener {
+            (parentFragment as? HomeFragment)?.onClick()
+        }
+    }
+
     private fun setView() {
         binding.tvBestFeedTitle.text = feedTitle
 
-        val hashtagDrawable = when(feedHashtag){
+        val hashtagDrawable = when (feedHashtag) {
             Hashtag.FIRE -> R.drawable.ic_fire
             Hashtag.WATER -> R.drawable.ic_water
             Hashtag.FIELD -> R.drawable.ic_field

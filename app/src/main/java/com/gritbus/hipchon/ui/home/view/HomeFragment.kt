@@ -9,6 +9,7 @@ import com.gritbus.hipchon.databinding.FragmentHomeBinding
 import com.gritbus.hipchon.domain.model.Hashtag
 import com.gritbus.hipchon.domain.model.PlaceSearchFilterData
 import com.gritbus.hipchon.domain.model.WeeklyHipPlaceData
+import com.gritbus.hipchon.ui.feed.view.FeedDetailActivity
 import com.gritbus.hipchon.ui.home.adapter.BannerViewPagerAdapter
 import com.gritbus.hipchon.ui.home.adapter.BestFeedViewPagerAdapter
 import com.gritbus.hipchon.ui.home.adapter.HomeLocalHipsterAdapter
@@ -21,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
-    BannerFragment.OnSwipeListener {
+    BannerFragment.OnSwipeListener, BestFeedFragment.OnClickListener {
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var localHipsterAdapter: HomeLocalHipsterAdapter
@@ -142,6 +143,10 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
                 viewLifecycleOwner.lifecycle
             )
         binding.diHomeBestFeed.setViewPager2(binding.vpHomeBestFeed)
+    }
+
+    override fun onClick() {
+        startActivity(Intent(requireContext(), FeedDetailActivity::class.java))
     }
 
     companion object {
