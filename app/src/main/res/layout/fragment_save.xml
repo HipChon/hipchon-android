@@ -27,12 +27,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            app:tabTextColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/mt_save_title"
-            app:tabBackground="@color/white_alpha_50"
-            app:tabGravity="fill"
+            app:tabBackground="@color/white"
             app:tabIndicatorColor="@color/black"
             app:tabIndicatorFullWidth="true"
-            app:tabIndicatorGravity="stretch"
             app:tabMode="fixed" />
 
         <androidx.viewpager2.widget.ViewPager2
