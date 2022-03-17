@@ -11,6 +11,7 @@ import com.gritbus.hipchon.databinding.ItemLocalHipsterPickBinding
 import com.gritbus.hipchon.databinding.ItemLocalHipsterPickHeaderBinding
 
 class LocalHipsterAdapter(
+    private val clickListener: () -> (Unit),
     private val fragmentManager: FragmentManager,
     private val lifecycle: Lifecycle
 ) : ListAdapter<Int, RecyclerView.ViewHolder>(diffUtil) {
@@ -42,8 +43,8 @@ class LocalHipsterAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder){
-            is LocalHipsterViewHolder -> holder.bind(fragmentManager, lifecycle)
+        when (holder) {
+            is LocalHipsterViewHolder -> holder.bind(clickListener, fragmentManager, lifecycle)
             is LocalHipsterHeaderViewHolder -> holder.bind()
         }
     }
@@ -66,13 +67,20 @@ class LocalHipsterAdapter(
         private val binding: ItemLocalHipsterPickBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(fragmentManager: FragmentManager, lifecycle: Lifecycle) {
+        fun bind(
+            clickListener: () -> (Unit),
+            fragmentManager: FragmentManager,
+            lifecycle: Lifecycle
+        ) {
             binding.vpLocalHipsterPickThumb.adapter =
                 LocalHipsterThumbAdapter(
                     listOf("1", "1", "1"),
                     fragmentManager,
                     lifecycle
                 )
+            binding.clLocalHipsterPickPlace.setOnClickListener {
+                clickListener()
+            }
             binding.executePendingBindings()
         }
     }
