@@ -53,11 +53,9 @@ class PlaceResultViewModel @Inject constructor(
     fun getPlaceData() {
         val orderType = _placeOrderType.value ?: return
 
-        // TODO 서버와 연결 필요
         _placeAllData.value = when (orderType) {
             PlaceOrderType.SAVE -> fakeDataSet.sortedByDescending { it.saveCount }
             PlaceOrderType.FEED -> fakeDataSet.sortedByDescending { it.feedCount }
-            PlaceOrderType.DISTANCE -> fakeDataSet.sortedByDescending { it.distance }
         }
     }
 
@@ -71,75 +69,48 @@ class PlaceResultViewModel @Inject constructor(
         PlaceData(
             1,
             listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl),
-            false,
-            "[경기] 더반올가닉",
-            1,
+            "더반올가닉",
+            "제주도",
             "3인가능",
-            "논밭뷰",
-            "뷰맛집",
             30,
             30,
-            "1,000,000원부터"
+            false
         ), PlaceData(
             2,
             listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl),
-            false,
-            "[경기] 더반올가닉",
-            2,
+            "더반올가닉",
+            "제주도",
             "3인가능",
-            "논밭뷰",
-            "뷰맛집",
-            40,
-            9,
-            "800,000원부터"
+            30,
+            30,
+            false
         ), PlaceData(
             3,
             listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl),
-            false,
-            "[경기] 더반올가닉",
-            2,
+            "더반올가닉",
+            "제주도",
             "3인가능",
-            "논밭뷰",
-            "뷰맛집",
-            50,
-            23,
-            "800,000원부터"
+            30,
+            30,
+            false
         ), PlaceData(
             4,
             listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl),
-            false,
-            "[경기] 더반올가닉",
-            4,
+            "더반올가닉",
+            "제주도",
             "3인가능",
-            "논밭뷰",
-            "뷰맛집",
-            13,
-            10,
-            "1,000,000원부터"
+            30,
+            30,
+            false
         ), PlaceData(
             5,
             listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl),
-            false,
-            "[경기] 더반올가닉",
-            3,
+            "더반올가닉",
+            "제주도",
             "3인가능",
-            "논밭뷰",
-            "뷰맛집",
-            253,
-            142,
-            "1,000,000원부터"
-        ), PlaceData(
-            6,
-            listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl),
-            false,
-            "[경기] 더반올가닉",
-            5,
-            "3인가능",
-            "논밭뷰",
-            "뷰맛집",
-            1,
-            0,
-            "1,000,000원부터"
+            30,
+            30,
+            false
         )
     )
 }

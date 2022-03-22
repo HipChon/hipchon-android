@@ -27,8 +27,8 @@ class PlaceResultActivity :
     }
 
     override fun initView() {
-        setObserver()
         setAdapter()
+        setObserver()
         setOnClickListener()
         viewModel.getPlaceData()
     }
@@ -47,7 +47,12 @@ class PlaceResultActivity :
     }
 
     private fun setAdapter() {
-        placeResultAdapter = PlaceResultAdapter(::placeDetailCallback, ::placeSaveCallback)
+        placeResultAdapter = PlaceResultAdapter(
+            supportFragmentManager,
+            lifecycle,
+            ::placeDetailCallback,
+            ::placeSaveCallback
+        )
         binding.rvPlaceResult.adapter = placeResultAdapter
     }
 

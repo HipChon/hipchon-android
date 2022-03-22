@@ -58,28 +58,6 @@
             app:layout_constraintTop_toTopOf="@id/tv_place_result_filter_save" />
 
         <TextView
-            android:id="@+id/tv_place_result_filter_distance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_32"
-            android:text="@string/place_result_filter_distance"
-            android:textSize="@dimen/text_size_16"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_place_result_filter_save" />
-
-        <ImageView
-            android:id="@+id/iv_place_result_filter_distance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/spacing_32"
-            android:background="@drawable/ic_check"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@id/tv_place_result_filter_distance"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_place_result_filter_distance" />
-
-        <TextView
             android:id="@+id/tv_place_result_filter_apply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,6 +69,6 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/tv_place_result_filter_distance" />
+            app:layout_constraintTop_toBottomOf="@id/tv_place_result_filter_save" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

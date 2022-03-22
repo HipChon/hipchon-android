@@ -40,17 +40,10 @@ class FeedFilterFragment :
             PlaceOrderType.SAVE -> {
                 setSaveOptionView(true)
                 setFeedOptionView(false)
-                setDistanceOptionView(false)
             }
             PlaceOrderType.FEED -> {
                 setSaveOptionView(false)
                 setFeedOptionView(true)
-                setDistanceOptionView(false)
-            }
-            PlaceOrderType.DISTANCE -> {
-                setSaveOptionView(false)
-                setFeedOptionView(false)
-                setDistanceOptionView(true)
             }
         }
     }
@@ -82,14 +75,6 @@ class FeedFilterFragment :
         setOptionView(binding.tvPlaceResultFilterFeed, binding.ivPlaceResultFilterFeed, isActive)
     }
 
-    private fun setDistanceOptionView(isActive: Boolean) {
-        setOptionView(
-            binding.tvPlaceResultFilterDistance,
-            binding.ivPlaceResultFilterDistance,
-            isActive
-        )
-    }
-
     private fun setOptionView(textView: TextView, imageView: ImageView, isActive: Boolean) {
         imageView.visibility = when (isActive) {
             true -> View.VISIBLE
@@ -110,10 +95,6 @@ class FeedFilterFragment :
         }
         binding.tvPlaceResultFilterFeed.setOnClickListener {
             orderType = PlaceOrderType.FEED
-            setOrderTypeView()
-        }
-        binding.tvPlaceResultFilterDistance.setOnClickListener {
-            orderType = PlaceOrderType.DISTANCE
             setOrderTypeView()
         }
         binding.tvPlaceResultFilterApply.setOnClickListener {
