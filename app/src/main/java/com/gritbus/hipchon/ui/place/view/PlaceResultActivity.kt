@@ -38,7 +38,7 @@ class PlaceResultActivity :
             binding.tvPlaceResult.text = resources.getString(
                 R.string.place_result_filter_title,
                 it.area.value,
-                it.hashtag.value
+                it.type.value
             )
         }
         viewModel.placeAllData.observe(this) {

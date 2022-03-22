@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import com.google.android.material.chip.Chip
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentHomeQuickSearchBinding
+import com.gritbus.hipchon.domain.model.Area
+import com.gritbus.hipchon.domain.model.Type
 import com.gritbus.hipchon.ui.home.viewmodel.HomeQuickSearchViewModel
 import com.gritbus.hipchon.ui.place.view.PlaceResultActivity
 import com.gritbus.hipchon.utils.BaseViewUtil
@@ -24,15 +27,47 @@ class HomeQuickSearchFragment :
     }
 
     override fun initView() {
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        setAreaChipGroup()
+        setTypeChipGroup()
         setOnClickListener()
         setObserver()
+    }
+
+    private fun setAreaChipGroup() {
+        enumValues<Area>().mapNotNull { if (it == Area.ALL) null else it }.forEach {
+            val chip = layoutInflater.inflate(
+                R.layout.item_filter_chip,
+                binding.cgHomeQuickSearchArea,
+                false
+            ) as Chip
+            chip.text = it.value
+
+            binding.cgHomeQuickSearchArea.addView(chip)
+        }
+    }
+
+    private fun setTypeChipGroup() {
+        enumValues<Type>().mapNotNull { if (it == Type.NOTHING) null else it }.forEach {
+            val chip = layoutInflater.inflate(
+                R.layout.item_filter_chip,
+                binding.cgHomeQuickSearchType,
+                false
+            ) as Chip
+            chip.text = it.value
+
+            binding.cgHomeQuickSearchType.addView(chip)
+        }
     }
 
     private fun setOnClickListener() {
         binding.ivHomeQuickSearchClose.setOnClickListener {
             dialog?.dismiss()
+        }
+        binding.cgHomeQuickSearchArea.setOnCheckedChangeListener { group, checkedId ->
+            viewModel.setArea(group.findViewById<Chip>(checkedId).text.toString())
+        }
+        binding.cgHomeQuickSearchType.setOnCheckedChangeListener { group, checkedId ->
+            viewModel.setType(group.findViewById<Chip>(checkedId).text.toString())
         }
         binding.tvHomeQuickSearchReset.setOnClickListener {
             resetAllFilter()

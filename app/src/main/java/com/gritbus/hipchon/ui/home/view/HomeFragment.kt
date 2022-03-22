@@ -6,8 +6,10 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentHomeBinding
+import com.gritbus.hipchon.domain.model.Area
 import com.gritbus.hipchon.domain.model.Hashtag
 import com.gritbus.hipchon.domain.model.PlaceSearchFilterData
+import com.gritbus.hipchon.domain.model.Type
 import com.gritbus.hipchon.domain.model.WeeklyHipPlaceData
 import com.gritbus.hipchon.ui.feed.view.FeedDetailActivity
 import com.gritbus.hipchon.ui.home.adapter.BannerViewPagerAdapter
@@ -90,9 +92,10 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
 
     private fun quickHashtagSearch(hashtag: Hashtag) {
         startActivity(Intent(requireContext(), PlaceResultActivity::class.java).apply {
+            // TODO 해시태그로의 검색으로 수정 필요
             putExtra(
                 HomeQuickSearchFragment.QUICK_SEARCH_FILTER,
-                PlaceSearchFilterData(hashtag = hashtag)
+                PlaceSearchFilterData(Area.ALL, Type.NOTHING)
             )
         })
     }

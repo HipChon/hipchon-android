@@ -4,5 +4,5 @@ import java.io.Serializable
 
 data class PlaceSearchFilterData(
     val area: Area = Area.ALL,
-    val hashtag: Hashtag = Hashtag.NOTHING
+    val type: Type = Type.NOTHING
 ): Serializable

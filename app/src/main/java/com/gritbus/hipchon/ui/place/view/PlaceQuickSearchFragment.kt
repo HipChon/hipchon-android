@@ -3,11 +3,15 @@ package com.gritbus.hipchon.ui.place.view
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import com.google.android.material.chip.Chip
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentHomeQuickSearchBinding
+import com.gritbus.hipchon.domain.model.Area
 import com.gritbus.hipchon.domain.model.PlaceSearchFilterData
+import com.gritbus.hipchon.domain.model.Type
 import com.gritbus.hipchon.ui.place.viewmodel.PlaceQuickSearchViewModel
 import com.gritbus.hipchon.ui.place.viewmodel.PlaceResultViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
@@ -26,8 +30,8 @@ class PlaceQuickSearchFragment :
     }
 
     override fun initView() {
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        setAreaChipGroup()
+        setTypeChipGroup()
         (arguments?.get(PlaceResultActivity.PLACE_QUICK_SEARCH) as PlaceSearchFilterData?)?.let {
             viewModel.initFilterData(it)
         }
@@ -35,9 +39,41 @@ class PlaceQuickSearchFragment :
         setObserver()
     }
 
+    private fun setAreaChipGroup() {
+        enumValues<Area>().mapNotNull { if (it == Area.ALL) null else it }.forEach {
+            val chip = layoutInflater.inflate(
+                R.layout.item_filter_chip,
+                binding.cgHomeQuickSearchArea,
+                false
+            ) as Chip
+            chip.text = it.value
+
+            binding.cgHomeQuickSearchArea.addView(chip)
+        }
+    }
+
+    private fun setTypeChipGroup() {
+        enumValues<Type>().mapNotNull { if (it == Type.NOTHING) null else it }.forEach {
+            val chip = layoutInflater.inflate(
+                R.layout.item_filter_chip,
+                binding.cgHomeQuickSearchType,
+                false
+            ) as Chip
+            chip.text = it.value
+
+            binding.cgHomeQuickSearchType.addView(chip)
+        }
+    }
+
     private fun setOnClickListener() {
         binding.ivHomeQuickSearchClose.setOnClickListener {
             dialog?.dismiss()
+        }
+        binding.cgHomeQuickSearchArea.setOnCheckedChangeListener { group, checkedId ->
+            viewModel.setArea(group.findViewById<Chip>(checkedId).text.toString())
+        }
+        binding.cgHomeQuickSearchType.setOnCheckedChangeListener { group, checkedId ->
+            viewModel.setType(group.findViewById<Chip>(checkedId).text.toString())
         }
         binding.tvHomeQuickSearchReset.setOnClickListener {
             resetAllFilter()
@@ -51,6 +87,20 @@ class PlaceQuickSearchFragment :
     }
 
     private fun setObserver() {
+        viewModel.area.observe(viewLifecycleOwner){ area->
+            binding.cgHomeQuickSearchArea.children.forEach {
+                if ((it as Chip).text == area.value){
+                    binding.cgHomeQuickSearchArea.check(it.id)
+                }
+            }
+        }
+        viewModel.type.observe(viewLifecycleOwner){ type->
+            binding.cgHomeQuickSearchType.children.forEach {
+                if ((it as Chip).text == type.value){
+                    binding.cgHomeQuickSearchType.check(it.id)
+                }
+            }
+        }
         viewModel.isFilterChange.observe(viewLifecycleOwner) {
             setApplyButton(it)
         }
