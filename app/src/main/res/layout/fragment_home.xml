@@ -289,17 +289,26 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_home_week_hip_place_title"
                     tools:listitem="@layout/item_home_weekly_hip_place" />
 
+                <View
+                    android:id="@+id/view_between_weekly_hip_place_and_counseling"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/spacing_20"
+                    android:background="@color/gray01"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_home_weekly_hip_place" />
+
                 <TextView
                     android:id="@+id/tv_home_kakao_counseling"
                     style="@style/Gmarket.Weight500"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_20"
-                    android:layout_marginTop="35dp"
+                    android:layout_marginTop="32dp"
                     android:text="@string/home_kakao_counseling_desc"
                     android:textSize="@dimen/text_size_16"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rv_home_weekly_hip_place" />
+                    app:layout_constraintTop_toTopOf="@id/view_between_weekly_hip_place_and_counseling" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/mb_home_kakao_counseling"
@@ -329,6 +338,7 @@
                     app:layout_constraintTop_toBottomOf="@id/mb_home_kakao_counseling" />
 
                 <LinearLayout
+                    android:id="@+id/ll_home_help_customer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_20"
