@@ -61,8 +61,8 @@
     <string name="place_detail_map">지도</string>
     <string name="place_detail_map_copy">복사</string>
     <string name="place_detail_menu">메뉴</string>
-    <string name="place_detail_keyword">키워드 리뷰</string>
-    <string name="place_detail_review">리뷰</string>
+    <string name="place_detail_keyword">키워드 리뷰 top3</string>
+    <string name="place_detail_review">피드</string>
 
     <!--  Feed  -->
     <string name="feed_comment_report">신고</string>

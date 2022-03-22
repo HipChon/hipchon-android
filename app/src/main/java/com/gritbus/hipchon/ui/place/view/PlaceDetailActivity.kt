@@ -51,7 +51,7 @@ class PlaceDetailActivity :
     }
 
     private fun setReviewAdapter() {
-        reviewAdapter = FeedAdapter(::moveToFeedDetail)
+        reviewAdapter = FeedAdapter(true, ::moveToFeedDetail)
         binding.rvPlaceDetailReview.adapter = reviewAdapter
         binding.rvPlaceDetailReview.addItemDecoration(ItemDecorationWithStroke(false))
     }

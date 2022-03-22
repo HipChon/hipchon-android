@@ -9,7 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:paddingBottom="25dp">
 
         <ImageView
             android:id="@+id/iv_feed_preview_profile"
@@ -128,7 +129,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_20"
             android:layout_marginTop="@dimen/spacing_20"
-            android:layout_marginBottom="25dp"
             android:background="@drawable/bg_radius_15_stroke_gray02"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rmtv_feed_preview_content">

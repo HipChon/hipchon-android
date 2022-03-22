@@ -33,7 +33,7 @@ class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.f
     }
 
     private fun setAdapter() {
-        feedAdapter = FeedAdapter(::moveToFeedDetail)
+        feedAdapter = FeedAdapter(false, ::moveToFeedDetail)
         binding.rvReview.adapter = feedAdapter
         binding.rvReview.addItemDecoration(ItemDecorationWithStroke(false))
     }

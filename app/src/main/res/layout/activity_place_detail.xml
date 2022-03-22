@@ -325,10 +325,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_20"
                         android:layout_marginTop="@dimen/spacing_24"
-                        android:src="@drawable/ic_map"
+                        android:src="@drawable/ic_menu"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/black" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         style="@style/Gmarket.Weight500"
@@ -364,6 +363,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/gray05"
                         android:textSize="@dimen/text_size_16"
+                        android:visibility="gone"
                         app:layout_constraintTop_toBottomOf="@id/rv_place_detail_menu" />
 
                     <View
@@ -383,8 +383,7 @@
                     android:layout_marginTop="@dimen/spacing_24"
                     android:src="@drawable/ic_map"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cl_place_detail_menu"
-                    app:tint="@color/black" />
+                    app:layout_constraintTop_toBottomOf="@id/cl_place_detail_menu" />
 
                 <TextView
                     style="@style/Gmarket.Weight500"
@@ -420,7 +419,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_20"
-                    android:src="@drawable/ic_time"
+                    android:src="@drawable/ic_address"
                     app:layout_constraintStart_toStartOf="@id/view_place_detail_map_preview"
                     app:layout_constraintTop_toBottomOf="@id/view_place_detail_map_preview" />
 
@@ -465,10 +464,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_20"
                     android:layout_marginTop="@dimen/spacing_24"
-                    android:src="@drawable/ic_feed"
+                    android:src="@drawable/ic_review"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view_between_map_and_keyword"
-                    app:tint="@color/black" />
+                    app:layout_constraintTop_toBottomOf="@id/view_between_map_and_keyword" />
 
                 <TextView
                     style="@style/Gmarket.Weight500"
@@ -511,17 +509,12 @@
                     android:backgroundTint="@color/secondary_yellow"
                     app:layout_constraintTop_toBottomOf="@id/iv_place_detail_keyword_2nd" />
 
-                <TextView
-                    android:id="@+id/tv_place_detail_keyword_more"
+                <View
+                    android:id="@+id/view_between_keyword_and_review"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/spacing_8"
                     android:layout_marginTop="@dimen/spacing_20"
-                    android:background="@drawable/bg_place_detail_more"
-                    android:paddingVertical="13dp"
-                    android:text="@string/see_more_without_dot"
-                    android:textAlignment="center"
-                    android:textColor="@color/gray05"
-                    android:textSize="@dimen/text_size_16"
+                    android:background="@color/gray02"
                     app:layout_constraintTop_toBottomOf="@id/iv_place_detail_keyword_3rd" />
 
                 <ImageView
@@ -530,10 +523,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_20"
                     android:layout_marginTop="@dimen/spacing_24"
-                    android:src="@drawable/ic_feed"
+                    android:src="@drawable/ic_review"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_place_detail_keyword_more"
-                    app:tint="@color/black" />
+                    app:layout_constraintTop_toBottomOf="@id/view_between_keyword_and_review" />
 
                 <TextView
                     style="@style/Gmarket.Weight500"
@@ -544,6 +536,15 @@
                     android:textSize="@dimen/text_size_22"
                     app:layout_constraintBottom_toBottomOf="@id/iv_place_detail_review"
                     app:layout_constraintStart_toEndOf="@id/iv_place_detail_review"
+                    app:layout_constraintTop_toTopOf="@id/iv_place_detail_review" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/spacing_20"
+                    android:background="@drawable/ic_create_review"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_place_detail_review"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/iv_place_detail_review" />
 
                 <View
