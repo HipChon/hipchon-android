@@ -37,7 +37,6 @@ class PlaceResultActivity :
         viewModel.placeSearchFilterData.observe(this) {
             binding.tvPlaceResult.text = resources.getString(
                 R.string.place_result_filter_title,
-                "${it.personCount}명",
                 it.area.value,
                 it.hashtag.value
             )

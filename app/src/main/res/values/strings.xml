@@ -17,7 +17,7 @@
     <string name="see_more">…더보기</string>
     <string name="see_more_without_dot">더보기</string>
 
-    <string name="home_search_bar">인원, 지역, 유형을 검색하세요</string>
+    <string name="home_search_bar">지역, 유형을 검색하세요</string>
     <string name="home_local_hipster_pick">로컬 힙스터 픽</string>
     <string name="home_banner">%d / %d</string>
     <string name="home_best_feed">베스트 후기</string>
@@ -46,7 +46,7 @@
     <string name="filter_type_title">유형</string>
 
     <!--  Place Result  -->
-    <string name="place_result_filter_title">%s | %s | %s</string>
+    <string name="place_result_filter_title">%s | %s</string>
     <string name="place_result_filter_save">저장순</string>
     <string name="place_result_filter_feed">후기순</string>
     <string name="place_result_filter_distance">거리순</string>

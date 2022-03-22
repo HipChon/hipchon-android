@@ -8,6 +8,6 @@ import com.gritbus.hipchon.utils.QuickSearchViewModel
 class HomeQuickSearchViewModel : QuickSearchViewModel() {
 
     init {
-        initialFilterData = PlaceSearchFilterData(1, false, Area.ALL, Hashtag.NOTHING)
+        initialFilterData = PlaceSearchFilterData(Area.ALL, Hashtag.NOTHING)
     }
 }

@@ -40,21 +40,12 @@
             app:layout_constraintTop_toTopOf="@id/tv_home_quick_search_title" />
 
         <include
-            android:id="@+id/view_home_quick_search_filter_person"
-            layout="@layout/item_filter_person"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_home_quick_search_title"
-            app:viewModel="@{viewModel}" />
-
-        <include
             android:id="@+id/view_home_quick_search_filter_area"
             layout="@layout/item_filter_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="21dp"
-            app:layout_constraintTop_toBottomOf="@id/view_home_quick_search_filter_person"
+            android:layout_marginTop="@dimen/spacing_40"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_quick_search_title"
             app:viewModel="@{viewModel}" />
 
         <include

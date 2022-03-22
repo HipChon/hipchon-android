@@ -11,12 +11,6 @@ abstract class QuickSearchViewModel : ViewModel() {
 
     lateinit var initialFilterData: PlaceSearchFilterData
 
-    private val _personCount = MutableLiveData(1)
-    val personCount: LiveData<Int> = _personCount
-
-    private val _withAnimal = MutableLiveData(false)
-    val withAnimal: LiveData<Boolean> = _withAnimal
-
     private val _area = MutableLiveData(Area.ALL)
     val area: LiveData<Area> = _area
 
@@ -30,33 +24,6 @@ abstract class QuickSearchViewModel : ViewModel() {
         resetAllFilter()
     }
 
-    fun minusPersonCount() {
-        _personCount.value = _personCount.value?.let {
-            if (it > 1) {
-                it.minus(1)
-            } else {
-                it
-            }
-        }
-        checkFilterChange()
-    }
-
-    fun plusPersonCount() {
-        _personCount.value = _personCount.value?.let {
-            if (it < 9) {
-                it.plus(1)
-            } else {
-                it
-            }
-        }
-        checkFilterChange()
-    }
-
-    fun setWithAnimal(isChecked: Boolean) {
-        _withAnimal.value = isChecked
-        checkFilterChange()
-    }
-
     fun setArea(checkedId: Int?) {
         _area.value = getAreaWithId(checkedId)
         checkFilterChange()
@@ -68,29 +35,21 @@ abstract class QuickSearchViewModel : ViewModel() {
     }
 
     fun resetAllFilter() {
-        _personCount.value = initialFilterData.personCount
-        _withAnimal.value = initialFilterData.withAnimal
         _area.value = initialFilterData.area
         _hashtag.value = initialFilterData.hashtag
         checkFilterChange()
     }
 
     private fun checkFilterChange() {
-        _isFilterChange.value = _personCount.value != initialFilterData.personCount ||
-                _withAnimal.value != initialFilterData.withAnimal ||
-                _area.value != initialFilterData.area ||
+        _isFilterChange.value = _area.value != initialFilterData.area ||
                 _hashtag.value != initialFilterData.hashtag
     }
 
     fun getSearchFilter(): PlaceSearchFilterData? {
-        val personCountData = _personCount.value ?: return null
-        val withAnimalData = _withAnimal.value ?: return null
         val areaData = _area.value ?: return null
         val hashtagData = _hashtag.value ?: return null
 
         return PlaceSearchFilterData(
-            personCountData,
-            withAnimalData,
             areaData,
             hashtagData
         )
