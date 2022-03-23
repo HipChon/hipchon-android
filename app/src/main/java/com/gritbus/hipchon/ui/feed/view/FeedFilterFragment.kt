@@ -8,17 +8,17 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import com.gritbus.hipchon.R
-import com.gritbus.hipchon.databinding.FragmentPlaceResultFilterBinding
-import com.gritbus.hipchon.domain.model.PlaceOrderType
+import com.gritbus.hipchon.databinding.FragmentFeedFilterBinding
+import com.gritbus.hipchon.domain.model.FeedOrderType
+import com.gritbus.hipchon.ui.feed.view.FeedFragment.Companion.FEED_ORDER_TYPE
 import com.gritbus.hipchon.ui.feed.viewmodel.FeedViewModel
-import com.gritbus.hipchon.ui.place.view.PlaceResultActivity
 import com.gritbus.hipchon.utils.BaseViewUtil
 
 class FeedFilterFragment :
-    BaseViewUtil.BaseBottomSheetDialogFragment<FragmentPlaceResultFilterBinding>(R.layout.fragment_place_result_filter) {
+    BaseViewUtil.BaseBottomSheetDialogFragment<FragmentFeedFilterBinding>(R.layout.fragment_feed_filter) {
 
-    private lateinit var initialOrderType: PlaceOrderType
-    private lateinit var orderType: PlaceOrderType
+    private lateinit var initialOrderType: FeedOrderType
+    private lateinit var orderType: FeedOrderType
     private val viewModel: FeedViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class FeedFilterFragment :
     }
 
     override fun initView() {
-        initialOrderType = arguments?.get(PlaceResultActivity.PLACE_ORDER_TYPE) as PlaceOrderType
+        initialOrderType = arguments?.get(FEED_ORDER_TYPE) as FeedOrderType
         orderType = initialOrderType
         setOrderTypeView()
         setOnClickListener()
@@ -37,42 +37,42 @@ class FeedFilterFragment :
         setApplyView()
 
         when (orderType) {
-            PlaceOrderType.SAVE -> {
-                setSaveOptionView(true)
-                setFeedOptionView(false)
+            FeedOrderType.RECENT -> {
+                setRecentOptionView(true)
+                setLikeOptionView(false)
             }
-            PlaceOrderType.FEED -> {
-                setSaveOptionView(false)
-                setFeedOptionView(true)
+            FeedOrderType.LIKE -> {
+                setRecentOptionView(false)
+                setLikeOptionView(true)
             }
         }
     }
 
     private fun setApplyView() {
         if (initialOrderType != orderType) {
-            binding.tvPlaceResultFilterApply.background =
+            binding.tvFeedFilterApply.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_quick_search_apply_active)
-            binding.tvPlaceResultFilterApply.setTextColor(
+            binding.tvFeedFilterApply.setTextColor(
                 ContextCompat.getColor(requireContext(), R.color.white)
             )
         } else {
-            binding.tvPlaceResultFilterApply.background =
+            binding.tvFeedFilterApply.background =
                 ContextCompat.getDrawable(
                     requireContext(),
                     R.drawable.bg_quick_search_apply_default
                 )
-            binding.tvPlaceResultFilterApply.setTextColor(
+            binding.tvFeedFilterApply.setTextColor(
                 ContextCompat.getColor(requireContext(), R.color.black)
             )
         }
     }
 
-    private fun setSaveOptionView(isActive: Boolean) {
-        setOptionView(binding.tvPlaceResultFilterSave, binding.ivPlaceResultFilterSave, isActive)
+    private fun setRecentOptionView(isActive: Boolean) {
+        setOptionView(binding.tvFeedFilterRecent, binding.ivFeedFilterRecent, isActive)
     }
 
-    private fun setFeedOptionView(isActive: Boolean) {
-        setOptionView(binding.tvPlaceResultFilterFeed, binding.ivPlaceResultFilterFeed, isActive)
+    private fun setLikeOptionView(isActive: Boolean) {
+        setOptionView(binding.tvFeedFilterLike, binding.ivFeedFilterLike, isActive)
     }
 
     private fun setOptionView(textView: TextView, imageView: ImageView, isActive: Boolean) {
@@ -89,15 +89,15 @@ class FeedFilterFragment :
     }
 
     private fun setOnClickListener() {
-        binding.tvPlaceResultFilterSave.setOnClickListener {
-            orderType = PlaceOrderType.SAVE
+        binding.tvFeedFilterRecent.setOnClickListener {
+            orderType = FeedOrderType.RECENT
             setOrderTypeView()
         }
-        binding.tvPlaceResultFilterFeed.setOnClickListener {
-            orderType = PlaceOrderType.FEED
+        binding.tvFeedFilterLike.setOnClickListener {
+            orderType = FeedOrderType.LIKE
             setOrderTypeView()
         }
-        binding.tvPlaceResultFilterApply.setOnClickListener {
+        binding.tvFeedFilterApply.setOnClickListener {
             viewModel.setOrderType(orderType)
             dialog?.dismiss()
         }

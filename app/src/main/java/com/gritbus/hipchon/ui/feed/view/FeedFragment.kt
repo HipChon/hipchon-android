@@ -9,7 +9,6 @@ import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentReviewBinding
 import com.gritbus.hipchon.ui.feed.adapter.FeedAdapter
 import com.gritbus.hipchon.ui.feed.viewmodel.FeedViewModel
-import com.gritbus.hipchon.ui.place.view.PlaceResultActivity
 import com.gritbus.hipchon.utils.BaseViewUtil
 import com.gritbus.hipchon.utils.ItemDecorationWithStroke
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,7 +53,7 @@ class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.f
                 R.id.place_result_filter -> {
                     val feedFilterFragment = FeedFilterFragment().apply {
                         arguments =
-                            bundleOf(PlaceResultActivity.PLACE_ORDER_TYPE to viewModel.reviewOrderType.value)
+                            bundleOf(FEED_ORDER_TYPE to viewModel.reviewOrderType.value)
                     }
                     feedFilterFragment.show(
                         parentFragmentManager,
@@ -68,5 +67,9 @@ class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.f
         binding.fabReviewCreate.setOnClickListener {
             startActivity(Intent(requireContext(), FeedCreatePlaceActivity::class.java))
         }
+    }
+
+    companion object {
+        const val FEED_ORDER_TYPE = "com.gritbus.hipchon.ui.feed.view FEED_ORDER_TYPE"
     }
 }
