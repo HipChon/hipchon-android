@@ -10,10 +10,16 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.MotionEvent
 import androidx.activity.viewModels
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityPlaceDetailBinding
+import com.gritbus.hipchon.databinding.ItemPlaceDetailKeywordBinding
+import com.gritbus.hipchon.domain.model.KeywordFacility
+import com.gritbus.hipchon.domain.model.KeywordMood
+import com.gritbus.hipchon.domain.model.KeywordSatisfaction
 import com.gritbus.hipchon.ui.feed.adapter.FeedAdapter
 import com.gritbus.hipchon.ui.feed.view.FeedDetailActivity
 import com.gritbus.hipchon.ui.place.adapter.PlaceDetailThumbAdapter
@@ -155,8 +161,64 @@ class PlaceDetailActivity :
         viewModel.menuAllData.observe(this) {
             menuAdapter.submitList(it)
         }
+        viewModel.keyword.observe(this) {
+            it.forEach { keyword ->
+                val keywordView = layoutInflater.inflate(
+                    R.layout.item_place_detail_keyword,
+                    binding.llPlaceDetailKeyword,
+                    false
+                ) as ConstraintLayout
+
+                val keywordBinding =
+                    DataBindingUtil.bind<ItemPlaceDetailKeywordBinding>(keywordView)
+                if (keyword != null) {
+                    getKeywordData(keyword)?.let { iconAndContentAndColor ->
+                        keywordBinding?.ivPlaceDetailKeywordIcon?.background =
+                            ContextCompat.getDrawable(baseContext, iconAndContentAndColor.first)
+                        keywordBinding?.tvPlaceDetailKeywordContent?.text =
+                            resources.getString(iconAndContentAndColor.second)
+                        keywordBinding?.root?.backgroundTintList = ColorStateList.valueOf(
+                            ContextCompat.getColor(
+                                baseContext,
+                                iconAndContentAndColor.third
+                            )
+                        )
+                    }
+                    binding.llPlaceDetailKeyword.addView(keywordView)
+                }
+            }
+        }
         viewModel.reviewPreview.observe(this) {
             reviewAdapter.submitList(it)
+        }
+    }
+
+    private fun getKeywordData(keyword: Any): Triple<Int, Int, Int>? {
+        return when (keyword) {
+            is KeywordFacility -> {
+                Triple(
+                    keyword.iconDrawable,
+                    keyword.contentString,
+                    R.color.secondary_yellow
+                )
+            }
+            is KeywordMood -> {
+                Triple(
+                    keyword.iconDrawable,
+                    keyword.contentString,
+                    R.color.primary_green
+                )
+            }
+            is KeywordSatisfaction -> {
+                Triple(
+                    keyword.iconDrawable,
+                    keyword.contentString,
+                    R.color.secondary_blue
+                )
+            }
+            else -> {
+                null
+            }
         }
     }
 

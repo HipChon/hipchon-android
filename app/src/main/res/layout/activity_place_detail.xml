@@ -479,43 +479,22 @@
                     app:layout_constraintStart_toEndOf="@id/iv_place_detail_keyword"
                     app:layout_constraintTop_toTopOf="@id/iv_place_detail_keyword" />
 
-                <ImageView
-                    android:id="@+id/iv_place_detail_keyword_1st"
+                <LinearLayout
+                    android:id="@+id/ll_place_detail_keyword"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/spacing_40"
-                    android:layout_marginHorizontal="@dimen/spacing_20"
-                    android:layout_marginTop="@dimen/spacing_20"
-                    android:background="@drawable/bg_rectangle_radius_5_alpha_1"
-                    android:backgroundTint="@color/secondary_yellow"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_16"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/spacing_20"
                     app:layout_constraintTop_toBottomOf="@id/iv_place_detail_keyword" />
-
-                <ImageView
-                    android:id="@+id/iv_place_detail_keyword_2nd"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/spacing_40"
-                    android:layout_marginHorizontal="@dimen/spacing_20"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_rectangle_radius_5_alpha_1"
-                    android:backgroundTint="@color/secondary_blue"
-                    app:layout_constraintTop_toBottomOf="@id/iv_place_detail_keyword_1st" />
-
-                <ImageView
-                    android:id="@+id/iv_place_detail_keyword_3rd"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/spacing_40"
-                    android:layout_marginHorizontal="@dimen/spacing_20"
-                    android:layout_marginTop="@dimen/spacing_8"
-                    android:background="@drawable/bg_rectangle_radius_5_alpha_1"
-                    android:backgroundTint="@color/secondary_yellow"
-                    app:layout_constraintTop_toBottomOf="@id/iv_place_detail_keyword_2nd" />
 
                 <View
                     android:id="@+id/view_between_keyword_and_review"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/spacing_8"
-                    android:layout_marginTop="@dimen/spacing_20"
+                    android:layout_marginTop="@dimen/spacing_16"
                     android:background="@color/gray02"
-                    app:layout_constraintTop_toBottomOf="@id/iv_place_detail_keyword_3rd" />
+                    app:layout_constraintTop_toBottomOf="@id/ll_place_detail_keyword" />
 
                 <ImageView
                     android:id="@+id/iv_place_detail_review"
