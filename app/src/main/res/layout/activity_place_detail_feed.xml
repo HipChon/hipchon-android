@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                style="?attr/collapsingToolbarLayoutLargeStyle"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
+                android:background="@color/white"
+                app:collapsedTitleTextAppearance="@style/MaterialToolbar.Gmarket.Weight500.22"
+                app:expandedTitleTextAppearance="@style/MaterialToolbar.Gmarket.Weight500.22"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/mt_place_detail_feed"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@drawable/bg_place_result_title"
+                    android:elevation="0dp"
+                    app:layout_collapseMode="pin"
+                    app:menu="@menu/menu_place_review_more"
+                    app:navigationIcon="@drawable/ic_chevron_left"
+                    app:title="10개의 리뷰" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_place_detail_feed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:listitem="@layout/item_feed_preview" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

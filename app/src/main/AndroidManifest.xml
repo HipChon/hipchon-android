@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HipChon">
         <activity
+            android:name=".ui.place.view.PlaceDetailFeedActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.view.LocalHipsterPickActivity"
             android:exported="true" />
         <activity

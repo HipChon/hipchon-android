@@ -518,6 +518,7 @@
                     app:layout_constraintTop_toTopOf="@id/iv_place_detail_review" />
 
                 <ImageView
+                    android:id="@+id/iv_place_detail_create_review"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/spacing_20"

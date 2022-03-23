@@ -21,6 +21,7 @@ import com.gritbus.hipchon.domain.model.KeywordFacility
 import com.gritbus.hipchon.domain.model.KeywordMood
 import com.gritbus.hipchon.domain.model.KeywordSatisfaction
 import com.gritbus.hipchon.ui.feed.adapter.FeedAdapter
+import com.gritbus.hipchon.ui.feed.view.FeedCreateActivity
 import com.gritbus.hipchon.ui.feed.view.FeedDetailActivity
 import com.gritbus.hipchon.ui.place.adapter.PlaceDetailThumbAdapter
 import com.gritbus.hipchon.ui.place.adapter.PlaceMenuAdapter
@@ -148,6 +149,12 @@ class PlaceDetailActivity :
             val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clip = ClipData.newPlainText("주소", binding.tvPlaceDetailMapCopyAddress.text)
             clipboard.setPrimaryClip(clip)
+        }
+        binding.ivPlaceDetailCreateReview.setOnClickListener {
+            startActivity(Intent(baseContext, FeedCreateActivity::class.java))
+        }
+        binding.tvPlaceDetailReviewMore.setOnClickListener {
+            startActivity(Intent(baseContext, PlaceDetailFeedActivity::class.java))
         }
     }
 
