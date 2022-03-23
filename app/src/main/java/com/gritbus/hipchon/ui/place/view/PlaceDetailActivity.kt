@@ -21,18 +21,33 @@ import com.gritbus.hipchon.ui.place.adapter.PlaceMenuAdapter
 import com.gritbus.hipchon.ui.place.viewmodel.PlaceDetailViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
 import com.gritbus.hipchon.utils.ItemDecorationWithStroke
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.MapFragment
+import com.naver.maps.map.NaverMap
+import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.OverlayImage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PlaceDetailActivity :
-    BaseViewUtil.BaseAppCompatActivity<ActivityPlaceDetailBinding>(R.layout.activity_place_detail) {
+    BaseViewUtil.BaseAppCompatActivity<ActivityPlaceDetailBinding>(R.layout.activity_place_detail),
+    OnMapReadyCallback {
 
     private val viewModel: PlaceDetailViewModel by viewModels()
     private lateinit var menuAdapter: PlaceMenuAdapter
     private lateinit var reviewAdapter: FeedAdapter
+    private lateinit var naverMap: NaverMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val mapFragment =
+            (supportFragmentManager.findFragmentById(R.id.view_place_detail_map_preview) as MapFragment?
+                ?: MapFragment.newInstance().also {
+                    supportFragmentManager.beginTransaction()
+                        .add(R.id.view_place_detail_map_preview, it).commit()
+                })
+        mapFragment.getMapAsync(this)
         initView()
     }
 
@@ -40,7 +55,7 @@ class PlaceDetailActivity :
         setMenuAdapter()
         setReviewAdapter()
         initData()
-        setMapScrolling()
+        setMap()
         setOnClickListener()
         setObserver()
     }
@@ -64,8 +79,18 @@ class PlaceDetailActivity :
         viewModel.initData()
     }
 
+    override fun onMapReady(naverMap: NaverMap) {
+        this.naverMap = naverMap
+        naverMap.uiSettings.isZoomControlEnabled = false
+        Marker().apply {
+            position = LatLng(37.5670135, 126.9783740)
+            map = naverMap
+            icon = OverlayImage.fromResource(R.drawable.ic_map_marker)
+        }
+    }
+
     @SuppressLint("ClickableViewAccessibility")
-    private fun setMapScrolling() {
+    private fun setMap() {
         binding.ivPlaceDetailMapPreview.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
