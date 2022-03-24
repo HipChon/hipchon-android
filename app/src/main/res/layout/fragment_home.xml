@@ -259,6 +259,7 @@
                     android:text="@string/see_detail"
                     android:textColor="@color/gray04"
                     android:textSize="13sp"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@id/tv_home_week_hip_place_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_home_week_hip_place_title" />
