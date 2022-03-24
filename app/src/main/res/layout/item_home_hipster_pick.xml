@@ -21,7 +21,8 @@
                 android:id="@+id/iv_home_hipster_pick"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/black" />
+                android:background="@color/black"
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/tv_home_hipster_pick_area"
