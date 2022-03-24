@@ -1,0 +1,21 @@
+package com.gritbus.hipchon.di
+
+import com.gritbus.hipchon.data.datasource.place.PlaceDataSource
+import com.gritbus.hipchon.data.repository.place.PlaceRepository
+import com.gritbus.hipchon.data.repository.place.PlaceRepositoryImpl
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object RepositoryModule {
+
+    @Provides
+    @Singleton
+    fun providePlaceRepository(placeDataSource: PlaceDataSource): PlaceRepository {
+        return PlaceRepositoryImpl(placeDataSource)
+    }
+}
