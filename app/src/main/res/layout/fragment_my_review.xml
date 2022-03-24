@@ -16,11 +16,9 @@
             android:id="@+id/rv_my_review"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_my_review"
+            tools:listitem="@layout/item_my_review_comment"
             android:paddingHorizontal="@dimen/spacing_16"
-            android:paddingTop="11dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2" />
+            android:paddingTop="11dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

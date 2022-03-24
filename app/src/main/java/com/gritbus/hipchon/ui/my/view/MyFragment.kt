@@ -11,6 +11,8 @@ import com.gritbus.hipchon.utils.BaseViewUtil
 
 class MyFragment : BaseViewUtil.BaseFragment<FragmentMyBinding>(R.layout.fragment_my) {
 
+    private val titleList = listOf("내가 심은 모", "좋아요 한 모", "내가 쓴 댓글")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -23,11 +25,10 @@ class MyFragment : BaseViewUtil.BaseFragment<FragmentMyBinding>(R.layout.fragmen
     }
 
     private fun setAdapter() {
-        binding.vpMy.adapter = MyAdapter(this)
+        binding.vpMy.adapter = MyAdapter(titleList, this)
     }
 
     private fun setTabLayout() {
-        val titleList = listOf("내가 심은 모", "좋아요 한 모", "내가 쓴 댓글")
         TabLayoutMediator(binding.tlMy, binding.vpMy) { tab, position ->
             tab.text = titleList[position]
         }.attach()
