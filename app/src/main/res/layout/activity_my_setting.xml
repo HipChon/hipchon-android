@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.my.view.MySettingActivity">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mt_my_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_chevron_left" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mt_my_setting">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_my_setting_app_title"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="앱 설정"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_my_setting_app_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="계정/정보 관리"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_setting_app_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_setting_app_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_setting_app_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:text="버전 정보"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_setting_app_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_setting_app_account" />
+
+                <TextView
+                    android:id="@+id/tv_my_setting_app_version_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:text="1.0.0"
+                    android:textColor="@color/primary_green"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_setting_app_version"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_setting_app_version" />
+
+                <TextView
+                    android:id="@+id/tv_my_setting_app_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:text="로그아웃"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_setting_app_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_setting_app_version" />
+
+                <TextView
+                    android:id="@+id/tv_my_setting_app_leave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:text="탈퇴하기"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_setting_app_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_setting_app_logout" />
+
+                <View
+                    android:id="@+id/view_between_app_and_host"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="35dp"
+                    android:background="@color/gray02"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_setting_app_leave" />
+
+                <TextView
+                    android:id="@+id/tv_my_setting_host_title"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="35dp"
+                    android:text="호스트 및 제휴"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_between_app_and_host" />
+
+                <TextView
+                    android:id="@+id/tv_my_setting_host_suggest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="제휴 및 제안"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_setting_app_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_setting_host_title" />
+
+                <View
+                    android:id="@+id/view_between_host_and_center"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="35dp"
+                    android:background="@color/gray02"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_setting_host_suggest" />
+
+                <TextView
+                    android:id="@+id/tv_my_setting_center_title"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="35dp"
+                    android:text="고객센터"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_between_host_and_center" />
+
+                <TextView
+                    android:id="@+id/tv_my_setting_center_notice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="제휴 및 제안"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_setting_app_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_setting_center_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_setting_center_qna"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:text="자주 묻는 질문"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_setting_app_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_setting_center_notice" />
+
+                <TextView
+                    android:id="@+id/tv_my_setting_center_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:text="고객센터 문의"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_setting_app_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_setting_center_qna" />
+
+                <TextView
+                    android:id="@+id/tv_my_setting_center_question_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:text="카카오"
+                    android:textColor="@color/primary_green"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_setting_center_question"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_setting_center_question" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

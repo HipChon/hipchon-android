@@ -1,5 +1,6 @@
 package com.gritbus.hipchon.ui.my.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.google.android.material.tabs.TabLayoutMediator
@@ -37,6 +38,9 @@ class MyFragment : BaseViewUtil.BaseFragment<FragmentMyBinding>(R.layout.fragmen
     private fun setOnClickListener(){
         binding.ivMyProfile.setOnClickListener {
             (activity as? MainActivity)?.addFragment(MyUpdateFragment())
+        }
+        binding.ivMyOption.setOnClickListener {
+            startActivity(Intent(requireContext(), MySettingActivity::class.java))
         }
     }
 }

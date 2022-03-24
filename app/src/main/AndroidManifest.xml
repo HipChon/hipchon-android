@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HipChon">
         <activity
+            android:name=".ui.my.view.MySettingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.place.view.PlaceDetailFeedActivity"
             android:exported="false" />
         <activity
