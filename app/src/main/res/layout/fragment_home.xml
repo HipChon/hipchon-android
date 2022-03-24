@@ -160,17 +160,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tv_home_local_hipster_pick_all"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_20"
-                        android:text="@string/see_all"
-                        android:textColor="@color/gray04"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_home_local_hipster_pick_title"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tv_home_local_hipster_pick_title" />
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_home_local_hipster_pick"
                         android:layout_width="match_parent"
