@@ -2,15 +2,15 @@ package com.gritbus.hipchon.domain.model
 
 import com.gritbus.hipchon.R
 
-enum class Keyword(val keywordAll: Any) {
+enum class Keyword(val keywordAll: Any, val value: String) {
     FACILITY(
-        KeywordFacility.values()
+        KeywordFacility.values(), "시설"
     ),
     MOOD(
-        KeywordMood.values()
+        KeywordMood.values(), "분위기"
     ),
     SATISFACTION(
-        KeywordSatisfaction.values()
+        KeywordSatisfaction.values(), "만족도"
     )
 }
 
