@@ -1,5 +1,6 @@
 package com.gritbus.hipchon.di
 
+import com.gritbus.hipchon.data.api.feed.FeedService
 import com.gritbus.hipchon.data.api.place.PlaceService
 import dagger.Module
 import dagger.Provides
@@ -16,5 +17,11 @@ object ServiceModule {
     @Singleton
     fun providePlaceService(retrofit: Retrofit): PlaceService {
         return retrofit.create(PlaceService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFeedService(retrofit: Retrofit): FeedService {
+        return retrofit.create(FeedService::class.java)
     }
 }
