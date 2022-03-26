@@ -2,7 +2,6 @@ package com.gritbus.hipchon.data.repository.feed
 
 import com.gritbus.hipchon.data.model.feed.FeedAllData
 import com.gritbus.hipchon.data.model.feed.FeedBestAllData
-import com.gritbus.hipchon.data.model.feed.FeedPersonalAllData
 import com.gritbus.hipchon.data.model.feed.FeedWithPlaceAllData
 
 interface FeedRepository {
@@ -12,6 +11,4 @@ interface FeedRepository {
     suspend fun getFeedBestAllData(): Result<FeedBestAllData>
 
     suspend fun getFeedWithPlaceAllData(placeId: Int): Result<FeedWithPlaceAllData>
-
-    suspend fun getFeedPersonalAllData(userId: Int): Result<FeedPersonalAllData>
 }

@@ -1,6 +1,6 @@
-package com.gritbus.hipchon.data.model.feed
+package com.gritbus.hipchon.data.model.my
 
-data class FeedPersonalAllData(
+data class MyFeedAllData(
     val data: List<FeedPersonalAllDataItem>
 )
 
