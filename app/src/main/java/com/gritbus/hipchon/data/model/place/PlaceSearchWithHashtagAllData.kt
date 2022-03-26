@@ -1,6 +1,8 @@
 package com.gritbus.hipchon.data.model.place
 
-class PlaceSearchWithHashtagAllData : ArrayList<PlaceSearchWithHashtagAllDataItem>()
+data class PlaceSearchWithHashtagAllData(
+    val data: List<PlaceSearchWithHashtagAllDataItem>
+)
 
 data class PlaceSearchWithHashtagAllDataItem(
     val category: String,

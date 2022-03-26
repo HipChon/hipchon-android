@@ -1,6 +1,8 @@
 package com.gritbus.hipchon.data.model.place
 
-class PlaceDetailData : ArrayList<PlaceDetailDataItem>()
+data class PlaceDetailData(
+    val data: List<PlaceDetailDataItem>
+)
 
 data class PlaceDetailDataItem(
     val address: String,
