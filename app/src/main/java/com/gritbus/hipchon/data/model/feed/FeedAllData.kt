@@ -1,6 +1,8 @@
 package com.gritbus.hipchon.data.model.feed
 
-class FeedAllData : ArrayList<FeedAllDataItem>()
+data class FeedAllData(
+    val data: List<FeedAllDataItem>
+)
 
 data class FeedAllDataItem(
     val commentCnt: Int,

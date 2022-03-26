@@ -1,6 +1,8 @@
 package com.gritbus.hipchon.data.model.feed
 
-class FeedPersonalAllData : ArrayList<FeedPersonalAllDataItem>()
+data class FeedPersonalAllData(
+    val data: List<FeedPersonalAllDataItem>
+)
 
 data class FeedPersonalAllDataItem(
     val placeName: String,
