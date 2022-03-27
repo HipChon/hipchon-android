@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
 import com.gritbus.hipchon.databinding.ItemFeedPreviewBinding
+import com.gritbus.hipchon.utils.ItemDecorationWithHorizontalSpacing
 
 class FeedAdapter(
     private val isPlaceDetail: Boolean,
@@ -32,6 +33,13 @@ class FeedAdapter(
         private val binding: ItemFeedPreviewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        private val feedThumbAdapter = FeedThumbAdapter()
+
+        init {
+            binding.rvFeedPreview.adapter = feedThumbAdapter
+            binding.rvFeedPreview.addItemDecoration(ItemDecorationWithHorizontalSpacing(4))
+        }
+
         fun bind(feedData: FeedAllDataItem, isPlaceDetail: Boolean, clickListener: () -> Unit) {
             binding.root.setOnClickListener {
                 clickListener()
@@ -50,6 +58,9 @@ class FeedAdapter(
             binding.tvFeedPreviewFavorite.text = feedData.likeCnt.toString()
             binding.tvFeedPreviewComment.text = feedData.commentCnt.toString()
             binding.rmtvFeedPreviewContent.text = feedData.detail
+            feedData.imageList?.let {
+                feedThumbAdapter.submitList(it.filter { it != null })
+            }
         }
     }
 
