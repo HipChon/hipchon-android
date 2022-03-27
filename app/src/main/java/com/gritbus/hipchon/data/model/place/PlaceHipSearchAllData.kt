@@ -11,6 +11,6 @@ data class PlaceHipSearchAllDataItem(
     val myplaceCnt: Int,
     val name: String,
     val placeId: Int,
-    val placeImage: List<String>,
+    val placeImage: String,
     val postCnt: Int
 )
