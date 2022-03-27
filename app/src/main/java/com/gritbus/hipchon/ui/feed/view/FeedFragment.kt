@@ -44,6 +44,12 @@ class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.f
     private fun setObserver() {
         viewModel.reviewAllData.observe(viewLifecycleOwner) {
             feedAdapter.submitList(it)
+            binding.rvReview.postDelayed ({
+                binding.rvReview.scrollToPosition(0)
+            }, 200)
+        }
+        viewModel.reviewOrderType.observe(viewLifecycleOwner) {
+            viewModel.initData()
         }
     }
 
