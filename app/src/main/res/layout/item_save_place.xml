@@ -9,7 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:paddingHorizontal="@dimen/spacing_20">
 
         <TextView
             android:id="@+id/tv_save_place_title"
@@ -35,14 +36,48 @@
 
         <TextView
             android:id="@+id/tv_save_place_address"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_8"
+            android:layout_marginEnd="60dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="서울특별시 용산구 서빙고"
             android:textColor="@color/gray06"
             android:textSize="@dimen/text_size_16"
+            app:layout_constraintEnd_toStartOf="@id/iv_save_place_thumb"
             app:layout_constraintStart_toStartOf="@id/tv_save_place_title"
             app:layout_constraintTop_toBottomOf="@id/tv_save_place_type" />
+
+        <ImageView
+            android:id="@+id/iv_save_place_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chevron_up"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/tv_save_place_address"
+            app:layout_constraintStart_toEndOf="@id/tv_save_place_address"
+            app:layout_constraintTop_toTopOf="@id/tv_save_place_address" />
+
+        <TextView
+            android:id="@+id/tv_save_place_address_full"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="@dimen/spacing_8"
+            android:background="@drawable/bg_rectangle_radius_5_filled"
+            android:backgroundTint="@color/white"
+            android:elevation="2dp"
+            android:paddingHorizontal="13dp"
+            android:paddingVertical="10dp"
+            android:text="서울특별시 영등포구 여의대로 108 더현대 서울"
+            android:textColor="@color/gray06"
+            android:textSize="@dimen/text_size_16"
+            android:translationZ="1dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@id/iv_save_place_thumb"
+            app:layout_constraintStart_toStartOf="@id/tv_save_place_address"
+            app:layout_constraintTop_toBottomOf="@id/iv_save_place_address" />
 
         <ImageView
             android:id="@+id/iv_save_place_save_count"
@@ -94,10 +129,12 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:background="@drawable/bg_rectangle_radius_2"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_save_place_title" />
 
         <TextView
+            android:id="@+id/tv_save_place_memo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_12"

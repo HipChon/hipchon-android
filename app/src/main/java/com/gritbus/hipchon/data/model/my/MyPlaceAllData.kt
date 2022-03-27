@@ -7,8 +7,8 @@ data class MyPlaceAllData(
 data class MyPlaceAllDataItem(
     val address: String,
     val category: String,
-    val image: Any,
-    val memo: Any,
+    val image: String,
+    val memo: String,
     val myplaceCnt: Int,
     val name: String,
     val placeId: Int,
