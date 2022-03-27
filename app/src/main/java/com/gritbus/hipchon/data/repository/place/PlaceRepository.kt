@@ -11,7 +11,7 @@ interface PlaceRepository {
         userId: Int,
         cityId: Int,
         categoryId: Int,
-        order: Int,
+        order: String,
     ): Result<PlaceSearchAllData>
 
     suspend fun getPlaceDetailData(userId: Int,placeId: Int): Result<PlaceDetailData>

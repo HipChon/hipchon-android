@@ -15,7 +15,7 @@ interface PlaceService {
         @Path("user_id") userId: Int,
         @Path("city_id") cityId: Int,
         @Path("category_id") categoryId: Int,
-        @Path("order ") order: Int,
+        @Path("order") order: String,
     ): Response<PlaceSearchAllData>
 
     @GET("place/{user_id}/{place_id}")

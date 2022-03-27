@@ -1,37 +1,105 @@
 package com.gritbus.hipchon.ui.place.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.gritbus.hipchon.domain.model.PlaceData
+import androidx.lifecycle.viewModelScope
+import com.gritbus.hipchon.data.model.place.PlaceSearchAllDataItem
+import com.gritbus.hipchon.data.repository.place.PlaceRepository
+import com.gritbus.hipchon.domain.mapper.areaValueToId
+import com.gritbus.hipchon.domain.mapper.categoryValueToId
+import com.gritbus.hipchon.domain.mapper.hashtagValueToId
+import com.gritbus.hipchon.domain.model.Hashtag
 import com.gritbus.hipchon.domain.model.PlaceOrderType
 import com.gritbus.hipchon.domain.model.PlaceSearchFilterData
+import com.gritbus.hipchon.ui.home.view.HomeFragment.Companion.HASHTAG_SEARCH
 import com.gritbus.hipchon.ui.home.view.HomeQuickSearchFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class PlaceResultViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle,
+    private val placeRepository: PlaceRepository
 ) : ViewModel() {
 
-    private val _placeSearchFilterData = MutableLiveData<PlaceSearchFilterData>()
-    val placeSearchFilterData: LiveData<PlaceSearchFilterData> = _placeSearchFilterData
+    // 검색 방법 : 일반 검색 / 해시태그 검색
+    private lateinit var _searchType: String
 
-    private val _placeAllData = MutableLiveData<List<PlaceData>>()
-    val placeAllData: LiveData<List<PlaceData>> = _placeAllData
+    // 일반 검색 옵션
+    private val _searchOptionNormal = MutableLiveData<PlaceSearchFilterData>()
+    val searchOptionNormal: LiveData<PlaceSearchFilterData> = _searchOptionNormal
 
+    // 해시태그 검색 옵션
+    private val _searchOptionHashtag = MutableLiveData<Hashtag>()
+    val searchOptionHashtag: LiveData<Hashtag> = _searchOptionHashtag
+
+    // 검색 결과
+    private val _placeAllData = MutableLiveData<List<PlaceSearchAllDataItem>>()
+    val placeAllData: LiveData<List<PlaceSearchAllDataItem>> = _placeAllData
+
+    // 정렬 기준
     private val _placeOrderType = MutableLiveData(PlaceOrderType.FEED)
     val placeOrderType: LiveData<PlaceOrderType> = _placeOrderType
 
     init {
-        _placeSearchFilterData.value =
+        val searchWithAreaAndType =
             savedStateHandle.get<PlaceSearchFilterData>(HomeQuickSearchFragment.QUICK_SEARCH_FILTER)
+        val searchWithHashtag =
+            savedStateHandle.get<Hashtag>(HASHTAG_SEARCH)
+
+        searchWithAreaAndType?.let {
+            _searchType = SEARCH_OPTION_NORMAL
+            _searchOptionNormal.value = it
+        } ?: searchWithHashtag?.let {
+            _searchType = SEARCH_OPTION_HASHTAG
+            _searchOptionHashtag.value = it
+        }
+    }
+
+    fun getPlaceData() {
+        val orderType = _placeOrderType.value?.let {
+            if (it == PlaceOrderType.SAVE) "myplace" else "post"
+        } ?: return
+
+        viewModelScope.launch {
+            when (_searchType) {
+                SEARCH_OPTION_NORMAL -> {
+                    val searchOptionNormal = _searchOptionNormal.value ?: return@launch
+
+                    placeRepository.getPlaceSearchAllData(
+                        5,
+                        areaValueToId(searchOptionNormal.area.value),
+                        categoryValueToId(searchOptionNormal.type.value),
+                        orderType
+                    ).onSuccess {
+                        _placeAllData.value = it.data
+                    }.onFailure {
+                        Log.e(this.javaClass.name, it.message ?: "search normal error")
+                    }
+                }
+                SEARCH_OPTION_HASHTAG -> {
+                    val searchOptionHashtag = _searchOptionHashtag.value ?: return@launch
+
+                    placeRepository.getPlaceSearchWithHashtag(
+                        5,
+                        hashtagValueToId(searchOptionHashtag.value),
+                        orderType
+                    ).onSuccess {
+                        _placeAllData.value = it.data
+                    }.onFailure {
+                        Log.e(this.javaClass.name, it.message ?: "search hashtag error")
+                    }
+                }
+            }
+        }
     }
 
     fun updateFilterData(filterData: PlaceSearchFilterData) {
-        _placeSearchFilterData.value = filterData
+        _searchOptionNormal.value = filterData
     }
 
     fun setOrderType(orderType: PlaceOrderType) {
@@ -39,78 +107,12 @@ class PlaceResultViewModel @Inject constructor(
         getPlaceData()
     }
 
-    fun updateSave(selectedPlaceData: PlaceData) {
-        fakeDataSet = fakeDataSet.map {
-            if (it.id == selectedPlaceData.id) {
-                it.copy(isSave = !it.isSave)
-            } else {
-                it
-            }
-        }
-        getPlaceData()
-    }
-
-    fun getPlaceData() {
-        val orderType = _placeOrderType.value ?: return
-
-        _placeAllData.value = when (orderType) {
-            PlaceOrderType.SAVE -> fakeDataSet.sortedByDescending { it.saveCount }
-            PlaceOrderType.FEED -> fakeDataSet.sortedByDescending { it.feedCount }
-        }
-    }
-
     fun getSearchFilter(): PlaceSearchFilterData? {
-        return _placeSearchFilterData.value
+        return _searchOptionNormal.value
     }
 
-    // 서버 연결시 삭제할 부분
-    private val fakeUrl = "https://source.unsplash.com/random"
-    private var fakeDataSet: List<PlaceData> = listOf(
-        PlaceData(
-            1,
-            listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl),
-            "더반올가닉",
-            "제주도",
-            "3인가능",
-            30,
-            30,
-            false
-        ), PlaceData(
-            2,
-            listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl),
-            "더반올가닉",
-            "제주도",
-            "3인가능",
-            30,
-            30,
-            false
-        ), PlaceData(
-            3,
-            listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl),
-            "더반올가닉",
-            "제주도",
-            "3인가능",
-            30,
-            30,
-            false
-        ), PlaceData(
-            4,
-            listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl),
-            "더반올가닉",
-            "제주도",
-            "3인가능",
-            30,
-            30,
-            false
-        ), PlaceData(
-            5,
-            listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl),
-            "더반올가닉",
-            "제주도",
-            "3인가능",
-            30,
-            30,
-            false
-        )
-    )
+    companion object {
+        const val SEARCH_OPTION_NORMAL = "지역유형검색"
+        const val SEARCH_OPTION_HASHTAG = "해시태그검색"
+    }
 }

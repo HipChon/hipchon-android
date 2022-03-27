@@ -10,7 +10,9 @@ fun keywordValueToId(keywordValue: String, keywordType: Keyword): Int {
 }
 
 fun areaValueToId(areaValue: String): Int {
-    return Area.values().map { it.value }.indexOf(areaValue)
+    return Area.values().map { it.value }.indexOf(areaValue).let {
+        if (it == 0) -1 else it
+    }
 }
 
 fun hashtagValueToId(hashtagValue: String): Int {
@@ -18,5 +20,7 @@ fun hashtagValueToId(hashtagValue: String): Int {
 }
 
 fun categoryValueToId(categoryValue: String): Int {
-    return Type.values().map { it.value }.indexOf(categoryValue)
+    return Type.values().map { it.value }.indexOf(categoryValue).let {
+        if (it == 0) -1 else it
+    }
 }

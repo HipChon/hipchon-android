@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.os.bundleOf
 import com.gritbus.hipchon.R
+import com.gritbus.hipchon.data.model.place.PlaceSearchAllDataItem
 import com.gritbus.hipchon.databinding.ActivityPlaceResultBinding
-import com.gritbus.hipchon.domain.model.PlaceData
 import com.gritbus.hipchon.domain.model.PlaceOrderType
 import com.gritbus.hipchon.ui.place.adapter.PlaceResultAdapter
 import com.gritbus.hipchon.ui.place.viewmodel.PlaceResultViewModel
@@ -34,12 +34,15 @@ class PlaceResultActivity :
     }
 
     private fun setObserver() {
-        viewModel.placeSearchFilterData.observe(this) {
+        viewModel.searchOptionNormal.observe(this) {
             binding.tvPlaceResult.text = resources.getString(
                 R.string.place_result_filter_title,
                 it.area.value,
                 it.type.value
             )
+        }
+        viewModel.searchOptionHashtag.observe(this){
+            binding.tvPlaceResult.text = it.value
         }
         viewModel.placeAllData.observe(this) {
             placeResultAdapter.submitList(it)
@@ -51,16 +54,11 @@ class PlaceResultActivity :
             supportFragmentManager,
             lifecycle,
             ::placeDetailCallback,
-            ::placeSaveCallback
         )
         binding.rvPlaceResult.adapter = placeResultAdapter
     }
 
-    private fun placeSaveCallback(selectedPlaceData: PlaceData) {
-        viewModel.updateSave(selectedPlaceData)
-    }
-
-    private fun placeDetailCallback(selectedPlaceData: PlaceData) {
+    private fun placeDetailCallback(selectedPlaceData: PlaceSearchAllDataItem) {
         startActivity(Intent(baseContext, PlaceDetailActivity::class.java))
     }
 

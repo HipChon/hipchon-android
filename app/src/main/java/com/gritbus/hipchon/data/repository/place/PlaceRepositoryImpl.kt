@@ -15,7 +15,7 @@ class PlaceRepositoryImpl @Inject constructor(
         userId: Int,
         cityId: Int,
         categoryId: Int,
-        order: Int
+        order: String
     ): Result<PlaceSearchAllData> {
         val result = placeDataSource.getPlaceSearchAllData(userId, cityId, categoryId, order)
 
