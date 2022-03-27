@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gritbus.hipchon.data.model.UserData
 import com.gritbus.hipchon.data.model.feed.FeedBestAllDataItem
 import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllDataItem
 import com.gritbus.hipchon.data.repository.feed.FeedRepository
@@ -51,7 +52,7 @@ class HomeViewModel @Inject constructor(
 
     fun getWeeklyHipPlaceAllData() {
         viewModelScope.launch {
-            placeRepository.getPlaceHipSearchAllData(5)
+            placeRepository.getPlaceHipSearchAllData(UserData.userId)
                 .onSuccess { _weeklyHipPlaceAllData.value = it.data }
                 .onFailure { Log.e(this.javaClass.name, it.message ?: "hip place error") }
         }

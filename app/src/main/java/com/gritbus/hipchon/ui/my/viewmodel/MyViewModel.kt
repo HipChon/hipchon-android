@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gritbus.hipchon.data.model.UserData
 import com.gritbus.hipchon.data.model.my.MyFeedAllDataItem
 import com.gritbus.hipchon.data.repository.my.MyRepository
 import com.gritbus.hipchon.ui.my.view.MyFragment.Companion.MY_COMMENT
@@ -54,7 +55,7 @@ class MyViewModel @Inject constructor(
 
     fun getMyFeedData() {
         viewModelScope.launch {
-            myRepository.getMyFeedAllData(5)
+            myRepository.getMyFeedAllData(UserData.userId)
                 .onSuccess {
                     _myFeedAllData.value = it.data
                 }
@@ -66,7 +67,7 @@ class MyViewModel @Inject constructor(
 
     fun getMyLikeFeedData() {
         viewModelScope.launch {
-            myRepository.getMyLikeFeedAllData(5)
+            myRepository.getMyLikeFeedAllData(UserData.userId)
                 .onSuccess {
                     _myFeedAllData.value = it.data
                 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gritbus.hipchon.data.model.UserData
 import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
 import com.gritbus.hipchon.data.model.place.PlaceDetailDataItem
 import com.gritbus.hipchon.data.repository.feed.FeedRepository
@@ -53,7 +54,7 @@ class PlaceDetailViewModel @Inject constructor(
     }
     fun initData() {
         viewModelScope.launch {
-            placeRepository.getPlaceDetailData(5, placeId)
+            placeRepository.getPlaceDetailData(UserData.userId, placeId)
                 .onSuccess { placeData ->
                     _thumbImages.value = listOf(placeData.data.placeImage)
                     _placeData.value = placeData.data

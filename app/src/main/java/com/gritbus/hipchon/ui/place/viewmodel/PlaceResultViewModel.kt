@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gritbus.hipchon.data.model.UserData
 import com.gritbus.hipchon.data.model.place.PlaceSearchAllDataItem
 import com.gritbus.hipchon.data.repository.place.PlaceRepository
 import com.gritbus.hipchon.domain.mapper.areaValueToId
@@ -71,7 +72,7 @@ class PlaceResultViewModel @Inject constructor(
                     val searchOptionNormal = _searchOptionNormal.value ?: return@launch
 
                     placeRepository.getPlaceSearchAllData(
-                        5,
+                        UserData.userId,
                         areaValueToId(searchOptionNormal.area.value),
                         categoryValueToId(searchOptionNormal.type.value),
                         orderType
@@ -85,7 +86,7 @@ class PlaceResultViewModel @Inject constructor(
                     val searchOptionHashtag = _searchOptionHashtag.value ?: return@launch
 
                     placeRepository.getPlaceSearchWithHashtag(
-                        5,
+                        UserData.userId,
                         hashtagValueToId(searchOptionHashtag.value),
                         orderType
                     ).onSuccess {

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gritbus.hipchon.data.model.UserData
 import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
 import com.gritbus.hipchon.data.repository.feed.FeedRepository
 import com.gritbus.hipchon.domain.model.FeedOrderType
@@ -29,7 +30,7 @@ class FeedViewModel @Inject constructor(
         } ?: return
 
         viewModelScope.launch {
-            feedRepository.getFeedAllData(5, orderType)
+            feedRepository.getFeedAllData(UserData.userId, orderType)
                 .onSuccess {
                     _reviewAllData.value = it.data
                 }
