@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gritbus.hipchon.R
+import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllDataItem
 import com.gritbus.hipchon.databinding.ItemHomeWeeklyHipPlaceBinding
-import com.gritbus.hipchon.domain.model.WeeklyHipPlaceData
 
 class WeeklyHipPlaceAdapter(
     private val clickListener: () -> (Unit),
-    private val saveClickCallback: (WeeklyHipPlaceData) -> (Unit)
-) : ListAdapter<WeeklyHipPlaceData, WeeklyHipPlaceAdapter.WeeklyHipPlaceViewHolder>(diffUtil) {
+    private val saveClickCallback: (PlaceHipSearchAllDataItem) -> (Unit)
+) : ListAdapter<PlaceHipSearchAllDataItem, WeeklyHipPlaceAdapter.WeeklyHipPlaceViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeeklyHipPlaceViewHolder {
         return WeeklyHipPlaceViewHolder(
@@ -36,8 +36,8 @@ class WeeklyHipPlaceAdapter(
 
         fun bind(
             clickListener: () -> (Unit),
-            weeklyHipPlaceData: WeeklyHipPlaceData,
-            saveClickCallback: (WeeklyHipPlaceData) -> Unit
+            weeklyHipPlaceData: PlaceHipSearchAllDataItem,
+            saveClickCallback: (PlaceHipSearchAllDataItem) -> Unit
         ) {
             binding.root.setOnClickListener {
                 clickListener()
@@ -45,33 +45,33 @@ class WeeklyHipPlaceAdapter(
             binding.ivHomeWeeklyHipPlaceSave.setOnClickListener {
                 saveClickCallback(weeklyHipPlaceData)
             }
-            binding.tvHomeWeeklyHipPlaceTitle.text = weeklyHipPlaceData.title
-            binding.tvHomeWeeklyHipPlaceArea.text = weeklyHipPlaceData.area.value
-            binding.tvHomeWeeklyHipPlaceKeyword.text = weeklyHipPlaceData.keyword
-            binding.ivHomeWeeklyHipPlaceSave.background = when (weeklyHipPlaceData.isSave) {
+            binding.tvHomeWeeklyHipPlaceTitle.text = weeklyHipPlaceData.name
+            binding.tvHomeWeeklyHipPlaceArea.text = weeklyHipPlaceData.category
+            binding.tvHomeWeeklyHipPlaceKeyword.text = "업데이트 대기중"
+            binding.ivHomeWeeklyHipPlaceSave.background = when (weeklyHipPlaceData.isMyplace) {
                 true -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save_filled)
                 false -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save)
             }
-            binding.tvHomeWeeklyHipPlaceSaveCount.text = weeklyHipPlaceData.saveCount.toString()
-            binding.tvHomeWeeklyHipPlaceFeedCount.text = weeklyHipPlaceData.feedCount.toString()
+            binding.tvHomeWeeklyHipPlaceSaveCount.text = weeklyHipPlaceData.myplaceCnt.toString()
+            binding.tvHomeWeeklyHipPlaceFeedCount.text = weeklyHipPlaceData.postCnt.toString()
             Glide.with(binding.root.context)
-                .load(weeklyHipPlaceData.imageUrl)
+                .load(weeklyHipPlaceData.placeImage)
                 .into(binding.ivHomeWeeklyHipPlaceThumbnail)
         }
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<WeeklyHipPlaceData>() {
+        val diffUtil = object : DiffUtil.ItemCallback<PlaceHipSearchAllDataItem>() {
             override fun areItemsTheSame(
-                oldItem: WeeklyHipPlaceData,
-                newItem: WeeklyHipPlaceData
+                oldItem: PlaceHipSearchAllDataItem,
+                newItem: PlaceHipSearchAllDataItem
             ): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.placeId == newItem.placeId
             }
 
             override fun areContentsTheSame(
-                oldItem: WeeklyHipPlaceData,
-                newItem: WeeklyHipPlaceData
+                oldItem: PlaceHipSearchAllDataItem,
+                newItem: PlaceHipSearchAllDataItem
             ): Boolean {
                 return oldItem == newItem
             }

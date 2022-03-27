@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.gritbus.hipchon.R
+import com.gritbus.hipchon.data.model.feed.FeedBestAllDataItem
+import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllDataItem
 import com.gritbus.hipchon.databinding.FragmentHomeBinding
 import com.gritbus.hipchon.domain.model.Area
 import com.gritbus.hipchon.domain.model.Hashtag
 import com.gritbus.hipchon.domain.model.PlaceSearchFilterData
 import com.gritbus.hipchon.domain.model.Type
-import com.gritbus.hipchon.domain.model.WeeklyHipPlaceData
 import com.gritbus.hipchon.ui.feed.view.FeedDetailActivity
 import com.gritbus.hipchon.ui.home.adapter.BannerViewPagerAdapter
 import com.gritbus.hipchon.ui.home.adapter.BestFeedViewPagerAdapter
@@ -116,7 +117,7 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         startActivity(Intent(requireContext(), PlaceDetailActivity::class.java))
     }
 
-    private fun placeSaveCallback(weeklyHipPlaceData: WeeklyHipPlaceData) {
+    private fun placeSaveCallback(weeklyHipPlaceData: PlaceHipSearchAllDataItem) {
         viewModel.updateSave(weeklyHipPlaceData)
     }
 
@@ -143,7 +144,7 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         )
     }
 
-    private fun setBestFeed(bestFeedAllData: List<Pair<String, Hashtag>>) {
+    private fun setBestFeed(bestFeedAllData: List<FeedBestAllDataItem>) {
         binding.vpHomeBestFeed.adapter =
             BestFeedViewPagerAdapter(
                 bestFeedAllData,

@@ -1,17 +1,25 @@
 package com.gritbus.hipchon.ui.home.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.gritbus.hipchon.data.model.feed.FeedBestAllDataItem
+import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllDataItem
+import com.gritbus.hipchon.data.repository.feed.FeedRepository
+import com.gritbus.hipchon.data.repository.place.PlaceRepository
 import com.gritbus.hipchon.domain.model.Area
-import com.gritbus.hipchon.domain.model.Hashtag
 import com.gritbus.hipchon.domain.model.LocalHipsterData
-import com.gritbus.hipchon.domain.model.WeeklyHipPlaceData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor() : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val placeRepository: PlaceRepository,
+    private val feedRepository: FeedRepository
+) : ViewModel() {
 
     private val _localHipsterAllData = MutableLiveData<List<LocalHipsterData>>()
     val localHipsterAllData: LiveData<List<LocalHipsterData>> = _localHipsterAllData
@@ -19,11 +27,11 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     private val _bannerAllData = MutableLiveData<List<String>>()
     val bannerAllData: LiveData<List<String>> = _bannerAllData
 
-    private val _bestFeedAllData = MutableLiveData<List<Pair<String, Hashtag>>>()
-    val bestFeedAllData: LiveData<List<Pair<String, Hashtag>>> = _bestFeedAllData
+    private val _bestFeedAllData = MutableLiveData<List<FeedBestAllDataItem>>()
+    val bestFeedAllData: LiveData<List<FeedBestAllDataItem>> = _bestFeedAllData
 
-    private val _weeklyHipPlaceAllData = MutableLiveData<List<WeeklyHipPlaceData>>()
-    val weeklyHipPlaceAllData: LiveData<List<WeeklyHipPlaceData>> = _weeklyHipPlaceAllData
+    private val _weeklyHipPlaceAllData = MutableLiveData<List<PlaceHipSearchAllDataItem>>()
+    val weeklyHipPlaceAllData: LiveData<List<PlaceHipSearchAllDataItem>> = _weeklyHipPlaceAllData
 
     fun getLocalHipsterAllData() {
         _localHipsterAllData.value = fakeLocalHipsterAllData
@@ -34,22 +42,31 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     }
 
     fun getBestFeedAllData() {
-        _bestFeedAllData.value = fakeBestFeedAllData
+        viewModelScope.launch {
+            feedRepository.getFeedBestAllData()
+                .onSuccess { _bestFeedAllData.value = it.data }
+                .onFailure { Log.e(this.javaClass.name, it.message ?: "best feed error") }
+        }
     }
 
     fun getWeeklyHipPlaceAllData() {
-        _weeklyHipPlaceAllData.value = fakeWeeklyHipPlaceAllData
+        viewModelScope.launch {
+            placeRepository.getPlaceHipSearchAllData(5)
+                .onSuccess { _weeklyHipPlaceAllData.value = it.data }
+                .onFailure { Log.e(this.javaClass.name, it.message ?: "hip place error") }
+        }
     }
 
-    fun updateSave(selectedPlaceData: WeeklyHipPlaceData) {
-        fakeWeeklyHipPlaceAllData = fakeWeeklyHipPlaceAllData.map {
-            if (it.id == selectedPlaceData.id) {
-                it.copy(isSave = !it.isSave)
+    fun updateSave(selectedPlaceData: PlaceHipSearchAllDataItem) {
+        _weeklyHipPlaceAllData.value = _weeklyHipPlaceAllData.value?.map {
+            if (it.placeId == selectedPlaceData.placeId) {
+                it.copy(isMyplace = !it.isMyplace)
             } else {
                 it
             }
         }
-        getWeeklyHipPlaceAllData()
+        // TODO 서버에 SAVE 업데이트
+        // getWeeklyHipPlaceAllData()
     }
 
     // 서버 연결시 FAKE 데이터 삭제
@@ -72,20 +89,5 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         fakeBannerUrl,
         fakeBannerUrl,
         fakeBannerUrl
-    )
-    private val fakeBestFeedAllData: List<Pair<String, Hashtag>> = listOf(
-        "정선에서 역대급\n힐링 불멍 스팟을 찾다1" to Hashtag.FIRE,
-        "정선에서 역대급\n힐링 물멍 스팟을 찾다2" to Hashtag.WATER,
-        "정선에서 역대급\n힐링 논밭뷰 스팟을 찾다3" to Hashtag.FIELD,
-        "정선에서 역대급\n힐링 촌캉스 스팟을 찾다4" to Hashtag.VACATION,
-        "정선에서 역대급\n힐링 불멍 스팟을 찾다5" to Hashtag.FIRE
-    )
-    private var fakeWeeklyHipPlaceAllData: List<WeeklyHipPlaceData> = listOf(
-        WeeklyHipPlaceData(1, "제주맛집", Area.JEJU, "주차하기 용이해요", 10, 12, false, fakeUrl),
-        WeeklyHipPlaceData(2, "제주맛집", Area.JEJU, "주차하기 용이해요",  10, 12, false, fakeUrl),
-        WeeklyHipPlaceData(3, "제주맛집", Area.JEJU, "주차하기 용이해요", 10, 12, false, fakeUrl),
-        WeeklyHipPlaceData(4, "제주맛집", Area.JEJU, "주차하기 용이해요",  10, 12, false, fakeUrl),
-        WeeklyHipPlaceData(5, "제주맛집", Area.JEJU, "주차하기 용이해요",  10, 12, false, fakeUrl),
-        WeeklyHipPlaceData(6, "제주맛집", Area.JEJU, "주차하기 용이해요",  10, 12, false, fakeUrl),
     )
 }
