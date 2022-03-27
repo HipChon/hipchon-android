@@ -15,7 +15,7 @@ import com.gritbus.hipchon.databinding.ItemPlaceResultBinding
 class PlaceResultAdapter(
     private val fragmentManager: FragmentManager,
     private val lifecycle: Lifecycle,
-    private val detailClickCallback: (PlaceSearchAllDataItem) -> (Unit)
+    private val detailClickCallback: (Int) -> (Unit)
 ) : ListAdapter<PlaceSearchAllDataItem, PlaceResultAdapter.PlaceResultViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceResultViewHolder {
@@ -45,10 +45,10 @@ class PlaceResultAdapter(
             fragmentManager: FragmentManager,
             lifecycle: Lifecycle,
             placeData: PlaceSearchAllDataItem,
-            detailClickCallback: (PlaceSearchAllDataItem) -> (Unit)
+            detailClickCallback: (Int) -> (Unit)
         ) {
             binding.root.setOnClickListener {
-                detailClickCallback(placeData)
+                detailClickCallback(placeData.placeId)
             }
             binding.vpHomePlaceThumbnail.adapter =
                 PlaceResultImageAdapter(listOf(placeData.placeImage), fragmentManager, lifecycle)

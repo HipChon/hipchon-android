@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -154,7 +155,9 @@ class PlaceDetailActivity :
             startActivity(Intent(baseContext, FeedCreateActivity::class.java))
         }
         binding.tvPlaceDetailReviewMore.setOnClickListener {
-            startActivity(Intent(baseContext, PlaceDetailFeedActivity::class.java))
+            startActivity(Intent(baseContext, PlaceDetailFeedActivity::class.java).apply {
+                putExtra(PLACE_DETAIL_FEED_MORE, viewModel.getReviewPlaceId())
+            })
         }
     }
 
@@ -197,6 +200,30 @@ class PlaceDetailActivity :
         }
         viewModel.reviewPreview.observe(this) {
             reviewAdapter.submitList(it)
+        }
+        viewModel.placeData.observe(this) {
+            Log.i("data", it.toString())
+            binding.tvPlaceDetailTitle.text = it.name
+            binding.tvPlaceDetailFeed.text = it.postCnt.toString()
+            binding.tvPlaceDetailSave.text = it.myplaceCnt.toString()
+            binding.ivPlaceDetailSave.background = when (it.isMyplace) {
+                true -> ContextCompat.getDrawable(baseContext, R.drawable.ic_save_filled)
+                false -> ContextCompat.getDrawable(baseContext, R.drawable.ic_save)
+            }
+            binding.ivPlaceDetailSave.backgroundTintList = when (it.isMyplace) {
+                true -> ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        baseContext,
+                        R.color.primary_green
+                    )
+                )
+                false -> ColorStateList.valueOf(ContextCompat.getColor(baseContext, R.color.black))
+            }
+            binding.tvPlaceDetailType.text = it.category
+            binding.tvPlaceDetailTime.text = it.openTime
+            binding.tvPlaceDetailDesc.text = it.oneLineIntro
+            binding.acbPlaceDetailLink.text = it.homepage
+            binding.tvPlaceDetailMapCopyAddress.text = it.address
         }
     }
 
@@ -258,5 +285,8 @@ class PlaceDetailActivity :
                     ColorStateList.valueOf(ContextCompat.getColor(baseContext, R.color.black))
             }
         }
+    }
+    companion object{
+        const val PLACE_DETAIL_FEED_MORE = "com.gritbus.hipchon.ui.place.view PLACE_DETAIL_FEED_MORE"
     }
 }

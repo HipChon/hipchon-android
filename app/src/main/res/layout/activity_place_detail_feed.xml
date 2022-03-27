@@ -19,10 +19,12 @@
             android:fitsSystemWindows="true">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/ctl_place_detail_feed"
                 style="?attr/collapsingToolbarLayoutLargeStyle"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
                 android:background="@color/white"
+                app:title="10개의 리뷰"
                 app:collapsedTitleTextAppearance="@style/MaterialToolbar.Gmarket.Weight500.22"
                 app:expandedTitleTextAppearance="@style/MaterialToolbar.Gmarket.Weight500.22"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -35,8 +37,7 @@
                     android:elevation="0dp"
                     app:layout_collapseMode="pin"
                     app:menu="@menu/menu_place_review_more"
-                    app:navigationIcon="@drawable/ic_chevron_left"
-                    app:title="10개의 리뷰" />
+                    app:navigationIcon="@drawable/ic_chevron_left" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 

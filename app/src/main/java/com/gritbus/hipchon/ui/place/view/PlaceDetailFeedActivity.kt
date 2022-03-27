@@ -2,18 +2,23 @@ package com.gritbus.hipchon.ui.place.view
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityPlaceDetailFeedBinding
 import com.gritbus.hipchon.ui.feed.adapter.FeedAdapter
 import com.gritbus.hipchon.ui.feed.view.FeedCreateActivity
 import com.gritbus.hipchon.ui.feed.view.FeedDetailActivity
+import com.gritbus.hipchon.ui.place.viewmodel.PlaceDetailFeedViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
 import com.gritbus.hipchon.utils.ItemDecorationWithStroke
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PlaceDetailFeedActivity :
     BaseViewUtil.BaseAppCompatActivity<ActivityPlaceDetailFeedBinding>(R.layout.activity_place_detail_feed) {
 
     private lateinit var feedAdapter: FeedAdapter
+    private val viewModel: PlaceDetailFeedViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +28,8 @@ class PlaceDetailFeedActivity :
     override fun initView() {
         setAdapter()
         setOnClickListener()
-        initData()
+        setObserver()
+        viewModel.getReviewData()
     }
 
     private fun setAdapter() {
@@ -53,8 +59,10 @@ class PlaceDetailFeedActivity :
         }
     }
 
-    private fun initData() {
-        feedAdapter.submitList(listOf(1, 2, 3, 4, 5))
-        binding.mtPlaceDetailFeed.title = "5개의 리뷰"
+    private fun setObserver() {
+        viewModel.placeReviewAllData.observe(this) {
+            feedAdapter.submitList(it)
+            binding.ctlPlaceDetailFeed.title = "${feedAdapter.currentList.size}개의 리뷰"
+        }
     }
 }

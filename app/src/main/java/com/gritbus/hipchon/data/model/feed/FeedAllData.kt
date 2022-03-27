@@ -1,5 +1,7 @@
 package com.gritbus.hipchon.data.model.feed
 
+import java.io.Serializable
+
 data class FeedAllData(
     val data: List<FeedAllDataItem>
 )
@@ -17,4 +19,4 @@ data class FeedAllDataItem(
     val userImage: String,
     val userName: String,
     val userPostCnt: Int
-)
+): Serializable

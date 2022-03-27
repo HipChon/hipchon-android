@@ -1,7 +1,7 @@
 package com.gritbus.hipchon.data.model.place
 
 data class PlaceDetailData(
-    val data: List<PlaceDetailDataItem>
+    val data: PlaceDetailDataItem
 )
 
 data class PlaceDetailDataItem(
@@ -23,6 +23,6 @@ data class PlaceDetailDataItem(
     val oneLineIntro: String,
     val openTime: String,
     val placeId: Int,
-    val placeImage: List<String>,
+    val placeImage: String,
     val postCnt: Int
 )

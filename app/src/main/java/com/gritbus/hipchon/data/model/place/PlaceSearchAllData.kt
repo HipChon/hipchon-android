@@ -1,5 +1,7 @@
 package com.gritbus.hipchon.data.model.place
 
+import java.io.Serializable
+
 data class PlaceSearchAllData(
     val data: List<PlaceSearchAllDataItem>
 )
@@ -16,4 +18,4 @@ data class PlaceSearchAllDataItem(
     val placeId: Int,
     val placeImage: String,
     val postCnt: Int
-)
+): Serializable

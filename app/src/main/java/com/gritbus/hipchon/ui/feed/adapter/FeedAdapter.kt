@@ -6,12 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.gritbus.hipchon.R
+import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
 import com.gritbus.hipchon.databinding.ItemFeedPreviewBinding
 
 class FeedAdapter(
     private val isPlaceDetail: Boolean,
     private val clickListener: () -> (Unit)
-) : ListAdapter<Int, FeedAdapter.FeedViewHolder>(diffUtil) {
+) : ListAdapter<FeedAllDataItem, FeedAdapter.FeedViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
         return FeedViewHolder(
@@ -22,30 +25,47 @@ class FeedAdapter(
     }
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
-        holder.bind(isPlaceDetail, clickListener)
+        holder.bind(currentList[position], isPlaceDetail, clickListener)
     }
 
     class FeedViewHolder(
         private val binding: ItemFeedPreviewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(isPlaceDetail: Boolean, clickListener: () -> Unit) {
+        fun bind(feedData: FeedAllDataItem, isPlaceDetail: Boolean, clickListener: () -> Unit) {
             binding.root.setOnClickListener {
                 clickListener()
             }
-            if (isPlaceDetail){
+            if (isPlaceDetail) {
                 binding.clFeedPreviewPlace.visibility = View.GONE
             }
+            Glide.with(binding.root.context)
+                .load(feedData.userImage)
+                .error(R.drawable.ic_profile_default)
+                .into(binding.ivFeedPreviewProfile)
+            binding.tvFeedPreviewNickname.text = feedData.userName
+            binding.tvFeedPreviewReviewCount.text = "${feedData.userPostCnt}번째 리뷰"
+            binding.tvFeedPreviewCreatedAt.text =
+                "${feedData.postTime[0]}.${feedData.postTime[1]}.${feedData.postTime[2]}"
+            binding.tvFeedPreviewFavorite.text = feedData.likeCnt.toString()
+            binding.tvFeedPreviewComment.text = feedData.commentCnt.toString()
+            binding.rmtvFeedPreviewContent.text = feedData.detail
         }
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<Int>() {
-            override fun areItemsTheSame(oldItem: Int, newItem: Int): Boolean {
-                return oldItem == newItem
+        val diffUtil = object : DiffUtil.ItemCallback<FeedAllDataItem>() {
+            override fun areItemsTheSame(
+                oldItem: FeedAllDataItem,
+                newItem: FeedAllDataItem
+            ): Boolean {
+                return oldItem.postId == newItem.postId
             }
 
-            override fun areContentsTheSame(oldItem: Int, newItem: Int): Boolean {
+            override fun areContentsTheSame(
+                oldItem: FeedAllDataItem,
+                newItem: FeedAllDataItem
+            ): Boolean {
                 return oldItem == newItem
             }
         }

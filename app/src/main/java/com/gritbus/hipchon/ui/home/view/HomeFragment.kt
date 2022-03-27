@@ -109,8 +109,10 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         startActivity(Intent(requireContext(), LocalHipsterPickActivity::class.java))
     }
 
-    private fun hipPlaceClickCallback() {
-        startActivity(Intent(requireContext(), PlaceDetailActivity::class.java))
+    private fun hipPlaceClickCallback(selectedPlaceId: Int) {
+        startActivity(Intent(requireContext(), PlaceDetailActivity::class.java).apply {
+            putExtra(PlaceResultActivity.PLACE_ID, selectedPlaceId)
+        })
     }
 
     private fun placeSaveCallback(weeklyHipPlaceData: PlaceHipSearchAllDataItem) {

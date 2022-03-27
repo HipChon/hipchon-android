@@ -1,16 +1,35 @@
 package com.gritbus.hipchon.ui.place.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
+import com.gritbus.hipchon.data.model.place.PlaceDetailDataItem
+import com.gritbus.hipchon.data.repository.feed.FeedRepository
+import com.gritbus.hipchon.data.repository.place.PlaceRepository
 import com.gritbus.hipchon.domain.model.KeywordFacility
 import com.gritbus.hipchon.domain.model.KeywordMood
 import com.gritbus.hipchon.domain.model.KeywordSatisfaction
+import com.gritbus.hipchon.ui.place.view.PlaceResultActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 @HiltViewModel
-class PlaceDetailViewModel @Inject constructor() : ViewModel() {
+class PlaceDetailViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
+    private val placeRepository: PlaceRepository,
+    private val feedRepository: FeedRepository
+) : ViewModel() {
+
+    private var placeId by Delegates.notNull<Int>()
+
+    private val _placeData = MutableLiveData<PlaceDetailDataItem>()
+    val placeData: LiveData<PlaceDetailDataItem> = _placeData
 
     private val _thumbImages = MutableLiveData<List<String>>()
     val thumbImages: LiveData<List<String>> = _thumbImages
@@ -24,19 +43,44 @@ class PlaceDetailViewModel @Inject constructor() : ViewModel() {
     private val _keyword = MutableLiveData<List<*>>()
     val keyword: LiveData<List<*>> = _keyword
 
-    private val _reviewPreview = MutableLiveData<List<Int>>()
-    val reviewPreview: LiveData<List<Int>> = _reviewPreview
+    private val _reviewPreview = MutableLiveData<List<FeedAllDataItem>>()
+    val reviewPreview: LiveData<List<FeedAllDataItem>> = _reviewPreview
 
+    init {
+        savedStateHandle.get<Int>(PlaceResultActivity.PLACE_ID)?.let {
+            placeId = it
+        }
+    }
     fun initData() {
-        val fakeUrl = "https://source.unsplash.com/random"
-        _thumbImages.value = listOf(fakeUrl, fakeUrl, fakeUrl, fakeUrl, fakeUrl)
+        viewModelScope.launch {
+            placeRepository.getPlaceDetailData(5, placeId)
+                .onSuccess { placeData ->
+                    _thumbImages.value = listOf(placeData.data.placeImage)
+                    _placeData.value = placeData.data
+                }
+                .onFailure {
+                    Log.e(this.javaClass.name, it.message ?: "place detail error")
+                }
+            feedRepository.getFeedWithPlaceAllData(placeId)
+                .onSuccess {
+                    _reviewPreview.value = it.data
+                }
+                .onFailure {
+                    Log.e(this.javaClass.name, it.message ?: "place review error")
+                }
+        }
+
+        // TODO 메뉴, 키워드 정보 서버와 연동
         _menuAllData.value = listOf("1", "2", "3", "4")
         _keyword.value =
             listOf(KeywordFacility.COMFORTABLE, KeywordMood.GROUP, KeywordSatisfaction.ACTIVITY)
-        _reviewPreview.value = listOf(1, 2, 3)
     }
 
     fun setSave() {
         _isSave.value = _isSave.value?.let { !it }
+    }
+
+    fun getReviewPlaceId(): Int {
+        return placeId
     }
 }

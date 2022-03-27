@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.os.bundleOf
 import com.gritbus.hipchon.R
-import com.gritbus.hipchon.data.model.place.PlaceSearchAllDataItem
 import com.gritbus.hipchon.databinding.ActivityPlaceResultBinding
 import com.gritbus.hipchon.domain.model.PlaceOrderType
 import com.gritbus.hipchon.ui.place.adapter.PlaceResultAdapter
@@ -58,8 +57,10 @@ class PlaceResultActivity :
         binding.rvPlaceResult.adapter = placeResultAdapter
     }
 
-    private fun placeDetailCallback(selectedPlaceData: PlaceSearchAllDataItem) {
-        startActivity(Intent(baseContext, PlaceDetailActivity::class.java))
+    private fun placeDetailCallback(selectedPlaceId: Int) {
+        startActivity(Intent(baseContext, PlaceDetailActivity::class.java).apply {
+            putExtra(PLACE_ID, selectedPlaceId)
+        })
     }
 
     private fun setOnClickListener() {
@@ -99,5 +100,6 @@ class PlaceResultActivity :
     companion object {
         const val PLACE_ORDER_TYPE = "com.gritbus.hipchon.ui.place.view PLACE_ORDER_TYPE"
         const val PLACE_QUICK_SEARCH = "com.gritbus.hipchon.ui.place.view PLACE_QUICK_SEARCH"
+        const val PLACE_ID = "com.gritbus.hipchon.ui.place.view PLACE_ID"
     }
 }
