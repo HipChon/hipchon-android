@@ -1,10 +1,10 @@
 package com.gritbus.hipchon.data.model.my
 
 data class MyFeedAllData(
-    val data: List<FeedPersonalAllDataItem>
+    val data: List<MyFeedAllDataItem>
 )
 
-data class FeedPersonalAllDataItem(
+data class MyFeedAllDataItem(
     val placeName: String,
     val postId: Int,
     val postImage: String

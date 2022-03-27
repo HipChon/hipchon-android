@@ -12,7 +12,7 @@ import com.gritbus.hipchon.utils.BaseViewUtil
 
 class MyFragment : BaseViewUtil.BaseFragment<FragmentMyBinding>(R.layout.fragment_my) {
 
-    private val titleList = listOf("내가 심은 모", "좋아요 한 모", "내가 쓴 댓글")
+    private val titleList = listOf(MY_FEED, MY_LIKE_FEED, MY_COMMENT)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,5 +42,11 @@ class MyFragment : BaseViewUtil.BaseFragment<FragmentMyBinding>(R.layout.fragmen
         binding.ivMyOption.setOnClickListener {
             startActivity(Intent(requireContext(), MySettingActivity::class.java))
         }
+    }
+
+    companion object {
+        const val MY_FEED = "내가 심은 모"
+        const val MY_LIKE_FEED = "좋아요 한 모"
+        const val MY_COMMENT = "내가 쓴 댓글"
     }
 }

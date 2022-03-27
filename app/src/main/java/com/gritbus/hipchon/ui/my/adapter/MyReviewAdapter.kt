@@ -1,13 +1,17 @@
 package com.gritbus.hipchon.ui.my.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.gritbus.hipchon.data.model.my.MyFeedAllDataItem
 import com.gritbus.hipchon.databinding.ItemMyReviewBinding
 
-class MyReviewAdapter : ListAdapter<Int, MyReviewAdapter.MyReviewViewHolder>(diffUtil) {
+class MyReviewAdapter :
+    ListAdapter<MyFeedAllDataItem, MyReviewAdapter.MyReviewViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyReviewViewHolder {
         return MyReviewViewHolder(
@@ -18,23 +22,36 @@ class MyReviewAdapter : ListAdapter<Int, MyReviewAdapter.MyReviewViewHolder>(dif
     }
 
     override fun onBindViewHolder(holder: MyReviewViewHolder, position: Int) {
-        holder.bind()
+        holder.bind(currentList[position])
     }
 
     class MyReviewViewHolder(
         private val binding: ItemMyReviewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind() {}
+        fun bind(myFeedAllDataItem: MyFeedAllDataItem) {
+            Glide.with(binding.root.context)
+                .load(myFeedAllDataItem.postImage)
+                .into(binding.ivMyReview)
+            binding.tvMyReviewTitle.text = myFeedAllDataItem.placeName
+            binding.ivMyReviewHashtag.visibility = View.INVISIBLE
+            binding.executePendingBindings()
+        }
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<Int>() {
-            override fun areItemsTheSame(oldItem: Int, newItem: Int): Boolean {
-                return oldItem == newItem
+        val diffUtil = object : DiffUtil.ItemCallback<MyFeedAllDataItem>() {
+            override fun areItemsTheSame(
+                oldItem: MyFeedAllDataItem,
+                newItem: MyFeedAllDataItem
+            ): Boolean {
+                return oldItem.postId == newItem.postId
             }
 
-            override fun areContentsTheSame(oldItem: Int, newItem: Int): Boolean {
+            override fun areContentsTheSame(
+                oldItem: MyFeedAllDataItem,
+                newItem: MyFeedAllDataItem
+            ): Boolean {
                 return oldItem == newItem
             }
         }

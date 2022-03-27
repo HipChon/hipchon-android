@@ -11,7 +11,7 @@ import retrofit2.http.Path
 
 interface MyService {
 
-    @GET("place/user/{user_id}")
+    @GET("post/user/{user_id}")
     suspend fun getMyFeedAllData(
         @Path("user_id") userId: Int
     ): Response<MyFeedAllData>
