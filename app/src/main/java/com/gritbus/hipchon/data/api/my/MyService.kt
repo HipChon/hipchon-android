@@ -11,22 +11,22 @@ import retrofit2.http.Path
 
 interface MyService {
 
-    @GET("place/user/{userId}")
+    @GET("place/user/{user_id}")
     suspend fun getMyFeedAllData(
         @Path("user_id") userId: Int
     ): Response<MyFeedAllData>
 
-    @GET("mypost/{userId}")
+    @GET("mypost/{user_id}")
     suspend fun getMyLikeFeedAllData(
         @Path("user_id") userId: Int
     ): Response<MyLikeFeedAllData>
 
-    @GET("myplace/{userId}")
+    @GET("myplace/{user_id}")
     suspend fun getMyPlace(
         @Path("user_id") userId: Int
     ): Response<MyPlaceAllData>
 
-    @POST("myplace/{userId}/{placeId}")
+    @POST("myplace/{user_id}/{place_id}")
     suspend fun saveMyPlace(
         @Path("user_id") userId: Int,
         @Path("place_id") placeId: Int

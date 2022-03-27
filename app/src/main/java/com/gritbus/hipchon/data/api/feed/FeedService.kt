@@ -9,7 +9,7 @@ import retrofit2.http.Path
 
 interface FeedService {
 
-    @GET("post/all/{userId}/{order}")
+    @GET("post/all/{user_id}/{order}")
     suspend fun getFeedAllData(
         @Path("user_id") userId: Int,
         @Path("order") order: String
@@ -18,7 +18,7 @@ interface FeedService {
     @GET("post/best")
     suspend fun getFeedBestAllData(): Response<FeedBestAllData>
 
-    @GET("post/place/{placeId}")
+    @GET("post/place/{place_id}")
     suspend fun getFeedWithPlaceAllData(
         @Path("place_id") placeId: Int
     ): Response<FeedWithPlaceAllData>

@@ -10,7 +10,7 @@ import retrofit2.http.Path
 
 interface PlaceService {
 
-    @GET("place/{userId}/{cityId}/{categoryId}/{order}")
+    @GET("place/{user_id}/{city_id}/{category_id}/{order}")
     suspend fun getPlaceSearchAllData(
         @Path("user_id") userId: Int,
         @Path("city_id") cityId: Int,
@@ -18,20 +18,20 @@ interface PlaceService {
         @Path("order ") order: Int,
     ): Response<PlaceSearchAllData>
 
-    @GET("place/{userId}/{placeId}")
+    @GET("place/{user_id}/{place_id}")
     suspend fun getPlaceDetailData(
         @Path("user_id") userId: Int,
         @Path("place_id") placeId: Int
     ): Response<PlaceDetailData>
 
-    @GET("place/hashtag/{userId}/{hashtagId}/{order}")
+    @GET("place/hashtag/{user_id}/{hashtag_id}/{order}")
     suspend fun getPlaceSearchWithHashtag(
         @Path("user_id") userId: Int,
         @Path("hashtag_id") hashtagId: Int,
         @Path("order") order: String,
     ): Response<PlaceSearchWithHashtagAllData>
 
-    @GET("place/hiple/{userId}")
+    @GET("place/hiple/{user_id}")
     suspend fun getPlaceHipSearchAllData(
         @Path("user_id") userId: Int
     ): Response<PlaceHipSearchAllData>
