@@ -71,7 +71,7 @@ class PlaceDetailViewModel @Inject constructor(
         }
 
         // TODO 메뉴, 키워드 정보 서버와 연동
-        _menuAllData.value = listOf("1", "2", "3", "4")
+        _menuAllData.value = emptyList()
         _keyword.value =
             listOf(KeywordFacility.COMFORTABLE, KeywordMood.GROUP, KeywordSatisfaction.ACTIVITY)
     }
@@ -82,5 +82,9 @@ class PlaceDetailViewModel @Inject constructor(
 
     fun getReviewPlaceId(): Int {
         return placeId
+    }
+
+    fun getContact(): String? {
+        return _placeData.value?.contact
     }
 }

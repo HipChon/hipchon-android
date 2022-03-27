@@ -8,8 +8,8 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
+import android.view.View
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -125,12 +125,12 @@ class PlaceDetailActivity :
             finish()
         }
         binding.ivPlaceDetailCall.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:01012345678")))
+            startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:${viewModel.getContact()}")))
         }
         binding.ivPlaceDetailShare.setOnClickListener {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
+                putExtra(Intent.EXTRA_TEXT, binding.acbPlaceDetailLink.text)
                 type = "text/plain"
             }
 
@@ -144,7 +144,12 @@ class PlaceDetailActivity :
             viewModel.setSave()
         }
         binding.acbPlaceDetailLink.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://www.naver.com")))
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(binding.acbPlaceDetailLink.text as String?)
+                )
+            )
         }
         binding.tvPlaceDetailMapCopy.setOnClickListener {
             val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -170,6 +175,11 @@ class PlaceDetailActivity :
         }
         viewModel.menuAllData.observe(this) {
             menuAdapter.submitList(it)
+            if (it.isNullOrEmpty()) {
+                binding.clPlaceDetailMenu.visibility = View.GONE
+            } else {
+                binding.clPlaceDetailMenu.visibility = View.VISIBLE
+            }
         }
         viewModel.keyword.observe(this) {
             it.forEach { keyword ->
@@ -202,15 +212,15 @@ class PlaceDetailActivity :
             reviewAdapter.submitList(it)
         }
         viewModel.placeData.observe(this) {
-            Log.i("data", it.toString())
             binding.tvPlaceDetailTitle.text = it.name
             binding.tvPlaceDetailFeed.text = it.postCnt.toString()
             binding.tvPlaceDetailSave.text = it.myplaceCnt.toString()
-            binding.ivPlaceDetailSave.background = when (it.isMyplace) {
-                true -> ContextCompat.getDrawable(baseContext, R.drawable.ic_save_filled)
-                false -> ContextCompat.getDrawable(baseContext, R.drawable.ic_save)
+            val saveDrawable = when (it.isMyplace) {
+                true -> R.drawable.ic_save_filled
+                false -> R.drawable.ic_save
             }
-            binding.ivPlaceDetailSave.backgroundTintList = when (it.isMyplace) {
+            binding.ivPlaceDetailSave.setImageResource(saveDrawable)
+            binding.ivPlaceDetailSave.imageTintList = when (it.isMyplace) {
                 true -> ColorStateList.valueOf(
                     ContextCompat.getColor(
                         baseContext,
@@ -286,7 +296,9 @@ class PlaceDetailActivity :
             }
         }
     }
-    companion object{
-        const val PLACE_DETAIL_FEED_MORE = "com.gritbus.hipchon.ui.place.view PLACE_DETAIL_FEED_MORE"
+
+    companion object {
+        const val PLACE_DETAIL_FEED_MORE =
+            "com.gritbus.hipchon.ui.place.view PLACE_DETAIL_FEED_MORE"
     }
 }
