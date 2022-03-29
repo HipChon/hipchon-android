@@ -32,7 +32,7 @@ class FeedViewModel @Inject constructor(
         viewModelScope.launch {
             feedRepository.getFeedAllData(UserData.userId, orderType)
                 .onSuccess {
-                    _reviewAllData.value = it.data
+                    _reviewAllData.value = it
                 }
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "review error")

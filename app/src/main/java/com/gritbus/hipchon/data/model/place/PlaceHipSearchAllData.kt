@@ -1,8 +1,6 @@
 package com.gritbus.hipchon.data.model.place
 
-data class PlaceHipSearchAllData(
-    val data: List<PlaceHipSearchAllDataItem>
-)
+class PlaceHipSearchAllData : ArrayList<PlaceHipSearchAllDataItem>()
 
 data class PlaceHipSearchAllDataItem(
     val category: String,

@@ -35,7 +35,7 @@ class PlaceDetailFeedViewModel @Inject constructor(
         viewModelScope.launch {
             feedRepository.getFeedWithPlaceAllData(_placeId)
                 .onSuccess {
-                    _placeReviewAllData.value = it.data
+                    _placeReviewAllData.value = it
                 }
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "place review more error")

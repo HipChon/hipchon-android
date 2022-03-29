@@ -57,7 +57,7 @@ class MyViewModel @Inject constructor(
         viewModelScope.launch {
             myRepository.getMyFeedAllData(UserData.userId)
                 .onSuccess {
-                    _myFeedAllData.value = it.data
+                    _myFeedAllData.value = it
                 }
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "my feed error")
@@ -69,7 +69,7 @@ class MyViewModel @Inject constructor(
         viewModelScope.launch {
             myRepository.getMyLikeFeedAllData(UserData.userId)
                 .onSuccess {
-                    _myFeedAllData.value = it.data
+                    _myFeedAllData.value = it
                 }
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "my like feed error")

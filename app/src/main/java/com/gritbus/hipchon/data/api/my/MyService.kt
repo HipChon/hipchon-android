@@ -3,7 +3,6 @@ package com.gritbus.hipchon.data.api.my
 import com.gritbus.hipchon.data.model.my.MyFeedAllData
 import com.gritbus.hipchon.data.model.my.MyLikeFeedAllData
 import com.gritbus.hipchon.data.model.my.MyPlaceAllData
-import com.gritbus.hipchon.data.model.my.MyPlaceSaveData
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -30,5 +29,5 @@ interface MyService {
     suspend fun saveMyPlace(
         @Path("user_id") userId: Int,
         @Path("place_id") placeId: Int
-    ): Response<MyPlaceSaveData>
+    ): Response<Int>
 }

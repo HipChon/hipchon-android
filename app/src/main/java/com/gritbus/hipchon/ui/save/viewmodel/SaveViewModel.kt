@@ -35,8 +35,8 @@ class SaveViewModel @Inject constructor(
             myRepository.getMyPlace(5)
                 .onSuccess { placeData ->
                     _savePlaceAllData.value = when(category){
-                        "전체" -> placeData.data
-                        else -> placeData.data.filter { it.category == category }
+                        "전체" -> placeData
+                        else -> placeData.filter { it.category == category }
                     }
                 }
                 .onFailure {

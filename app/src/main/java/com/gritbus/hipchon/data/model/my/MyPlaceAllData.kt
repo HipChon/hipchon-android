@@ -1,8 +1,6 @@
 package com.gritbus.hipchon.data.model.my
 
-data class MyPlaceAllData(
-    val data: List<MyPlaceAllDataItem>
-)
+class MyPlaceAllData: ArrayList<MyPlaceAllDataItem>()
 
 data class MyPlaceAllDataItem(
     val address: String,

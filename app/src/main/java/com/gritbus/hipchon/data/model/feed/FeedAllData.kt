@@ -2,9 +2,7 @@ package com.gritbus.hipchon.data.model.feed
 
 import java.io.Serializable
 
-data class FeedAllData(
-    val data: List<FeedAllDataItem>
-)
+class FeedAllData : ArrayList<FeedAllDataItem>()
 
 data class FeedAllDataItem(
     val commentCnt: Int,

@@ -1,8 +1,6 @@
 package com.gritbus.hipchon.data.model.feed
 
-data class FeedBestAllData(
-    val data: List<FeedBestAllDataItem>
-)
+class FeedBestAllData: ArrayList<FeedBestAllDataItem>()
 
 data class FeedBestAllDataItem(
     val hashtagId: Int,

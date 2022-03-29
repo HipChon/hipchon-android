@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gritbus.hipchon.data.model.UserData
 import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
-import com.gritbus.hipchon.data.model.place.PlaceDetailDataItem
+import com.gritbus.hipchon.data.model.place.PlaceDetailData
 import com.gritbus.hipchon.data.repository.feed.FeedRepository
 import com.gritbus.hipchon.data.repository.place.PlaceRepository
 import com.gritbus.hipchon.domain.model.KeywordFacility
@@ -29,8 +29,8 @@ class PlaceDetailViewModel @Inject constructor(
 
     private var placeId by Delegates.notNull<Int>()
 
-    private val _placeData = MutableLiveData<PlaceDetailDataItem>()
-    val placeData: LiveData<PlaceDetailDataItem> = _placeData
+    private val _placeData = MutableLiveData<PlaceDetailData>()
+    val placeData: LiveData<PlaceDetailData> = _placeData
 
     private val _thumbImages = MutableLiveData<List<String>>()
     val thumbImages: LiveData<List<String>> = _thumbImages
@@ -55,16 +55,16 @@ class PlaceDetailViewModel @Inject constructor(
     fun initData() {
         viewModelScope.launch {
             placeRepository.getPlaceDetailData(UserData.userId, placeId)
-                .onSuccess { placeData ->
-                    _thumbImages.value = listOf(placeData.data.placeImage)
-                    _placeData.value = placeData.data
+                .onSuccess {
+                    _thumbImages.value = listOf(it.placeImage)
+                    _placeData.value = it
                 }
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "place detail error")
                 }
             feedRepository.getFeedWithPlaceAllData(placeId)
                 .onSuccess {
-                    _reviewPreview.value = it.data
+                    _reviewPreview.value = it
                 }
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "place review error")

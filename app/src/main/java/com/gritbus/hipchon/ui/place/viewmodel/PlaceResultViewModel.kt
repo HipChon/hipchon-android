@@ -77,7 +77,7 @@ class PlaceResultViewModel @Inject constructor(
                         categoryValueToId(searchOptionNormal.type.value),
                         orderType
                     ).onSuccess {
-                        _placeAllData.value = it.data
+                        _placeAllData.value = it
                     }.onFailure {
                         Log.e(this.javaClass.name, it.message ?: "search normal error")
                     }
@@ -90,7 +90,7 @@ class PlaceResultViewModel @Inject constructor(
                         hashtagValueToId(searchOptionHashtag.value),
                         orderType
                     ).onSuccess {
-                        _placeAllData.value = it.data
+                        _placeAllData.value = it
                     }.onFailure {
                         Log.e(this.javaClass.name, it.message ?: "search hashtag error")
                     }

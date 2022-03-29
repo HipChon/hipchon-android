@@ -1,10 +1,6 @@
 package com.gritbus.hipchon.data.model.place
 
 data class PlaceDetailData(
-    val data: PlaceDetailDataItem
-)
-
-data class PlaceDetailDataItem(
     val address: String,
     val animal: Boolean,
     val category: String,

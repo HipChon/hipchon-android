@@ -45,7 +45,7 @@ class HomeViewModel @Inject constructor(
     fun getBestFeedAllData() {
         viewModelScope.launch {
             feedRepository.getFeedBestAllData()
-                .onSuccess { _bestFeedAllData.value = it.data }
+                .onSuccess { _bestFeedAllData.value = it }
                 .onFailure { Log.e(this.javaClass.name, it.message ?: "best feed error") }
         }
     }
@@ -53,7 +53,7 @@ class HomeViewModel @Inject constructor(
     fun getWeeklyHipPlaceAllData() {
         viewModelScope.launch {
             placeRepository.getPlaceHipSearchAllData(UserData.userId)
-                .onSuccess { _weeklyHipPlaceAllData.value = it.data }
+                .onSuccess { _weeklyHipPlaceAllData.value = it }
                 .onFailure { Log.e(this.javaClass.name, it.message ?: "hip place error") }
         }
     }

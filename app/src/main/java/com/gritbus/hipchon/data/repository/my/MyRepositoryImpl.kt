@@ -4,7 +4,6 @@ import com.gritbus.hipchon.data.datasource.my.MyDataSource
 import com.gritbus.hipchon.data.model.my.MyFeedAllData
 import com.gritbus.hipchon.data.model.my.MyLikeFeedAllData
 import com.gritbus.hipchon.data.model.my.MyPlaceAllData
-import com.gritbus.hipchon.data.model.my.MyPlaceSaveData
 import javax.inject.Inject
 
 class MyRepositoryImpl @Inject constructor(
@@ -41,7 +40,7 @@ class MyRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun saveMyPlace(userId: Int, placeId: Int): Result<MyPlaceSaveData> {
+    override suspend fun saveMyPlace(userId: Int, placeId: Int): Result<Int> {
         val result = myDataSource.saveMyPlace(userId, placeId)
 
         return if (result.exceptionOrNull() is Exception) {

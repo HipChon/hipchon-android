@@ -3,7 +3,6 @@ package com.gritbus.hipchon.data.repository.my
 import com.gritbus.hipchon.data.model.my.MyFeedAllData
 import com.gritbus.hipchon.data.model.my.MyLikeFeedAllData
 import com.gritbus.hipchon.data.model.my.MyPlaceAllData
-import com.gritbus.hipchon.data.model.my.MyPlaceSaveData
 
 interface MyRepository {
 
@@ -13,5 +12,5 @@ interface MyRepository {
 
     suspend fun getMyPlace(userId: Int): Result<MyPlaceAllData>
 
-    suspend fun saveMyPlace(userId: Int, placeId: Int): Result<MyPlaceSaveData>
+    suspend fun saveMyPlace(userId: Int, placeId: Int): Result<Int>
 }

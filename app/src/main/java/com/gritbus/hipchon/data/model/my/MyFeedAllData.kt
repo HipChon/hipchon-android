@@ -1,8 +1,6 @@
 package com.gritbus.hipchon.data.model.my
 
-data class MyFeedAllData(
-    val data: List<MyFeedAllDataItem>
-)
+class MyFeedAllData: ArrayList<MyFeedAllDataItem>()
 
 data class MyFeedAllDataItem(
     val placeName: String,
