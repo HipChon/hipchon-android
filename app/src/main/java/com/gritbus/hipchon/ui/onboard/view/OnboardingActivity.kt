@@ -1,10 +1,14 @@
 package com.gritbus.hipchon.ui.onboard.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import com.gritbus.hipchon.BuildConfig
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityOnboardingBinding
+import com.gritbus.hipchon.ui.MainActivity
+import com.gritbus.hipchon.ui.onboard.viewmodel.OnboardingViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
@@ -14,9 +18,13 @@ import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OnboardingActivity :
     BaseViewUtil.BaseAppCompatActivity<ActivityOnboardingBinding>(R.layout.activity_onboarding) {
+
+    private val viewModel: OnboardingViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +33,7 @@ class OnboardingActivity :
 
     override fun initView() {
         setClickListener()
+        setObserver()
     }
 
     private fun setClickListener() {
@@ -33,6 +42,16 @@ class OnboardingActivity :
         }
         binding.mbOnboardingKakao.setOnClickListener {
             setKakaoLogin()
+        }
+    }
+
+    private fun setObserver() {
+        viewModel.isLoginSuccess.observe(this) {
+            if (it){
+                moveToMainActivity()
+            } else {
+                moveToSignupActivity()
+            }
         }
     }
 
@@ -57,13 +76,13 @@ class OnboardingActivity :
             }
 
             override fun onSuccess() {
-                getProfile()
+                getNaverProfile()
             }
         }
         NaverIdLoginSDK.authenticate(this, oauthLoginCallback)
     }
 
-    private fun getProfile() {
+    private fun getNaverProfile() {
         NidOAuthLogin().callProfileApi(object: NidProfileCallback<NidProfileResponse> {
             override fun onError(errorCode: Int, message: String) {
                 onFailure(errorCode, message)
@@ -76,9 +95,26 @@ class OnboardingActivity :
             }
 
             override fun onSuccess(result: NidProfileResponse) {
-                result.profile?.id?.let { Log.i("unique id", it) }
+                checkNaverLogin(result.profile?.id)
             }
         })
+    }
+
+    private fun checkNaverLogin(id: String?) {
+        id?.let {
+//            viewModel.userLogin(it, PLATFORM_KAKAO)
+        } ?: moveToSignupActivity()
+    }
+
+    private fun moveToMainActivity() {
+        startActivity(Intent(baseContext, MainActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        })
+    }
+
+    private fun moveToSignupActivity() {
+        Log.i("로그인", "xxx")
     }
 
     private fun setKakaoLogin() {
@@ -88,7 +124,7 @@ class OnboardingActivity :
             } else if (token != null) {
                 UserApiClient.instance.me { user, error ->
                     if (user != null) {
-                        Log.e("kakao login", user.id.toString())
+                        user.id?.let { viewModel.userLogin(it.toInt(), PLATFORM_NAVER) }
                     }
                 }
             }
@@ -99,5 +135,10 @@ class OnboardingActivity :
         } else {
             UserApiClient.instance.loginWithKakaoAccount(this@OnboardingActivity, callback = callback)
         }
+    }
+
+    companion object {
+        const val PLATFORM_NAVER = "naver"
+        const val PLATFORM_KAKAO = "kakao"
     }
 }
