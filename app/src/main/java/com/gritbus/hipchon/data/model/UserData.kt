@@ -1,6 +1,9 @@
 package com.gritbus.hipchon.data.model
 
+import kotlin.properties.Delegates
+
 object UserData {
 
-    val userId: Int = 5
+    var userId by Delegates.notNull<Int>()
+    var userLoginId by Delegates.notNull<Int>()
 }
