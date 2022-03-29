@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.gritbus.hipchon.R
-import com.gritbus.hipchon.databinding.ActivityMainBinding
 import com.gritbus.hipchon.ui.MainActivity
+import com.gritbus.hipchon.databinding.ActivitySplashBinding
+import com.gritbus.hipchon.ui.onboard.view.OnboardingActivity
 import com.gritbus.hipchon.utils.BaseViewUtil
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity :
-    BaseViewUtil.BaseAppCompatActivity<ActivityMainBinding>(R.layout.activity_splash) {
+    BaseViewUtil.BaseAppCompatActivity<ActivitySplashBinding>(R.layout.activity_splash) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +21,7 @@ class SplashActivity :
     }
 
     override fun initView() {
-        startNextActivityWithHandling(Intent(baseContext, MainActivity::class.java))
+        startNextActivityWithHandling(Intent(baseContext, OnboardingActivity::class.java))
     }
 
     private fun startNextActivityWithHandling(intent: Intent) {
