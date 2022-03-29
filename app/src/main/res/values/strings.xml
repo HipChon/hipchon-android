@@ -5,6 +5,15 @@
     <string name="bottom_nav_save">저장</string>
     <string name="bottom_nav_my">마이</string>
 
+    <!--  Signup  -->
+    <string name="signup_terms_title">약관 동의</string>
+    <string name="signup_terms_all">전체 동의합니다</string>
+    <string name="signup_terms_age">만 14세 이상입니다 (필수)</string>
+    <string name="signup_terms_service"><u>서비스 이용약관 (필수)</u></string>
+    <string name="signup_terms_personal"><u>개인정보 수집 및 이용 동의 (필수)</u></string>
+    <string name="signup_terms_position"><u>위치서비스 이용 동의 (필수)</u></string>
+    <string name="signup_terms_event">이벤트 및 할인 혜택 안내 동의 (선택)</string>
+
     <!--  Hashtag  -->
     <string name="hashtag_fire">불멍</string>
     <string name="hashtag_water">물멍</string>

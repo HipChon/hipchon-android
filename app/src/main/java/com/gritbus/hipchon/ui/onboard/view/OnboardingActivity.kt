@@ -114,7 +114,7 @@ class OnboardingActivity :
     }
 
     private fun moveToSignupActivity() {
-        Log.i("로그인", "xxx")
+        startActivity(Intent(baseContext, SignupActivity::class.java))
     }
 
     private fun setKakaoLogin() {

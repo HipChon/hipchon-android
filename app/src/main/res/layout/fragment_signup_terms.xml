@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_signup_terms_title"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="@dimen/spacing_48"
+            android:text="@string/signup_terms_title"
+            android:textSize="@dimen/text_size_22"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_signup_terms_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:layout_marginTop="36dp"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="9dp"
+            android:src="@drawable/ic_check"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_signup_terms_title"
+            app:tint="@color/gray03" />
+
+        <TextView
+            android:id="@+id/tv_signup_terms_all"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:text="@string/signup_terms_all"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="@id/iv_signup_terms_all"
+            app:layout_constraintStart_toEndOf="@id/iv_signup_terms_all"
+            app:layout_constraintTop_toTopOf="@id/iv_signup_terms_all" />
+
+        <View
+            android:id="@+id/view_decoration"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/spacing_20"
+            android:layout_marginTop="@dimen/spacing_12"
+            android:background="@color/gray02"
+            app:layout_constraintTop_toBottomOf="@id/iv_signup_terms_all" />
+
+        <ImageView
+            android:id="@+id/iv_signup_terms_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:layout_marginTop="@dimen/spacing_32"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="9dp"
+            android:src="@drawable/ic_check"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_decoration"
+            app:tint="@color/gray03" />
+
+        <TextView
+            android:id="@+id/tv_signup_terms_age"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:text="@string/signup_terms_age"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="@id/iv_signup_terms_age"
+            app:layout_constraintStart_toEndOf="@id/iv_signup_terms_age"
+            app:layout_constraintTop_toTopOf="@id/iv_signup_terms_age" />
+
+        <ImageView
+            android:id="@+id/iv_signup_terms_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:layout_marginTop="16dp"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="9dp"
+            android:src="@drawable/ic_check"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_signup_terms_age"
+            app:tint="@color/gray03" />
+
+        <TextView
+            android:id="@+id/tv_signup_terms_service"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:text="@string/signup_terms_service"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="@id/iv_signup_terms_service"
+            app:layout_constraintStart_toEndOf="@id/iv_signup_terms_service"
+            app:layout_constraintTop_toTopOf="@id/iv_signup_terms_service" />
+
+        <ImageView
+            android:id="@+id/iv_signup_terms_service_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_20"
+            android:paddingVertical="@dimen/spacing_8"
+            android:paddingStart="@dimen/spacing_16"
+            android:paddingEnd="6dp"
+            android:src="@drawable/ic_chevron_right"
+            app:layout_constraintBottom_toBottomOf="@id/tv_signup_terms_service"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_signup_terms_service" />
+
+        <ImageView
+            android:id="@+id/iv_signup_terms_personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:layout_marginTop="16dp"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="9dp"
+            android:src="@drawable/ic_check"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_signup_terms_service"
+            app:tint="@color/gray03" />
+
+        <TextView
+            android:id="@+id/tv_signup_terms_personal"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:text="@string/signup_terms_personal"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="@id/iv_signup_terms_personal"
+            app:layout_constraintStart_toEndOf="@id/iv_signup_terms_personal"
+            app:layout_constraintTop_toTopOf="@id/iv_signup_terms_personal" />
+
+        <ImageView
+            android:id="@+id/iv_signup_terms_personal_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_20"
+            android:paddingVertical="@dimen/spacing_8"
+            android:paddingStart="@dimen/spacing_16"
+            android:paddingEnd="6dp"
+            android:src="@drawable/ic_chevron_right"
+            app:layout_constraintBottom_toBottomOf="@id/tv_signup_terms_personal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_signup_terms_personal" />
+
+        <ImageView
+            android:id="@+id/iv_signup_terms_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:layout_marginTop="16dp"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="9dp"
+            android:src="@drawable/ic_check"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_signup_terms_personal"
+            app:tint="@color/gray03" />
+
+        <TextView
+            android:id="@+id/tv_signup_terms_position"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:text="@string/signup_terms_position"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="@id/iv_signup_terms_position"
+            app:layout_constraintStart_toEndOf="@id/iv_signup_terms_position"
+            app:layout_constraintTop_toTopOf="@id/iv_signup_terms_position" />
+
+        <ImageView
+            android:id="@+id/iv_signup_terms_position_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_20"
+            android:paddingVertical="@dimen/spacing_8"
+            android:paddingStart="@dimen/spacing_16"
+            android:paddingEnd="6dp"
+            android:src="@drawable/ic_chevron_right"
+            app:layout_constraintBottom_toBottomOf="@id/tv_signup_terms_position"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_signup_terms_position" />
+
+        <ImageView
+            android:id="@+id/iv_signup_terms_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:layout_marginTop="16dp"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="9dp"
+            android:src="@drawable/ic_check"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_signup_terms_position"
+            app:tint="@color/gray03" />
+
+        <TextView
+            android:id="@+id/tv_signup_terms_event"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:text="@string/signup_terms_event"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="@id/iv_signup_terms_event"
+            app:layout_constraintStart_toEndOf="@id/iv_signup_terms_event"
+            app:layout_constraintTop_toTopOf="@id/iv_signup_terms_event" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mb_signup_terms"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/gray01"
+            android:enabled="false"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingVertical="13dp"
+            android:text="확인"
+            android:textSize="@dimen/text_size_16"
+            app:cornerRadius="5dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_signup_terms_event" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
