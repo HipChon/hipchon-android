@@ -1,6 +1,7 @@
 package com.gritbus.hipchon.ui.home.view
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -28,6 +29,10 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var localHipsterAdapter: HomeLocalHipsterAdapter
     private lateinit var weeklyHipPlaceAdapter: WeeklyHipPlaceAdapter
+    private val kakaoCounseling = "http://pf.kakao.com/_xgHYNb/chat"
+    private val registerUrl = "https://pf.kakao.com/_xgHYNb"
+    private val serviceTerm = "https://frost-kite-c1c.notion.site/156ae780da1d482f92ba93a852e83a27"
+    private val personalTerm = "https://frost-kite-c1c.notion.site/f6239a9d67784836b69cc4bedfc95a7e"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -80,6 +85,18 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         }
         binding.ivHomeHashtagVacation.setOnClickListener {
             quickHashtagSearch(Hashtag.VACATION)
+        }
+        binding.mbHomeKakaoCounseling.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(kakaoCounseling)))
+        }
+        binding.tvHomePlaceRegister.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(registerUrl)))
+        }
+        binding.tvHomeTerms.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(serviceTerm)))
+        }
+        binding.tvHomePlacePrivacy.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(personalTerm)))
         }
     }
 
