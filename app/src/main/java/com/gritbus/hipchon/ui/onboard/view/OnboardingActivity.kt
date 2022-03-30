@@ -103,7 +103,7 @@ class OnboardingActivity :
     private fun checkNaverLogin(id: String?) {
         id?.let {
             val testId = 11111111
-            viewModel.userLogin(testId, PLATFORM_KAKAO)
+            viewModel.userLogin(testId, PLATFORM_NAVER)
         } ?: moveToSignupActivity()
     }
 
@@ -125,7 +125,7 @@ class OnboardingActivity :
             } else if (token != null) {
                 UserApiClient.instance.me { user, error ->
                     if (user != null) {
-                        user.id?.let { viewModel.userLogin(it.toInt(), PLATFORM_NAVER) }
+                        user.id?.let { viewModel.userLogin(it.toInt(), PLATFORM_KAKAO) }
                     }
                 }
             }
