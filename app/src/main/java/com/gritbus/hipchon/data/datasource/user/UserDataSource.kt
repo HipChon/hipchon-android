@@ -13,4 +13,12 @@ interface UserDataSource {
     suspend fun getUserData(loginType: String, loginId: String): Result<UserInfoData>
 
     suspend fun deleteUserData(loginType: String, loginId: String): Result<Void>
+
+    fun setAutoLoginId(value: String?)
+
+    fun getAutoLoginId(): String?
+
+    fun setAutoLoginPlatform(value: String?)
+
+    fun getAutoLoginPlatform(): String?
 }

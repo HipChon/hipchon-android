@@ -149,6 +149,8 @@ class SignupViewModel @Inject constructor(
             userRepository.getUserData(UserData.platform, UserData.userLoginId)
                 .onSuccess {
                     UserData.userId = it.id
+                    userRepository.setAutoLoginId(UserData.userLoginId)
+                    userRepository.setAutoLoginPlatform(UserData.platform)
                     _hasUserId.value = true
                 }
                 .onFailure {

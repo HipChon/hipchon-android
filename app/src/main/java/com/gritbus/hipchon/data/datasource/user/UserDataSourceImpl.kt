@@ -6,7 +6,8 @@ import com.gritbus.hipchon.data.model.user.UserInfoData
 import javax.inject.Inject
 
 class UserDataSourceImpl @Inject constructor(
-    private val userService: UserService
+    private val userService: UserService,
+    private val authoLoginManager: AutoLoginManager
 ) : UserDataSource {
 
     override suspend fun signupUser(userDto: UserInfoData): Result<String> {
@@ -83,5 +84,21 @@ class UserDataSourceImpl @Inject constructor(
         } catch (e: Exception) {
             Result.failure(Throwable(e.message))
         }
+    }
+
+    override fun setAutoLoginId(value: String?) {
+        authoLoginManager.setLoginId(value)
+    }
+
+    override fun getAutoLoginId(): String? {
+        return authoLoginManager.getLoginId()
+    }
+
+    override fun setAutoLoginPlatform(value: String?) {
+        authoLoginManager.setPlatform(value)
+    }
+
+    override fun getAutoLoginPlatform(): String? {
+        return authoLoginManager.getPlatform()
     }
 }

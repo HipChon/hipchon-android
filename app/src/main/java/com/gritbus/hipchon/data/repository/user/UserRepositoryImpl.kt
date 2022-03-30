@@ -57,4 +57,20 @@ class UserRepositoryImpl @Inject constructor(
             result
         }
     }
+
+    override fun setAutoLoginId(value: String?) {
+        userDataSource.setAutoLoginId(value)
+    }
+
+    override fun getAutoLoginId(): String? {
+        return userDataSource.getAutoLoginId()
+    }
+
+    override fun setAutoLoginPlatform(value: String?) {
+        userDataSource.setAutoLoginPlatform(value)
+    }
+
+    override fun getAutoLoginPlatform(): String? {
+        return userDataSource.getAutoLoginPlatform()
+    }
 }

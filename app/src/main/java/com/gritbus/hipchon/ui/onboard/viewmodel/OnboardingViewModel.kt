@@ -29,6 +29,8 @@ class OnboardingViewModel @Inject constructor(
                     userRepository.getUserData(platform, id)
                         .onSuccess { userData ->
                             UserData.userId = userData.id
+                            userRepository.setAutoLoginId(UserData.userLoginId)
+                            userRepository.setAutoLoginPlatform(UserData.platform)
                             _isLoginSuccess.value = true
                         }
                         .onFailure {
