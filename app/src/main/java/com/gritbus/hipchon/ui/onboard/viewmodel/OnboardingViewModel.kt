@@ -20,12 +20,14 @@ class OnboardingViewModel @Inject constructor(
     val isLoginSuccess: LiveData<Boolean> = _isLoginSuccess
 
     fun userLogin(id: Int, platform: String) {
+        UserData.platform = platform
+        UserData.userLoginId = id
+
         viewModelScope.launch {
             userRepository.loginUser(platform, id)
                 .onSuccess {
                     userRepository.getUserData(platform, id)
                         .onSuccess { userData ->
-                            UserData.userLoginId = userData.loginId
                             UserData.userId = userData.id
                             _isLoginSuccess.value = true
                         }

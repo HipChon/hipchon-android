@@ -102,7 +102,8 @@ class OnboardingActivity :
 
     private fun checkNaverLogin(id: String?) {
         id?.let {
-//            viewModel.userLogin(it, PLATFORM_KAKAO)
+            val testId = 11111111
+            viewModel.userLogin(testId, PLATFORM_KAKAO)
         } ?: moveToSignupActivity()
     }
 

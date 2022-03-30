@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentSignupTermsBinding
+import com.gritbus.hipchon.ui.my.view.MyUpdateFragment
 import com.gritbus.hipchon.ui.onboard.viewmodel.SignupViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +31,7 @@ class SignupTermsFragment :
 
     private fun setClickListener() {
         binding.mbSignupTerms.setOnClickListener {
-//            (activity as? SignupActivity)?.moveToNextLevel(ProfileFragment())
+            (activity as? SignupActivity)?.moveToNextLevel(SignupProfileFragment())
         }
         binding.ivSignupTermsAll.setOnClickListener {
             viewModel.updateTermsStatus(TERM_ALL)
