@@ -1,5 +1,6 @@
 package com.gritbus.hipchon.ui.home.adapter
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -10,6 +11,9 @@ import com.bumptech.glide.Glide
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllDataItem
 import com.gritbus.hipchon.databinding.ItemHomeWeeklyHipPlaceBinding
+import com.gritbus.hipchon.domain.model.KeywordFacility
+import com.gritbus.hipchon.domain.model.KeywordMood
+import com.gritbus.hipchon.domain.model.KeywordSatisfaction
 
 class WeeklyHipPlaceAdapter(
     private val clickListener: (Int) -> (Unit),
@@ -47,7 +51,30 @@ class WeeklyHipPlaceAdapter(
             }
             binding.tvHomeWeeklyHipPlaceTitle.text = weeklyHipPlaceData.name
             binding.tvHomeWeeklyHipPlaceArea.text = weeklyHipPlaceData.category
-            binding.tvHomeWeeklyHipPlaceKeyword.text = "업데이트 대기중"
+
+            binding.tvHomeWeeklyHipPlaceKeyword.text =
+                weeklyHipPlaceData.keyword?.keyword ?: "업데이트 대기중"
+            weeklyHipPlaceData.keyword?.let {
+                val keywordValue = when (weeklyHipPlaceData.keyword.keywordId) {
+                    in (1..5) -> {
+                        KeywordFacility.values()[weeklyHipPlaceData.keyword.keywordId - 1].iconDrawable to R.color.secondary_yellow
+                    }
+                    in (6..10) -> {
+                        KeywordMood.values()[weeklyHipPlaceData.keyword.keywordId - 1].iconDrawable to R.color.primary_green
+                    }
+                    else -> {
+                        KeywordSatisfaction.values()[weeklyHipPlaceData.keyword.keywordId - 1].iconDrawable to R.color.secondary_blue
+                    }
+                }
+                binding.ivHomeWeeklyHipPlaceKeyword.setImageResource(keywordValue.first)
+                binding.llHomeWeeklyHipPlaceKeyword.backgroundTintList = ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        keywordValue.second
+                    )
+                )
+            }
+
             binding.ivHomeWeeklyHipPlaceSave.background = when (weeklyHipPlaceData.isMyplace) {
                 true -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save_filled)
                 false -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save)
