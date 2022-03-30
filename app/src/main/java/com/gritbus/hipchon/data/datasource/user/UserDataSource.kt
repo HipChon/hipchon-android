@@ -12,7 +12,7 @@ interface UserDataSource {
 
     suspend fun getUserData(loginType: String, loginId: String): Result<UserInfoData>
 
-    suspend fun deleteUserData(loginType: String, loginId: String): Result<Void>
+    suspend fun deleteUserData(loginType: String, loginId: String): Result<Unit>
 
     fun setAutoLoginId(value: String?)
 

@@ -37,5 +37,5 @@ interface UserService {
     suspend fun deleteUserData(
         @Path("login_type") loginType: String,
         @Path("login_id") loginId: String
-    ): Response<Void>
+    ): Response<Unit>
 }

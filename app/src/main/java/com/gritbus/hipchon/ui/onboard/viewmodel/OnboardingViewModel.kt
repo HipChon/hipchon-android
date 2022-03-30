@@ -22,6 +22,7 @@ class OnboardingViewModel @Inject constructor(
     fun userLogin(id: String, platform: String) {
         UserData.platform = platform
         UserData.userLoginId = id
+        Log.i("user", UserData.userLoginId)
 
         viewModelScope.launch {
             userRepository.loginUser(platform, id)

@@ -71,7 +71,7 @@ class UserDataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun deleteUserData(loginType: String, loginId: String): Result<Void> {
+    override suspend fun deleteUserData(loginType: String, loginId: String): Result<Unit> {
         return try {
             val data = userService.deleteUserData(loginType, loginId)
             if (data.isSuccessful) {

@@ -48,7 +48,7 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun deleteUserData(loginType: String, loginId: String): Result<Void> {
+    override suspend fun deleteUserData(loginType: String, loginId: String): Result<Unit> {
         val result = userDataSource.deleteUserData(loginType, loginId)
 
         return if (result.exceptionOrNull() is Exception) {
