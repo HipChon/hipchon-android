@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_20"
             android:layout_marginTop="35dp"
-            android:text="닉네임"
+            android:hint="닉네임"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
