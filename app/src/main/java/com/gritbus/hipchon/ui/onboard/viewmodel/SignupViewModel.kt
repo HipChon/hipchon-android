@@ -57,6 +57,9 @@ class SignupViewModel @Inject constructor(
     private val _isSignupSuccess = MutableLiveData<Boolean>()
     val isSignupSuccess: LiveData<Boolean> = _isSignupSuccess
 
+    private val _hasUserId = MutableLiveData<Boolean>()
+    val hasUserId: LiveData<Boolean> = _hasUserId
+
     fun updateTermsStatus(termType: String) {
         when (termType) {
             TERM_ALL -> {
@@ -137,6 +140,19 @@ class SignupViewModel @Inject constructor(
                 .onFailure {
                     _isSignupSuccess.value = false
                     Log.e(this.javaClass.name, it.message ?: "signup error")
+                }
+        }
+    }
+
+    fun getUserId() {
+        viewModelScope.launch {
+            userRepository.getUserData(UserData.platform, UserData.userLoginId)
+                .onSuccess {
+                    UserData.userId = it.id
+                    _hasUserId.value = true
+                }
+                .onFailure {
+                    _hasUserId.value = false
                 }
         }
     }

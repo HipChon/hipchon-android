@@ -170,6 +170,11 @@ class SignupProfileFragment :
         }
         viewModel.isSignupSuccess.observe(viewLifecycleOwner) {
             if (it) {
+                viewModel.getUserId()
+            }
+        }
+        viewModel.hasUserId.observe(viewLifecycleOwner) {
+            if (it) {
                 (activity as SignupActivity).moveToMain()
             }
         }
