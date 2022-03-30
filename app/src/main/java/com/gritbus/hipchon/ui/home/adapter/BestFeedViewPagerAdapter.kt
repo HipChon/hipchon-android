@@ -18,7 +18,7 @@ class BestFeedViewPagerAdapter(
     override fun createFragment(position: Int): Fragment {
         return BestFeedFragment.createBestFeedFragment(
             bestFeedAllData[position].title ?: "데이터가 업데이트 필요",
-            bestFeedAllData[position].hashtagName
+            bestFeedAllData[position].hashtag.name
         )
     }
 }

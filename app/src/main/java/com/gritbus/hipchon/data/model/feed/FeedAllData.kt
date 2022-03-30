@@ -8,13 +8,25 @@ data class FeedAllDataItem(
     val commentCnt: Int,
     val detail: String,
     val imageList: List<String>,
-    val isMyplace: Boolean,
     val likeCnt: Int,
-    val placeId: Int,
+    val place: FeedPlaceItem,
     val postId: Int,
-    val postTime: List<Int>,
+    val postTime: String,
+    val user: FeedUserItem
+) : Serializable
+
+data class FeedPlaceItem(
+    val address: String,
+    val category: String,
+    val homepage: String,
+    val isMyplace: Boolean,
+    val name: String,
+    val placeId: Int
+)
+
+data class FeedUserItem(
     val userId: Int,
     val userImage: String,
     val userName: String,
     val userPostCnt: Int
-): Serializable
+)

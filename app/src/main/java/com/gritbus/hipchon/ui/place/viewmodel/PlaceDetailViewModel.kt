@@ -56,7 +56,7 @@ class PlaceDetailViewModel @Inject constructor(
         viewModelScope.launch {
             placeRepository.getPlaceDetailData(UserData.userId, placeId)
                 .onSuccess {
-                    _thumbImages.value = listOf(it.placeImage)
+                    _thumbImages.value = it.imageList
                     _placeData.value = it
                 }
                 .onFailure {

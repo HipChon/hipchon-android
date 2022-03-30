@@ -48,11 +48,11 @@ class FeedAdapter(
                 binding.clFeedPreviewPlace.visibility = View.GONE
             }
             Glide.with(binding.root.context)
-                .load(feedData.userImage)
+                .load(feedData.user.userImage)
                 .error(R.drawable.ic_profile_default)
                 .into(binding.ivFeedPreviewProfile)
-            binding.tvFeedPreviewNickname.text = feedData.userName
-            binding.tvFeedPreviewReviewCount.text = "${feedData.userPostCnt}번째 리뷰"
+            binding.tvFeedPreviewNickname.text = feedData.user.userName
+            binding.tvFeedPreviewReviewCount.text = "${feedData.user.userPostCnt}번째 리뷰"
             binding.tvFeedPreviewCreatedAt.text =
                 "${feedData.postTime[0]}.${feedData.postTime[1]}.${feedData.postTime[2]}"
             binding.tvFeedPreviewFavorite.text = feedData.likeCnt.toString()

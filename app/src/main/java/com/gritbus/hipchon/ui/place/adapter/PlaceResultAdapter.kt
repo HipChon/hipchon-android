@@ -51,7 +51,7 @@ class PlaceResultAdapter(
                 detailClickCallback(placeData.placeId)
             }
             binding.vpHomePlaceThumbnail.adapter =
-                PlaceResultImageAdapter(listOf(placeData.placeImage), fragmentManager, lifecycle)
+                PlaceResultImageAdapter(placeData.imageList, fragmentManager, lifecycle)
             binding.ivHomePlaceSaveCount.background = when (placeData.isMyplace) {
                 true -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save_filled)
                 false -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save)
