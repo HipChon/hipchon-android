@@ -63,9 +63,9 @@
             android:layout_width="match_parent"
             android:layout_height="110dp"
             android:layout_marginTop="@dimen/spacing_16"
+            android:clipToPadding="false"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/spacing_20"
-            android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/iv_feed_preview_profile"
             tools:listitem="@layout/item_feed_image" />
@@ -152,15 +152,19 @@
 
             <TextView
                 android:id="@+id/tv_feed_preview_place_address"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="@dimen/spacing_4"
+                android:layout_marginEnd="@dimen/spacing_20"
                 android:layout_marginBottom="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="카페 • 경기 고양시 일산동구"
                 android:textColor="@color/gray04"
                 android:textSize="@dimen/text_size_12"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_feed_preview_place_save"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_feed_preview_place_title" />
 

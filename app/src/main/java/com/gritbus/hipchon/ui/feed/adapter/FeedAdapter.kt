@@ -61,6 +61,10 @@ class FeedAdapter(
             feedData.imageList?.let {
                 feedThumbAdapter.submitList(it.filter { it != null })
             }
+
+            binding.tvFeedPreviewPlaceTitle.text = feedData.place.name
+            binding.tvFeedPreviewPlaceAddress.text =
+                "${feedData.place.category} • ${feedData.place.address}"
         }
     }
 
