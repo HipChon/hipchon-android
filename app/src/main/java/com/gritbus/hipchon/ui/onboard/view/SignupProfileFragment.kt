@@ -3,10 +3,7 @@ package com.gritbus.hipchon.ui.onboard.view
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.ImageDecoder
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
@@ -22,13 +19,10 @@ import com.gritbus.hipchon.ui.onboard.view.OnboardingActivity.Companion.PLATFORM
 import com.gritbus.hipchon.ui.onboard.view.OnboardingActivity.Companion.PLATFORM_NAVER
 import com.gritbus.hipchon.ui.onboard.viewmodel.SignupViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
-import com.gritbus.hipchon.utils.getCircledBitmap
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.profile.NidProfileCallback
-import com.navercorp.nid.profile.api.NidProfileApi
-import com.navercorp.nid.profile.data.NidProfile
 import com.navercorp.nid.profile.data.NidProfileResponse
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
@@ -60,6 +54,7 @@ class SignupProfileFragment :
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 if (it.resultCode == AppCompatActivity.RESULT_OK) {
                     val data = Matisse.obtainResult(it.data)
+
                     Glide.with(requireContext())
                         .load(data[0])
                         .circleCrop()
