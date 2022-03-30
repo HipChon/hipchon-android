@@ -1,9 +1,22 @@
 package com.gritbus.hipchon.utils
 
+import android.content.ContentResolver
 import android.content.Context
 import android.graphics.*
+import android.net.Uri
+import android.os.FileUtils
+import android.provider.OpenableColumns
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okio.BufferedSink
+import okio.source
+import java.io.File
 import kotlin.math.roundToInt
 
 fun AppCompatActivity.replaceFragment(navigationViewId: Int, fragment: Fragment) {
@@ -26,15 +39,10 @@ fun dpToPx(context: Context, dp: Int): Int {
     return (dp.toFloat() * density).roundToInt()
 }
 
-fun Bitmap.getCircledBitmap(): Bitmap {
-    val output = Bitmap.createBitmap(this.width, this.height, Bitmap.Config.ARGB_8888)
-    val canvas = Canvas(output)
-    val paint = Paint()
-    val rect = Rect(0, 0, this.width, this.height)
-    paint.isAntiAlias = true
-    canvas.drawARGB(0, 0, 0, 0)
-    canvas.drawCircle(this.width / 2f, this.height / 2f, this.width / 2f, paint)
-    paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
-    canvas.drawBitmap(this, rect, rect, paint)
-    return output
+fun String.asMultipart(): MultipartBody.Part {
+    val file = File(this)
+
+    return MultipartBody.Part.createFormData("file", file.path,
+        file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+    )
 }

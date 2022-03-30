@@ -1,15 +1,17 @@
 package com.gritbus.hipchon.data.datasource.user
 
+import android.util.Log
 import com.gritbus.hipchon.data.api.user.UserService
 import com.gritbus.hipchon.data.model.user.UserInfoData
 import javax.inject.Inject
 
 class UserDataSourceImpl @Inject constructor(
     private val userService: UserService
-): UserDataSource {
+) : UserDataSource {
 
-    override fun signupUser(userDto: UserInfoData): Result<Int> {
+    override suspend fun signupUser(userDto: UserInfoData): Result<String> {
         return try {
+            Log.i("userdto", userDto.toString())
             val data = userService.signupUser(userDto)
             if (data.isSuccessful) {
                 data.body()?.let {
@@ -23,7 +25,7 @@ class UserDataSourceImpl @Inject constructor(
         }
     }
 
-    override fun loginUser(loginType: String, loginId: Int): Result<Int> {
+    override suspend fun loginUser(loginType: String, loginId: String): Result<String> {
         return try {
             val data = userService.loginUser(loginType, loginId)
             if (data.isSuccessful) {
@@ -38,7 +40,7 @@ class UserDataSourceImpl @Inject constructor(
         }
     }
 
-    override fun updateProfile(userDto: UserInfoData): Result<Int> {
+    override suspend fun updateProfile(userDto: UserInfoData): Result<String> {
         return try {
             val data = userService.updateProfile(userDto)
             if (data.isSuccessful) {
@@ -53,7 +55,7 @@ class UserDataSourceImpl @Inject constructor(
         }
     }
 
-    override fun getUserData(loginType: String, loginId: Int): Result<UserInfoData> {
+    override suspend fun getUserData(loginType: String, loginId: String): Result<UserInfoData> {
         return try {
             val data = userService.getUserData(loginType, loginId)
             if (data.isSuccessful) {
@@ -68,7 +70,7 @@ class UserDataSourceImpl @Inject constructor(
         }
     }
 
-    override fun deleteUserData(loginType: String, loginId: Int): Result<Void> {
+    override suspend fun deleteUserData(loginType: String, loginId: String): Result<Void> {
         return try {
             val data = userService.deleteUserData(loginType, loginId)
             if (data.isSuccessful) {

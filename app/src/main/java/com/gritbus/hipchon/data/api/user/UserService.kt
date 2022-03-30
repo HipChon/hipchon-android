@@ -12,30 +12,30 @@ import retrofit2.http.Path
 interface UserService {
 
     @POST("user")
-    fun signupUser(
+    suspend fun signupUser(
         @Body userDto: UserInfoData
-    ): Response<Int>
+    ): Response<String>
 
     @GET("user/login/{login_type}/{login_id}")
-    fun loginUser(
+    suspend fun loginUser(
         @Path("login_type") loginType: String,
-        @Path("login_id") loginId: Int
-    ): Response<Int>
+        @Path("login_id") loginId: String
+    ): Response<String>
 
     @PUT("user")
-    fun updateProfile(
+    suspend fun updateProfile(
         @Body userDto: UserInfoData
-    ): Response<Int>
+    ): Response<String>
 
     @GET("user/{login_type}/{login_id}")
-    fun getUserData(
+    suspend fun getUserData(
         @Path("login_type") loginType: String,
-        @Path("login_id") loginId: Int
+        @Path("login_id") loginId: String
     ): Response<UserInfoData>
 
     @DELETE("user/{login_type}/{login_id}")
-    fun deleteUserData(
+    suspend fun deleteUserData(
         @Path("login_type") loginType: String,
-        @Path("login_id") loginId: Int
+        @Path("login_id") loginId: String
     ): Response<Void>
 }

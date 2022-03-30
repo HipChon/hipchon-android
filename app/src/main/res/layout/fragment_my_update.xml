@@ -62,6 +62,7 @@
             android:layout_marginHorizontal="@dimen/spacing_20"
             android:background="@drawable/bg_rectangle_radius_5"
             android:backgroundTint="@color/gray02"
+            android:enabled="false"
             android:paddingVertical="13dp"
             android:text="확인"
             android:textSize="@dimen/text_size_16"

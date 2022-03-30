@@ -19,7 +19,7 @@ class OnboardingViewModel @Inject constructor(
     private val _isLoginSuccess = MutableLiveData<Boolean>()
     val isLoginSuccess: LiveData<Boolean> = _isLoginSuccess
 
-    fun userLogin(id: Int, platform: String) {
+    fun userLogin(id: String, platform: String) {
         UserData.platform = platform
         UserData.userLoginId = id
 

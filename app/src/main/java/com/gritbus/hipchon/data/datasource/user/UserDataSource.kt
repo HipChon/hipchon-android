@@ -4,13 +4,13 @@ import com.gritbus.hipchon.data.model.user.UserInfoData
 
 interface UserDataSource {
 
-    fun signupUser(userDto: UserInfoData): Result<Int>
+    suspend fun signupUser(userDto: UserInfoData): Result<String>
 
-    fun loginUser(loginType: String, loginId: Int): Result<Int>
+    suspend fun loginUser(loginType: String, loginId: String): Result<String>
 
-    fun updateProfile(userDto: UserInfoData): Result<Int>
+    suspend fun updateProfile(userDto: UserInfoData): Result<String>
 
-    fun getUserData(loginType: String, loginId: Int): Result<UserInfoData>
+    suspend fun getUserData(loginType: String, loginId: String): Result<UserInfoData>
 
-    fun deleteUserData(loginType: String, loginId: Int): Result<Void>
+    suspend fun deleteUserData(loginType: String, loginId: String): Result<Void>
 }

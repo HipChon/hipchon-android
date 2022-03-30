@@ -8,7 +8,7 @@ class UserRepositoryImpl @Inject constructor(
     private val userDataSource: UserDataSource
 ): UserRepository {
 
-    override fun signupUser(userDto: UserInfoData): Result<Int> {
+    override suspend fun signupUser(userDto: UserInfoData): Result<String> {
         val result = userDataSource.signupUser(userDto)
 
         return if (result.exceptionOrNull() is Exception) {
@@ -18,7 +18,7 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun loginUser(loginType: String, loginId: Int): Result<Int> {
+    override suspend fun loginUser(loginType: String, loginId: String): Result<String> {
         val result = userDataSource.loginUser(loginType, loginId)
 
         return if (result.exceptionOrNull() is Exception) {
@@ -28,7 +28,7 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun updateProfile(userDto: UserInfoData): Result<Int> {
+    override suspend fun updateProfile(userDto: UserInfoData): Result<String> {
         val result = userDataSource.updateProfile(userDto)
 
         return if (result.exceptionOrNull() is Exception) {
@@ -38,7 +38,7 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getUserData(loginType: String, loginId: Int): Result<UserInfoData> {
+    override suspend fun getUserData(loginType: String, loginId: String): Result<UserInfoData> {
         val result = userDataSource.getUserData(loginType, loginId)
 
         return if (result.exceptionOrNull() is Exception) {
@@ -48,7 +48,7 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun deleteUserData(loginType: String, loginId: Int): Result<Void> {
+    override suspend fun deleteUserData(loginType: String, loginId: String): Result<Void> {
         val result = userDataSource.deleteUserData(loginType, loginId)
 
         return if (result.exceptionOrNull() is Exception) {

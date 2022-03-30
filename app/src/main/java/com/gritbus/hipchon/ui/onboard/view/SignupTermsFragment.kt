@@ -1,14 +1,16 @@
 package com.gritbus.hipchon.ui.onboard.view
 
+import android.content.Intent
 import android.content.res.ColorStateList
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentSignupTermsBinding
-import com.gritbus.hipchon.ui.my.view.MyUpdateFragment
 import com.gritbus.hipchon.ui.onboard.viewmodel.SignupViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,6 +20,9 @@ class SignupTermsFragment :
     BaseViewUtil.BaseFragment<FragmentSignupTermsBinding>(R.layout.fragment_signup_terms) {
 
     private val viewModel: SignupViewModel by activityViewModels()
+    private val serviceTerm = "https://frost-kite-c1c.notion.site/156ae780da1d482f92ba93a852e83a27"
+    private val personalTerm = "https://frost-kite-c1c.notion.site/f6239a9d67784836b69cc4bedfc95a7e"
+    private val positionTerm = "https://frost-kite-c1c.notion.site/8b3cabf85df84515b3e1c23696fdd6e2"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,7 +36,7 @@ class SignupTermsFragment :
 
     private fun setClickListener() {
         binding.mbSignupTerms.setOnClickListener {
-            (activity as? SignupActivity)?.moveToNextLevel(SignupProfileFragment())
+            (activity as? SignupActivity)?.moveToNextLevel(this, SignupProfileFragment())
         }
         binding.ivSignupTermsAll.setOnClickListener {
             viewModel.updateTermsStatus(TERM_ALL)
@@ -43,19 +48,19 @@ class SignupTermsFragment :
             viewModel.updateTermsStatus(TERM_SERVICE)
         }
         binding.ivSignupTermsServiceMore.setOnClickListener {
-            // 약관페이지
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(serviceTerm)))
         }
         binding.ivSignupTermsPersonal.setOnClickListener {
             viewModel.updateTermsStatus(TERM_PERSONAL)
         }
         binding.ivSignupTermsPersonalMore.setOnClickListener {
-            // 약관페이지
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(personalTerm)))
         }
         binding.ivSignupTermsPosition.setOnClickListener {
             viewModel.updateTermsStatus(TERM_POSITION)
         }
         binding.ivSignupTermsPositionMore.setOnClickListener {
-            // 약관페이지
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(positionTerm)))
         }
         binding.ivSignupTermsEvent.setOnClickListener {
             viewModel.updateTermsStatus(TERM_EVENT)
