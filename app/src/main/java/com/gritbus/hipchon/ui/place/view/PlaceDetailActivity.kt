@@ -182,7 +182,7 @@ class PlaceDetailActivity :
             }
         }
         viewModel.keyword.observe(this) {
-            it.forEach { keyword ->
+            it.forEach { keywordItem ->
                 val keywordView = layoutInflater.inflate(
                     R.layout.item_place_detail_keyword,
                     binding.llPlaceDetailKeyword,
@@ -191,12 +191,25 @@ class PlaceDetailActivity :
 
                 val keywordBinding =
                     DataBindingUtil.bind<ItemPlaceDetailKeywordBinding>(keywordView)
-                if (keyword != null) {
+                if (keywordItem != null) {
+                    val keyword = when (keywordItem.keywordId) {
+                        in (1..5) -> {
+                            KeywordFacility.values()[keywordItem.keywordId - 1]
+                        }
+                        in (6..10) -> {
+                            KeywordMood.values()[keywordItem.keywordId - 5 - 1]
+                        }
+                        else -> {
+                            KeywordSatisfaction.values()[keywordItem.keywordId - 10 - 1]
+                        }
+                    }
+
                     getKeywordData(keyword)?.let { iconAndContentAndColor ->
                         keywordBinding?.ivPlaceDetailKeywordIcon?.background =
                             ContextCompat.getDrawable(baseContext, iconAndContentAndColor.first)
                         keywordBinding?.tvPlaceDetailKeywordContent?.text =
                             resources.getString(iconAndContentAndColor.second)
+                        keywordBinding?.tvPlaceDetailKeywordCount?.text = keywordItem.postCnt.toString()
                         keywordBinding?.root?.backgroundTintList = ColorStateList.valueOf(
                             ContextCompat.getColor(
                                 baseContext,

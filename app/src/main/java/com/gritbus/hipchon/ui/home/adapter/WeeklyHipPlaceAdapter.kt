@@ -60,10 +60,10 @@ class WeeklyHipPlaceAdapter(
                         KeywordFacility.values()[weeklyHipPlaceData.keyword.keywordId - 1].iconDrawable to R.color.secondary_yellow
                     }
                     in (6..10) -> {
-                        KeywordMood.values()[weeklyHipPlaceData.keyword.keywordId - 1].iconDrawable to R.color.primary_green
+                        KeywordMood.values()[weeklyHipPlaceData.keyword.keywordId - 5 - 1].iconDrawable to R.color.primary_green
                     }
                     else -> {
-                        KeywordSatisfaction.values()[weeklyHipPlaceData.keyword.keywordId - 1].iconDrawable to R.color.secondary_blue
+                        KeywordSatisfaction.values()[weeklyHipPlaceData.keyword.keywordId - 10 - 1].iconDrawable to R.color.secondary_blue
                     }
                 }
                 binding.ivHomeWeeklyHipPlaceKeyword.setImageResource(keywordValue.first)

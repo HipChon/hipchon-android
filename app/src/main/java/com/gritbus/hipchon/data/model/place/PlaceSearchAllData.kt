@@ -20,5 +20,6 @@ data class KeywordItem(
     val category: String,
     val emoji: String,
     val keyword: String,
-    val keywordId: Int
+    val keywordId: Int,
+    val postCnt: Int
 )

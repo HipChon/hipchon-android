@@ -8,12 +8,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gritbus.hipchon.data.model.UserData
 import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
+import com.gritbus.hipchon.data.model.place.KeywordItem
 import com.gritbus.hipchon.data.model.place.PlaceDetailData
 import com.gritbus.hipchon.data.repository.feed.FeedRepository
 import com.gritbus.hipchon.data.repository.place.PlaceRepository
-import com.gritbus.hipchon.domain.model.KeywordFacility
-import com.gritbus.hipchon.domain.model.KeywordMood
-import com.gritbus.hipchon.domain.model.KeywordSatisfaction
 import com.gritbus.hipchon.ui.place.view.PlaceResultActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -41,8 +39,8 @@ class PlaceDetailViewModel @Inject constructor(
     private val _isSave = MutableLiveData<Boolean>(false)
     val isSave: LiveData<Boolean> = _isSave
 
-    private val _keyword = MutableLiveData<List<*>>()
-    val keyword: LiveData<List<*>> = _keyword
+    private val _keyword = MutableLiveData<List<KeywordItem>>()
+    val keyword: LiveData<List<KeywordItem>> = _keyword
 
     private val _reviewPreview = MutableLiveData<List<FeedAllDataItem>>()
     val reviewPreview: LiveData<List<FeedAllDataItem>> = _reviewPreview
@@ -58,6 +56,7 @@ class PlaceDetailViewModel @Inject constructor(
                 .onSuccess {
                     _thumbImages.value = it.imageList
                     _placeData.value = it
+                    _keyword.value = it.keywordList
                 }
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "place detail error")
@@ -73,8 +72,6 @@ class PlaceDetailViewModel @Inject constructor(
 
         // TODO 메뉴, 키워드 정보 서버와 연동
         _menuAllData.value = emptyList()
-        _keyword.value =
-            listOf(KeywordFacility.COMFORTABLE, KeywordMood.GROUP, KeywordSatisfaction.ACTIVITY)
     }
 
     fun setSave() {
