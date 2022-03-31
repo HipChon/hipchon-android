@@ -314,9 +314,9 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_place_detail_menu"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/view_between_info_and_map">
 
                     <ImageView
@@ -493,6 +493,7 @@
                     android:layout_height="@dimen/spacing_8"
                     android:layout_marginTop="@dimen/spacing_16"
                     android:background="@color/gray02"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/ll_place_detail_keyword" />
 
                 <ImageView
@@ -502,6 +503,7 @@
                     android:layout_marginStart="@dimen/spacing_20"
                     android:layout_marginTop="@dimen/spacing_24"
                     android:src="@drawable/ic_review"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view_between_keyword_and_review" />
 
@@ -512,6 +514,7 @@
                     android:layout_marginStart="@dimen/spacing_8"
                     android:text="@string/place_detail_review"
                     android:textSize="@dimen/text_size_22"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@id/iv_place_detail_review"
                     app:layout_constraintStart_toEndOf="@id/iv_place_detail_review"
                     app:layout_constraintTop_toTopOf="@id/iv_place_detail_review" />
@@ -522,6 +525,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/spacing_20"
                     android:background="@drawable/ic_create_review"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@id/iv_place_detail_review"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/iv_place_detail_review" />
@@ -533,6 +537,7 @@
                     android:layout_marginHorizontal="@dimen/spacing_20"
                     android:layout_marginTop="25dp"
                     android:background="@color/gray02"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/iv_place_detail_review" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -541,6 +546,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:overScrollMode="never"
+                    android:visibility="gone"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/view_decoration"
                     tools:listitem="@layout/item_feed_preview" />
@@ -555,6 +561,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/gray05"
                     android:textSize="@dimen/text_size_16"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/rv_place_detail_review" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

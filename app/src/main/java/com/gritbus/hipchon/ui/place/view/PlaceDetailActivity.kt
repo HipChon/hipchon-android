@@ -140,9 +140,9 @@ class PlaceDetailActivity :
         binding.ivPlaceDetailFeed.setOnClickListener {
             binding.nsvPlaceDetail.smoothScrollTo(0, binding.ivPlaceDetailReview.y.toInt())
         }
-        binding.ivPlaceDetailSave.setOnClickListener {
-            viewModel.setSave()
-        }
+//        binding.ivPlaceDetailSave.setOnClickListener {
+//            viewModel.setSave()
+//        }
         binding.acbPlaceDetailLink.setOnClickListener {
             startActivity(
                 Intent(
