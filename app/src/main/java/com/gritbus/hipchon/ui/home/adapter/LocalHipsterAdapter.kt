@@ -1,7 +1,9 @@
 package com.gritbus.hipchon.ui.home.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.DiffUtil
@@ -94,6 +96,16 @@ class LocalHipsterAdapter(
                 "${localHipsterPost.place.category} • ${localHipsterPost.place.address}"
             binding.clLocalHipsterPickPlace.setOnClickListener {
                 clickListener(localHipsterPost.place.placeId)
+            }
+            binding.ivLocalHipsterPickPlaceShare.setOnClickListener {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, localHipsterPost.place.homepage)
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(binding.root.context, shareIntent, null)
             }
             binding.executePendingBindings()
         }
