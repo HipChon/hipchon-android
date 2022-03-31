@@ -46,7 +46,8 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getBannerAllData() {
-        _bannerAllData.value = fakeBannerAllData
+        val tempUrl = "https://user-images.githubusercontent.com/64943924/161104285-89d069d8-6a9d-42e3-afa4-f44a68b3dd1f.png"
+        _bannerAllData.value = listOf(tempUrl)
     }
 
     fun getBestFeedAllData() {
@@ -76,19 +77,4 @@ class HomeViewModel @Inject constructor(
         // TODO 서버에 SAVE 업데이트
         // getWeeklyHipPlaceAllData()
     }
-
-    // 서버 연결시 FAKE 데이터 삭제
-    private val fakeBannerUrl =
-        "https://user-images.githubusercontent.com/64943924/156609871-0f94812a-286d-4120-989c-91e8ddbb1086.png"
-
-    private val fakeBannerAllData: List<String> = listOf(
-        fakeBannerUrl,
-        fakeBannerUrl,
-        fakeBannerUrl,
-        fakeBannerUrl,
-        fakeBannerUrl,
-        fakeBannerUrl,
-        fakeBannerUrl,
-        fakeBannerUrl
-    )
 }
