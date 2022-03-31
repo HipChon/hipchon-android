@@ -39,9 +39,9 @@ class BestFeedFragment :
     }
 
     private fun setOnClickListener() {
-        binding.root.setOnClickListener {
-            (parentFragment as? HomeFragment)?.onClick()
-        }
+//        binding.root.setOnClickListener {
+//            (parentFragment as? HomeFragment)?.onClick()
+//        }
     }
 
     private fun setView() {

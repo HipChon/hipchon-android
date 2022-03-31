@@ -47,6 +47,7 @@
                     android:id="@+id/iv_home_weekly_hip_place_save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="invisible"
                     android:layout_marginEnd="@dimen/spacing_20"
                     android:background="@drawable/ic_save"
                     android:backgroundTint="@color/black"

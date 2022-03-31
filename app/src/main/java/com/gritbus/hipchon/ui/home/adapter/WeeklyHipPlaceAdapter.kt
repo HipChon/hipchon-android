@@ -46,9 +46,9 @@ class WeeklyHipPlaceAdapter(
             binding.root.setOnClickListener {
                 clickListener(weeklyHipPlaceData.placeId)
             }
-            binding.ivHomeWeeklyHipPlaceSave.setOnClickListener {
-                saveClickCallback(weeklyHipPlaceData)
-            }
+//            binding.ivHomeWeeklyHipPlaceSave.setOnClickListener {
+//                saveClickCallback(weeklyHipPlaceData)
+//            }
             binding.tvHomeWeeklyHipPlaceTitle.text = weeklyHipPlaceData.name
             binding.tvHomeWeeklyHipPlaceArea.text = weeklyHipPlaceData.category
 
