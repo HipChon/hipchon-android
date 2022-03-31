@@ -13,8 +13,8 @@
         <ImageView
             android:id="@+id/iv_local_hipster_pick_place"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_rectangle_radius_5_stroke_1" />
+            android:scaleType="centerCrop"
+            android:layout_height="match_parent" />
 
         <TextView
             android:id="@+id/tv_local_hipster_pick_thumb"

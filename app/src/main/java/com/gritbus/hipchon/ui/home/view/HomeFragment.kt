@@ -122,8 +122,10 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         binding.rvHomeWeeklyHipPlace.adapter = weeklyHipPlaceAdapter
     }
 
-    private fun localHipsterPickCallback() {
-        startActivity(Intent(requireContext(), LocalHipsterPickActivity::class.java))
+    private fun localHipsterPickCallback(localHipsterId: Int) {
+        startActivity(Intent(requireContext(), LocalHipsterPickActivity::class.java).apply {
+            putExtra(LOCAL_HIPSTER_ID, localHipsterId)
+        })
     }
 
     private fun hipPlaceClickCallback(selectedPlaceId: Int) {
@@ -175,6 +177,7 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
 
     companion object {
         const val LOCAL_HIPSTER_ITEM_SPACING = 8
+        const val LOCAL_HIPSTER_ID = "com.gritbus.hipchon.ui.home.view LOCAL_HIPSTER_ID"
         const val HASHTAG_SEARCH = "com.gritbus.hipchon.ui.home.view HASHTAG_SEARCH"
     }
 }

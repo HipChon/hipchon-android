@@ -6,13 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.gritbus.hipchon.data.model.place.LocalHipsterAllDataItem
 import com.gritbus.hipchon.databinding.ItemHomeHipsterPickBinding
-import com.gritbus.hipchon.domain.model.LocalHipsterData
 
 class HomeLocalHipsterAdapter(
-    private val clickListener: () -> (Unit)
-) :
-    ListAdapter<LocalHipsterData, HomeLocalHipsterAdapter.HomeLocalHipsterViewHolder>(diffUtil) {
+    private val clickListener: (Int) -> (Unit)
+) : ListAdapter<LocalHipsterAllDataItem, HomeLocalHipsterAdapter.HomeLocalHipsterViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeLocalHipsterViewHolder {
         return HomeLocalHipsterViewHolder(
@@ -32,33 +31,33 @@ class HomeLocalHipsterAdapter(
         private val binding: ItemHomeHipsterPickBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(localHipsterData: LocalHipsterData, clickListener: () -> (Unit)) {
-            binding.tvHomeHipsterPickArea.text = localHipsterData.area.value
+        fun bind(localHipsterData: LocalHipsterAllDataItem, clickListener: (Int) -> (Unit)) {
+            binding.tvHomeHipsterPickArea.text = localHipsterData.city
             binding.tvHomeHipsterPickTitle.text = localHipsterData.title
-            binding.tvHomeHipsterPickDesc.text = localHipsterData.desc
+            binding.tvHomeHipsterPickDesc.text = localHipsterData.summary
             Glide.with(binding.root.context)
-                .load(localHipsterData.imageUrl)
+                .load(localHipsterData.image)
                 .into(binding.ivHomeHipsterPick)
 
             binding.root.setOnClickListener {
-                clickListener()
+                clickListener(localHipsterData.id)
             }
             binding.executePendingBindings()
         }
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<LocalHipsterData>() {
+        val diffUtil = object : DiffUtil.ItemCallback<LocalHipsterAllDataItem>() {
             override fun areContentsTheSame(
-                oldItem: LocalHipsterData,
-                newItem: LocalHipsterData
+                oldItem: LocalHipsterAllDataItem,
+                newItem: LocalHipsterAllDataItem
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areItemsTheSame(
-                oldItem: LocalHipsterData,
-                newItem: LocalHipsterData
+                oldItem: LocalHipsterAllDataItem,
+                newItem: LocalHipsterAllDataItem
             ): Boolean {
                 return oldItem.id == newItem.id
             }

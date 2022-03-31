@@ -3,6 +3,7 @@ package com.gritbus.hipchon.ui.home.view
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import com.bumptech.glide.Glide
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentLocalHipsterPickBinding
 import com.gritbus.hipchon.utils.BaseViewUtil
@@ -40,6 +41,9 @@ class LocalHipsterThumbFragment :
     private fun setView() {
         binding.tvLocalHipsterPickThumb.text =
             resources.getString(R.string.home_banner, currentImagePosition, imageCount)
+        Glide.with(requireContext())
+            .load(imageUrl)
+            .into(binding.ivLocalHipsterPickPlace)
     }
 
     companion object {

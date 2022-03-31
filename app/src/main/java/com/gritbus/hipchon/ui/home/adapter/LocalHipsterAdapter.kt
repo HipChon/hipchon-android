@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.gritbus.hipchon.data.model.place.LocalHipsterPost
 import com.gritbus.hipchon.databinding.ItemLocalHipsterPickBinding
 import com.gritbus.hipchon.databinding.ItemLocalHipsterPickHeaderBinding
 
@@ -14,7 +15,7 @@ class LocalHipsterAdapter(
     private val clickListener: () -> (Unit),
     private val fragmentManager: FragmentManager,
     private val lifecycle: Lifecycle
-) : ListAdapter<Int, RecyclerView.ViewHolder>(diffUtil) {
+) : ListAdapter<LocalHipsterPost, RecyclerView.ViewHolder>(diffUtil) {
 
     private val HEADER = 0
     private val CONTENT = 1
@@ -44,8 +45,13 @@ class LocalHipsterAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is LocalHipsterViewHolder -> holder.bind(clickListener, fragmentManager, lifecycle)
-            is LocalHipsterHeaderViewHolder -> holder.bind()
+            is LocalHipsterViewHolder -> holder.bind(
+                currentList[position],
+                clickListener,
+                fragmentManager,
+                lifecycle
+            )
+            is LocalHipsterHeaderViewHolder -> holder.bind(currentList[position])
         }
     }
 
@@ -60,7 +66,9 @@ class LocalHipsterAdapter(
         private val binding: ItemLocalHipsterPickHeaderBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind() {}
+        fun bind(localHipsterPost: LocalHipsterPost) {
+            binding.tvLocalHipsterPickHeader.text = localHipsterPost.title
+        }
     }
 
     class LocalHipsterViewHolder(
@@ -68,16 +76,22 @@ class LocalHipsterAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
+            localHipsterPost: LocalHipsterPost,
             clickListener: () -> (Unit),
             fragmentManager: FragmentManager,
             lifecycle: Lifecycle
         ) {
             binding.vpLocalHipsterPickThumb.adapter =
                 LocalHipsterThumbAdapter(
-                    listOf("1", "1", "1"),
+                    localHipsterPost.imageList,
                     fragmentManager,
                     lifecycle
                 )
+            binding.tvLocalHipsterPickTitle.text = localHipsterPost.title
+            binding.tvLocalHipsterPickDesc.text = localHipsterPost.detail
+            binding.tvLocalHipsterPickPlaceTitle.text = localHipsterPost.place.name
+            binding.tvLocalHipsterPickPlaceAddress.text =
+                "${localHipsterPost.place.category} • ${localHipsterPost.place.address}"
             binding.clLocalHipsterPickPlace.setOnClickListener {
                 clickListener()
             }
@@ -86,19 +100,19 @@ class LocalHipsterAdapter(
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<Int>() {
+        val diffUtil = object : DiffUtil.ItemCallback<LocalHipsterPost>() {
             override fun areContentsTheSame(
-                oldItem: Int,
-                newItem: Int
+                oldItem: LocalHipsterPost,
+                newItem: LocalHipsterPost
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areItemsTheSame(
-                oldItem: Int,
-                newItem: Int
+                oldItem: LocalHipsterPost,
+                newItem: LocalHipsterPost
             ): Boolean {
-                return oldItem == newItem
+                return oldItem.id == newItem.id
             }
         }
     }
