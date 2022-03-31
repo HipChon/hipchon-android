@@ -14,7 +14,7 @@
             android:id="@+id/iv_item_home_recent_product_thumbnail"
             android:layout_width="135dp"
             android:layout_height="135dp"
-            android:background="@drawable/ic_launcher_background" />
+            android:background="@color/white" />
 
         <TextView
             android:id="@+id/tv_item_home_recent_product_title"

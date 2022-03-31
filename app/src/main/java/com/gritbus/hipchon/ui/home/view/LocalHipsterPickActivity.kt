@@ -10,6 +10,7 @@ import com.gritbus.hipchon.databinding.ActivityLocalHipsterPickBinding
 import com.gritbus.hipchon.ui.home.adapter.LocalHipsterAdapter
 import com.gritbus.hipchon.ui.home.viewmodel.LocalHipsterViewModel
 import com.gritbus.hipchon.ui.place.view.PlaceDetailActivity
+import com.gritbus.hipchon.ui.place.view.PlaceResultActivity.Companion.PLACE_ID
 import com.gritbus.hipchon.utils.BaseViewUtil
 import com.gritbus.hipchon.utils.ItemDecorationWithStroke
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,8 +59,10 @@ class LocalHipsterPickActivity :
         binding.rvLocalHipsterPick.addItemDecoration(ItemDecorationWithStroke(true))
     }
 
-    private fun placeClickListener() {
-        startActivity(Intent(baseContext, PlaceDetailActivity::class.java))
+    private fun placeClickListener(placeId: Int) {
+        startActivity(Intent(baseContext, PlaceDetailActivity::class.java).apply {
+            putExtra(PLACE_ID, placeId)
+        })
     }
 
     private fun setOnClickListener() {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HipChon</string>
+    <string name="app_name">힙촌</string>
     <string name="bottom_nav_home">홈</string>
     <string name="bottom_nav_feed">후기</string>
     <string name="bottom_nav_save">저장</string>
