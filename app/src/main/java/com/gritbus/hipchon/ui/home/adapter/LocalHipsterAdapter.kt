@@ -12,7 +12,7 @@ import com.gritbus.hipchon.databinding.ItemLocalHipsterPickBinding
 import com.gritbus.hipchon.databinding.ItemLocalHipsterPickHeaderBinding
 
 class LocalHipsterAdapter(
-    private val clickListener: () -> (Unit),
+    private val clickListener: (Int) -> (Unit),
     private val fragmentManager: FragmentManager,
     private val lifecycle: Lifecycle
 ) : ListAdapter<LocalHipsterPost, RecyclerView.ViewHolder>(diffUtil) {
@@ -77,7 +77,7 @@ class LocalHipsterAdapter(
 
         fun bind(
             localHipsterPost: LocalHipsterPost,
-            clickListener: () -> (Unit),
+            clickListener: (Int) -> (Unit),
             fragmentManager: FragmentManager,
             lifecycle: Lifecycle
         ) {
@@ -93,7 +93,7 @@ class LocalHipsterAdapter(
             binding.tvLocalHipsterPickPlaceAddress.text =
                 "${localHipsterPost.place.category} • ${localHipsterPost.place.address}"
             binding.clLocalHipsterPickPlace.setOnClickListener {
-                clickListener()
+                clickListener(localHipsterPost.place.placeId)
             }
             binding.executePendingBindings()
         }
