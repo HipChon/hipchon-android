@@ -1,10 +1,7 @@
 package com.gritbus.hipchon.data.repository.place
 
 import com.gritbus.hipchon.data.datasource.place.PlaceDataSource
-import com.gritbus.hipchon.data.model.place.PlaceDetailData
-import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllData
-import com.gritbus.hipchon.data.model.place.PlaceSearchAllData
-import com.gritbus.hipchon.data.model.place.PlaceSearchWithHashtagAllData
+import com.gritbus.hipchon.data.model.place.*
 import javax.inject.Inject
 
 class PlaceRepositoryImpl @Inject constructor(
@@ -52,6 +49,29 @@ class PlaceRepositoryImpl @Inject constructor(
 
     override suspend fun getPlaceHipSearchAllData(userId: Int): Result<PlaceHipSearchAllData> {
         val result = placeDataSource.getPlaceHipSearchAllData(userId)
+
+        return if (result.exceptionOrNull() is Exception) {
+            Result.failure(result.exceptionOrNull() as Exception)
+        } else {
+            result
+        }
+    }
+
+    override suspend fun getLocalHipsterAllData(): Result<LocalHipsterAllData> {
+        val result = placeDataSource.getLocalHipsterAllData()
+
+        return if (result.exceptionOrNull() is Exception) {
+            Result.failure(result.exceptionOrNull() as Exception)
+        } else {
+            result
+        }
+    }
+
+    override suspend fun getLocalHipsterDetailData(
+        userId: Int,
+        hipsterId: Int
+    ): Result<LocalHipsterDetailData> {
+        val result = placeDataSource.getLocalHipsterDetailData(userId, hipsterId)
 
         return if (result.exceptionOrNull() is Exception) {
             Result.failure(result.exceptionOrNull() as Exception)

@@ -1,9 +1,6 @@
 package com.gritbus.hipchon.data.api.place
 
-import com.gritbus.hipchon.data.model.place.PlaceDetailData
-import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllData
-import com.gritbus.hipchon.data.model.place.PlaceSearchAllData
-import com.gritbus.hipchon.data.model.place.PlaceSearchWithHashtagAllData
+import com.gritbus.hipchon.data.model.place.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -35,4 +32,13 @@ interface PlaceService {
     suspend fun getPlaceHipSearchAllData(
         @Path("user_id") userId: Int
     ): Response<PlaceHipSearchAllData>
+
+    @GET("hipster")
+    suspend fun getLocalHipsterAllData(): Response<LocalHipsterAllData>
+
+    @GET("hipster/{user_id}/{hipster_id}")
+    suspend fun getLocalHipsterDetailData(
+        @Path("user_id") userId: Int,
+        @Path("hipster_id") hipsterId: Int
+    ): Response<LocalHipsterDetailData>
 }

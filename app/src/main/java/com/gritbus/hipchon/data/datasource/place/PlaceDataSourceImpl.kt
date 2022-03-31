@@ -1,10 +1,7 @@
 package com.gritbus.hipchon.data.datasource.place
 
 import com.gritbus.hipchon.data.api.place.PlaceService
-import com.gritbus.hipchon.data.model.place.PlaceDetailData
-import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllData
-import com.gritbus.hipchon.data.model.place.PlaceSearchAllData
-import com.gritbus.hipchon.data.model.place.PlaceSearchWithHashtagAllData
+import com.gritbus.hipchon.data.model.place.*
 import javax.inject.Inject
 
 class PlaceDataSourceImpl @Inject constructor(
@@ -68,6 +65,39 @@ class PlaceDataSourceImpl @Inject constructor(
     ): Result<PlaceSearchWithHashtagAllData> {
         return try {
             val data = placeService.getPlaceSearchWithHashtag(userId, hashtagId, order)
+            if (data.isSuccessful) {
+                data.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Throwable(data.message()))
+            } else {
+                Result.failure(Throwable(data.message()))
+            }
+        } catch (e: Exception) {
+            Result.failure(Throwable(e.message))
+        }
+    }
+
+    override suspend fun getLocalHipsterAllData(): Result<LocalHipsterAllData> {
+        return try {
+            val data = placeService.getLocalHipsterAllData()
+            if (data.isSuccessful) {
+                data.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Throwable(data.message()))
+            } else {
+                Result.failure(Throwable(data.message()))
+            }
+        } catch (e: Exception) {
+            Result.failure(Throwable(e.message))
+        }
+    }
+
+    override suspend fun getLocalHipsterDetailData(
+        userId: Int,
+        hipsterId: Int
+    ): Result<LocalHipsterDetailData> {
+        return try {
+            val data = placeService.getLocalHipsterDetailData(userId, hipsterId)
             if (data.isSuccessful) {
                 data.body()?.let {
                     Result.success(it)

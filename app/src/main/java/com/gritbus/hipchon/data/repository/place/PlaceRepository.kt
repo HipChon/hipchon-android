@@ -1,9 +1,6 @@
 package com.gritbus.hipchon.data.repository.place
 
-import com.gritbus.hipchon.data.model.place.PlaceDetailData
-import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllData
-import com.gritbus.hipchon.data.model.place.PlaceSearchAllData
-import com.gritbus.hipchon.data.model.place.PlaceSearchWithHashtagAllData
+import com.gritbus.hipchon.data.model.place.*
 
 interface PlaceRepository {
 
@@ -23,4 +20,8 @@ interface PlaceRepository {
     ): Result<PlaceSearchWithHashtagAllData>
 
     suspend fun getPlaceHipSearchAllData(userId: Int): Result<PlaceHipSearchAllData>
+
+    suspend fun getLocalHipsterAllData(): Result<LocalHipsterAllData>
+
+    suspend fun getLocalHipsterDetailData(userId: Int, hipsterId: Int): Result<LocalHipsterDetailData>
 }
