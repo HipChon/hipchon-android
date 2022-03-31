@@ -80,6 +80,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mb_onboarding_naver"
             style="@style/Gmarket.Weight500"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
