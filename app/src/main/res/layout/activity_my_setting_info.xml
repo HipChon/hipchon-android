@@ -9,9 +9,103 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/white"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".ui.my.view.MySettingInfoActivity">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mt_my_setting_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_chevron_left" />
+
+        <TextView
+            android:id="@+id/tv_my_setting_info_title"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="계정/정보 관리"
+            android:textSize="@dimen/text_size_20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mt_my_setting_info" />
+
+        <TextView
+            android:id="@+id/tv_my_setting_info_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="이메일"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintStart_toStartOf="@id/tv_my_setting_info_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_setting_info_title" />
+
+        <TextView
+            android:id="@+id/tv_my_setting_info_email_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:textColor="@color/gray04"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_setting_info_email"
+            app:layout_constraintStart_toEndOf="@id/tv_my_setting_info_email"
+            app:layout_constraintTop_toTopOf="@id/tv_my_setting_info_email" />
+
+        <TextView
+            android:id="@+id/tv_my_setting_info_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="21dp"
+            android:text="휴대폰 번호"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintStart_toStartOf="@id/tv_my_setting_info_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_setting_info_email" />
+
+        <TextView
+            android:id="@+id/tv_my_setting_info_phone_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:textColor="@color/gray04"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_setting_info_phone"
+            app:layout_constraintStart_toEndOf="@id/tv_my_setting_info_phone"
+            app:layout_constraintTop_toTopOf="@id/tv_my_setting_info_phone" />
+
+        <View
+            android:id="@+id/view_between_info_and_terms"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="35dp"
+            android:background="@color/gray02"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_setting_info_phone" />
+
+        <TextView
+            android:id="@+id/tv_my_setting_info_terms"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="35dp"
+            android:text="기타"
+            android:textSize="@dimen/text_size_20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_between_info_and_terms" />
+
+        <TextView
+            android:id="@+id/tv_my_setting_info_terms_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="서비스 이용약관"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintStart_toStartOf="@id/tv_my_setting_info_terms"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_setting_info_terms" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
