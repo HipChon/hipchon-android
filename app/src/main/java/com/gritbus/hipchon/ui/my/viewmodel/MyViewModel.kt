@@ -8,7 +8,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gritbus.hipchon.data.model.UserData
 import com.gritbus.hipchon.data.model.my.MyFeedAllDataItem
+import com.gritbus.hipchon.data.model.user.UserInfoData
 import com.gritbus.hipchon.data.repository.my.MyRepository
+import com.gritbus.hipchon.data.repository.user.UserRepository
 import com.gritbus.hipchon.ui.my.view.MyFragment.Companion.MY_COMMENT
 import com.gritbus.hipchon.ui.my.view.MyFragment.Companion.MY_FEED
 import com.gritbus.hipchon.ui.my.view.MyFragment.Companion.MY_LIKE_FEED
@@ -20,8 +22,12 @@ import javax.inject.Inject
 @HiltViewModel
 class MyViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
+    private val userRepository: UserRepository,
     private val myRepository: MyRepository
 ) : ViewModel() {
+
+    private val _myProfile = MutableLiveData<UserInfoData>()
+    val myProfile: LiveData<UserInfoData> = _myProfile
 
     private val _dataType = MutableLiveData<String>()
     val dataType: LiveData<String> = _dataType
@@ -50,6 +56,18 @@ class MyViewModel @Inject constructor(
             MY_COMMENT -> {
                 getMyCommentData()
             }
+        }
+    }
+
+    fun getMyProfile() {
+        viewModelScope.launch {
+            userRepository.getUserData(UserData.platform, UserData.userLoginId)
+                .onSuccess {
+                    _myProfile.value = it
+                }
+                .onFailure {
+                    Log.e(this.javaClass.name, it.message ?: "user profile error")
+                }
         }
     }
 

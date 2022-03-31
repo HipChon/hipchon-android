@@ -3,6 +3,7 @@ package com.gritbus.hipchon.ui.my.view
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MyReviewFragment :
     BaseViewUtil.BaseFragment<FragmentMyReviewBinding>(R.layout.fragment_my_review) {
 
-    private val viewModel: MyViewModel by viewModels()
+    private val viewModel: MyViewModel by activityViewModels()
     private lateinit var myReviewAdapter: Any
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
