@@ -1,6 +1,7 @@
 package com.gritbus.hipchon.ui.onboard.view
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -25,6 +26,7 @@ class OnboardingActivity :
     BaseViewUtil.BaseAppCompatActivity<ActivityOnboardingBinding>(R.layout.activity_onboarding) {
 
     private val viewModel: OnboardingViewModel by viewModels()
+    private val kakaoChannel = "https://pf.kakao.com/_xgHYNb"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,9 @@ class OnboardingActivity :
         }
         binding.mbOnboardingKakao.setOnClickListener {
             setKakaoLogin()
+        }
+        binding.tvOnboardingProblem.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(kakaoChannel)))
         }
     }
 

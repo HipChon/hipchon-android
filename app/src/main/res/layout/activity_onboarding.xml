@@ -120,5 +120,17 @@
             app:iconTint="#371D1E"
             app:layout_constraintBottom_toBottomOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_onboarding_problem"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="문제가 있으신가요?"
+            android:textColor="@color/gray02"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mb_onboarding_kakao" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
