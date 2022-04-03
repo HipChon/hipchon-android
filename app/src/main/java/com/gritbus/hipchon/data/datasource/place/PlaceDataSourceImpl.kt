@@ -1,7 +1,13 @@
 package com.gritbus.hipchon.data.datasource.place
 
 import com.gritbus.hipchon.data.api.place.PlaceService
-import com.gritbus.hipchon.data.model.place.*
+import com.gritbus.hipchon.data.model.place.LocalHipsterAllData
+import com.gritbus.hipchon.data.model.place.LocalHipsterDetailData
+import com.gritbus.hipchon.data.model.place.PlaceDetailData
+import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllData
+import com.gritbus.hipchon.data.model.place.PlaceSaveData
+import com.gritbus.hipchon.data.model.place.PlaceSearchAllData
+import com.gritbus.hipchon.data.model.place.PlaceSearchWithHashtagAllData
 import javax.inject.Inject
 
 class PlaceDataSourceImpl @Inject constructor(
@@ -98,6 +104,36 @@ class PlaceDataSourceImpl @Inject constructor(
     ): Result<LocalHipsterDetailData> {
         return try {
             val data = placeService.getLocalHipsterDetailData(userId, hipsterId)
+            if (data.isSuccessful) {
+                data.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Throwable(data.message()))
+            } else {
+                Result.failure(Throwable(data.message()))
+            }
+        } catch (e: Exception) {
+            Result.failure(Throwable(e.message))
+        }
+    }
+
+    override suspend fun savePlace(userId: Int, placeId: Int): Result<PlaceSaveData> {
+        return try {
+            val data = placeService.savePlace(userId, placeId)
+            if (data.isSuccessful) {
+                data.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Throwable(data.message()))
+            } else {
+                Result.failure(Throwable(data.message()))
+            }
+        } catch (e: Exception) {
+            Result.failure(Throwable(e.message))
+        }
+    }
+
+    override suspend fun deletePlace(userId: Int, placeId: Int): Result<Unit> {
+        return try {
+            val data = placeService.deletePlace(userId, placeId)
             if (data.isSuccessful) {
                 data.body()?.let {
                     Result.success(it)

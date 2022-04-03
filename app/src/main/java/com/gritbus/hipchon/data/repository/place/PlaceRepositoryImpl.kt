@@ -1,7 +1,13 @@
 package com.gritbus.hipchon.data.repository.place
 
 import com.gritbus.hipchon.data.datasource.place.PlaceDataSource
-import com.gritbus.hipchon.data.model.place.*
+import com.gritbus.hipchon.data.model.place.LocalHipsterAllData
+import com.gritbus.hipchon.data.model.place.LocalHipsterDetailData
+import com.gritbus.hipchon.data.model.place.PlaceDetailData
+import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllData
+import com.gritbus.hipchon.data.model.place.PlaceSaveData
+import com.gritbus.hipchon.data.model.place.PlaceSearchAllData
+import com.gritbus.hipchon.data.model.place.PlaceSearchWithHashtagAllData
 import javax.inject.Inject
 
 class PlaceRepositoryImpl @Inject constructor(
@@ -72,6 +78,26 @@ class PlaceRepositoryImpl @Inject constructor(
         hipsterId: Int
     ): Result<LocalHipsterDetailData> {
         val result = placeDataSource.getLocalHipsterDetailData(userId, hipsterId)
+
+        return if (result.exceptionOrNull() is Exception) {
+            Result.failure(result.exceptionOrNull() as Exception)
+        } else {
+            result
+        }
+    }
+
+    override suspend fun savePlace(userId: Int, placeId: Int): Result<PlaceSaveData> {
+        val result = placeDataSource.savePlace(userId, placeId)
+
+        return if (result.exceptionOrNull() is Exception) {
+            Result.failure(result.exceptionOrNull() as Exception)
+        } else {
+            result
+        }
+    }
+
+    override suspend fun deletePlace(userId: Int, placeId: Int): Result<Unit> {
+        val result = placeDataSource.deletePlace(userId, placeId)
 
         return if (result.exceptionOrNull() is Exception) {
             Result.failure(result.exceptionOrNull() as Exception)
