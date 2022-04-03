@@ -10,7 +10,9 @@ import com.bumptech.glide.Glide
 import com.gritbus.hipchon.databinding.ItemFeedImageBinding
 import com.gritbus.hipchon.utils.dpToPx
 
-class FeedThumbAdapter : ListAdapter<String, FeedThumbAdapter.FeedThumbViewHolder>(diffUtil) {
+class FeedThumbAdapter(
+    private val isDetail: Boolean
+) : ListAdapter<String, FeedThumbAdapter.FeedThumbViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedThumbViewHolder {
         return FeedThumbViewHolder(
@@ -21,14 +23,24 @@ class FeedThumbAdapter : ListAdapter<String, FeedThumbAdapter.FeedThumbViewHolde
     }
 
     override fun onBindViewHolder(holder: FeedThumbViewHolder, position: Int) {
-        holder.bind(currentList[position], position == currentList.lastIndex, currentList.size)
+        holder.bind(
+            currentList[position],
+            position == currentList.lastIndex,
+            currentList.size,
+            isDetail
+        )
     }
 
     class FeedThumbViewHolder(
         private val binding: ItemFeedImageBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(feedImageUrl: String, isLastItem: Boolean, totalImageSize: Int) {
+        fun bind(
+            feedImageUrl: String,
+            isLastItem: Boolean,
+            totalImageSize: Int,
+            isDetail: Boolean
+        ) {
             binding.root.requestLayout()
 
             Glide.with(binding.root.context)
@@ -42,10 +54,13 @@ class FeedThumbAdapter : ListAdapter<String, FeedThumbAdapter.FeedThumbViewHolde
                 binding.root.layoutParams.width =
                     (binding.root.context.resources.displayMetrics.widthPixels - horizontalPadding)
             } else {
-                binding.root.layoutParams.width =
+                binding.root.layoutParams.width = if (isDetail) {
+                    (binding.root.context.resources.displayMetrics.widthPixels - horizontalPadding - itemSpacing) / 4 * 3
+                } else {
                     (binding.root.context.resources.displayMetrics.widthPixels - horizontalPadding - itemSpacing) / 2
+                }
             }
-            if (isLastItem && (totalImageSize > 2)) {
+            if (isLastItem && (totalImageSize > 2) && !isDetail) {
                 binding.llFeedImageCover.visibility = View.VISIBLE
                 binding.tvFeedImageCount.text = totalImageSize.toString()
             } else {

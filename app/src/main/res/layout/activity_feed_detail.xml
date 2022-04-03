@@ -87,15 +87,17 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_feed_detail_review_count" />
 
-                <ImageView
-                    android:id="@+id/iv_feed_detail"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_feed_detail"
                     android:layout_width="match_parent"
                     android:layout_height="190dp"
-                    android:layout_marginHorizontal="@dimen/spacing_20"
                     android:layout_marginTop="@dimen/spacing_16"
-                    android:background="@color/gray04"
-                    app:layout_constraintTop_toBottomOf="@id/iv_feed_detail_profile" />
-
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/spacing_20"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/iv_feed_detail_profile"
+                    tools:listitem="@layout/item_feed_image" />
 
                 <TextView
                     android:id="@+id/tv_feed_detail_content"
@@ -106,7 +108,7 @@
                     android:text="탁 트인 뷰를 보며 간만에 힐링했습니다. 메뉴도 다양하고 모든 메뉴가 신선하고 맛있었습니다. 탁 트인 뷰를 보며 간만에 힐링했습니다. 메뉴도 다양하고 모든 메뉴가 신선하고 맛있었습니다. 탁 트인 뷰를 보며 간만에 힐링했습니다."
                     android:textColor="@color/gray06"
                     android:textSize="@dimen/text_size_16"
-                    app:layout_constraintTop_toBottomOf="@id/iv_feed_detail" />
+                    app:layout_constraintTop_toBottomOf="@id/rv_feed_detail" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_feed_detail_place"
@@ -132,7 +134,9 @@
 
                     <TextView
                         android:id="@+id/tv_feed_detail_place_address"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        app:layout_constraintEnd_toStartOf="@id/tv_feed_detail_place_save"
+                        android:layout_marginEnd="@dimen/spacing_20"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="17dp"
                         android:layout_marginTop="@dimen/spacing_4"

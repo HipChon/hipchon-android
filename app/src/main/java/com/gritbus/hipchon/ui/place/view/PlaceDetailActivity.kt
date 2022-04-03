@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.activity.viewModels
@@ -16,6 +17,8 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import com.gritbus.hipchon.R
+import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
+import com.gritbus.hipchon.data.model.feed.FeedPlaceItem
 import com.gritbus.hipchon.databinding.ActivityPlaceDetailBinding
 import com.gritbus.hipchon.databinding.ItemPlaceDetailKeywordBinding
 import com.gritbus.hipchon.domain.model.KeywordFacility
@@ -24,6 +27,7 @@ import com.gritbus.hipchon.domain.model.KeywordSatisfaction
 import com.gritbus.hipchon.ui.feed.adapter.FeedAdapter
 import com.gritbus.hipchon.ui.feed.view.FeedCreateActivity
 import com.gritbus.hipchon.ui.feed.view.FeedDetailActivity
+import com.gritbus.hipchon.ui.feed.view.FeedFragment.Companion.FEED_DETAIL_DATA
 import com.gritbus.hipchon.ui.place.adapter.PlaceDetailThumbAdapter
 import com.gritbus.hipchon.ui.place.adapter.PlaceMenuAdapter
 import com.gritbus.hipchon.ui.place.viewmodel.PlaceDetailViewModel
@@ -74,13 +78,23 @@ class PlaceDetailActivity :
     }
 
     private fun setReviewAdapter() {
-        reviewAdapter = FeedAdapter(true, ::moveToFeedDetail)
+        reviewAdapter = FeedAdapter(true, ::moveToFeedDetail, ::moveToPlaceDetail, ::savePlace)
         binding.rvPlaceDetailReview.adapter = reviewAdapter
         binding.rvPlaceDetailReview.addItemDecoration(ItemDecorationWithStroke(false))
     }
 
-    private fun moveToFeedDetail() {
-        startActivity(Intent(baseContext, FeedDetailActivity::class.java))
+    private fun moveToFeedDetail(feedData: FeedAllDataItem) {
+        startActivity(Intent(baseContext, FeedDetailActivity::class.java).apply {
+            putExtra(FEED_DETAIL_DATA, feedData)
+        })
+    }
+
+    private fun moveToPlaceDetail(placeId: Int) {
+        Log.e(this.javaClass.name, "제공하지 않는 기능")
+    }
+
+    private fun savePlace(placeData: FeedPlaceItem) {
+        Log.e(this.javaClass.name, "제공하지 않는 기능")
     }
 
     private fun initData() {

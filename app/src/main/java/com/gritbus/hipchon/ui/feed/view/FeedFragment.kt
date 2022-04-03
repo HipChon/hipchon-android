@@ -6,9 +6,13 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import com.gritbus.hipchon.R
+import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
+import com.gritbus.hipchon.data.model.feed.FeedPlaceItem
 import com.gritbus.hipchon.databinding.FragmentReviewBinding
 import com.gritbus.hipchon.ui.feed.adapter.FeedAdapter
 import com.gritbus.hipchon.ui.feed.viewmodel.FeedViewModel
+import com.gritbus.hipchon.ui.place.view.PlaceDetailActivity
+import com.gritbus.hipchon.ui.place.view.PlaceResultActivity
 import com.gritbus.hipchon.utils.BaseViewUtil
 import com.gritbus.hipchon.utils.ItemDecorationWithStroke
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,21 +36,30 @@ class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.f
     }
 
     private fun setAdapter() {
-        feedAdapter = FeedAdapter(false, ::moveToFeedDetail)
+        feedAdapter = FeedAdapter(false, ::moveToFeedDetail, ::moveToPlaceDetail, ::savePlace)
         binding.rvReview.adapter = feedAdapter
         binding.rvReview.addItemDecoration(ItemDecorationWithStroke(false))
     }
 
-    private fun moveToFeedDetail() {
-        startActivity(Intent(requireContext(), FeedDetailActivity::class.java))
+    private fun moveToFeedDetail(feedData: FeedAllDataItem) {
+        startActivity(Intent(requireContext(), FeedDetailActivity::class.java).apply {
+            putExtra(FEED_DETAIL_DATA, feedData)
+        })
+    }
+
+    private fun moveToPlaceDetail(placeId: Int) {
+        startActivity(Intent(requireContext(), PlaceDetailActivity::class.java).apply {
+            putExtra(PlaceResultActivity.PLACE_ID, placeId)
+        })
+    }
+
+    private fun savePlace(placeData: FeedPlaceItem) {
+        viewModel.savePlace(placeData)
     }
 
     private fun setObserver() {
         viewModel.reviewAllData.observe(viewLifecycleOwner) {
             feedAdapter.submitList(it)
-            binding.rvReview.postDelayed ({
-                binding.rvReview.scrollToPosition(0)
-            }, 200)
         }
         viewModel.reviewOrderType.observe(viewLifecycleOwner) {
             viewModel.initData()
@@ -77,5 +90,6 @@ class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.f
 
     companion object {
         const val FEED_ORDER_TYPE = "com.gritbus.hipchon.ui.feed.view FEED_ORDER_TYPE"
+        const val FEED_DETAIL_DATA = "com.gritbus.hipchon.ui.feed.view FEED_DETAIL_DATA"
     }
 }

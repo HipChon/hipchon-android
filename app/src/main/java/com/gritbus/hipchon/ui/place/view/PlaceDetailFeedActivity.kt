@@ -2,12 +2,16 @@ package com.gritbus.hipchon.ui.place.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import com.gritbus.hipchon.R
+import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
+import com.gritbus.hipchon.data.model.feed.FeedPlaceItem
 import com.gritbus.hipchon.databinding.ActivityPlaceDetailFeedBinding
 import com.gritbus.hipchon.ui.feed.adapter.FeedAdapter
 import com.gritbus.hipchon.ui.feed.view.FeedCreateActivity
 import com.gritbus.hipchon.ui.feed.view.FeedDetailActivity
+import com.gritbus.hipchon.ui.feed.view.FeedFragment
 import com.gritbus.hipchon.ui.place.viewmodel.PlaceDetailFeedViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
 import com.gritbus.hipchon.utils.ItemDecorationWithStroke
@@ -33,13 +37,23 @@ class PlaceDetailFeedActivity :
     }
 
     private fun setAdapter() {
-        feedAdapter = FeedAdapter(true, ::moveToFeedDetail)
+        feedAdapter = FeedAdapter(true, ::moveToFeedDetail, ::moveToPlaceDetail, ::savePlace)
         binding.rvPlaceDetailFeed.adapter = feedAdapter
         binding.rvPlaceDetailFeed.addItemDecoration(ItemDecorationWithStroke(false))
     }
 
-    private fun moveToFeedDetail() {
-        startActivity(Intent(baseContext, FeedDetailActivity::class.java))
+    private fun moveToFeedDetail(feedData: FeedAllDataItem) {
+        startActivity(Intent(baseContext, FeedDetailActivity::class.java).apply {
+            putExtra(FeedFragment.FEED_DETAIL_DATA, feedData)
+        })
+    }
+
+    private fun moveToPlaceDetail(placeId: Int) {
+        Log.e(this.javaClass.name, "제공하지 않는 기능")
+    }
+
+    private fun savePlace(placeData: FeedPlaceItem) {
+        Log.e(this.javaClass.name, "제공하지 않는 기능")
     }
 
     private fun setOnClickListener() {
