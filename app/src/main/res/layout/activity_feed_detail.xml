@@ -135,16 +135,16 @@
                     <TextView
                         android:id="@+id/tv_feed_detail_place_address"
                         android:layout_width="0dp"
-                        app:layout_constraintEnd_toStartOf="@id/tv_feed_detail_place_save"
-                        android:layout_marginEnd="@dimen/spacing_20"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="17dp"
                         android:layout_marginTop="@dimen/spacing_4"
+                        android:layout_marginEnd="@dimen/spacing_20"
                         android:layout_marginBottom="10dp"
                         android:text="카페 • 경기 고양시 일산동구"
                         android:textColor="@color/gray04"
                         android:textSize="@dimen/text_size_12"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tv_feed_detail_place_save"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_feed_detail_place_title" />
 
@@ -280,34 +280,45 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/et_feed_comment_input"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="17dp"
                 android:layout_marginStart="11dp"
                 android:layout_marginEnd="17dp"
                 android:background="@drawable/bg_rectangle_radius_25"
-                android:hint="@string/feed_comment_input"
                 android:paddingHorizontal="17dp"
                 android:paddingVertical="18dp"
-                android:textColorHint="@color/gray_comment_input_hint"
-                android:textSize="@dimen/text_size_14"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/iv_feed_comment_input_profile"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tv_feed_detail_comment_input"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="18dp"
-                android:text="@string/feed_comment_register"
-                android:textColor="@color/primary_green"
-                app:layout_constraintBottom_toBottomOf="@id/et_feed_comment_input"
-                app:layout_constraintEnd_toEndOf="@id/et_feed_comment_input"
-                app:layout_constraintTop_toTopOf="@id/et_feed_comment_input" />
+                <EditText
+                    android:id="@+id/et_feed_comment_input"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:layout_marginEnd="17dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_feed_detail_comment_input"
+                    android:hint="@string/feed_comment_input"
+                    android:textColorHint="@color/gray_comment_input_hint"
+                    android:textSize="@dimen/text_size_14" />
+
+                <TextView
+                    android:id="@+id/tv_feed_detail_comment_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/feed_comment_register"
+                    android:textColor="@color/primary_green" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

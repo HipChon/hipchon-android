@@ -2,8 +2,8 @@ package com.gritbus.hipchon.data.datasource.feed
 
 import com.gritbus.hipchon.data.api.feed.FeedService
 import com.gritbus.hipchon.data.model.feed.FeedAllData
+import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
 import com.gritbus.hipchon.data.model.feed.FeedBestAllData
-import com.gritbus.hipchon.data.model.feed.FeedDetailData
 import com.gritbus.hipchon.data.model.feed.FeedWithPlaceAllData
 import javax.inject.Inject
 
@@ -26,7 +26,7 @@ class FeedDataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun getFeedDetailData(userId: Int, postId: Int): Result<FeedDetailData> {
+    override suspend fun getFeedDetailData(userId: Int, postId: Int): Result<FeedAllDataItem> {
         return try {
             val data = feedService.getFeedDetailData(userId, postId)
             if (data.isSuccessful) {

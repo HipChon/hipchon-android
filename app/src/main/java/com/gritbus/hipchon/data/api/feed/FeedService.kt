@@ -1,8 +1,8 @@
 package com.gritbus.hipchon.data.api.feed
 
 import com.gritbus.hipchon.data.model.feed.FeedAllData
+import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
 import com.gritbus.hipchon.data.model.feed.FeedBestAllData
-import com.gritbus.hipchon.data.model.feed.FeedDetailData
 import com.gritbus.hipchon.data.model.feed.FeedWithPlaceAllData
 import retrofit2.Response
 import retrofit2.http.DELETE
@@ -22,7 +22,7 @@ interface FeedService {
     suspend fun getFeedDetailData(
         @Path("user_id") userId: Int,
         @Path("post_id") postId: Int
-    ): Response<FeedDetailData>
+    ): Response<FeedAllDataItem>
 
     @GET("post/best")
     suspend fun getFeedBestAllData(): Response<FeedBestAllData>

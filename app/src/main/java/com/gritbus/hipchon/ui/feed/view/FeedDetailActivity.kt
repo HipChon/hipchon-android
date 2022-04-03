@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
+import com.gritbus.hipchon.data.model.user.UserInfoData
 import com.gritbus.hipchon.databinding.ActivityFeedDetailBinding
 import com.gritbus.hipchon.ui.feed.adapter.CommentAdapter
 import com.gritbus.hipchon.ui.feed.adapter.FeedThumbAdapter
@@ -36,6 +37,7 @@ class FeedDetailActivity :
         setObserver()
         setOnClickListener()
         viewModel.getCommentAll()
+        viewModel.getUserInfo()
     }
 
     private fun setAdapter() {
@@ -53,6 +55,10 @@ class FeedDetailActivity :
         }
         viewModel.commentAllData.observe(this) {
             commentAdapter.submitList(it)
+            binding.etFeedCommentInput.setText("")
+        }
+        viewModel.userInfo.observe(this) {
+            setUserView(it)
         }
     }
 
@@ -120,5 +126,17 @@ class FeedDetailActivity :
             val shareIntent = Intent.createChooser(sendIntent, null)
             ContextCompat.startActivity(binding.root.context, shareIntent, null)
         }
+        binding.tvFeedDetailCommentInput.setOnClickListener {
+            binding.etFeedCommentInput.text.toString()?.let {
+                if (it.isNotEmpty()) viewModel.sendComment(it)
+            }
+        }
+    }
+
+    private fun setUserView(userData: UserInfoData) {
+        Glide.with(baseContext)
+            .load(userData.image)
+            .error(R.drawable.ic_profile_default_gray)
+            .into(binding.ivFeedCommentInputProfile)
     }
 }

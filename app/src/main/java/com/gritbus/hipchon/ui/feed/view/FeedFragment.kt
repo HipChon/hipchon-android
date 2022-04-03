@@ -32,6 +32,10 @@ class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.f
         setAdapter()
         setObserver()
         setOnClickListener()
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.initData()
     }
 
