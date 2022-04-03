@@ -52,6 +52,7 @@ class LocalHipsterPickActivity :
         localHipsterAdapter =
             LocalHipsterAdapter(
                 ::placeClickListener,
+                ::saveClickListener,
                 supportFragmentManager,
                 lifecycle
             )
@@ -63,6 +64,10 @@ class LocalHipsterPickActivity :
         startActivity(Intent(baseContext, PlaceDetailActivity::class.java).apply {
             putExtra(PLACE_ID, placeId)
         })
+    }
+
+    private fun saveClickListener(place: LocalHipsterPlace) {
+        viewModel.savePlace(place)
     }
 
     private fun setOnClickListener() {

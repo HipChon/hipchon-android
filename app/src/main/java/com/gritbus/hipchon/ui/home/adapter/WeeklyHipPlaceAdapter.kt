@@ -79,6 +79,10 @@ class WeeklyHipPlaceAdapter(
                 true -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save_filled)
                 false -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save)
             }
+            binding.ivHomeWeeklyHipPlaceSave.backgroundTintList =when (weeklyHipPlaceData.isMyplace) {
+                true -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.primary_green))
+                false -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.black))
+            }
             binding.tvHomeWeeklyHipPlaceSaveCount.text = weeklyHipPlaceData.myplaceCnt.toString()
             binding.tvHomeWeeklyHipPlaceFeedCount.text = weeklyHipPlaceData.postCnt.toString()
             Glide.with(binding.root.context)

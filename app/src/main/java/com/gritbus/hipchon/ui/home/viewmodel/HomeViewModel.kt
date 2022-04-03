@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(
     val weeklyHipPlaceAllData: LiveData<List<PlaceHipSearchAllDataItem>> = _weeklyHipPlaceAllData
 
     fun getLocalHipsterAllData() {
-        viewModelScope.launch { 
+        viewModelScope.launch {
             placeRepository.getLocalHipsterAllData()
                 .onSuccess {
                     _localHipsterAllData.value = it
@@ -66,15 +66,29 @@ class HomeViewModel @Inject constructor(
     }
 
     fun updateSave(selectedPlaceData: PlaceHipSearchAllDataItem) {
-        _weeklyHipPlaceAllData.value = _weeklyHipPlaceAllData.value?.map {
-            if (it.placeId == selectedPlaceData.placeId) {
-                it.copy(isMyplace = !it.isMyplace)
-            } else {
-                it
+        val isCurrentSaveState = selectedPlaceData.isMyplace
+        viewModelScope.launch {
+            when (isCurrentSaveState) {
+                true -> {
+                    placeRepository.deletePlace(UserData.userId, selectedPlaceData.placeId)
+                        .onSuccess {
+                            getWeeklyHipPlaceAllData()
+                        }
+                        .onFailure {
+                            Log.e(this.javaClass.name, it.message ?: "hip place delete error")
+                        }
+                }
+                false -> {
+                    placeRepository.savePlace(UserData.userId, selectedPlaceData.placeId)
+                        .onSuccess {
+                            getWeeklyHipPlaceAllData()
+                        }
+                        .onFailure {
+                            Log.e(this.javaClass.name, it.message ?: "hip place save error")
+                        }
+                }
             }
         }
-        // TODO 서버에 SAVE 업데이트
-        // getWeeklyHipPlaceAllData()
     }
 
     // 서버 연결시 FAKE 데이터 삭제

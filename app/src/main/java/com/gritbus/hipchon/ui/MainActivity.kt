@@ -17,11 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity :
     BaseViewUtil.BaseAppCompatActivity<ActivityMainBinding>(R.layout.activity_main) {
 
-    private val homeFragment: HomeFragment by lazy { HomeFragment() }
-    private val feedFragment: FeedFragment by lazy { FeedFragment() }
-    private val saveFragment: SaveFragment by lazy { SaveFragment() }
-    private val myFragment: MyFragment by lazy { MyFragment() }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
@@ -37,19 +32,19 @@ class MainActivity :
         binding.bnvMain.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.bottom_nav_home -> {
-                    replaceFragment(binding.fcvMain.id, homeFragment)
+                    replaceFragment(binding.fcvMain.id, HomeFragment())
                     true
                 }
                 R.id.bottom_nav_feed -> {
-                    replaceFragment(binding.fcvMain.id, feedFragment)
+                    replaceFragment(binding.fcvMain.id, FeedFragment())
                     true
                 }
                 R.id.bottom_nav_save -> {
-                    replaceFragment(binding.fcvMain.id, saveFragment)
+                    replaceFragment(binding.fcvMain.id, SaveFragment())
                     true
                 }
                 R.id.bottom_nav_my -> {
-                    replaceFragment(binding.fcvMain.id, myFragment)
+                    replaceFragment(binding.fcvMain.id, MyFragment())
                     true
                 }
                 else -> {
@@ -60,7 +55,7 @@ class MainActivity :
     }
 
     private fun initHomeFragment() {
-        replaceFragment(binding.fcvMain.id, homeFragment)
+        replaceFragment(binding.fcvMain.id, HomeFragment())
     }
 
     fun addFragment(fragment: Fragment){

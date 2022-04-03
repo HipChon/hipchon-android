@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gritbus.hipchon.data.model.UserData
 import com.gritbus.hipchon.data.model.my.MyPlaceAllDataItem
 import com.gritbus.hipchon.data.repository.my.MyRepository
 import com.gritbus.hipchon.ui.save.view.SavePlaceFragment.Companion.CATEGORY_TITLE
@@ -32,7 +33,7 @@ class SaveViewModel @Inject constructor(
 
     fun getMySavePlace(){
         viewModelScope.launch {
-            myRepository.getMyPlace(5)
+            myRepository.getMyPlace(UserData.userId)
                 .onSuccess { placeData ->
                     _savePlaceAllData.value = when(category){
                         "전체" -> placeData

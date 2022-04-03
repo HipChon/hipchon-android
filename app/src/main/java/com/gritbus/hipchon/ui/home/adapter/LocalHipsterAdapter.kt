@@ -1,20 +1,25 @@
 package com.gritbus.hipchon.ui.home.adapter
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.gritbus.hipchon.R
+import com.gritbus.hipchon.data.model.place.LocalHipsterPlace
 import com.gritbus.hipchon.data.model.place.LocalHipsterPost
 import com.gritbus.hipchon.databinding.ItemLocalHipsterPickBinding
 import com.gritbus.hipchon.databinding.ItemLocalHipsterPickHeaderBinding
 
 class LocalHipsterAdapter(
     private val clickListener: (Int) -> (Unit),
+    private val saveClickListener: (LocalHipsterPlace) -> Unit,
     private val fragmentManager: FragmentManager,
     private val lifecycle: Lifecycle
 ) : ListAdapter<LocalHipsterPost, RecyclerView.ViewHolder>(diffUtil) {
@@ -50,6 +55,7 @@ class LocalHipsterAdapter(
             is LocalHipsterViewHolder -> holder.bind(
                 currentList[position],
                 clickListener,
+                saveClickListener,
                 fragmentManager,
                 lifecycle
             )
@@ -80,6 +86,7 @@ class LocalHipsterAdapter(
         fun bind(
             localHipsterPost: LocalHipsterPost,
             clickListener: (Int) -> (Unit),
+            saveClickListener: (LocalHipsterPlace) -> (Unit),
             fragmentManager: FragmentManager,
             lifecycle: Lifecycle
         ) {
@@ -94,8 +101,21 @@ class LocalHipsterAdapter(
             binding.tvLocalHipsterPickPlaceTitle.text = localHipsterPost.place.name
             binding.tvLocalHipsterPickPlaceAddress.text =
                 "${localHipsterPost.place.category} • ${localHipsterPost.place.address}"
+
+            binding.ivLocalHipsterPickPlaceSave.background = when (localHipsterPost.place.isMyplace) {
+                true -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save_filled)
+                false -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save)
+            }
+            binding.ivLocalHipsterPickPlaceSave.backgroundTintList =when (localHipsterPost.place.isMyplace) {
+                true -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.primary_green))
+                false -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.black))
+            }
+
             binding.clLocalHipsterPickPlace.setOnClickListener {
                 clickListener(localHipsterPost.place.placeId)
+            }
+            binding.ivLocalHipsterPickPlaceSave.setOnClickListener {
+                saveClickListener(localHipsterPost.place)
             }
             binding.ivLocalHipsterPickPlaceShare.setOnClickListener {
                 val sendIntent: Intent = Intent().apply {

@@ -4,7 +4,6 @@ import com.gritbus.hipchon.data.model.place.LocalHipsterAllData
 import com.gritbus.hipchon.data.model.place.LocalHipsterDetailData
 import com.gritbus.hipchon.data.model.place.PlaceDetailData
 import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllData
-import com.gritbus.hipchon.data.model.place.PlaceSaveData
 import com.gritbus.hipchon.data.model.place.PlaceSearchAllData
 import com.gritbus.hipchon.data.model.place.PlaceSearchWithHashtagAllData
 import retrofit2.Response
@@ -54,7 +53,7 @@ interface PlaceService {
     suspend fun savePlace(
         @Path("user_id") userId: Int,
         @Path("place_id") placeId: Int
-    ): Response<PlaceSaveData>
+    ): Response<Int>
 
     @DELETE("myplace/{user_id}/{place_id}")
     suspend fun deletePlace(

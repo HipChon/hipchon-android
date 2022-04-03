@@ -56,6 +56,7 @@ class PlaceDetailViewModel @Inject constructor(
                 .onSuccess {
                     _thumbImages.value = it.imageList
                     _placeData.value = it
+                    _isSave.value = it.isMyplace
                     _keyword.value = it.keywordList
                 }
                 .onFailure {
@@ -75,7 +76,29 @@ class PlaceDetailViewModel @Inject constructor(
     }
 
     fun setSave() {
-        _isSave.value = _isSave.value?.let { !it }
+        val isCurrentSaveState = _isSave.value ?: return
+        viewModelScope.launch {
+            when(isCurrentSaveState){
+                true -> {
+                    placeRepository.deletePlace(UserData.userId, placeId)
+                        .onSuccess {
+                            _isSave.value = false
+                        }
+                        .onFailure {
+                            Log.e(this.javaClass.name, it.message ?: "place delete error")
+                        }
+                }
+                false -> {
+                    placeRepository.savePlace(UserData.userId, placeId)
+                        .onSuccess {
+                            _isSave.value = true
+                        }
+                        .onFailure {
+                            Log.e(this.javaClass.name, it.message ?: "place save error")
+                        }
+                }
+            }
+        }
     }
 
     fun getReviewPlaceId(): Int {
