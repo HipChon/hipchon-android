@@ -29,6 +29,10 @@ class SavePlaceFragment : BaseViewUtil.BaseFragment<FragmentSavePlaceBinding>(R.
     override fun initView() {
         setAdapter()
         setObserver()
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.getMySavePlace()
     }
 

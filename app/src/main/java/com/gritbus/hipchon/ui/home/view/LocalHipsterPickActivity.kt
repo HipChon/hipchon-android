@@ -31,6 +31,10 @@ class LocalHipsterPickActivity :
         setAdapter()
         setOnClickListener()
         setObserver()
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.getLocalHipsterData()
     }
 
