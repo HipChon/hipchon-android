@@ -11,7 +11,7 @@ data class FeedAllDataItem(
     val likeCnt: Int,
     val place: FeedPlaceItem,
     val postId: Int,
-    val postTime: List<String>,
+    val time: String,
     val user: FeedUserItem
 ) : Serializable
 
@@ -25,8 +25,8 @@ data class FeedPlaceItem(
 ) : Serializable
 
 data class FeedUserItem(
+    val image: String,
+    val name: String,
     val userId: Int,
-    val userImage: String,
-    val userName: String,
-    val userPostCnt: Int
+    val postCnt: Int
 ) : Serializable
