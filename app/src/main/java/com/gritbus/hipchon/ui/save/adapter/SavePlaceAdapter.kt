@@ -12,8 +12,9 @@ import com.gritbus.hipchon.R
 import com.gritbus.hipchon.data.model.my.MyPlaceAllDataItem
 import com.gritbus.hipchon.databinding.ItemSavePlaceBinding
 
-class SavePlaceAdapter :
-    ListAdapter<MyPlaceAllDataItem, SavePlaceAdapter.SavePlaceViewHolder>(diffUtil) {
+class SavePlaceAdapter(
+   private val clickListener: (Int) -> Unit
+) : ListAdapter<MyPlaceAllDataItem, SavePlaceAdapter.SavePlaceViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavePlaceViewHolder {
         return SavePlaceViewHolder(
@@ -24,7 +25,7 @@ class SavePlaceAdapter :
     }
 
     override fun onBindViewHolder(holder: SavePlaceViewHolder, position: Int) {
-        holder.bind(currentList[position])
+        holder.bind(currentList[position], clickListener)
     }
 
     class SavePlaceViewHolder(
@@ -33,7 +34,10 @@ class SavePlaceAdapter :
 
         private var isOpenAddress = false
 
-        fun bind(myPlaceAllDataItem: MyPlaceAllDataItem) {
+        fun bind(myPlaceAllDataItem: MyPlaceAllDataItem, clickListener: (Int) -> (Unit)) {
+            binding.root.setOnClickListener {
+                clickListener(myPlaceAllDataItem.placeId)
+            }
             binding.tvSavePlaceTitle.text = myPlaceAllDataItem.name
             binding.tvSavePlaceType.text = myPlaceAllDataItem.category
             binding.tvSavePlaceAddress.text = myPlaceAllDataItem.address

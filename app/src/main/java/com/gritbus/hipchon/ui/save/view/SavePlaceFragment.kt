@@ -1,11 +1,14 @@
 package com.gritbus.hipchon.ui.save.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentSavePlaceBinding
+import com.gritbus.hipchon.ui.place.view.PlaceDetailActivity
+import com.gritbus.hipchon.ui.place.view.PlaceResultActivity
 import com.gritbus.hipchon.ui.save.adapter.SavePlaceAdapter
 import com.gritbus.hipchon.ui.save.viewmodel.SaveViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
@@ -30,9 +33,15 @@ class SavePlaceFragment : BaseViewUtil.BaseFragment<FragmentSavePlaceBinding>(R.
     }
 
     private fun setAdapter() {
-        savePlaceAdapter = SavePlaceAdapter()
+        savePlaceAdapter = SavePlaceAdapter(::clickListener)
         binding.rvSavePlace.adapter = savePlaceAdapter
         binding.rvSavePlace.addItemDecoration(ItemDecorationWithStroke(false))
+    }
+
+    private fun clickListener(placeId: Int) {
+        startActivity(Intent(requireContext(), PlaceDetailActivity::class.java).apply {
+            putExtra(PlaceResultActivity.PLACE_ID, placeId)
+        })
     }
 
     private fun setObserver() {
