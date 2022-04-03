@@ -7,9 +7,12 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gritbus.hipchon.data.model.UserData
+import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
 import com.gritbus.hipchon.data.model.my.MyCommentAllDataItem
 import com.gritbus.hipchon.data.model.my.MyFeedAllDataItem
 import com.gritbus.hipchon.data.model.user.UserInfoData
+import com.gritbus.hipchon.data.repository.feed.CommentRepository
+import com.gritbus.hipchon.data.repository.feed.FeedRepository
 import com.gritbus.hipchon.data.repository.my.MyRepository
 import com.gritbus.hipchon.data.repository.user.UserRepository
 import com.gritbus.hipchon.ui.my.view.MyFragment.Companion.MY_COMMENT
@@ -23,7 +26,9 @@ import javax.inject.Inject
 class MyViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val userRepository: UserRepository,
-    private val myRepository: MyRepository
+    private val myRepository: MyRepository,
+    private val feedRepository: FeedRepository,
+    private val commentRepository: CommentRepository
 ) : ViewModel() {
 
     private val _myProfile = MutableLiveData<UserInfoData>()
@@ -34,6 +39,12 @@ class MyViewModel @Inject constructor(
 
     private val _myCommentAllData = MutableLiveData<List<MyCommentAllDataItem>>()
     val myCommentAllData: LiveData<List<MyCommentAllDataItem>> = _myCommentAllData
+
+    private val _postDetailData = MutableLiveData<FeedAllDataItem>()
+    val postDetailData: LiveData<FeedAllDataItem> = _postDetailData
+
+    private val _commentDeleteSuccess = MutableLiveData<Boolean?>()
+    val commentDeleteSuccess: LiveData<Boolean?> = _commentDeleteSuccess
 
     fun getMyData(type: String) {
         when (type) {
@@ -95,5 +106,36 @@ class MyViewModel @Inject constructor(
                     Log.e(this.javaClass.name, it.message ?: "my comment error")
                 }
         }
+    }
+
+    fun getPostDetail(postId: Int) {
+        viewModelScope.launch {
+            feedRepository.getFeedDetailData(UserData.userId, postId)
+                .onSuccess {
+                    _postDetailData.value = it
+                }
+                .onFailure {
+                    Log.e(this.javaClass.name, it.message ?: "my comment error")
+                }
+        }
+    }
+
+    fun deleteComment(commentId: Int) {
+        _commentDeleteSuccess.value = null
+        viewModelScope.launch {
+            commentRepository.deleteComment(commentId)
+                .onSuccess {
+                    _commentDeleteSuccess.value = true
+                    getMyCommentData()
+                }
+                .onFailure {
+                    _commentDeleteSuccess.value = false
+                    Log.e(this.javaClass.name, it.message ?: "my comment error")
+                }
+        }
+    }
+
+    fun resetDeleteStatus() {
+        _commentDeleteSuccess.value = null
     }
 }

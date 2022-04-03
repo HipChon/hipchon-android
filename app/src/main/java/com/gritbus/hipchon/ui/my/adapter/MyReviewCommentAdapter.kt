@@ -9,8 +9,10 @@ import com.bumptech.glide.Glide
 import com.gritbus.hipchon.data.model.my.MyCommentAllDataItem
 import com.gritbus.hipchon.databinding.ItemMyReviewCommentBinding
 
-class MyReviewCommentAdapter :
-    ListAdapter<MyCommentAllDataItem, MyReviewCommentAdapter.MyReviewCommentViewHolder>(diffUtil) {
+class MyReviewCommentAdapter(
+    private val clickListener: (Int) -> (Unit),
+    private val deleteClickListener: (Int) -> Unit
+) : ListAdapter<MyCommentAllDataItem, MyReviewCommentAdapter.MyReviewCommentViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyReviewCommentViewHolder {
         return MyReviewCommentViewHolder(
@@ -21,19 +23,31 @@ class MyReviewCommentAdapter :
     }
 
     override fun onBindViewHolder(holder: MyReviewCommentViewHolder, position: Int) {
-        holder.bind(currentList[position])
+        holder.bind(currentList[position], clickListener, deleteClickListener)
     }
 
     class MyReviewCommentViewHolder(
         private val binding: ItemMyReviewCommentBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(myCommentAllDataItem: MyCommentAllDataItem) {
+        fun bind(
+            myCommentAllDataItem: MyCommentAllDataItem,
+            clickListener: (Int) -> (Unit),
+            deleteClickListener: (Int) -> (Unit)
+        ) {
+            binding.root.setOnClickListener {
+                clickListener(myCommentAllDataItem.post.postId)
+            }
+            binding.ivMyReviewCommentDelete.setOnClickListener {
+                deleteClickListener(myCommentAllDataItem.commentId)
+            }
+
             Glide.with(binding.root.context)
                 .load(myCommentAllDataItem.post.image)
                 .into(binding.ivMyReviewCommentThumb)
             binding.tvMyReviewComment.text = myCommentAllDataItem.detail
             binding.tvMyReviewCommentDate.text = myCommentAllDataItem.time
+
             binding.executePendingBindings()
         }
     }
