@@ -56,18 +56,18 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_home_place_title">
 
                 <ImageView
-                    android:id="@+id/iv_home_weekly_hip_place_keyword"
+                    android:id="@+id/iv_home_place_keyword"
                     android:layout_width="@dimen/spacing_12"
                     android:layout_height="18dp"
-                    android:background="@drawable/ic_water" />
+                    android:src="@drawable/ic_water" />
 
                 <TextView
-                    android:id="@+id/tv_home_weekly_hip_place_keyword"
+                    android:id="@+id/tv_home_place_keyword"
                     style="@style/Gmarket.Weight500"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_8"
-                    android:text="주차하기 용이해요"
+                    android:text="업데이트 중이에요"
                     android:textSize="@dimen/text_size_12" />
             </LinearLayout>
 
@@ -76,8 +76,8 @@
                 android:layout_width="19dp"
                 android:layout_height="20dp"
                 android:layout_marginEnd="@dimen/spacing_12"
-                android:background="@drawable/ic_feed"
-                android:backgroundTint="@color/black"
+                android:background="@drawable/ic_feed_filled"
+                android:backgroundTint="@color/gray03"
                 app:layout_constraintBottom_toBottomOf="@id/tv_home_place_save_count"
                 app:layout_constraintEnd_toStartOf="@id/tv_home_place_feed_count"
                 app:layout_constraintTop_toTopOf="@id/tv_home_place_save_count" />
@@ -99,8 +99,8 @@
                 android:layout_width="16dp"
                 android:layout_height="19dp"
                 android:layout_marginEnd="14dp"
-                android:background="@drawable/ic_save"
-                android:backgroundTint="@color/black"
+                android:background="@drawable/ic_save_filled"
+                android:backgroundTint="@color/gray03"
                 app:layout_constraintBottom_toBottomOf="@id/tv_home_place_save_count"
                 app:layout_constraintEnd_toStartOf="@id/tv_home_place_save_count"
                 app:layout_constraintTop_toTopOf="@id/tv_home_place_save_count" />
