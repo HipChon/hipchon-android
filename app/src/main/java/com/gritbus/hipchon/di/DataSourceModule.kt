@@ -1,10 +1,13 @@
 package com.gritbus.hipchon.di
 
 import android.content.Context
+import com.gritbus.hipchon.data.api.feed.CommentService
 import com.gritbus.hipchon.data.api.feed.FeedService
 import com.gritbus.hipchon.data.api.my.MyService
 import com.gritbus.hipchon.data.api.place.PlaceService
 import com.gritbus.hipchon.data.api.user.UserService
+import com.gritbus.hipchon.data.datasource.feed.CommentDataSource
+import com.gritbus.hipchon.data.datasource.feed.CommentDatasourceImpl
 import com.gritbus.hipchon.data.datasource.feed.FeedDataSource
 import com.gritbus.hipchon.data.datasource.feed.FeedDataSourceImpl
 import com.gritbus.hipchon.data.datasource.my.MyDataSource
@@ -35,6 +38,12 @@ object DataSourceModule {
     @Singleton
     fun provideFeedDataSource(feedService: FeedService): FeedDataSource {
         return FeedDataSourceImpl(feedService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommentDataSource(commentService: CommentService): CommentDataSource {
+        return CommentDatasourceImpl(commentService)
     }
 
     @Provides

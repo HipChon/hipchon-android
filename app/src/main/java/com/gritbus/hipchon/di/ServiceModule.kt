@@ -1,5 +1,6 @@
 package com.gritbus.hipchon.di
 
+import com.gritbus.hipchon.data.api.feed.CommentService
 import com.gritbus.hipchon.data.api.feed.FeedService
 import com.gritbus.hipchon.data.api.my.MyService
 import com.gritbus.hipchon.data.api.place.PlaceService
@@ -25,6 +26,12 @@ object ServiceModule {
     @Singleton
     fun provideFeedService(retrofit: Retrofit): FeedService {
         return retrofit.create(FeedService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommentService(retrofit: Retrofit): CommentService {
+        return retrofit.create(CommentService::class.java)
     }
 
     @Provides
