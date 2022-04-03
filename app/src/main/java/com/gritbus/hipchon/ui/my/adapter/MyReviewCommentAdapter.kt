@@ -5,9 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.gritbus.hipchon.data.model.my.MyCommentAllDataItem
 import com.gritbus.hipchon.databinding.ItemMyReviewCommentBinding
 
-class MyReviewCommentAdapter : ListAdapter<Int, MyReviewCommentAdapter.MyReviewCommentViewHolder>(diffUtil) {
+class MyReviewCommentAdapter :
+    ListAdapter<MyCommentAllDataItem, MyReviewCommentAdapter.MyReviewCommentViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyReviewCommentViewHolder {
         return MyReviewCommentViewHolder(
@@ -18,23 +21,36 @@ class MyReviewCommentAdapter : ListAdapter<Int, MyReviewCommentAdapter.MyReviewC
     }
 
     override fun onBindViewHolder(holder: MyReviewCommentViewHolder, position: Int) {
-        holder.bind()
+        holder.bind(currentList[position])
     }
 
     class MyReviewCommentViewHolder(
         private val binding: ItemMyReviewCommentBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind() {}
+        fun bind(myCommentAllDataItem: MyCommentAllDataItem) {
+            Glide.with(binding.root.context)
+                .load(myCommentAllDataItem.post.image)
+                .into(binding.ivMyReviewCommentThumb)
+            binding.tvMyReviewComment.text = myCommentAllDataItem.detail
+            binding.tvMyReviewCommentDate.text = myCommentAllDataItem.time
+            binding.executePendingBindings()
+        }
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<Int>() {
-            override fun areItemsTheSame(oldItem: Int, newItem: Int): Boolean {
-                return oldItem == newItem
+        val diffUtil = object : DiffUtil.ItemCallback<MyCommentAllDataItem>() {
+            override fun areItemsTheSame(
+                oldItem: MyCommentAllDataItem,
+                newItem: MyCommentAllDataItem
+            ): Boolean {
+                return oldItem.commentId == newItem.commentId
             }
 
-            override fun areContentsTheSame(oldItem: Int, newItem: Int): Boolean {
+            override fun areContentsTheSame(
+                oldItem: MyCommentAllDataItem,
+                newItem: MyCommentAllDataItem
+            ): Boolean {
                 return oldItem == newItem
             }
         }

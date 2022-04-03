@@ -4,21 +4,22 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentMyReviewBinding
-import com.gritbus.hipchon.ui.my.adapter.MyReviewAdapter
+import com.gritbus.hipchon.ui.my.adapter.MyReviewCommentAdapter
+import com.gritbus.hipchon.ui.my.view.MyReviewFragment.Companion.MY_REVIEW_FRAGMENT_TYPE
 import com.gritbus.hipchon.ui.my.viewmodel.MyViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
-import dagger.hilt.android.AndroidEntryPoint
+import com.gritbus.hipchon.utils.ItemDecorationWithStroke
+import com.gritbus.hipchon.utils.dpToPx
+import com.tbuonomo.viewpagerdotsindicator.setPaddingHorizontal
 
-@AndroidEntryPoint
-class MyReviewFragment :
-    BaseViewUtil.BaseFragment<FragmentMyReviewBinding>(R.layout.fragment_my_review) {
+class MyCommentFragment: BaseViewUtil.BaseFragment<FragmentMyReviewBinding>(R.layout.fragment_my_review) {
 
     private lateinit var type: String
     private val viewModel: MyViewModel by activityViewModels()
-    private lateinit var myReviewAdapter: MyReviewAdapter
+    private lateinit var myReviewAdapter: MyReviewCommentAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,7 +36,7 @@ class MyReviewFragment :
     }
 
     private fun setObserver() {
-        viewModel.myFeedAllData.observe(viewLifecycleOwner) {
+        viewModel.myCommentAllData.observe(viewLifecycleOwner) {
             myReviewAdapter.submitList(it)
             if (it.isNullOrEmpty()){
                 binding.llMyReviewEmpty.visibility = View.VISIBLE
@@ -46,18 +47,18 @@ class MyReviewFragment :
     }
 
     private fun setAdapter() {
-        myReviewAdapter = MyReviewAdapter()
+        myReviewAdapter = MyReviewCommentAdapter()
         binding.rvMyReview.adapter = myReviewAdapter
-        binding.rvMyReview.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.rvMyReview.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvMyReview.setPaddingHorizontal(dpToPx(requireContext(), 0))
+        binding.rvMyReview.addItemDecoration(ItemDecorationWithStroke(false))
     }
 
     companion object {
-        const val MY_REVIEW_FRAGMENT_TYPE = "com.gritbus.hipchon.ui.my.view MY_REVIEW_FRAGMENT_TYPE"
-
-        fun createMyReviewFragment(
+        fun createMyCommentFragment(
             fragmentType: String
-        ): MyReviewFragment {
-            return MyReviewFragment().apply {
+        ): MyCommentFragment {
+            return MyCommentFragment().apply {
                 arguments = bundleOf(
                     MY_REVIEW_FRAGMENT_TYPE to fragmentType
                 )

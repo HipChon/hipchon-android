@@ -7,6 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gritbus.hipchon.data.model.UserData
+import com.gritbus.hipchon.data.model.my.MyCommentAllDataItem
 import com.gritbus.hipchon.data.model.my.MyFeedAllDataItem
 import com.gritbus.hipchon.data.model.user.UserInfoData
 import com.gritbus.hipchon.data.repository.my.MyRepository
@@ -14,7 +15,6 @@ import com.gritbus.hipchon.data.repository.user.UserRepository
 import com.gritbus.hipchon.ui.my.view.MyFragment.Companion.MY_COMMENT
 import com.gritbus.hipchon.ui.my.view.MyFragment.Companion.MY_FEED
 import com.gritbus.hipchon.ui.my.view.MyFragment.Companion.MY_LIKE_FEED
-import com.gritbus.hipchon.ui.my.view.MyReviewFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,24 +29,14 @@ class MyViewModel @Inject constructor(
     private val _myProfile = MutableLiveData<UserInfoData>()
     val myProfile: LiveData<UserInfoData> = _myProfile
 
-    private val _dataType = MutableLiveData<String>()
-    val dataType: LiveData<String> = _dataType
-
     private val _myFeedAllData = MutableLiveData<List<MyFeedAllDataItem>>()
     val myFeedAllData: LiveData<List<MyFeedAllDataItem>> = _myFeedAllData
 
-    private val _myCommentAllData = MutableLiveData<List<Int>>()
-    val myCommentAllData: LiveData<List<Int>> = _myCommentAllData
+    private val _myCommentAllData = MutableLiveData<List<MyCommentAllDataItem>>()
+    val myCommentAllData: LiveData<List<MyCommentAllDataItem>> = _myCommentAllData
 
-    init {
-        savedStateHandle.get<String>(MyReviewFragment.MY_REVIEW_FRAGMENT_TYPE)?.let {
-            _dataType.value = it
-        }
-    }
-
-    fun getMyData() {
-        val dataType = _dataType.value ?: return
-        when (dataType) {
+    fun getMyData(type: String) {
+        when (type) {
             MY_FEED -> {
                 getMyFeedData()
             }
@@ -96,6 +86,14 @@ class MyViewModel @Inject constructor(
     }
 
     fun getMyCommentData() {
-        _myCommentAllData.value = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        viewModelScope.launch {
+            myRepository.getMyComment(UserData.userId)
+                .onSuccess {
+                    _myCommentAllData.value = it
+                }
+                .onFailure {
+                    Log.e(this.javaClass.name, it.message ?: "my comment error")
+                }
+        }
     }
 }
