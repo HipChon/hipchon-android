@@ -18,9 +18,10 @@ import javax.inject.Inject
 class SaveViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val myRepository: MyRepository
-): ViewModel() {
+) : ViewModel() {
 
     private lateinit var category: String
+    private val categoryMap: Map<String, Int> = mapOf("카페" to 1, "미식" to 2, "활동" to 3, "자연" to 4)
 
     private val _savePlaceAllData = MutableLiveData<List<MyPlaceAllDataItem>>()
     val savePlaceAllData: LiveData<List<MyPlaceAllDataItem>> = _savePlaceAllData
@@ -31,18 +32,30 @@ class SaveViewModel @Inject constructor(
         }
     }
 
-    fun getMySavePlace(){
+    fun getMySavePlace() {
         viewModelScope.launch {
-            myRepository.getMyPlace(UserData.userId)
-                .onSuccess { placeData ->
-                    _savePlaceAllData.value = when(category){
-                        "전체" -> placeData
-                        else -> placeData.filter { it.category == category }
+            when (category) {
+                "전체" -> {
+                    myRepository.getMyPlace(UserData.userId)
+                        .onSuccess {
+                            _savePlaceAllData.value = it
+                        }
+                        .onFailure {
+                            Log.e(this.javaClass.name, it.message ?: "my place error")
+                        }
+                }
+                else -> {
+                    categoryMap[category]?.let {
+                        myRepository.getMyPlaceWithCategory(UserData.userId, it)
+                            .onSuccess { placeData ->
+                                _savePlaceAllData.value = placeData
+                            }
+                            .onFailure { throwable ->
+                                Log.e(this.javaClass.name, throwable.message ?: "my place error")
+                            }
                     }
                 }
-                .onFailure {
-                    Log.e(this.javaClass.name, it.message ?: "my place error")
-                }
+            }
         }
     }
 }
