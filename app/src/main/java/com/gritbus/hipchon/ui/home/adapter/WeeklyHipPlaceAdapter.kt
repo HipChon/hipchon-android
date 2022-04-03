@@ -82,7 +82,7 @@ class WeeklyHipPlaceAdapter(
             binding.tvHomeWeeklyHipPlaceSaveCount.text = weeklyHipPlaceData.myplaceCnt.toString()
             binding.tvHomeWeeklyHipPlaceFeedCount.text = weeklyHipPlaceData.postCnt.toString()
             Glide.with(binding.root.context)
-                .load(weeklyHipPlaceData.placeImage)
+                .load(weeklyHipPlaceData.image)
                 .into(binding.ivHomeWeeklyHipPlaceThumbnail)
         }
     }
