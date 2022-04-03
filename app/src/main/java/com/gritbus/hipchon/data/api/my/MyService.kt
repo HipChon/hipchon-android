@@ -5,7 +5,6 @@ import com.gritbus.hipchon.data.model.my.MyLikeFeedAllData
 import com.gritbus.hipchon.data.model.my.MyPlaceAllData
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface MyService {
@@ -25,9 +24,9 @@ interface MyService {
         @Path("user_id") userId: Int
     ): Response<MyPlaceAllData>
 
-    @POST("myplace/{user_id}/{place_id}")
-    suspend fun saveMyPlace(
+    @GET("myplace/{user_id}/{category_id}")
+    suspend fun getMyPlaceWithCategory(
         @Path("user_id") userId: Int,
-        @Path("place_id") placeId: Int
-    ): Response<Int>
+        @Path("category_id") category: Int
+    ): Response<MyPlaceAllData>
 }

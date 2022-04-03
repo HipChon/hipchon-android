@@ -31,9 +31,9 @@ class MyReviewAdapter :
 
         fun bind(myFeedAllDataItem: MyFeedAllDataItem) {
             Glide.with(binding.root.context)
-                .load(myFeedAllDataItem.postImage)
+                .load(myFeedAllDataItem.image)
                 .into(binding.ivMyReview)
-            binding.tvMyReviewTitle.text = myFeedAllDataItem.placeName
+            binding.tvMyReviewTitle.text = myFeedAllDataItem.name
             binding.ivMyReviewHashtag.visibility = View.INVISIBLE
             binding.executePendingBindings()
         }

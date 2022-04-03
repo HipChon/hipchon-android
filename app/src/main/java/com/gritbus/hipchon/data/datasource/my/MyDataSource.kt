@@ -12,5 +12,5 @@ interface MyDataSource {
 
     suspend fun getMyPlace(userId: Int): Result<MyPlaceAllData>
 
-    suspend fun saveMyPlace(userId: Int, placeId: Int): Result<Int>
+    suspend fun getMyPlaceWithCategory(userId: Int, category: Int): Result<MyPlaceAllData>
 }

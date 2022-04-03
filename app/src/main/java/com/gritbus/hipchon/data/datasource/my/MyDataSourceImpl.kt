@@ -55,9 +55,12 @@ class MyDataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun saveMyPlace(userId: Int, placeId: Int): Result<Int> {
+    override suspend fun getMyPlaceWithCategory(
+        userId: Int,
+        category: Int
+    ): Result<MyPlaceAllData> {
         return try {
-            val data = myService.saveMyPlace(userId, placeId)
+            val data = myService.getMyPlaceWithCategory(userId, category)
             if (data.isSuccessful) {
                 data.body()?.let {
                     Result.success(it)

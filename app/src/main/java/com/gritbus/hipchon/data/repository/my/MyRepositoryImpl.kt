@@ -40,8 +40,11 @@ class MyRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun saveMyPlace(userId: Int, placeId: Int): Result<Int> {
-        val result = myDataSource.saveMyPlace(userId, placeId)
+    override suspend fun getMyPlaceWithCategory(
+        userId: Int,
+        category: Int
+    ): Result<MyPlaceAllData> {
+        val result = myDataSource.getMyPlaceWithCategory(userId, category)
 
         return if (result.exceptionOrNull() is Exception) {
             Result.failure(result.exceptionOrNull() as Exception)
