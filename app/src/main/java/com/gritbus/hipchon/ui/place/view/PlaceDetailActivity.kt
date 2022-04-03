@@ -185,7 +185,7 @@ class PlaceDetailActivity :
             setThumbAdapter(it)
         }
         viewModel.isSave.observe(this) {
-            updateSaveView(it)
+            updateSaveView(it, true)
         }
         viewModel.menuAllData.observe(this) {
             menuAdapter.submitList(it)
@@ -223,7 +223,8 @@ class PlaceDetailActivity :
                             ContextCompat.getDrawable(baseContext, iconAndContentAndColor.first)
                         keywordBinding?.tvPlaceDetailKeywordContent?.text =
                             resources.getString(iconAndContentAndColor.second)
-                        keywordBinding?.tvPlaceDetailKeywordCount?.text = keywordItem.postCnt.toString()
+                        keywordBinding?.tvPlaceDetailKeywordCount?.text =
+                            keywordItem.postCnt.toString()
                         keywordBinding?.root?.backgroundTintList = ColorStateList.valueOf(
                             ContextCompat.getColor(
                                 baseContext,
@@ -246,6 +247,7 @@ class PlaceDetailActivity :
                 true -> R.drawable.ic_save_filled
                 false -> R.drawable.ic_save
             }
+            updateSaveView(it.isMyplace, false)
             binding.ivPlaceDetailSave.setImageResource(saveDrawable)
             binding.ivPlaceDetailSave.imageTintList = when (it.isMyplace) {
                 true -> ColorStateList.valueOf(
@@ -307,7 +309,7 @@ class PlaceDetailActivity :
         ) { _, _ -> }.attach()
     }
 
-    private fun updateSaveView(isSave: Boolean) {
+    private fun updateSaveView(isSave: Boolean, isClick: Boolean) {
         when (isSave) {
             true -> {
                 binding.ivPlaceDetailSave.setImageResource(R.drawable.ic_save_filled)
@@ -315,11 +317,19 @@ class PlaceDetailActivity :
                     ColorStateList.valueOf(
                         ContextCompat.getColor(baseContext, R.color.primary_green)
                     )
+                if (isClick) {
+                    binding.tvPlaceDetailSave.text =
+                        (binding.tvPlaceDetailSave.text.toString().toInt() + 1).toString()
+                }
             }
             false -> {
                 binding.ivPlaceDetailSave.setImageResource(R.drawable.ic_save)
                 binding.ivPlaceDetailSave.imageTintList =
                     ColorStateList.valueOf(ContextCompat.getColor(baseContext, R.color.black))
+                if (isClick) {
+                    binding.tvPlaceDetailSave.text =
+                        (binding.tvPlaceDetailSave.text.toString().toInt() - 1).toString()
+                }
             }
         }
     }

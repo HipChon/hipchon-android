@@ -36,7 +36,7 @@ class PlaceDetailViewModel @Inject constructor(
     private val _menuAllData = MutableLiveData<List<String>>()
     val menuAllData: LiveData<List<String>> = _menuAllData
 
-    private val _isSave = MutableLiveData<Boolean>(false)
+    private val _isSave = MutableLiveData<Boolean>()
     val isSave: LiveData<Boolean> = _isSave
 
     private val _keyword = MutableLiveData<List<KeywordItem>>()
@@ -56,7 +56,6 @@ class PlaceDetailViewModel @Inject constructor(
                 .onSuccess {
                     _thumbImages.value = it.imageList
                     _placeData.value = it
-                    _isSave.value = it.isMyplace
                     _keyword.value = it.keywordList
                 }
                 .onFailure {
@@ -76,7 +75,7 @@ class PlaceDetailViewModel @Inject constructor(
     }
 
     fun setSave() {
-        val isCurrentSaveState = _isSave.value ?: return
+        val isCurrentSaveState = _isSave.value ?: _placeData.value?.isMyplace ?: return
         viewModelScope.launch {
             when(isCurrentSaveState){
                 true -> {

@@ -29,6 +29,10 @@ class PlaceResultActivity :
         setAdapter()
         setObserver()
         setOnClickListener()
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.getPlaceData()
     }
 
