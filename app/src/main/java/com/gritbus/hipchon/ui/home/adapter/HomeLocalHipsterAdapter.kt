@@ -40,7 +40,7 @@ class HomeLocalHipsterAdapter(
                 .into(binding.ivHomeHipsterPick)
 
             binding.root.setOnClickListener {
-                clickListener(localHipsterData.id)
+                clickListener(localHipsterData.hipsterId)
             }
             binding.executePendingBindings()
         }
@@ -59,7 +59,7 @@ class HomeLocalHipsterAdapter(
                 oldItem: LocalHipsterAllDataItem,
                 newItem: LocalHipsterAllDataItem
             ): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.hipsterId == newItem.hipsterId
             }
         }
     }

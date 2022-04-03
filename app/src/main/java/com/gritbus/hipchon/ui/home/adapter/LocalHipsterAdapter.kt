@@ -124,7 +124,7 @@ class LocalHipsterAdapter(
                 oldItem: LocalHipsterPost,
                 newItem: LocalHipsterPost
             ): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.hipsterPostId == newItem.hipsterPostId
             }
         }
     }

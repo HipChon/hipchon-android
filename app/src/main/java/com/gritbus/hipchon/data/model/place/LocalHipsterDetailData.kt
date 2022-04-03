@@ -1,14 +1,14 @@
 package com.gritbus.hipchon.data.model.place
 
 data class LocalHipsterDetailData(
-    val id: Int,
+    val hipsterId: Int,
     val postList: List<LocalHipsterPost>,
     val title: String
 )
 
 data class LocalHipsterPost(
     val detail: String,
-    val id: Int,
+    val hipsterPostId: Int,
     val imageList: List<String>,
     val place: LocalHipsterPlace,
     val title: String
