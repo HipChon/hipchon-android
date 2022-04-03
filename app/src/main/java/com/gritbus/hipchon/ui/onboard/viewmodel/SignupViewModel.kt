@@ -124,12 +124,12 @@ class SignupViewModel @Inject constructor(
     fun userSignup() {
         val userDto = UserInfoData(
             email = _email.value ?: "",
-            id = 0,
+            userId = 0,
             isMarketing = _eventTerms.value == true,
             loginId = UserData.userLoginId,
             loginType = UserData.platform,
             name = _nickname.value ?: return,
-            profileImage = ""
+            image = ""
         )
 
         viewModelScope.launch {
@@ -148,7 +148,7 @@ class SignupViewModel @Inject constructor(
         viewModelScope.launch {
             userRepository.getUserData(UserData.platform, UserData.userLoginId)
                 .onSuccess {
-                    UserData.userId = it.id
+                    UserData.userId = it.userId
                     userRepository.setAutoLoginId(UserData.userLoginId)
                     userRepository.setAutoLoginPlatform(UserData.platform)
                     _hasUserId.value = true

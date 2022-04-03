@@ -51,7 +51,7 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch {
             userRepository.getUserData(UserData.platform, UserData.userLoginId)
                 .onSuccess {
-                    UserData.userId = it.id
+                    UserData.userId = it.userId
                     _hasUserId.value = true
                 }
                 .onFailure {
