@@ -1,5 +1,6 @@
 package com.gritbus.hipchon.data.api.my
 
+import com.gritbus.hipchon.data.model.my.MyCommentAllData
 import com.gritbus.hipchon.data.model.my.MyFeedAllData
 import com.gritbus.hipchon.data.model.my.MyLikeFeedAllData
 import com.gritbus.hipchon.data.model.my.MyPlaceAllData
@@ -29,4 +30,9 @@ interface MyService {
         @Path("user_id") userId: Int,
         @Path("category_id") category: Int
     ): Response<MyPlaceAllData>
+
+    @GET("postcomment/mycomment/{user_id}")
+    suspend fun getMyComment(
+        @Path("user_id") userId: Int
+    ): Response<MyCommentAllData>
 }

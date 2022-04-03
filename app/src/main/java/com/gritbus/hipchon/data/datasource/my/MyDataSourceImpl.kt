@@ -1,6 +1,7 @@
 package com.gritbus.hipchon.data.datasource.my
 
 import com.gritbus.hipchon.data.api.my.MyService
+import com.gritbus.hipchon.data.model.my.MyCommentAllData
 import com.gritbus.hipchon.data.model.my.MyFeedAllData
 import com.gritbus.hipchon.data.model.my.MyLikeFeedAllData
 import com.gritbus.hipchon.data.model.my.MyPlaceAllData
@@ -61,6 +62,21 @@ class MyDataSourceImpl @Inject constructor(
     ): Result<MyPlaceAllData> {
         return try {
             val data = myService.getMyPlaceWithCategory(userId, category)
+            if (data.isSuccessful) {
+                data.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Throwable(data.message()))
+            } else {
+                Result.failure(Throwable(data.message()))
+            }
+        } catch (e: Exception) {
+            Result.failure(Throwable(e.message))
+        }
+    }
+
+    override suspend fun getMyComment(userId: Int): Result<MyCommentAllData> {
+        return try {
+            val data = myService.getMyComment(userId)
             if (data.isSuccessful) {
                 data.body()?.let {
                     Result.success(it)

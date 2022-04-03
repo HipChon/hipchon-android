@@ -1,6 +1,7 @@
 package com.gritbus.hipchon.data.repository.my
 
 import com.gritbus.hipchon.data.datasource.my.MyDataSource
+import com.gritbus.hipchon.data.model.my.MyCommentAllData
 import com.gritbus.hipchon.data.model.my.MyFeedAllData
 import com.gritbus.hipchon.data.model.my.MyLikeFeedAllData
 import com.gritbus.hipchon.data.model.my.MyPlaceAllData
@@ -45,6 +46,16 @@ class MyRepositoryImpl @Inject constructor(
         category: Int
     ): Result<MyPlaceAllData> {
         val result = myDataSource.getMyPlaceWithCategory(userId, category)
+
+        return if (result.exceptionOrNull() is Exception) {
+            Result.failure(result.exceptionOrNull() as Exception)
+        } else {
+            result
+        }
+    }
+
+    override suspend fun getMyComment(userId: Int): Result<MyCommentAllData> {
+        val result = myDataSource.getMyComment(userId)
 
         return if (result.exceptionOrNull() is Exception) {
             Result.failure(result.exceptionOrNull() as Exception)
