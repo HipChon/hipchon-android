@@ -51,6 +51,9 @@ class FeedDetailActivity :
         viewModel.feedData.observe(this) {
             setFeedView(it)
         }
+        viewModel.isPostLike.observe(this) {
+            setPostLikeView(it)
+        }
         viewModel.isPlaceSave.observe(this) {
             setPlaceSaveView(it)
         }
@@ -63,14 +66,31 @@ class FeedDetailActivity :
         }
     }
 
+    private fun setPostLikeView(isMypost: Boolean) {
+        binding.ivFeedDetailFavorite.background = when (isMypost) {
+            true -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_favorite_filled)
+            false -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_favorite)
+        }
+    }
+
     private fun setPlaceSaveView(isSave: Boolean) {
         binding.ivFeedDetailPlaceSave.background = when (isSave) {
             true -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save_filled)
             false -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save)
         }
-        binding.ivFeedDetailPlaceSave.backgroundTintList =when (isSave) {
-            true -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.primary_green))
-            false -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.black))
+        binding.ivFeedDetailPlaceSave.backgroundTintList = when (isSave) {
+            true -> ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    binding.root.context,
+                    R.color.primary_green
+                )
+            )
+            false -> ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    binding.root.context,
+                    R.color.black
+                )
+            )
         }
     }
 
@@ -91,17 +111,10 @@ class FeedDetailActivity :
 
         binding.tvFeedDetailContent.text = feedData.detail
         binding.tvFeedDetailPlaceTitle.text = feedData.place.name
-        binding.tvFeedDetailPlaceAddress.text = "${feedData.place.category} • ${feedData.place.address}"
+        binding.tvFeedDetailPlaceAddress.text =
+            "${feedData.place.category} • ${feedData.place.address}"
 
         binding.tvFeedDetailFavorite.text = feedData.likeCnt.toString()
-//        binding.ivFeedDetailFavorite.background = when (feedData.isMyPost) {
-//            true -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save_filled)
-//            false -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save)
-//        }
-//        binding.ivFeedDetailFavorite.backgroundTintList =when (feedData.isMyPost) {
-//            true -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.primary_green))
-//            false -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.black))
-//        }
         binding.tvFeedDetailComment.text = feedData.commentCnt.toString()
     }
 
@@ -113,6 +126,9 @@ class FeedDetailActivity :
             startActivity(Intent(baseContext, PlaceDetailActivity::class.java).apply {
                 putExtra(PlaceResultActivity.PLACE_ID, viewModel.getPlaceId())
             })
+        }
+        binding.ivFeedDetailFavorite.setOnClickListener {
+            viewModel.likePost()
         }
         binding.ivFeedDetailPlaceSave.setOnClickListener {
             viewModel.savePlace()

@@ -21,6 +21,7 @@ class FeedAdapter(
     private val isPlaceDetail: Boolean,
     private val clickListener: (FeedAllDataItem) -> (Unit),
     private val moveToPlaceDetail: (Int) -> (Unit),
+    private val likePost: (Int, Boolean) -> (Unit),
     private val savePlace: (FeedPlaceItem) -> (Unit)
 ) : ListAdapter<FeedAllDataItem, FeedAdapter.FeedViewHolder>(diffUtil) {
 
@@ -38,6 +39,7 @@ class FeedAdapter(
             isPlaceDetail,
             clickListener,
             moveToPlaceDetail,
+            likePost,
             savePlace
         )
     }
@@ -58,6 +60,7 @@ class FeedAdapter(
             isPlaceDetail: Boolean,
             clickListener: (FeedAllDataItem) -> Unit,
             moveToPlaceDetail: (Int) -> (Unit),
+            likePost: (Int, Boolean) -> (Unit),
             savePlace: (FeedPlaceItem) -> (Unit)
         ) {
             binding.root.setOnClickListener {
@@ -98,11 +101,27 @@ class FeedAdapter(
                 val shareIntent = Intent.createChooser(sendIntent, null)
                 ContextCompat.startActivity(binding.root.context, shareIntent, null)
             }
+
+            setLikeView(feedData.isMypost)
+
             setSaveView(feedData.place.isMyplace)
+            binding.ivFeedPreviewFavorite.setOnClickListener {
+                likePost(feedData.postId, feedData.isMypost)
+            }
             binding.ivFeedPreviewPlaceSave.setOnClickListener {
                 savePlace(feedData.place)
             }
             binding.executePendingBindings()
+        }
+
+        private fun setLikeView(isMypost: Boolean) {
+            binding.ivFeedPreviewFavorite.background = when (isMypost) {
+                true -> ContextCompat.getDrawable(
+                    binding.root.context,
+                    R.drawable.ic_favorite_filled
+                )
+                false -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_favorite)
+            }
         }
 
         private fun setSaveView(isMyplace: Boolean) {
@@ -110,9 +129,19 @@ class FeedAdapter(
                 true -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save_filled)
                 false -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_save)
             }
-            binding.ivFeedPreviewPlaceSave.backgroundTintList =when (isMyplace) {
-                true -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.primary_green))
-                false -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.black))
+            binding.ivFeedPreviewPlaceSave.backgroundTintList = when (isMyplace) {
+                true -> ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.primary_green
+                    )
+                )
+                false -> ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.black
+                    )
+                )
             }
         }
     }

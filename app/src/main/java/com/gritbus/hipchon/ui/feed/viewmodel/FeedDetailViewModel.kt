@@ -35,6 +35,9 @@ class FeedDetailViewModel @Inject constructor(
     private val _commentAllData = MutableLiveData<List<CommentAllDataItem>>()
     val commentAllData: LiveData<List<CommentAllDataItem>> = _commentAllData
 
+    private val _isPostLike = MutableLiveData<Boolean>()
+    val isPostLike: LiveData<Boolean> = _isPostLike
+
     private val _isPlaceSave = MutableLiveData<Boolean>()
     val isPlaceSave: LiveData<Boolean> = _isPlaceSave
 
@@ -44,6 +47,7 @@ class FeedDetailViewModel @Inject constructor(
     init {
         savedStateHandle.get<FeedAllDataItem>(FeedFragment.FEED_DETAIL_DATA)?.let {
             _feedData.value = it
+            _isPostLike.value = it.isMypost
             _isPlaceSave.value = it.place.isMyplace
         }
     }
@@ -81,7 +85,7 @@ class FeedDetailViewModel @Inject constructor(
         val isCurrentSaveState = _isPlaceSave.value ?: return
         val placeId = _feedData.value?.place?.placeId ?: return
         viewModelScope.launch {
-            when(isCurrentSaveState){
+            when (isCurrentSaveState) {
                 true -> {
                     placeRepository.deletePlace(UserData.userId, placeId)
                         .onSuccess {
@@ -133,6 +137,33 @@ class FeedDetailViewModel @Inject constructor(
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "feed error")
                 }
+        }
+    }
+
+    fun likePost() {
+        val isMypost = _feedData.value?.isMypost ?: return
+        val postId = _feedData.value?.postId ?: return
+        viewModelScope.launch {
+            when (isMypost) {
+                true -> {
+                    feedRepository.deletePost(UserData.userId, postId)
+                        .onSuccess {
+                            _isPostLike.value = false
+                        }
+                        .onFailure {
+                            Log.e(this.javaClass.name, it.message ?: "post like error")
+                        }
+                }
+                false -> {
+                    feedRepository.savePost(UserData.userId, postId)
+                        .onSuccess {
+                            _isPostLike.value = true
+                        }
+                        .onFailure {
+                            Log.e(this.javaClass.name, it.message ?: "post like error")
+                        }
+                }
+            }
         }
     }
 }

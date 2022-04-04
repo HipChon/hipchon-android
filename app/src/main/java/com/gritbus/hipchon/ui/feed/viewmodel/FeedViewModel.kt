@@ -24,9 +24,6 @@ class FeedViewModel @Inject constructor(
     private val _reviewAllData = MutableLiveData<List<FeedAllDataItem>>()
     val reviewAllData: LiveData<List<FeedAllDataItem>> = _reviewAllData
 
-    private val _saveSuccessPostPosition = MutableLiveData<Int>()
-    val saveSuccessPostPosition: LiveData<Int> = _saveSuccessPostPosition
-
     private val _reviewOrderType = MutableLiveData(FeedOrderType.RECENT)
     val reviewOrderType: LiveData<FeedOrderType> = _reviewOrderType
 
@@ -50,6 +47,31 @@ class FeedViewModel @Inject constructor(
         _reviewOrderType.value = orderType
     }
 
+    fun likePost(postId: Int, isMypost: Boolean) {
+        viewModelScope.launch {
+            when(isMypost) {
+                true -> {
+                    feedRepository.deletePost(UserData.userId, postId)
+                        .onSuccess {
+                            initData()
+                        }
+                        .onFailure {
+                            Log.e(this.javaClass.name, it.message ?: "post like error")
+                        }
+                }
+                false -> {
+                    feedRepository.savePost(UserData.userId, postId)
+                        .onSuccess {
+                            initData()
+                        }
+                        .onFailure {
+                            Log.e(this.javaClass.name, it.message ?: "post like error")
+                        }
+                }
+            }
+        }
+    }
+
     fun savePlace(placeData: FeedPlaceItem){
         viewModelScope.launch {
             when (placeData.isMyplace) {
@@ -59,7 +81,7 @@ class FeedViewModel @Inject constructor(
                             initData()
                         }
                         .onFailure {
-                            Log.e(this.javaClass.name, it.message ?: "review error")
+                            Log.e(this.javaClass.name, it.message ?: "place save error")
                         }
                 }
                 false -> {
@@ -68,7 +90,7 @@ class FeedViewModel @Inject constructor(
                             initData()
                         }
                         .onFailure {
-                            Log.e(this.javaClass.name, it.message ?: "review error")
+                            Log.e(this.javaClass.name, it.message ?: "place save error")
                         }
                 }
             }

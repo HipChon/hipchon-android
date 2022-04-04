@@ -37,7 +37,7 @@ class PlaceDetailFeedActivity :
     }
 
     private fun setAdapter() {
-        feedAdapter = FeedAdapter(true, ::moveToFeedDetail, ::moveToPlaceDetail, ::savePlace)
+        feedAdapter = FeedAdapter(true, ::moveToFeedDetail, ::moveToPlaceDetail, ::likePost, ::savePlace)
         binding.rvPlaceDetailFeed.adapter = feedAdapter
         binding.rvPlaceDetailFeed.addItemDecoration(ItemDecorationWithStroke(false))
     }
@@ -50,6 +50,10 @@ class PlaceDetailFeedActivity :
 
     private fun moveToPlaceDetail(placeId: Int) {
         Log.e(this.javaClass.name, "제공하지 않는 기능")
+    }
+
+    private fun likePost(postId: Int, isMypost: Boolean) {
+        viewModel.likePost(postId, isMypost)
     }
 
     private fun savePlace(placeData: FeedPlaceItem) {

@@ -8,6 +8,7 @@ data class FeedAllDataItem(
     val commentCnt: Int,
     val detail: String,
     val imageList: List<String>,
+    val isMypost: Boolean,
     val likeCnt: Int,
     val place: FeedPlaceItem,
     val postId: Int,

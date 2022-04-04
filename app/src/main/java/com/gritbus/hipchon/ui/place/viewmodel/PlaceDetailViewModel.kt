@@ -51,6 +51,13 @@ class PlaceDetailViewModel @Inject constructor(
         }
     }
     fun initData() {
+        getPlaceData()
+        getFeedData()
+        // TODO 메뉴, 키워드 정보 서버와 연동
+        _menuAllData.value = emptyList()
+    }
+
+    fun getPlaceData() {
         viewModelScope.launch {
             placeRepository.getPlaceDetailData(UserData.userId, placeId)
                 .onSuccess {
@@ -61,6 +68,11 @@ class PlaceDetailViewModel @Inject constructor(
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "place detail error")
                 }
+        }
+    }
+
+    fun getFeedData() {
+        viewModelScope.launch {
             feedRepository.getFeedWithPlaceAllData(placeId)
                 .onSuccess {
                     _reviewPreview.value = it
@@ -69,9 +81,6 @@ class PlaceDetailViewModel @Inject constructor(
                     Log.e(this.javaClass.name, it.message ?: "place review error")
                 }
         }
-
-        // TODO 메뉴, 키워드 정보 서버와 연동
-        _menuAllData.value = emptyList()
     }
 
     fun setSave() {
@@ -106,5 +115,30 @@ class PlaceDetailViewModel @Inject constructor(
 
     fun getContact(): String? {
         return _placeData.value?.contact
+    }
+
+    fun likePost(postId: Int, isMypost: Boolean) {
+        viewModelScope.launch {
+            when(isMypost) {
+                true -> {
+                    feedRepository.deletePost(UserData.userId, postId)
+                        .onSuccess {
+                            getFeedData()
+                        }
+                        .onFailure {
+                            Log.e(this.javaClass.name, it.message ?: "post like error")
+                        }
+                }
+                false -> {
+                    feedRepository.savePost(UserData.userId, postId)
+                        .onSuccess {
+                            getFeedData()
+                        }
+                        .onFailure {
+                            Log.e(this.javaClass.name, it.message ?: "post like error")
+                        }
+                }
+            }
+        }
     }
 }

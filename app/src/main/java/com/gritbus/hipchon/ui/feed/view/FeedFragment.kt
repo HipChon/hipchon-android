@@ -40,9 +40,13 @@ class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.f
     }
 
     private fun setAdapter() {
-        feedAdapter = FeedAdapter(false, ::moveToFeedDetail, ::moveToPlaceDetail, ::savePlace)
+        feedAdapter = FeedAdapter(false, ::moveToFeedDetail, ::moveToPlaceDetail,::likePost, ::savePlace)
         binding.rvReview.adapter = feedAdapter
         binding.rvReview.addItemDecoration(ItemDecorationWithStroke(false))
+    }
+
+    private fun likePost(postId: Int, isMypost: Boolean) {
+        viewModel.likePost(postId, isMypost)
     }
 
     private fun moveToFeedDetail(feedData: FeedAllDataItem) {

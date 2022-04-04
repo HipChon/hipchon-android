@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gritbus.hipchon.data.model.UserData
 import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
 import com.gritbus.hipchon.data.repository.feed.FeedRepository
 import com.gritbus.hipchon.ui.place.view.PlaceDetailActivity
@@ -40,6 +41,31 @@ class PlaceDetailFeedViewModel @Inject constructor(
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "place review more error")
                 }
+        }
+    }
+
+    fun likePost(postId: Int, isMypost: Boolean) {
+        viewModelScope.launch {
+            when(isMypost) {
+                true -> {
+                    feedRepository.deletePost(UserData.userId, postId)
+                        .onSuccess {
+                            getReviewData()
+                        }
+                        .onFailure {
+                            Log.e(this.javaClass.name, it.message ?: "post like error")
+                        }
+                }
+                false -> {
+                    feedRepository.savePost(UserData.userId, postId)
+                        .onSuccess {
+                            getReviewData()
+                        }
+                        .onFailure {
+                            Log.e(this.javaClass.name, it.message ?: "post like error")
+                        }
+                }
+            }
         }
     }
 }
