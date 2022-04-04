@@ -1,5 +1,6 @@
 package com.gritbus.hipchon.di
 
+import com.gritbus.hipchon.data.api.event.EventService
 import com.gritbus.hipchon.data.api.feed.CommentService
 import com.gritbus.hipchon.data.api.feed.FeedService
 import com.gritbus.hipchon.data.api.my.MyService
@@ -44,5 +45,11 @@ object ServiceModule {
     @Singleton
     fun provideUserService(retrofit: Retrofit): UserService {
         return retrofit.create(UserService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideEventService(retrofit: Retrofit): EventService {
+        return retrofit.create(EventService::class.java)
     }
 }

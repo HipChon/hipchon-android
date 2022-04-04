@@ -1,11 +1,14 @@
 package com.gritbus.hipchon.di
 
 import android.content.Context
+import com.gritbus.hipchon.data.api.event.EventService
 import com.gritbus.hipchon.data.api.feed.CommentService
 import com.gritbus.hipchon.data.api.feed.FeedService
 import com.gritbus.hipchon.data.api.my.MyService
 import com.gritbus.hipchon.data.api.place.PlaceService
 import com.gritbus.hipchon.data.api.user.UserService
+import com.gritbus.hipchon.data.datasource.event.EventDataSource
+import com.gritbus.hipchon.data.datasource.event.EventDataSourceImpl
 import com.gritbus.hipchon.data.datasource.feed.CommentDataSource
 import com.gritbus.hipchon.data.datasource.feed.CommentDatasourceImpl
 import com.gritbus.hipchon.data.datasource.feed.FeedDataSource
@@ -65,5 +68,11 @@ object DataSourceModule {
         autoLoginManager: AutoLoginManager
     ): UserDataSource {
         return UserDataSourceImpl(userService, autoLoginManager)
+    }
+
+    @Provides
+    @Singleton
+    fun provideEventDataSource(eventService: EventService): EventDataSource {
+        return EventDataSourceImpl(eventService)
     }
 }
