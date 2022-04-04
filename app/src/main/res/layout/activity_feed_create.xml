@@ -58,6 +58,7 @@
                     android:layout_marginTop="10dp"
                     android:text="방문 날짜"
                     android:textColor="@color/black"
+                    android:visibility="invisible"
                     app:layout_constraintStart_toStartOf="@id/tv_feed_create_place_name"
                     app:layout_constraintTop_toBottomOf="@id/tv_feed_create_place_name" />
 
@@ -66,6 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="18번째 리뷰"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@id/iv_feed_create_place_thumb"
                     app:layout_constraintStart_toStartOf="@id/tv_feed_create_place_name"
                     app:layout_constraintTop_toBottomOf="@id/tv_feed_create_place_date" />

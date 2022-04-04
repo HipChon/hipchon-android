@@ -22,4 +22,4 @@ data class KeywordItem(
     val keyword: String,
     val keywordId: Int,
     val postCnt: Int
-)
+): Serializable

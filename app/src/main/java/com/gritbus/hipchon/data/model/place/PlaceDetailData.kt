@@ -1,5 +1,7 @@
 package com.gritbus.hipchon.data.model.place
 
+import java.io.Serializable
+
 data class PlaceDetailData(
     val address: String,
     val category: String,
@@ -18,4 +20,4 @@ data class PlaceDetailData(
     val openTime: String,
     val placeId: Int,
     val postCnt: Int
-)
+): Serializable

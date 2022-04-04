@@ -146,7 +146,7 @@ class FeedDetailViewModel @Inject constructor(
         viewModelScope.launch {
             when (isMypost) {
                 true -> {
-                    feedRepository.deletePost(UserData.userId, postId)
+                    feedRepository.deletePostLike(UserData.userId, postId)
                         .onSuccess {
                             _isPostLike.value = false
                         }

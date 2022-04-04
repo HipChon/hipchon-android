@@ -174,7 +174,9 @@ class PlaceDetailActivity :
             clipboard.setPrimaryClip(clip)
         }
         binding.ivPlaceDetailCreateReview.setOnClickListener {
-            startActivity(Intent(baseContext, FeedCreateActivity::class.java))
+            startActivity(Intent(baseContext, FeedCreateActivity::class.java).apply {
+                putExtra(FEED_POST_INFO, viewModel.getPostData())
+            })
         }
         binding.tvPlaceDetailReviewMore.setOnClickListener {
             startActivity(Intent(baseContext, PlaceDetailFeedActivity::class.java).apply {
@@ -350,5 +352,6 @@ class PlaceDetailActivity :
     companion object {
         const val PLACE_DETAIL_FEED_MORE =
             "com.gritbus.hipchon.ui.place.view PLACE_DETAIL_FEED_MORE"
+        const val FEED_POST_INFO = "com.gritbus.hipchon.ui.place.view FEED_POST_INFO"
     }
 }

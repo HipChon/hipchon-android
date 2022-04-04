@@ -17,7 +17,9 @@ import com.gritbus.hipchon.domain.model.KeywordFacility
 import com.gritbus.hipchon.domain.model.KeywordMood
 import com.gritbus.hipchon.domain.model.KeywordSatisfaction
 
-class FeedKeywordAdapter : ListAdapter<String, FeedKeywordAdapter.FeedKeywordViewHolder>(diffUtil) {
+class FeedKeywordAdapter(
+    private val keywordClickListener: (List<Int>) -> (Unit)
+) : ListAdapter<String, FeedKeywordAdapter.FeedKeywordViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedKeywordViewHolder {
         return FeedKeywordViewHolder(
@@ -28,14 +30,16 @@ class FeedKeywordAdapter : ListAdapter<String, FeedKeywordAdapter.FeedKeywordVie
     }
 
     override fun onBindViewHolder(holder: FeedKeywordViewHolder, position: Int) {
-        holder.bind(currentList[position])
+        holder.bind(currentList[position], keywordClickListener)
     }
 
     class FeedKeywordViewHolder(
         private val binding: ItemFeedCreateKeywordBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: String) {
+        private val checkedKeywordList = mutableListOf<Int>()
+
+        fun bind(data: String, keywordClickListener: (List<Int>) -> (Unit)) {
             binding.tvKeywordTitle.text = data
             val keywordList = when (data) {
                 Keyword.FACILITY.value -> {
@@ -51,10 +55,10 @@ class FeedKeywordAdapter : ListAdapter<String, FeedKeywordAdapter.FeedKeywordVie
                     return
                 }
             }
-            setKeyword(keywordList)
+            setKeyword(keywordList, keywordClickListener)
         }
 
-        private fun setKeyword(keywordList: Array<*>) {
+        private fun setKeyword(keywordList: Array<*>, keywordClickListener: (List<Int>) -> (Unit)) {
             keywordList.forEach { keyword ->
                 val keywordView = LayoutInflater.from(binding.root.context)
                     .inflate(
@@ -66,46 +70,71 @@ class FeedKeywordAdapter : ListAdapter<String, FeedKeywordAdapter.FeedKeywordVie
                 val keywordBinding =
                     DataBindingUtil.bind<ItemFeedCreateKeywordSelectorBinding>(keywordView)
                 if (keyword != null) {
-                    getKeywordData(keyword)?.let { iconAndContentAndColor ->
-                        keywordBinding?.ivFeedCreateKeyword?.setImageResource(iconAndContentAndColor.first)
+                    getKeywordData(keyword)?.let { iconAndContentAndColorWithId ->
+                        keywordBinding?.ivFeedCreateKeyword?.setImageResource(
+                            iconAndContentAndColorWithId.first.first
+                        )
                         keywordBinding?.tvFeedCreateKeyword?.text =
-                            binding.root.context.resources.getString(iconAndContentAndColor.second)
-                        setClickListener(keywordView, iconAndContentAndColor.third)
+                            binding.root.context.resources.getString(iconAndContentAndColorWithId.first.second)
+                        setClickListener(
+                            keywordView,
+                            iconAndContentAndColorWithId.first.third,
+                            iconAndContentAndColorWithId.second,
+                            keywordClickListener
+                        )
                     }
                     binding.llKeyword.addView(keywordView)
                 }
             }
         }
 
-        private fun setClickListener(keywordView: ConstraintLayout, color: Int) {
+        private fun setClickListener(
+            keywordView: ConstraintLayout,
+            color: Int,
+            keywordId: Int,
+            keywordClickListener: (List<Int>) -> (Unit)
+        ) {
             keywordView.setOnClickListener {
-                keywordView.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, color))
+                if (keywordId in checkedKeywordList) {
+                    keywordView.backgroundTintList =
+                        ColorStateList.valueOf(
+                            ContextCompat.getColor(
+                                binding.root.context,
+                                R.color.white
+                            )
+                        )
+                    checkedKeywordList.remove(keywordId)
+                } else {
+                    keywordView.backgroundTintList =
+                        ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, color))
+                    checkedKeywordList.add(keywordId)
+                }
+                keywordClickListener(checkedKeywordList)
             }
         }
 
-        private fun getKeywordData(keyword: Any): Triple<Int, Int, Int>? {
+        private fun getKeywordData(keyword: Any): Pair<Triple<Int, Int, Int>, Int>? {
             return when (keyword) {
                 is KeywordFacility -> {
                     Triple(
                         keyword.iconDrawable,
                         keyword.contentString,
                         R.color.secondary_yellow
-                    )
+                    ) to keyword.ordinal + 1
                 }
                 is KeywordMood -> {
                     Triple(
                         keyword.iconDrawable,
                         keyword.contentString,
                         R.color.primary_green
-                    )
+                    ) to keyword.ordinal + 6
                 }
                 is KeywordSatisfaction -> {
                     Triple(
                         keyword.iconDrawable,
                         keyword.contentString,
                         R.color.secondary_blue
-                    )
+                    ) to keyword.ordinal + 11
                 }
                 else -> {
                     null

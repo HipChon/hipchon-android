@@ -39,8 +39,8 @@ object DataSourceModule {
 
     @Provides
     @Singleton
-    fun provideFeedDataSource(feedService: FeedService): FeedDataSource {
-        return FeedDataSourceImpl(feedService)
+    fun provideFeedDataSource(feedService: FeedService, @ApplicationContext context: Context): FeedDataSource {
+        return FeedDataSourceImpl(feedService, context)
     }
 
     @Provides

@@ -1,9 +1,11 @@
 package com.gritbus.hipchon.data.repository.feed
 
+import android.net.Uri
 import com.gritbus.hipchon.data.datasource.feed.FeedDataSource
 import com.gritbus.hipchon.data.model.feed.FeedAllData
 import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
 import com.gritbus.hipchon.data.model.feed.FeedBestAllData
+import com.gritbus.hipchon.data.model.feed.FeedCreateData
 import com.gritbus.hipchon.data.model.feed.FeedWithPlaceAllData
 import javax.inject.Inject
 
@@ -61,8 +63,18 @@ class FeedRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun deletePost(userId: Int, postId: Int): Result<Unit> {
-        val result = feedDataSource.deletePost(userId, postId)
+    override suspend fun deletePostLike(userId: Int, postId: Int): Result<Unit> {
+        val result = feedDataSource.deletePostLike(userId, postId)
+
+        return if (result.exceptionOrNull() is Exception) {
+            Result.failure(result.exceptionOrNull() as Exception)
+        } else {
+            result
+        }
+    }
+
+    override suspend fun sendPost(fileList: List<Uri>, post: FeedCreateData): Result<Int> {
+        val result = feedDataSource.sendPost(fileList, post)
 
         return if (result.exceptionOrNull() is Exception) {
             Result.failure(result.exceptionOrNull() as Exception)

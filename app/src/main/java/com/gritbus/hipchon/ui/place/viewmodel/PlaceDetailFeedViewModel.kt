@@ -48,7 +48,7 @@ class PlaceDetailFeedViewModel @Inject constructor(
         viewModelScope.launch {
             when(isMypost) {
                 true -> {
-                    feedRepository.deletePost(UserData.userId, postId)
+                    feedRepository.deletePostLike(UserData.userId, postId)
                         .onSuccess {
                             getReviewData()
                         }

@@ -4,10 +4,14 @@ import com.gritbus.hipchon.data.model.feed.FeedAllData
 import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
 import com.gritbus.hipchon.data.model.feed.FeedBestAllData
 import com.gritbus.hipchon.data.model.feed.FeedWithPlaceAllData
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
 
 interface FeedService {
@@ -40,8 +44,15 @@ interface FeedService {
     ): Response<Int>
 
     @DELETE("mypost/{user_id}/{post_id}")
-    suspend fun deletePost(
+    suspend fun deletePostLike(
         @Path("user_id") userId: Int,
         @Path("post_id") postId: Int
     ): Response<Unit>
+
+    @Multipart
+    @POST("post")
+    suspend fun sendPost(
+        @Part file: List<MultipartBody.Part>,
+        @Part("post") post: RequestBody
+    ): Response<Int>
 }
