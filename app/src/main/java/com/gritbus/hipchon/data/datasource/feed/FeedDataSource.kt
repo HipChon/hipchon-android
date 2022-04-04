@@ -13,7 +13,7 @@ interface FeedDataSource {
 
     suspend fun getFeedBestAllData(): Result<FeedBestAllData>
 
-    suspend fun getFeedWithPlaceAllData(placeId: Int): Result<FeedWithPlaceAllData>
+    suspend fun getFeedWithPlaceAllData(userId: Int, placeId: Int): Result<FeedWithPlaceAllData>
 
     suspend fun savePost(userId: Int, postId: Int): Result<Int>
 

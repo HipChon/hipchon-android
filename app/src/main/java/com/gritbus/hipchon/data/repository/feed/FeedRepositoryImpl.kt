@@ -41,8 +41,8 @@ class FeedRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getFeedWithPlaceAllData(placeId: Int): Result<FeedWithPlaceAllData> {
-        val result = feedDataSource.getFeedWithPlaceAllData(placeId)
+    override suspend fun getFeedWithPlaceAllData(userId: Int, placeId: Int): Result<FeedWithPlaceAllData> {
+        val result = feedDataSource.getFeedWithPlaceAllData(userId, placeId)
 
         return if (result.exceptionOrNull() is Exception) {
             Result.failure(result.exceptionOrNull() as Exception)

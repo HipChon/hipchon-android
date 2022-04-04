@@ -27,8 +27,9 @@ interface FeedService {
     @GET("post/best")
     suspend fun getFeedBestAllData(): Response<FeedBestAllData>
 
-    @GET("post/place/{place_id}")
+    @GET("post/place/{user_id}//{place_id}")
     suspend fun getFeedWithPlaceAllData(
+        @Path("user_id") userId: Int,
         @Path("place_id") placeId: Int
     ): Response<FeedWithPlaceAllData>
 

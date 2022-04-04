@@ -73,7 +73,7 @@ class PlaceDetailViewModel @Inject constructor(
 
     fun getFeedData() {
         viewModelScope.launch {
-            feedRepository.getFeedWithPlaceAllData(placeId)
+            feedRepository.getFeedWithPlaceAllData(UserData.userId, placeId)
                 .onSuccess {
                     _reviewPreview.value = it
                 }

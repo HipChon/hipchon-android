@@ -56,9 +56,9 @@ class FeedDataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun getFeedWithPlaceAllData(placeId: Int): Result<FeedWithPlaceAllData> {
+    override suspend fun getFeedWithPlaceAllData(userId: Int, placeId: Int): Result<FeedWithPlaceAllData> {
         return try {
-            val data = feedService.getFeedWithPlaceAllData(placeId)
+            val data = feedService.getFeedWithPlaceAllData(userId, placeId)
             if (data.isSuccessful) {
                 data.body()?.let {
                     Result.success(it)
