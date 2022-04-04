@@ -10,7 +10,7 @@ data class PlaceDetailData(
     val isMyplace: Boolean,
     val keywordList: List<KeywordItem>,
     val latitude: Double,
-    val longitude: String,
+    val longitude: Double,
     val markerImage: String,
     val myplaceCnt: Int,
     val name: String,

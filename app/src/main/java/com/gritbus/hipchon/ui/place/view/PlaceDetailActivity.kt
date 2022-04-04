@@ -66,7 +66,6 @@ class PlaceDetailActivity :
     override fun initView() {
         setMenuAdapter()
         setReviewAdapter()
-        initData()
         setMap()
         setOnClickListener()
         setObserver()
@@ -78,7 +77,8 @@ class PlaceDetailActivity :
     }
 
     private fun setReviewAdapter() {
-        reviewAdapter = FeedAdapter(true, ::moveToFeedDetail, ::moveToPlaceDetail, ::likePost, ::savePlace)
+        reviewAdapter =
+            FeedAdapter(true, ::moveToFeedDetail, ::moveToPlaceDetail, ::likePost, ::savePlace)
         binding.rvPlaceDetailReview.adapter = reviewAdapter
         binding.rvPlaceDetailReview.addItemDecoration(ItemDecorationWithStroke(false))
     }
@@ -101,18 +101,14 @@ class PlaceDetailActivity :
         Log.e(this.javaClass.name, "제공하지 않는 기능")
     }
 
-    private fun initData() {
-        viewModel.initData()
-    }
-
     override fun onMapReady(naverMap: NaverMap) {
         this.naverMap = naverMap
         naverMap.uiSettings.isZoomControlEnabled = false
-        Marker().apply {
-            position = LatLng(37.5670135, 126.9783740)
-            map = naverMap
-            icon = OverlayImage.fromResource(R.drawable.ic_map_marker)
-        }
+        initData()
+    }
+
+    private fun initData() {
+        viewModel.initData()
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -168,6 +164,9 @@ class PlaceDetailActivity :
                     Uri.parse(binding.acbPlaceDetailLink.text as String?)
                 )
             )
+        }
+        binding.tvPlaceDetailPlaceUpdateSuggest.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://pf.kakao.com/_xgHYNb")))
         }
         binding.tvPlaceDetailMapCopy.setOnClickListener {
             val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -267,6 +266,16 @@ class PlaceDetailActivity :
             binding.tvPlaceDetailDesc.text = it.oneLineIntro
             binding.acbPlaceDetailLink.text = it.homepage
             binding.tvPlaceDetailMapCopyAddress.text = it.address
+
+            it.longitude?.let { longitude ->
+                it.latitude?.let { latitude ->
+                    Marker().apply {
+                        position = LatLng(latitude, longitude)
+                        map = naverMap
+                        icon = OverlayImage.fromResource(R.drawable.ic_map_marker)
+                    }
+                }
+            }
         }
     }
 
