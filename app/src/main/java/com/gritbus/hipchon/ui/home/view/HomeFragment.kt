@@ -11,6 +11,7 @@ import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllDataItem
 import com.gritbus.hipchon.databinding.FragmentHomeBinding
 import com.gritbus.hipchon.domain.model.Hashtag
 import com.gritbus.hipchon.ui.feed.view.FeedDetailActivity
+import com.gritbus.hipchon.ui.feed.view.FeedFragment
 import com.gritbus.hipchon.ui.home.adapter.BannerViewPagerAdapter
 import com.gritbus.hipchon.ui.home.adapter.BestFeedViewPagerAdapter
 import com.gritbus.hipchon.ui.home.adapter.HomeLocalHipsterAdapter
@@ -44,11 +45,12 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         setOnClickListener()
         setAdapter()
         setObserver()
+        initData()
     }
 
     override fun onResume() {
         super.onResume()
-        initData()
+        viewModel.getWeeklyHipPlaceAllData()
     }
 
     override fun onSwipe(position: Int, imageCount: Int) {
@@ -59,7 +61,6 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         viewModel.getLocalHipsterAllData()
         viewModel.getBannerAllData()
         viewModel.getBestFeedAllData()
-        viewModel.getWeeklyHipPlaceAllData()
     }
 
     private fun setItemDecoration() {
@@ -151,6 +152,11 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         viewModel.weeklyHipPlaceAllData.observe(viewLifecycleOwner) {
             weeklyHipPlaceAdapter.submitList(it)
         }
+        viewModel.currentBestFeedData.observe(viewLifecycleOwner) {
+            startActivity(Intent(requireContext(), FeedDetailActivity::class.java).apply {
+                putExtra(FeedFragment.FEED_DETAIL_DATA, it)
+            })
+        }
     }
 
     private fun setBanner(bannerAllData: List<String>) {
@@ -171,8 +177,8 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         binding.diHomeBestFeed.setViewPager2(binding.vpHomeBestFeed)
     }
 
-    override fun onClick() {
-        startActivity(Intent(requireContext(), FeedDetailActivity::class.java))
+    override fun onClick(postId: Int) {
+        viewModel.getCurrentBestFeedData(postId)
     }
 
     companion object {

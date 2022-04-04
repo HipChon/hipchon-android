@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gritbus.hipchon.data.model.UserData
+import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
 import com.gritbus.hipchon.data.model.feed.FeedBestAllDataItem
 import com.gritbus.hipchon.data.model.place.LocalHipsterAllDataItem
 import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllDataItem
@@ -32,6 +33,9 @@ class HomeViewModel @Inject constructor(
 
     private val _weeklyHipPlaceAllData = MutableLiveData<List<PlaceHipSearchAllDataItem>>()
     val weeklyHipPlaceAllData: LiveData<List<PlaceHipSearchAllDataItem>> = _weeklyHipPlaceAllData
+
+    private val _currentBestFeedData = MutableLiveData<FeedAllDataItem>()
+    val currentBestFeedData: LiveData<FeedAllDataItem> = _currentBestFeedData
 
     fun getLocalHipsterAllData() {
         viewModelScope.launch {
@@ -88,6 +92,18 @@ class HomeViewModel @Inject constructor(
                         }
                 }
             }
+        }
+    }
+
+    fun getCurrentBestFeedData(postId: Int) {
+        viewModelScope.launch {
+            feedRepository.getFeedDetailData(UserData.userId, postId)
+                .onSuccess {
+                    _currentBestFeedData.value = it
+                }
+                .onFailure {
+                    Log.e(this.javaClass.name, it.message ?: "current feed error")
+                }
         }
     }
 

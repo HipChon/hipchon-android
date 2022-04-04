@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import com.gritbus.hipchon.R
+import com.gritbus.hipchon.data.model.feed.FeedBestAllDataItem
 import com.gritbus.hipchon.databinding.FragmentBestFeedBinding
 import com.gritbus.hipchon.domain.model.Hashtag
 import com.gritbus.hipchon.utils.BaseViewUtil
@@ -11,11 +12,10 @@ import com.gritbus.hipchon.utils.BaseViewUtil
 class BestFeedFragment :
     BaseViewUtil.BaseFragment<FragmentBestFeedBinding>(R.layout.fragment_best_feed) {
 
-    private lateinit var feedTitle: String
-    private lateinit var feedHashtag: String
+    private lateinit var feedData: FeedBestAllDataItem
 
     interface OnClickListener {
-        fun onClick()
+        fun onClick(postId: Int)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,24 +30,21 @@ class BestFeedFragment :
     }
 
     private fun initFeedData() {
-        (arguments?.get(BEST_FEED_TITLE) as? String)?.let {
-            feedTitle = it
-        }
-        (arguments?.get(BEST_FEED_HASHTAG) as? String)?.let {
-            feedHashtag = it
+        (arguments?.get(BEST_FEED_DATA) as? FeedBestAllDataItem)?.let {
+            feedData = it
         }
     }
 
     private fun setOnClickListener() {
         binding.root.setOnClickListener {
-            (parentFragment as? HomeFragment)?.onClick()
+            (parentFragment as? HomeFragment)?.onClick(feedData.postId)
         }
     }
 
     private fun setView() {
-        binding.tvBestFeedTitle.text = feedTitle
+        binding.tvBestFeedTitle.text = feedData.title
 
-        val hashtagDrawable = when (feedHashtag) {
+        val hashtagDrawable = when (feedData.hashtag.name) {
             Hashtag.FIRE.value -> R.drawable.ic_fire
             Hashtag.WATER.value -> R.drawable.ic_water
             Hashtag.FIELD.value -> R.drawable.ic_field
@@ -59,12 +56,11 @@ class BestFeedFragment :
     }
 
     companion object {
-        const val BEST_FEED_TITLE = "com.gritbus.hipchon.ui.home.view BEST_FEED_TITLE"
-        const val BEST_FEED_HASHTAG = "com.gritbus.hipchon.ui.home.view BEST_FEED_HASHTAG"
+        const val BEST_FEED_DATA = "com.gritbus.hipchon.ui.home.view BEST_FEED_DATA"
 
-        fun createBestFeedFragment(title: String, hashtag: String): BestFeedFragment {
+        fun createBestFeedFragment(feedData: FeedBestAllDataItem): BestFeedFragment {
             return BestFeedFragment().apply {
-                arguments = bundleOf(BEST_FEED_TITLE to title, BEST_FEED_HASHTAG to hashtag)
+                arguments = bundleOf(BEST_FEED_DATA to feedData)
             }
         }
     }
