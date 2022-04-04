@@ -18,6 +18,7 @@ import com.gritbus.hipchon.ui.place.view.PlaceResultActivity
 import com.gritbus.hipchon.utils.BaseViewUtil
 import com.gritbus.hipchon.utils.ItemDecorationWithHorizontalSpacing
 import com.gritbus.hipchon.utils.ItemDecorationWithVerticalSpacing
+import com.gritbus.hipchon.utils.dateToFormattedString
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -81,7 +82,7 @@ class FeedDetailActivity :
             .into(binding.ivFeedDetailProfile)
         binding.tvFeedDetailNickname.text = feedData.user.name
         binding.tvFeedDetailReviewCount.text = "${feedData.user.postCnt}번째 리뷰"
-        binding.tvFeedDetailCreatedAt.text = feedData.time
+        binding.tvFeedDetailCreatedAt.text = feedData.time.dateToFormattedString()
 
         val feedThumbAdapter = FeedThumbAdapter(true)
         binding.rvFeedDetail.adapter = feedThumbAdapter

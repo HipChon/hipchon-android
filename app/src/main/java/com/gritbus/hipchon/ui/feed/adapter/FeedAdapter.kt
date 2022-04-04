@@ -15,6 +15,7 @@ import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
 import com.gritbus.hipchon.data.model.feed.FeedPlaceItem
 import com.gritbus.hipchon.databinding.ItemFeedPreviewBinding
 import com.gritbus.hipchon.utils.ItemDecorationWithHorizontalSpacing
+import com.gritbus.hipchon.utils.dateToFormattedString
 
 class FeedAdapter(
     private val isPlaceDetail: Boolean,
@@ -69,7 +70,7 @@ class FeedAdapter(
                 .into(binding.ivFeedPreviewProfile)
             binding.tvFeedPreviewNickname.text = feedData.user.name
             binding.tvFeedPreviewReviewCount.text = "${feedData.user.postCnt}번째 리뷰"
-            binding.tvFeedPreviewCreatedAt.text = feedData.time
+            binding.tvFeedPreviewCreatedAt.text = feedData.time.dateToFormattedString()
             binding.tvFeedPreviewFavorite.text = feedData.likeCnt.toString()
             binding.tvFeedPreviewComment.text = feedData.commentCnt.toString()
             binding.rmtvFeedPreviewContent.text = feedData.detail

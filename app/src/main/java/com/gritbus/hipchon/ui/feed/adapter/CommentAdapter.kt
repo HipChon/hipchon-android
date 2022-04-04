@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.data.model.feed.CommentAllDataItem
 import com.gritbus.hipchon.databinding.ItemFeedCommentBinding
+import com.gritbus.hipchon.utils.dateToFormattedString
 
 class CommentAdapter : ListAdapter<CommentAllDataItem, CommentAdapter.CommentViewHolder>(diffUtil) {
 
@@ -35,7 +36,7 @@ class CommentAdapter : ListAdapter<CommentAllDataItem, CommentAdapter.CommentVie
                 .into(binding.ivFeedCommentProfile)
             binding.tvFeedCommentName.text = commentAllDataItem.user.name
             binding.tvFeedCommentContent.text = commentAllDataItem.detail
-            binding.tvFeedCommentTime.text = commentAllDataItem.time
+            binding.tvFeedCommentTime.text = commentAllDataItem.time.dateToFormattedString()
 
             binding.executePendingBindings()
         }
