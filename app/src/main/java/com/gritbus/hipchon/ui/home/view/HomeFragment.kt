@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.gritbus.hipchon.R
+import com.gritbus.hipchon.data.model.event.EventAllDataItem
 import com.gritbus.hipchon.data.model.feed.FeedBestAllDataItem
 import com.gritbus.hipchon.data.model.place.PlaceHipSearchAllDataItem
 import com.gritbus.hipchon.databinding.FragmentHomeBinding
@@ -159,7 +160,7 @@ class HomeFragment : BaseViewUtil.BaseFragment<FragmentHomeBinding>(R.layout.fra
         }
     }
 
-    private fun setBanner(bannerAllData: List<String>) {
+    private fun setBanner(bannerAllData: List<EventAllDataItem>) {
         binding.vpHomeBanner.adapter = BannerViewPagerAdapter(
             bannerAllData,
             childFragmentManager,
