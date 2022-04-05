@@ -74,7 +74,7 @@
     <string name="place_detail_review">피드</string>
 
     <!--  Feed  -->
-    <string name="feed_comment_report">신고</string>
+    <string name="feed_comment_report">신고하기</string>
     <string name="feed_comment_reply">답글 달기</string>
     <string name="feed_comment_input">댓글 달기 ...</string>
     <string name="feed_comment_register">등록</string>

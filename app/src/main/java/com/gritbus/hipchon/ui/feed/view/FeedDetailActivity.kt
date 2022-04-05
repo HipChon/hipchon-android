@@ -1,5 +1,6 @@
 package com.gritbus.hipchon.ui.feed.view
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -43,9 +44,28 @@ class FeedDetailActivity :
     }
 
     private fun setAdapter() {
-        commentAdapter = CommentAdapter()
+        commentAdapter = CommentAdapter(::reportComment)
         binding.rvFeedDetailComment.addItemDecoration(ItemDecorationWithVerticalSpacing(24))
         binding.rvFeedDetailComment.adapter = commentAdapter
+    }
+
+    private fun reportComment(commentId: Int) {
+        showCommentReportDialog(commentId)
+    }
+
+    private fun showCommentReportDialog(commentId: Int) {
+        val dialog = AlertDialog.Builder(this).apply {
+            setTitle("댓글 신고하기")
+            setMessage("해당 댓글을 신고하시겠습니까?")
+            setNegativeButton("취소") { _, _ -> }
+            setPositiveButton("신고") { _, _ ->
+                commentAdapter.submitList(commentAdapter.currentList.mapNotNull {
+                    if (it.commentId == commentId) null else it
+                })
+            }
+        }
+        dialog.create()
+        dialog.show()
     }
 
     private fun setObserver() {
@@ -109,7 +129,7 @@ class FeedDetailActivity :
         binding.rvFeedDetail.adapter = feedThumbAdapter
         binding.rvFeedDetail.addItemDecoration(ItemDecorationWithHorizontalSpacing(4))
         feedThumbAdapter.submitList(feedData.imageList)
-        if (!feedData.imageList.isNullOrEmpty()){
+        if (!feedData.imageList.isNullOrEmpty()) {
             binding.rvFeedDetail.visibility = View.VISIBLE
         }
 
@@ -157,6 +177,7 @@ class FeedDetailActivity :
     private fun setUserView(userData: UserInfoData) {
         Glide.with(baseContext)
             .load(userData.image)
+            .circleCrop()
             .error(R.drawable.ic_profile_default_gray)
             .into(binding.ivFeedCommentInputProfile)
     }

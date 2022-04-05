@@ -22,7 +22,8 @@ class FeedAdapter(
     private val clickListener: (FeedAllDataItem) -> (Unit),
     private val moveToPlaceDetail: (Int) -> (Unit),
     private val likePost: (Int, Boolean) -> (Unit),
-    private val savePlace: (FeedPlaceItem) -> (Unit)
+    private val savePlace: (FeedPlaceItem) -> (Unit),
+    private val reportPost: (Int) -> (Unit)
 ) : ListAdapter<FeedAllDataItem, FeedAdapter.FeedViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
@@ -40,7 +41,8 @@ class FeedAdapter(
             clickListener,
             moveToPlaceDetail,
             likePost,
-            savePlace
+            savePlace,
+            reportPost
         )
     }
 
@@ -61,8 +63,12 @@ class FeedAdapter(
             clickListener: (FeedAllDataItem) -> Unit,
             moveToPlaceDetail: (Int) -> (Unit),
             likePost: (Int, Boolean) -> (Unit),
-            savePlace: (FeedPlaceItem) -> (Unit)
+            savePlace: (FeedPlaceItem) -> (Unit),
+            reportPost: (Int) -> (Unit)
         ) {
+            binding.tvFeedPreviewReport.setOnClickListener {
+                reportPost(feedData.postId)
+            }
             binding.root.setOnClickListener {
                 clickListener(feedData)
             }

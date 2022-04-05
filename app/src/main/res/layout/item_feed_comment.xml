@@ -16,6 +16,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:background="@drawable/bg_circle_black_alpha_50"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,6 +62,7 @@
             android:layout_marginStart="@dimen/spacing_20"
             android:background="@drawable/ic_comment"
             android:backgroundTint="@color/gray04"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/tv_feed_comment_time"
             app:layout_constraintStart_toEndOf="@id/tv_feed_comment_time"
             app:layout_constraintTop_toTopOf="@id/tv_feed_comment_time" />
@@ -73,6 +75,7 @@
             android:text="@string/feed_comment_reply"
             android:textColor="@color/gray04"
             android:textSize="13sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/tv_feed_comment_time"
             app:layout_constraintStart_toEndOf="@id/iv_feed_comment_reply"
             app:layout_constraintTop_toTopOf="@id/tv_feed_comment_time" />

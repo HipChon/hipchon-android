@@ -1,5 +1,6 @@
 package com.gritbus.hipchon.ui.feed.view
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -40,9 +41,28 @@ class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.f
     }
 
     private fun setAdapter() {
-        feedAdapter = FeedAdapter(false, ::moveToFeedDetail, ::moveToPlaceDetail,::likePost, ::savePlace)
+        feedAdapter = FeedAdapter(false, ::moveToFeedDetail, ::moveToPlaceDetail,::likePost, ::savePlace, ::reportPost)
         binding.rvReview.adapter = feedAdapter
         binding.rvReview.addItemDecoration(ItemDecorationWithStroke(false))
+    }
+
+    private fun reportPost(postId: Int) {
+        showPostReportDialog(postId)
+    }
+
+    private fun showPostReportDialog(postId: Int) {
+        val dialog = AlertDialog.Builder(requireContext()).apply {
+            setTitle("게시글 신고하기")
+            setMessage("해당 게시글을 신고하시겠습니까?")
+            setNegativeButton("취소") { _, _ -> }
+            setPositiveButton("신고") { _, _ ->
+                feedAdapter.submitList(feedAdapter.currentList.mapNotNull {
+                    if (it.postId == postId) null else it
+                })
+            }
+        }
+        dialog.create()
+        dialog.show()
     }
 
     private fun likePost(postId: Int, isMypost: Boolean) {

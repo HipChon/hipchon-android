@@ -65,8 +65,8 @@
             android:layout_marginTop="@dimen/spacing_16"
             android:clipToPadding="false"
             android:orientation="horizontal"
-            android:visibility="gone"
             android:paddingHorizontal="@dimen/spacing_20"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/iv_feed_preview_profile"
             tools:listitem="@layout/item_feed_image" />
@@ -112,6 +112,16 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/iv_feed_preview_comment"
             app:layout_constraintStart_toEndOf="@id/iv_feed_preview_comment"
+            app:layout_constraintTop_toTopOf="@id/iv_feed_preview_comment" />
+
+        <TextView
+            android:id="@+id/tv_feed_preview_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="신고하기"
+            android:textColor="@color/gray04"
+            app:layout_constraintBottom_toBottomOf="@id/iv_feed_preview_comment"
+            app:layout_constraintEnd_toEndOf="@id/tv_feed_preview_created_at"
             app:layout_constraintTop_toTopOf="@id/iv_feed_preview_comment" />
 
         <kr.co.prnd.readmore.ReadMoreTextView

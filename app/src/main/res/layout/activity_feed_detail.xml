@@ -277,6 +277,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="@dimen/spacing_16"
                 android:background="@drawable/bg_circle_black_alpha_50"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
