@@ -36,6 +36,10 @@ class MyCommentFragment: BaseViewUtil.BaseFragment<FragmentMyReviewBinding>(R.la
         }
         setAdapter()
         setObserver()
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.getMyData(type)
     }
 
@@ -49,14 +53,17 @@ class MyCommentFragment: BaseViewUtil.BaseFragment<FragmentMyReviewBinding>(R.la
             }
         }
         viewModel.postDetailData.observe(viewLifecycleOwner) {
-            startActivity(Intent(requireContext(), FeedDetailActivity::class.java).apply {
-                putExtra(FEED_DETAIL_DATA, it)
-            })
+            it?.let {
+                startActivity(Intent(requireContext(), FeedDetailActivity::class.java).apply {
+                    putExtra(FEED_DETAIL_DATA, it)
+                })
+                viewModel.resetPostDetail()
+            }
         }
         viewModel.commentDeleteSuccess.observe(viewLifecycleOwner) {
             if (it == true){
                 Snackbar.make(binding.root, "댓글을 삭제하였습니다.", Snackbar.LENGTH_LONG).show()
-                viewModel.resetDeleteStatus()
+                viewModel.resetDeleteCommentStatus()
             }
         }
     }

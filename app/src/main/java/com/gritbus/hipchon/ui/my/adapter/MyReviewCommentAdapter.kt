@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gritbus.hipchon.data.model.my.MyCommentAllDataItem
 import com.gritbus.hipchon.databinding.ItemMyReviewCommentBinding
+import com.gritbus.hipchon.utils.dateToFormattedString
 
 class MyReviewCommentAdapter(
     private val clickListener: (Int) -> (Unit),
@@ -46,7 +47,7 @@ class MyReviewCommentAdapter(
                 .load(myCommentAllDataItem.post.image)
                 .into(binding.ivMyReviewCommentThumb)
             binding.tvMyReviewComment.text = myCommentAllDataItem.detail
-            binding.tvMyReviewCommentDate.text = myCommentAllDataItem.time
+            binding.tvMyReviewCommentDate.text = myCommentAllDataItem.time.dateToFormattedString()
 
             binding.executePendingBindings()
         }

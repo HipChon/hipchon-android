@@ -22,4 +22,6 @@ interface FeedRepository {
     suspend fun deletePostLike(userId: Int, postId: Int): Result<Unit>
 
     suspend fun sendPost(fileList: List<Uri>, post: FeedCreateData): Result<Int>
+
+    suspend fun deletePost(userId: Int, postId: Int): Result<Unit>
 }

@@ -51,11 +51,11 @@
                 app:layout_constraintTop_toBottomOf="@id/iv_my_review" />
 
             <ImageView
-                android:id="@+id/iv_my_review_edit"
+                android:id="@+id/iv_my_review_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_20"
-                android:background="@drawable/ic_edit"
+                android:background="@drawable/ic_delete"
                 app:layout_constraintBottom_toBottomOf="@id/tv_my_review_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_my_review_title" />

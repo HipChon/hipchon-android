@@ -37,11 +37,20 @@ class MyViewModel @Inject constructor(
     private val _myFeedAllData = MutableLiveData<List<MyFeedAllDataItem>>()
     val myFeedAllData: LiveData<List<MyFeedAllDataItem>> = _myFeedAllData
 
+    private val _myLikeFeedAllData = MutableLiveData<List<MyFeedAllDataItem>>()
+    val myLikeFeedAllData: LiveData<List<MyFeedAllDataItem>> = _myLikeFeedAllData
+
     private val _myCommentAllData = MutableLiveData<List<MyCommentAllDataItem>>()
     val myCommentAllData: LiveData<List<MyCommentAllDataItem>> = _myCommentAllData
 
-    private val _postDetailData = MutableLiveData<FeedAllDataItem>()
-    val postDetailData: LiveData<FeedAllDataItem> = _postDetailData
+    private val _postDetailData = MutableLiveData<FeedAllDataItem?>()
+    val postDetailData: LiveData<FeedAllDataItem?> = _postDetailData
+
+    private val _postDeleteSuccess = MutableLiveData<Boolean?>()
+    val postDeleteSuccess: LiveData<Boolean?> = _postDeleteSuccess
+
+    private val _postLikeDeleteSuccess = MutableLiveData<Boolean?>()
+    val postLikeDeleteSuccess: LiveData<Boolean?> = _postLikeDeleteSuccess
 
     private val _commentDeleteSuccess = MutableLiveData<Boolean?>()
     val commentDeleteSuccess: LiveData<Boolean?> = _commentDeleteSuccess
@@ -88,7 +97,7 @@ class MyViewModel @Inject constructor(
         viewModelScope.launch {
             myRepository.getMyLikeFeedAllData(UserData.userId)
                 .onSuccess {
-                    _myFeedAllData.value = it
+                    _myLikeFeedAllData.value = it
                 }
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "my like feed error")
@@ -120,6 +129,10 @@ class MyViewModel @Inject constructor(
         }
     }
 
+    fun resetPostDetail() {
+        _postDetailData.value = null
+    }
+
     fun deleteComment(commentId: Int) {
         _commentDeleteSuccess.value = null
         viewModelScope.launch {
@@ -135,7 +148,43 @@ class MyViewModel @Inject constructor(
         }
     }
 
-    fun resetDeleteStatus() {
+    fun resetDeleteCommentStatus() {
         _commentDeleteSuccess.value = null
+    }
+
+    fun deletePostLike(postId: Int) {
+        viewModelScope.launch {
+            feedRepository.deletePostLike(UserData.userId, postId)
+                .onSuccess {
+                    _postLikeDeleteSuccess.value = true
+                    getMyCommentData()
+                }
+                .onFailure {
+                    _postLikeDeleteSuccess.value = false
+                    Log.e(this.javaClass.name, it.message ?: "post like delete error")
+                }
+        }
+    }
+
+    fun resetDeletePostLikeStatus() {
+        _postLikeDeleteSuccess.value = null
+    }
+
+    fun deletePost(postId: Int) {
+        viewModelScope.launch {
+            feedRepository.deletePost(UserData.userId, postId)
+                .onSuccess {
+                    _postDeleteSuccess.value = true
+                    getMyCommentData()
+                }
+                .onFailure {
+                    _postDeleteSuccess.value = false
+                    Log.e(this.javaClass.name, it.message ?: "post delete error")
+                }
+        }
+    }
+
+    fun resetDeletePostStatus() {
+        _postDeleteSuccess.value = null
     }
 }

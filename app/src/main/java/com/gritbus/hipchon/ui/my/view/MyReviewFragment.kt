@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentMyReviewBinding
 import com.gritbus.hipchon.ui.my.adapter.MyReviewAdapter
@@ -31,24 +32,71 @@ class MyReviewFragment :
         }
         setAdapter()
         setObserver()
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.getMyData(type)
     }
 
     private fun setObserver() {
-        viewModel.myFeedAllData.observe(viewLifecycleOwner) {
-            myReviewAdapter.submitList(it)
-            if (it.isNullOrEmpty()){
-                binding.llMyReviewEmpty.visibility = View.VISIBLE
-            } else {
-                binding.llMyReviewEmpty.visibility = View.INVISIBLE
+        when(type) {
+            MyFragment.MY_FEED -> {
+                viewModel.myFeedAllData.observe(viewLifecycleOwner) {
+                    myReviewAdapter.submitList(it)
+                    if (it.isNullOrEmpty()){
+                        binding.llMyReviewEmpty.visibility = View.VISIBLE
+                    } else {
+                        binding.llMyReviewEmpty.visibility = View.INVISIBLE
+                    }
+                }
+                viewModel.postDeleteSuccess.observe(viewLifecycleOwner) {
+                    if (it == true){
+                        Snackbar.make(binding.root, "게시글을 삭제하였습니다.", Snackbar.LENGTH_LONG).show()
+                        viewModel.resetDeletePostStatus()
+                        viewModel.getMyFeedData()
+                    }
+                }
+            }
+            MyFragment.MY_LIKE_FEED -> {
+                viewModel.myLikeFeedAllData.observe(viewLifecycleOwner) {
+                    myReviewAdapter.submitList(it)
+                    if (it.isNullOrEmpty()){
+                        binding.llMyReviewEmpty.visibility = View.VISIBLE
+                    } else {
+                        binding.llMyReviewEmpty.visibility = View.INVISIBLE
+                    }
+                }
+                viewModel.postLikeDeleteSuccess.observe(viewLifecycleOwner) {
+                    if (it == true){
+                        Snackbar.make(binding.root, "좋아요를 취소하였습니다.", Snackbar.LENGTH_LONG).show()
+                        viewModel.resetDeletePostLikeStatus()
+                        viewModel.getMyLikeFeedData()
+                    }
+                }
             }
         }
     }
 
     private fun setAdapter() {
-        myReviewAdapter = MyReviewAdapter()
+        myReviewAdapter = MyReviewAdapter(::clickListener, ::deletePost)
         binding.rvMyReview.adapter = myReviewAdapter
         binding.rvMyReview.layoutManager = GridLayoutManager(requireContext(), 2)
+    }
+
+    private fun clickListener(postId: Int) {
+        viewModel.getPostDetail(postId)
+    }
+
+    private fun deletePost(postId: Int) {
+        when(type) {
+            MyFragment.MY_FEED -> {
+                viewModel.deletePost(postId)
+            }
+            MyFragment.MY_LIKE_FEED -> {
+                viewModel.deletePostLike(postId)
+            }
+        }
     }
 
     companion object {

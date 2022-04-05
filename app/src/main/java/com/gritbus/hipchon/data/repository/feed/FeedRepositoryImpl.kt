@@ -82,4 +82,14 @@ class FeedRepositoryImpl @Inject constructor(
             result
         }
     }
+
+    override suspend fun deletePost(userId: Int, postId: Int): Result<Unit> {
+        val result = feedDataSource.deletePost(userId, postId)
+
+        return if (result.exceptionOrNull() is Exception) {
+            Result.failure(result.exceptionOrNull() as Exception)
+        } else {
+            result
+        }
+    }
 }

@@ -158,4 +158,19 @@ class FeedDataSourceImpl @Inject constructor(
     private fun postInfoToMultipart(post: FeedCreateData): RequestBody {
         return Gson().toJson(post).toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
     }
+
+    override suspend fun deletePost(userId: Int, postId: Int): Result<Unit> {
+        return try {
+            val data = feedService.deletePost(userId, postId)
+            if (data.isSuccessful) {
+                data.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Throwable(data.message()))
+            } else {
+                Result.failure(Throwable(data.message()))
+            }
+        } catch (e: Exception) {
+            Result.failure(Throwable(e.message))
+        }
+    }
 }

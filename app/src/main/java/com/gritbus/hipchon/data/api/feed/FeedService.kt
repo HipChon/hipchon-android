@@ -55,4 +55,10 @@ interface FeedService {
         @Part file: List<MultipartBody.Part>,
         @Part("post") post: RequestBody
     ): Response<Int>
+
+    @DELETE("post/{user_id}/{post_id}")
+    suspend fun deletePost(
+        @Path("user_id") userId: Int,
+        @Path("post_id") postId: Int
+    ): Response<Unit>
 }
