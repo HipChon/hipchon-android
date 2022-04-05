@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gritbus.hipchon.data.model.UserData
-import com.gritbus.hipchon.data.model.user.UserInfoData
+import com.gritbus.hipchon.data.model.user.UserDataForUpdate
 import com.gritbus.hipchon.data.repository.user.UserRepository
 import com.gritbus.hipchon.ui.onboard.view.SignupTermsFragment.Companion.TERM_AGE
 import com.gritbus.hipchon.ui.onboard.view.SignupTermsFragment.Companion.TERM_ALL
@@ -54,8 +54,8 @@ class SignupViewModel @Inject constructor(
     private val _profilePath = MutableLiveData<Uri>()
     val profilePath: LiveData<Uri> = _profilePath
 
-    private val _isSignupSuccess = MutableLiveData<Boolean>()
-    val isSignupSuccess: LiveData<Boolean> = _isSignupSuccess
+    private val _isSignupSuccess = MutableLiveData<String>()
+    val isSignupSuccess: LiveData<String> = _isSignupSuccess
 
     private val _hasUserId = MutableLiveData<Boolean>()
     val hasUserId: LiveData<Boolean> = _hasUserId
@@ -122,23 +122,21 @@ class SignupViewModel @Inject constructor(
     }
 
     fun userSignup() {
-        val userDto = UserInfoData(
-            email = _email.value ?: "",
-            userId = 0,
-            isMarketing = _eventTerms.value == true,
-            loginId = UserData.userLoginId,
-            loginType = UserData.platform,
-            name = _nickname.value ?: return,
-            image = ""
-        )
+        val userDto = UserDataForUpdate(
+                loginId = UserData.userLoginId,
+                loginType = UserData.platform,
+                name = _nickname.value ?: return,
+                email = _email.value ?: return,
+                isMarketing = _eventTerms.value == true
+            )
 
         viewModelScope.launch {
-            userRepository.signupUser(userDto)
+            userRepository.signupUser(_profilePath.value, userDto)
                 .onSuccess {
-                    _isSignupSuccess.value = true
+                    _isSignupSuccess.value = "success"
                 }
                 .onFailure {
-                    _isSignupSuccess.value = false
+                    _isSignupSuccess.value = it.message
                     Log.e(this.javaClass.name, it.message ?: "signup error")
                 }
         }

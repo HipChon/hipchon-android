@@ -1,10 +1,13 @@
 package com.gritbus.hipchon.ui.onboard.view
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +28,9 @@ import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
 import com.zhihu.matisse.Matisse
+import com.zhihu.matisse.MimeType
+import com.zhihu.matisse.engine.impl.GlideEngine
+import com.zhihu.matisse.ui.MatisseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,7 +46,7 @@ class SignupProfileFragment :
     }
 
     override fun initView() {
-//        setRegisterForActivityResult()
+        setRegisterForActivityResult()
         setToolbarVisibility()
         setBaseProfileInfoFromSocial()
         setOnClickListener()
@@ -87,7 +93,6 @@ class SignupProfileFragment :
             }
 
             override fun onSuccess(result: NidProfileResponse) {
-                Log.i("result", result.profile.toString())
 //                result.profile?.profileImage?.let {
 //                    viewModel.setUserProfilePath(Uri.parse(it))
 //                }
@@ -118,29 +123,29 @@ class SignupProfileFragment :
     }
 
     private fun setOnClickListener() {
-//        binding.ivMyUpdate.setOnClickListener {
-//            // 프로필 이미지 변경
-//            if (ContextCompat.checkSelfPermission(
-//                    requireContext(),
-//                    Manifest.permission.READ_EXTERNAL_STORAGE
-//                ) == PackageManager.PERMISSION_GRANTED
-//            ) {
-//                Matisse.from(this)
-//                    .choose(MimeType.ofAll())
-//                    .countable(true)
-//                    .maxSelectable(1)
-//                    .imageEngine(GlideEngine())
-//                    .let {
-//                        val intent = Intent(requireContext(), MatisseActivity::class.java)
-//                        registerForActivity.launch(intent)
-//                    }
-//            } else {
-//                requestPermissions(
-//                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-//                    1000
-//                )
-//            }
-//        }
+        binding.ivMyUpdate.setOnClickListener {
+            // 프로필 이미지 변경
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                Matisse.from(this)
+                    .choose(MimeType.ofAll())
+                    .countable(true)
+                    .maxSelectable(1)
+                    .imageEngine(GlideEngine())
+                    .let {
+                        val intent = Intent(requireContext(), MatisseActivity::class.java)
+                        registerForActivity.launch(intent)
+                    }
+            } else {
+                requestPermissions(
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    1000
+                )
+            }
+        }
         binding.acbMyUpdate.setOnClickListener {
             viewModel.userSignup()
         }
@@ -169,8 +174,9 @@ class SignupProfileFragment :
             }
         }
         viewModel.isSignupSuccess.observe(viewLifecycleOwner) {
-            if (it) {
-                viewModel.getUserId()
+            when (it) {
+                "success" -> viewModel.getUserId()
+                else -> Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
         }
         viewModel.hasUserId.observe(viewLifecycleOwner) {

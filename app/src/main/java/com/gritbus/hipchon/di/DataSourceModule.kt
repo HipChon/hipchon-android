@@ -39,7 +39,10 @@ object DataSourceModule {
 
     @Provides
     @Singleton
-    fun provideFeedDataSource(feedService: FeedService, @ApplicationContext context: Context): FeedDataSource {
+    fun provideFeedDataSource(
+        feedService: FeedService,
+        @ApplicationContext context: Context
+    ): FeedDataSource {
         return FeedDataSourceImpl(feedService, context)
     }
 
@@ -65,9 +68,10 @@ object DataSourceModule {
     @Singleton
     fun provideUserDataSource(
         userService: UserService,
-        autoLoginManager: AutoLoginManager
+        autoLoginManager: AutoLoginManager,
+        @ApplicationContext context: Context
     ): UserDataSource {
-        return UserDataSourceImpl(userService, autoLoginManager)
+        return UserDataSourceImpl(userService, autoLoginManager, context)
     }
 
     @Provides

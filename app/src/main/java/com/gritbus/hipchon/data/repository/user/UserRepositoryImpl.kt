@@ -1,6 +1,8 @@
 package com.gritbus.hipchon.data.repository.user
 
+import android.net.Uri
 import com.gritbus.hipchon.data.datasource.user.UserDataSource
+import com.gritbus.hipchon.data.model.user.UserDataForUpdate
 import com.gritbus.hipchon.data.model.user.UserInfoData
 import javax.inject.Inject
 
@@ -8,8 +10,8 @@ class UserRepositoryImpl @Inject constructor(
     private val userDataSource: UserDataSource
 ): UserRepository {
 
-    override suspend fun signupUser(userDto: UserInfoData): Result<String> {
-        val result = userDataSource.signupUser(userDto)
+    override suspend fun signupUser(file: Uri?, user: UserDataForUpdate): Result<String> {
+        val result = userDataSource.signupUser(file, user)
 
         return if (result.exceptionOrNull() is Exception) {
             Result.failure(result.exceptionOrNull() as Exception)

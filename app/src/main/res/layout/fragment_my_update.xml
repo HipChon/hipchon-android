@@ -60,7 +60,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_20"
-            android:background="@drawable/bg_rectangle_radius_5"
+            android:background="@drawable/bg_rectangle_radius_5_filled"
             android:backgroundTint="@color/gray02"
             android:enabled="false"
             android:paddingVertical="13dp"

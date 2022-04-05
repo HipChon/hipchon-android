@@ -4,10 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentMyBinding
-import com.gritbus.hipchon.ui.MainActivity
 import com.gritbus.hipchon.ui.my.adapter.MyAdapter
 import com.gritbus.hipchon.ui.my.viewmodel.MyViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
@@ -35,6 +35,11 @@ class MyFragment : BaseViewUtil.BaseFragment<FragmentMyBinding>(R.layout.fragmen
     private fun setObserver() {
         viewModel.myProfile.observe(viewLifecycleOwner) {
             binding.tvMyName.text = it.name
+            Glide.with(requireContext())
+                .load(it.image)
+                .circleCrop()
+                .error(R.drawable.ic_profile_default_gray)
+                .into(binding.ivMyProfile)
         }
     }
 
