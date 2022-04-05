@@ -33,6 +33,10 @@ class PlaceDetailFeedActivity :
         setAdapter()
         setOnClickListener()
         setObserver()
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.getReviewData()
     }
 
@@ -67,7 +71,9 @@ class PlaceDetailFeedActivity :
         binding.mtPlaceDetailFeed.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.place_review_more -> {
-                    startActivity(Intent(baseContext, FeedCreateActivity::class.java))
+                    startActivity(Intent(baseContext, FeedCreateActivity::class.java).apply {
+                        putExtra(PlaceDetailActivity.FEED_POST_INFO, viewModel.getPostData())
+                    })
                     true
                 }
                 else -> {

@@ -82,6 +82,9 @@ class FeedCreateActivity :
     }
 
     private fun setClickListener() {
+        binding.mtFeedCreate.setNavigationOnClickListener {
+            finish()
+        }
         binding.acbFeedCreateReviewContentPhoto.setOnClickListener {
             if (ContextCompat.checkSelfPermission(
                     this,

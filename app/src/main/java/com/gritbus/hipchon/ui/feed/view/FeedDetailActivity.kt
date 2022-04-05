@@ -3,6 +3,7 @@ package com.gritbus.hipchon.ui.feed.view
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
@@ -108,6 +109,9 @@ class FeedDetailActivity :
         binding.rvFeedDetail.adapter = feedThumbAdapter
         binding.rvFeedDetail.addItemDecoration(ItemDecorationWithHorizontalSpacing(4))
         feedThumbAdapter.submitList(feedData.imageList)
+        if (!feedData.imageList.isNullOrEmpty()){
+            binding.rvFeedDetail.visibility = View.VISIBLE
+        }
 
         binding.tvFeedDetailContent.text = feedData.detail
         binding.tvFeedDetailPlaceTitle.text = feedData.place.name

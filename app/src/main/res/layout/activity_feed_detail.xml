@@ -95,6 +95,7 @@
                     android:clipToPadding="false"
                     android:orientation="horizontal"
                     android:paddingHorizontal="@dimen/spacing_20"
+                    android:visibility="gone"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/iv_feed_detail_profile"
                     tools:listitem="@layout/item_feed_image" />
@@ -298,26 +299,26 @@
                     android:id="@+id/et_feed_comment_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
                     android:layout_marginEnd="17dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/tv_feed_detail_comment_input"
+                    android:background="@color/white"
                     android:hint="@string/feed_comment_input"
                     android:textColorHint="@color/gray_comment_input_hint"
-                    android:textSize="@dimen/text_size_14" />
+                    android:textSize="@dimen/text_size_14"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_feed_detail_comment_input"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_feed_detail_comment_input"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:text="@string/feed_comment_register"
-                    android:textColor="@color/primary_green" />
+                    android:textColor="@color/primary_green"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

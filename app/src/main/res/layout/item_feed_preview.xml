@@ -65,6 +65,7 @@
             android:layout_marginTop="@dimen/spacing_16"
             android:clipToPadding="false"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:paddingHorizontal="@dimen/spacing_20"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/iv_feed_preview_profile"

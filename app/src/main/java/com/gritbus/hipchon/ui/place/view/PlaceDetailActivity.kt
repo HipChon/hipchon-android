@@ -71,6 +71,13 @@ class PlaceDetailActivity :
         setObserver()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (this::naverMap.isInitialized){
+            initData()
+        }
+    }
+
     private fun setMenuAdapter() {
         menuAdapter = PlaceMenuAdapter()
         binding.rvPlaceDetailMenu.adapter = menuAdapter
@@ -180,7 +187,7 @@ class PlaceDetailActivity :
         }
         binding.tvPlaceDetailReviewMore.setOnClickListener {
             startActivity(Intent(baseContext, PlaceDetailFeedActivity::class.java).apply {
-                putExtra(PLACE_DETAIL_FEED_MORE, viewModel.getReviewPlaceId())
+                putExtra(PLACE_DETAIL_FEED_MORE, viewModel.getPostData())
             })
         }
     }
@@ -237,6 +244,7 @@ class PlaceDetailActivity :
                             )
                         )
                     }
+                    binding.llPlaceDetailKeyword.removeAllViews()
                     binding.llPlaceDetailKeyword.addView(keywordView)
                 }
             }

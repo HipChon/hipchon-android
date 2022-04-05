@@ -109,10 +109,6 @@ class PlaceDetailViewModel @Inject constructor(
         }
     }
 
-    fun getReviewPlaceId(): Int {
-        return placeId
-    }
-
     fun getContact(): String? {
         return _placeData.value?.contact
     }

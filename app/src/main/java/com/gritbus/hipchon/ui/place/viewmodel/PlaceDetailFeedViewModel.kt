@@ -8,12 +8,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gritbus.hipchon.data.model.UserData
 import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
+import com.gritbus.hipchon.data.model.place.PlaceDetailData
 import com.gritbus.hipchon.data.repository.feed.FeedRepository
 import com.gritbus.hipchon.ui.place.view.PlaceDetailActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.properties.Delegates
 
 @HiltViewModel
 class PlaceDetailFeedViewModel @Inject constructor(
@@ -21,20 +21,20 @@ class PlaceDetailFeedViewModel @Inject constructor(
     private val feedRepository: FeedRepository
 ) : ViewModel() {
 
-    private var _placeId by Delegates.notNull<Int>()
+    private lateinit var _placeData: PlaceDetailData
 
     private val _placeReviewAllData = MutableLiveData<List<FeedAllDataItem>>()
     val placeReviewAllData: LiveData<List<FeedAllDataItem>> = _placeReviewAllData
 
     init {
-        savedStateHandle.get<Int>(PlaceDetailActivity.PLACE_DETAIL_FEED_MORE)?.let {
-            _placeId = it
+        savedStateHandle.get<PlaceDetailData>(PlaceDetailActivity.PLACE_DETAIL_FEED_MORE)?.let {
+            _placeData = it
         }
     }
 
     fun getReviewData() {
         viewModelScope.launch {
-            feedRepository.getFeedWithPlaceAllData(UserData.userId, _placeId)
+            feedRepository.getFeedWithPlaceAllData(UserData.userId, _placeData.placeId)
                 .onSuccess {
                     _placeReviewAllData.value = it
                 }
@@ -67,5 +67,9 @@ class PlaceDetailFeedViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun getPostData(): PlaceDetailData {
+        return _placeData
     }
 }

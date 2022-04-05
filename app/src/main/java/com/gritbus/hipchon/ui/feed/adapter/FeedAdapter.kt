@@ -69,6 +69,7 @@ class FeedAdapter(
 
             Glide.with(binding.root.context)
                 .load(feedData.user.image)
+                .circleCrop()
                 .error(R.drawable.ic_profile_default)
                 .into(binding.ivFeedPreviewProfile)
             binding.tvFeedPreviewNickname.text = feedData.user.name
@@ -78,7 +79,10 @@ class FeedAdapter(
             binding.tvFeedPreviewComment.text = feedData.commentCnt.toString()
             binding.rmtvFeedPreviewContent.text = feedData.detail
             feedData.imageList?.let {
-                feedThumbAdapter.submitList(it.filter { it != null })
+                feedThumbAdapter.submitList(it.filterNotNull())
+                if (!it.isNullOrEmpty()){
+                    binding.rvFeedPreview.visibility = View.VISIBLE
+                }
             }
 
             if (isPlaceDetail) {

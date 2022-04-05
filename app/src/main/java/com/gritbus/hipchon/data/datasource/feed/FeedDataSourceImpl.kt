@@ -132,6 +132,10 @@ class FeedDataSourceImpl @Inject constructor(
 
     private fun uriListToMultipart(filePathList: List<Uri>): ArrayList<MultipartBody.Part> {
         val files: ArrayList<MultipartBody.Part> = ArrayList()
+        if (filePathList.isNullOrEmpty()){
+            files.add(MultipartBody.Part.createFormData("file", "", "".toRequestBody(MultipartBody.FORM)))
+            return files
+        }
         for (i in filePathList.indices) {
             // Uri 타입의 파일경로를 가지는 RequestBody 객체 생성
             val fileBody =
