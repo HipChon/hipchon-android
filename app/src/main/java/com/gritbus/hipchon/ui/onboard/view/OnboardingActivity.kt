@@ -48,6 +48,9 @@ class OnboardingActivity :
         binding.tvOnboardingProblem.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(kakaoChannel)))
         }
+        binding.ivOnboardingHipchoni.setOnClickListener {
+            viewModel.updateHipchoniCount()
+        }
     }
 
     private fun setObserver() {
@@ -56,6 +59,11 @@ class OnboardingActivity :
                 moveToMainActivity()
             } else {
                 moveToSignupActivity()
+            }
+        }
+        viewModel.hipchoniCount.observe(this) {
+            if (it == 10) {
+                viewModel.loginWithMasterAccount()
             }
         }
     }
