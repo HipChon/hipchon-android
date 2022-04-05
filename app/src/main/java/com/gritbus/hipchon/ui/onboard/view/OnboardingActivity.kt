@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import com.gritbus.hipchon.BuildConfig
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityOnboardingBinding
 import com.gritbus.hipchon.ui.MainActivity
@@ -14,7 +13,6 @@ import com.gritbus.hipchon.utils.BaseViewUtil
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
-import com.navercorp.nid.log.NidLog
 import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
@@ -69,14 +67,6 @@ class OnboardingActivity :
     }
 
     private fun setNaverLogin() {
-        NidLog.init()
-        NaverIdLoginSDK.initialize(
-            this,
-            BuildConfig.NAVER_CLIENT_ID,
-            BuildConfig.NAVER_CLIENT_SECRET,
-            BuildConfig.NAVER_APP_NAME
-        )
-
         val oauthLoginCallback = object : OAuthLoginCallback {
             override fun onError(errorCode: Int, message: String) {
                 onFailure(errorCode, message)
