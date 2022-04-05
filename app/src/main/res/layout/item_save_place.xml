@@ -143,7 +143,7 @@
             android:backgroundTint="@color/gray01"
             android:paddingHorizontal="10dp"
             android:paddingVertical="@dimen/spacing_12"
-            android:text="메모"
+            android:text="메모 기능은 준비중입니다."
             android:textColor="@color/gray05"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
