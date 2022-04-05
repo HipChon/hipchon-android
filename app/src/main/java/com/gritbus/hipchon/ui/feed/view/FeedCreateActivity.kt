@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import com.bumptech.glide.Glide
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.ActivityFeedCreateBinding
@@ -52,10 +53,17 @@ class FeedCreateActivity :
     }
 
     override fun initView() {
+        setReviewInputListener()
         setPhotoAdapter()
         setKeywordAdapter()
         setClickListener()
         setObserver()
+    }
+
+    private fun setReviewInputListener() {
+        binding.etFeedCreateReviewContent.addTextChangedListener {
+            binding.tvFeedCreateReviewContentCount.text = "${it.toString().length} / 200"
+        }
     }
 
     private fun setPhotoAdapter() {
