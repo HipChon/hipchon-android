@@ -83,7 +83,7 @@
                         android:id="@+id/iv_home_weekly_hip_place_keyword"
                         android:layout_width="@dimen/spacing_12"
                         android:layout_height="18dp"
-                        android:background="@drawable/ic_water" />
+                        android:src="@drawable/ic_water" />
 
                     <TextView
                         android:id="@+id/tv_home_weekly_hip_place_keyword"
