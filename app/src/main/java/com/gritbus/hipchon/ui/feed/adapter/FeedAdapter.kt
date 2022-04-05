@@ -85,8 +85,8 @@ class FeedAdapter(
             binding.tvFeedPreviewComment.text = feedData.commentCnt.toString()
             binding.rmtvFeedPreviewContent.text = feedData.detail
             feedData.imageList?.let {
-                feedThumbAdapter.submitList(it.filterNotNull())
                 if (!it.isNullOrEmpty()){
+                    feedThumbAdapter.submitList(it.filterNotNull())
                     binding.rvFeedPreview.visibility = View.VISIBLE
                 }
             }

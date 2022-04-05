@@ -128,8 +128,8 @@ class FeedDetailActivity :
         val feedThumbAdapter = FeedThumbAdapter(true)
         binding.rvFeedDetail.adapter = feedThumbAdapter
         binding.rvFeedDetail.addItemDecoration(ItemDecorationWithHorizontalSpacing(4))
-        feedThumbAdapter.submitList(feedData.imageList)
         if (!feedData.imageList.isNullOrEmpty()) {
+            feedThumbAdapter.submitList(feedData.imageList)
             binding.rvFeedDetail.visibility = View.VISIBLE
         }
 
