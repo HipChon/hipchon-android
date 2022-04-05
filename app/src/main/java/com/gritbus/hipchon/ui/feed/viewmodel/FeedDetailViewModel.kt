@@ -166,4 +166,20 @@ class FeedDetailViewModel @Inject constructor(
             }
         }
     }
+
+    fun getUpdatePostLikeCount(): Int {
+        val feedData = _feedData.value ?: return 0
+        return if (feedData.isMypost == _isPostLike.value) {
+            feedData.likeCnt
+        } else {
+            when (feedData.isMypost) {
+                true -> {
+                    feedData.likeCnt - 1
+                }
+                false -> {
+                    feedData.likeCnt + 1
+                }
+            }
+        }
+    }
 }

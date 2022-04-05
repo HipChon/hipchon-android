@@ -92,6 +92,7 @@ class FeedDetailActivity :
             true -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_favorite_filled)
             false -> ContextCompat.getDrawable(binding.root.context, R.drawable.ic_favorite)
         }
+        binding.tvFeedDetailFavorite.text = viewModel.getUpdatePostLikeCount().toString()
     }
 
     private fun setPlaceSaveView(isSave: Boolean) {
@@ -119,6 +120,7 @@ class FeedDetailActivity :
         binding.tvFeedDetailTitle.text = feedData.place.name
         Glide.with(this)
             .load(feedData.user.image)
+            .circleCrop()
             .error(R.drawable.ic_profile_default_gray)
             .into(binding.ivFeedDetailProfile)
         binding.tvFeedDetailNickname.text = feedData.user.name
