@@ -31,6 +31,14 @@ class MySettingViewModel @Inject constructor(
     }
 
     fun leaveUser() {
+        if (UserData.userLoginId == "masterId") {
+            userRepository.setAutoLoginId(null)
+            userRepository.setAutoLoginPlatform(null)
+
+            _isLeaveSuccess.value =
+                userRepository.getAutoLoginId() == null && userRepository.getAutoLoginPlatform() == null
+            return
+        }
         viewModelScope.launch {
             userRepository.deleteUserData(UserData.platform, UserData.userLoginId)
                 .onSuccess {
