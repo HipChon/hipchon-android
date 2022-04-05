@@ -4,7 +4,6 @@ import com.gritbus.hipchon.data.model.user.UserInfoData
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
-import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Multipart
@@ -28,9 +27,11 @@ interface UserService {
         @Path("login_id") loginId: String
     ): Response<String>
 
+    @Multipart
     @PUT("user")
     suspend fun updateProfile(
-        @Body userDto: UserInfoData
+        @Part file: MultipartBody.Part,
+        @Part("user") user: RequestBody
     ): Response<String>
 
     @GET("user/{login_type}/{login_id}")

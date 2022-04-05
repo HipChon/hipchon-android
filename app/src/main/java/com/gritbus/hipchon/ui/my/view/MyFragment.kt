@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.gritbus.hipchon.R
 import com.gritbus.hipchon.databinding.FragmentMyBinding
+import com.gritbus.hipchon.ui.MainActivity
 import com.gritbus.hipchon.ui.my.adapter.MyAdapter
 import com.gritbus.hipchon.ui.my.viewmodel.MyViewModel
 import com.gritbus.hipchon.utils.BaseViewUtil
@@ -54,9 +55,9 @@ class MyFragment : BaseViewUtil.BaseFragment<FragmentMyBinding>(R.layout.fragmen
     }
 
     private fun setOnClickListener(){
-//        binding.ivMyProfile.setOnClickListener {
-//            (activity as? MainActivity)?.addFragment(MyUpdateFragment())
-//        }
+        binding.ivMyProfile.setOnClickListener {
+            (activity as? MainActivity)?.addFragment(MyUpdateFragment())
+        }
         binding.ivMyOption.setOnClickListener {
             startActivity(Intent(requireContext(), MySettingActivity::class.java))
         }

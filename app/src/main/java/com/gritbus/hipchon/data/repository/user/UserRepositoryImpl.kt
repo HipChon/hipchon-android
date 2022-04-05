@@ -30,8 +30,8 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun updateProfile(userDto: UserInfoData): Result<String> {
-        val result = userDataSource.updateProfile(userDto)
+    override suspend fun updateProfile(file: Uri?, user: UserDataForUpdate): Result<String> {
+        val result = userDataSource.updateProfile(file, user)
 
         return if (result.exceptionOrNull() is Exception) {
             Result.failure(result.exceptionOrNull() as Exception)

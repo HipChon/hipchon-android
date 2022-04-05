@@ -76,15 +76,15 @@ class UserDataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun updateProfile(userDto: UserInfoData): Result<String> {
+    override suspend fun updateProfile(file: Uri?, user: UserDataForUpdate): Result<String> {
         return try {
-            val data = userService.updateProfile(userDto)
+            val data = userService.updateProfile(uriToMultipart(file), userInfoToMultipart(user))
             if (data.isSuccessful) {
                 data.body()?.let {
                     Result.success(it)
-                } ?: Result.failure(Throwable(data.message()))
+                } ?: Result.failure(Throwable(Gson().fromJson(data.errorBody()?.string(), ErrorBody::class.java).message))
             } else {
-                Result.failure(Throwable(data.message()))
+                Result.failure(Throwable(Gson().fromJson(data.errorBody()?.string(), ErrorBody::class.java).message))
             }
         } catch (e: Exception) {
             Result.failure(Throwable(e.message))

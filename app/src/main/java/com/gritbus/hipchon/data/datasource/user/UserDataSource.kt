@@ -10,7 +10,7 @@ interface UserDataSource {
 
     suspend fun loginUser(loginType: String, loginId: String): Result<String>
 
-    suspend fun updateProfile(userDto: UserInfoData): Result<String>
+    suspend fun updateProfile(file: Uri?, user: UserDataForUpdate): Result<String>
 
     suspend fun getUserData(loginType: String, loginId: String): Result<UserInfoData>
 
