@@ -240,6 +240,15 @@
                     app:layout_constraintStart_toEndOf="@id/iv_feed_detail_comment"
                     app:layout_constraintTop_toTopOf="@id/iv_feed_detail_comment" />
 
+                <TextView
+                    android:id="@+id/tv_feed_detail_report"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="신고하기"
+                    android:textColor="@color/gray04"
+                    app:layout_constraintEnd_toEndOf="@id/tv_feed_detail_created_at"
+                    app:layout_constraintTop_toTopOf="@id/iv_feed_detail_comment" />
+
                 <View
                     android:id="@+id/view_decoration"
                     android:layout_width="match_parent"

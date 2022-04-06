@@ -83,6 +83,11 @@ class FeedDetailActivity :
         viewModel.userInfo.observe(this) {
             setUserView(it)
         }
+        viewModel.isReportSuccess.observe(this) {
+            if (it) {
+                finish()
+            }
+        }
     }
 
     private fun setPostLikeView(isMypost: Boolean) {
@@ -172,6 +177,22 @@ class FeedDetailActivity :
                 if (it.isNotEmpty()) viewModel.sendComment(it)
             }
         }
+        binding.tvFeedDetailReport.setOnClickListener {
+            showFeedReportDialog()
+        }
+    }
+
+    private fun showFeedReportDialog() {
+        val dialog = AlertDialog.Builder(this).apply {
+            setTitle("게시글 신고하기")
+            setMessage("해당 게시글을 신고하시겠습니까?")
+            setNegativeButton("취소") { _, _ -> }
+            setPositiveButton("신고") { _, _ ->
+                viewModel.reportFeed()
+            }
+        }
+        dialog.create()
+        dialog.show()
     }
 
     private fun setUserView(userData: UserInfoData) {

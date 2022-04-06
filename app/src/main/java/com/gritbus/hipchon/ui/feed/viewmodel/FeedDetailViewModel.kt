@@ -44,6 +44,9 @@ class FeedDetailViewModel @Inject constructor(
     private val _userInfo = MutableLiveData<UserInfoData>()
     val userInfo: LiveData<UserInfoData> = _userInfo
 
+    private val _isReportSuccess = MutableLiveData<Boolean>()
+    val isReportSuccess: LiveData<Boolean> = _isReportSuccess
+
     init {
         savedStateHandle.get<FeedAllDataItem>(FeedFragment.FEED_DETAIL_DATA)?.let {
             _feedData.value = it
@@ -197,5 +200,16 @@ class FeedDetailViewModel @Inject constructor(
             }
         )
         getCommentAll()
+    }
+
+    fun reportFeed() {
+        feedRepository.setFeedReportAllData(
+            feedRepository.getFeedReportAllData()?.apply {
+                _feedData.value?.postId?.let {
+                    _isReportSuccess.value = true
+                    add(it)
+                }
+            }
+        )
     }
 }
