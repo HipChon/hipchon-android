@@ -41,9 +41,26 @@ class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.f
     }
 
     private fun setAdapter() {
-        feedAdapter = FeedAdapter(false, ::moveToFeedDetail, ::moveToPlaceDetail,::likePost, ::savePlace, ::reportPost)
+        feedAdapter = FeedAdapter(false, ::moveToFeedDetail, ::moveToPlaceDetail,::likePost, ::savePlace, ::reportPost, ::reportUser)
         binding.rvReview.adapter = feedAdapter
         binding.rvReview.addItemDecoration(ItemDecorationWithStroke(false))
+    }
+
+    private fun reportUser(userId: Int) {
+        showUserReportDialog(userId)
+    }
+
+    private fun showUserReportDialog(userId: Int) {
+        val dialog = AlertDialog.Builder(requireContext()).apply {
+            setTitle("유저 차단하기")
+            setMessage("해당 유저를 차단하시겠습니까?")
+            setNegativeButton("취소") { _, _ -> }
+            setPositiveButton("차단") { _, _ ->
+                viewModel.reportUser(userId)
+            }
+        }
+        dialog.create()
+        dialog.show()
     }
 
     private fun reportPost(postId: Int) {

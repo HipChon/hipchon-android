@@ -10,6 +10,7 @@ import com.gritbus.hipchon.data.model.UserData
 import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
 import com.gritbus.hipchon.data.model.place.PlaceDetailData
 import com.gritbus.hipchon.data.repository.feed.FeedRepository
+import com.gritbus.hipchon.data.repository.user.UserRepository
 import com.gritbus.hipchon.ui.place.view.PlaceDetailActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class PlaceDetailFeedViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val feedRepository: FeedRepository
+    private val feedRepository: FeedRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     private lateinit var _placeData: PlaceDetailData
@@ -37,11 +39,20 @@ class PlaceDetailFeedViewModel @Inject constructor(
             feedRepository.getFeedWithPlaceAllData(UserData.userId, _placeData.placeId)
                 .onSuccess {
                     val reportFeedAllData = feedRepository.getFeedReportAllData()
+                    val reportUserAllData = userRepository.getUserReportAllData()
                     _placeReviewAllData.value = it.filter { feed ->
                         if (reportFeedAllData != null){
-                            !reportFeedAllData.contains(feed.postId)
+                            if (reportUserAllData != null) {
+                                !reportFeedAllData.contains(feed.postId) && !reportUserAllData.contains(feed.user.userId)
+                            } else {
+                                !reportFeedAllData.contains(feed.postId)
+                            }
                         } else {
-                            true
+                            if (reportUserAllData != null) {
+                                !reportUserAllData.contains(feed.user.userId)
+                            } else {
+                                true
+                            }
                         }
                     }
                 }
@@ -84,6 +95,15 @@ class PlaceDetailFeedViewModel @Inject constructor(
         feedRepository.setFeedReportAllData(
             feedRepository.getFeedReportAllData()?.apply {
                 add(postId)
+            }
+        )
+        getReviewData()
+    }
+
+    fun reportUser(userId: Int) {
+        userRepository.setUserReportAllData(
+            userRepository.getUserReportAllData()?.apply {
+                add(userId)
             }
         )
         getReviewData()

@@ -44,9 +44,26 @@ class FeedDetailActivity :
     }
 
     private fun setAdapter() {
-        commentAdapter = CommentAdapter(::reportComment)
+        commentAdapter = CommentAdapter(::reportComment, ::reportCommentUser)
         binding.rvFeedDetailComment.addItemDecoration(ItemDecorationWithVerticalSpacing(24))
         binding.rvFeedDetailComment.adapter = commentAdapter
+    }
+
+    private fun reportCommentUser(userId: Int) {
+        showUserReportDialog(userId)
+    }
+
+    private fun showUserReportDialog(userId: Int) {
+        val dialog = AlertDialog.Builder(this).apply {
+            setTitle("유저 차단하기")
+            setMessage("해당 유저를 차단하시겠습니까?")
+            setNegativeButton("취소") { _, _ -> }
+            setPositiveButton("차단") { _, _ ->
+                viewModel.reportCommentUser(userId)
+            }
+        }
+        dialog.create()
+        dialog.show()
     }
 
     private fun reportComment(commentId: Int) {
@@ -130,10 +147,10 @@ class FeedDetailActivity :
         binding.tvFeedDetailReviewCount.text = "${feedData.user.postCnt}번째 리뷰"
         binding.tvFeedDetailCreatedAt.text = feedData.time.dateToFormattedString()
 
-        val feedThumbAdapter = FeedThumbAdapter(true)
-        binding.rvFeedDetail.adapter = feedThumbAdapter
-        binding.rvFeedDetail.addItemDecoration(ItemDecorationWithHorizontalSpacing(4))
         if (!feedData.imageList.isNullOrEmpty()) {
+            val feedThumbAdapter = FeedThumbAdapter(true)
+            binding.rvFeedDetail.adapter = feedThumbAdapter
+            binding.rvFeedDetail.addItemDecoration(ItemDecorationWithHorizontalSpacing(4))
             feedThumbAdapter.submitList(feedData.imageList)
             binding.rvFeedDetail.visibility = View.VISIBLE
         }
@@ -180,6 +197,9 @@ class FeedDetailActivity :
         binding.tvFeedDetailReport.setOnClickListener {
             showFeedReportDialog()
         }
+        binding.tvFeedDetailBlock.setOnClickListener {
+            showFeedUserReportDialog()
+        }
     }
 
     private fun showFeedReportDialog() {
@@ -194,6 +214,20 @@ class FeedDetailActivity :
         dialog.create()
         dialog.show()
     }
+
+    private fun showFeedUserReportDialog() {
+        val dialog = AlertDialog.Builder(this).apply {
+            setTitle("유저 차단하기")
+            setMessage("해당 유저를 차단하시겠습니까?")
+            setNegativeButton("취소") { _, _ -> }
+            setPositiveButton("차단") { _, _ ->
+                viewModel.reportFeedUser()
+            }
+        }
+        dialog.create()
+        dialog.show()
+    }
+
 
     private fun setUserView(userData: UserInfoData) {
         Glide.with(baseContext)

@@ -42,9 +42,26 @@ class PlaceDetailFeedActivity :
     }
 
     private fun setAdapter() {
-        feedAdapter = FeedAdapter(true, ::moveToFeedDetail, ::moveToPlaceDetail, ::likePost, ::savePlace, ::reportPost)
+        feedAdapter = FeedAdapter(true, ::moveToFeedDetail, ::moveToPlaceDetail, ::likePost, ::savePlace, ::reportPost, ::reportUser)
         binding.rvPlaceDetailFeed.adapter = feedAdapter
         binding.rvPlaceDetailFeed.addItemDecoration(ItemDecorationWithStroke(false))
+    }
+
+    private fun reportUser(userId: Int) {
+        showUserReportDialog(userId)
+    }
+
+    private fun showUserReportDialog(userId: Int) {
+        val dialog = AlertDialog.Builder(this).apply {
+            setTitle("유저 차단하기")
+            setMessage("해당 유저를 차단하시겠습니까?")
+            setNegativeButton("취소") { _, _ -> }
+            setPositiveButton("차단") { _, _ ->
+                viewModel.reportUser(userId)
+            }
+        }
+        dialog.create()
+        dialog.show()
     }
 
     private fun reportPost(postId: Int) {

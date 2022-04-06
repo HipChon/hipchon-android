@@ -12,7 +12,8 @@ import com.gritbus.hipchon.databinding.ItemFeedCommentBinding
 import com.gritbus.hipchon.utils.dateToFormattedString
 
 class CommentAdapter(
-    private val reportComment: (Int) -> (Unit)
+    private val reportComment: (Int) -> (Unit),
+    private val reportUser: (Int) -> (Unit)
 ) : ListAdapter<CommentAllDataItem, CommentAdapter.CommentViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
@@ -24,14 +25,18 @@ class CommentAdapter(
     }
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
-        holder.bind(currentList[position], reportComment)
+        holder.bind(currentList[position], reportComment, reportUser)
     }
 
     class CommentViewHolder(
         private val binding: ItemFeedCommentBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(commentAllDataItem: CommentAllDataItem, reportComment: (Int) -> (Unit)) {
+        fun bind(
+            commentAllDataItem: CommentAllDataItem,
+            reportComment: (Int) -> (Unit),
+            reportUser: (Int) -> (Unit)
+        ) {
             Glide.with(binding.root.context)
                 .load(commentAllDataItem.user.image)
                 .circleCrop()
@@ -43,6 +48,9 @@ class CommentAdapter(
             binding.tvFeedCommentReport.setOnClickListener {
                 reportComment(commentAllDataItem.commentId)
             }
+            binding.tvFeedCommentBlock.setOnClickListener {
+                reportUser(commentAllDataItem.user.userId)
+            }
 
             binding.executePendingBindings()
         }
@@ -50,11 +58,17 @@ class CommentAdapter(
 
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<CommentAllDataItem>() {
-            override fun areItemsTheSame(oldItem: CommentAllDataItem, newItem: CommentAllDataItem): Boolean {
+            override fun areItemsTheSame(
+                oldItem: CommentAllDataItem,
+                newItem: CommentAllDataItem
+            ): Boolean {
                 return oldItem.commentId == newItem.commentId
             }
 
-            override fun areContentsTheSame(oldItem: CommentAllDataItem, newItem: CommentAllDataItem): Boolean {
+            override fun areContentsTheSame(
+                oldItem: CommentAllDataItem,
+                newItem: CommentAllDataItem
+            ): Boolean {
                 return oldItem == newItem
             }
         }

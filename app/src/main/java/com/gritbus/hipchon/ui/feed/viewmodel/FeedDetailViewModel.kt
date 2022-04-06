@@ -73,11 +73,20 @@ class FeedDetailViewModel @Inject constructor(
             commentRepository.getPostCommentAllData(postId)
                 .onSuccess {
                     val reportCommentAllData = commentRepository.getCommentReportAllData()
+                    val reportUserAllData = userRepository.getUserReportAllData()
                     _commentAllData.value = it.filter { comment ->
-                        if (reportCommentAllData != null) {
-                            !reportCommentAllData.contains(comment.commentId)
+                        if (reportCommentAllData != null){
+                            if (reportUserAllData != null) {
+                                !reportCommentAllData.contains(comment.commentId) && !reportUserAllData.contains(comment.user.userId)
+                            } else {
+                                !reportCommentAllData.contains(comment.commentId)
+                            }
                         } else {
-                            true
+                            if (reportUserAllData != null) {
+                                !reportUserAllData.contains(comment.user.userId)
+                            } else {
+                                true
+                            }
                         }
                     }
                 }
@@ -206,6 +215,30 @@ class FeedDetailViewModel @Inject constructor(
         feedRepository.setFeedReportAllData(
             feedRepository.getFeedReportAllData()?.apply {
                 _feedData.value?.postId?.let {
+                    _isReportSuccess.value = true
+                    add(it)
+                }
+            }
+        )
+    }
+
+    fun reportCommentUser(userId: Int) {
+        userRepository.setUserReportAllData(
+            userRepository.getUserReportAllData()?.apply {
+                add(userId)
+            }
+        )
+        if (userId == _feedData.value?.user?.userId){
+            _isReportSuccess.value = true
+        } else {
+            getCommentAll()
+        }
+    }
+
+    fun reportFeedUser() {
+        userRepository.setUserReportAllData(
+            userRepository.getUserReportAllData()?.apply {
+                _feedData.value?.user?.userId?.let {
                     _isReportSuccess.value = true
                     add(it)
                 }
