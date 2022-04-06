@@ -75,4 +75,12 @@ class UserRepositoryImpl @Inject constructor(
     override fun getAutoLoginPlatform(): String? {
         return userDataSource.getAutoLoginPlatform()
     }
+
+    override fun setUserReportAllData(reportAllData: ArrayList<Int>?) {
+        userDataSource.setUserReportAllData(reportAllData)
+    }
+
+    override fun getUserReportAllData(): ArrayList<Int>? {
+        return userDataSource.getUserReportAllData()
+    }
 }

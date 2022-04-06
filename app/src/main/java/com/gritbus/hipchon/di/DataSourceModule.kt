@@ -9,7 +9,12 @@ import com.gritbus.hipchon.data.api.place.PlaceService
 import com.gritbus.hipchon.data.api.user.UserService
 import com.gritbus.hipchon.data.datasource.event.EventDataSource
 import com.gritbus.hipchon.data.datasource.event.EventDataSourceImpl
-import com.gritbus.hipchon.data.datasource.feed.*
+import com.gritbus.hipchon.data.datasource.feed.CommentDataSource
+import com.gritbus.hipchon.data.datasource.feed.CommentDatasourceImpl
+import com.gritbus.hipchon.data.datasource.feed.CommentReportManager
+import com.gritbus.hipchon.data.datasource.feed.FeedDataSource
+import com.gritbus.hipchon.data.datasource.feed.FeedDataSourceImpl
+import com.gritbus.hipchon.data.datasource.feed.FeedReportManager
 import com.gritbus.hipchon.data.datasource.my.MyDataSource
 import com.gritbus.hipchon.data.datasource.my.MyDataSourceImpl
 import com.gritbus.hipchon.data.datasource.place.PlaceDataSource
@@ -17,6 +22,7 @@ import com.gritbus.hipchon.data.datasource.place.PlaceDataSourceImpl
 import com.gritbus.hipchon.data.datasource.user.AutoLoginManager
 import com.gritbus.hipchon.data.datasource.user.UserDataSource
 import com.gritbus.hipchon.data.datasource.user.UserDataSourceImpl
+import com.gritbus.hipchon.data.datasource.user.UserReportManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -79,12 +85,19 @@ object DataSourceModule {
 
     @Provides
     @Singleton
+    fun provideUserReportManager(@ApplicationContext context: Context): UserReportManager {
+        return UserReportManager(context)
+    }
+
+    @Provides
+    @Singleton
     fun provideUserDataSource(
         userService: UserService,
         autoLoginManager: AutoLoginManager,
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
+        userReportManager: UserReportManager
     ): UserDataSource {
-        return UserDataSourceImpl(userService, autoLoginManager, context)
+        return UserDataSourceImpl(userService, autoLoginManager, context, userReportManager)
     }
 
     @Provides

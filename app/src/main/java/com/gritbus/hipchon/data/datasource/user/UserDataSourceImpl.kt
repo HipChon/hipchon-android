@@ -14,13 +14,15 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONArray
 import java.io.File
 import javax.inject.Inject
 
 class UserDataSourceImpl @Inject constructor(
     private val userService: UserService,
     private val authoLoginManager: AutoLoginManager,
-    private val context: Context
+    private val context: Context,
+    private val userReportManager: UserReportManager
 ) : UserDataSource {
 
     override suspend fun signupUser(file: Uri?, user: UserDataForUpdate): Result<String> {
@@ -135,5 +137,26 @@ class UserDataSourceImpl @Inject constructor(
 
     override fun getAutoLoginPlatform(): String? {
         return authoLoginManager.getPlatform()
+    }
+
+    override fun setUserReportAllData(reportAllData: ArrayList<Int>?) {
+        val jsonArray = JSONArray()
+        reportAllData?.let {
+            for (i in 0 until it.size) {
+                jsonArray.put(it[i])
+            }
+        }
+        userReportManager.setUserReportAllData(jsonArray.toString())
+    }
+
+    override fun getUserReportAllData(): ArrayList<Int>? {
+        return userReportManager.getUserReportAllData()?.let { userReportAllData ->
+            val jsonArray = JSONArray(userReportAllData)
+            val reportArrayList = ArrayList<Int>()
+            for (i in 0 until jsonArray.length()) {
+                reportArrayList.add(jsonArray.optInt(i))
+            }
+            reportArrayList
+        }
     }
 }

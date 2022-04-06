@@ -23,4 +23,8 @@ interface UserRepository {
     fun setAutoLoginPlatform(value: String?)
 
     fun getAutoLoginPlatform(): String?
+
+    fun setUserReportAllData(reportAllData: ArrayList<Int>?)
+
+    fun getUserReportAllData(): ArrayList<Int>?
 }
