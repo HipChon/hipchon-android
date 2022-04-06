@@ -92,4 +92,12 @@ class FeedRepositoryImpl @Inject constructor(
             result
         }
     }
+
+    override fun getFeedReportAllData(): ArrayList<Int>? {
+        return feedDataSource.getFeedReportAllData()
+    }
+
+    override fun setFeedReportAllData(reportAllData: ArrayList<Int>?) {
+        feedDataSource.setFeedReportAllData(reportAllData)
+    }
 }

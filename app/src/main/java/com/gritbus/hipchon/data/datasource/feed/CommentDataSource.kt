@@ -10,4 +10,8 @@ interface CommentDataSource {
     suspend fun postComment(commentRequest: CommentData): Result<Int>
 
     suspend fun deleteComment( commentId: Int): Result<Unit>
+
+    fun getCommentReportAllData(): ArrayList<Int>?
+
+    fun setCommentReportAllData(reportAllData: ArrayList<Int>?)
 }

@@ -24,4 +24,8 @@ interface FeedRepository {
     suspend fun sendPost(fileList: List<Uri>, post: FeedCreateData): Result<Int>
 
     suspend fun deletePost(userId: Int, postId: Int): Result<Unit>
+
+    fun getFeedReportAllData(): ArrayList<Int>?
+
+    fun setFeedReportAllData(reportAllData: ArrayList<Int>?)
 }

@@ -9,10 +9,7 @@ import com.gritbus.hipchon.data.api.place.PlaceService
 import com.gritbus.hipchon.data.api.user.UserService
 import com.gritbus.hipchon.data.datasource.event.EventDataSource
 import com.gritbus.hipchon.data.datasource.event.EventDataSourceImpl
-import com.gritbus.hipchon.data.datasource.feed.CommentDataSource
-import com.gritbus.hipchon.data.datasource.feed.CommentDatasourceImpl
-import com.gritbus.hipchon.data.datasource.feed.FeedDataSource
-import com.gritbus.hipchon.data.datasource.feed.FeedDataSourceImpl
+import com.gritbus.hipchon.data.datasource.feed.*
 import com.gritbus.hipchon.data.datasource.my.MyDataSource
 import com.gritbus.hipchon.data.datasource.my.MyDataSourceImpl
 import com.gritbus.hipchon.data.datasource.place.PlaceDataSource
@@ -39,17 +36,33 @@ object DataSourceModule {
 
     @Provides
     @Singleton
-    fun provideFeedDataSource(
-        feedService: FeedService,
-        @ApplicationContext context: Context
-    ): FeedDataSource {
-        return FeedDataSourceImpl(feedService, context)
+    fun provideFeedReportManager(@ApplicationContext context: Context): FeedReportManager {
+        return FeedReportManager(context)
     }
 
     @Provides
     @Singleton
-    fun provideCommentDataSource(commentService: CommentService): CommentDataSource {
-        return CommentDatasourceImpl(commentService)
+    fun provideFeedDataSource(
+        feedService: FeedService,
+        @ApplicationContext context: Context,
+        feedReportManager: FeedReportManager
+    ): FeedDataSource {
+        return FeedDataSourceImpl(feedService, context, feedReportManager)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommentReportManager(@ApplicationContext context: Context): CommentReportManager {
+        return CommentReportManager(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommentDataSource(
+        commentService: CommentService,
+        commentReportManager: CommentReportManager
+    ): CommentDataSource {
+        return CommentDatasourceImpl(commentService, commentReportManager)
     }
 
     @Provides

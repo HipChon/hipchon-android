@@ -38,4 +38,12 @@ class CommentRepositoryImpl @Inject constructor(
             result
         }
     }
+
+    override fun getCommentReportAllData(): ArrayList<Int>? {
+        return commentDataSource.getCommentReportAllData()
+    }
+
+    override fun setCommentReportAllData(reportAllData: ArrayList<Int>?) {
+        commentDataSource.setCommentReportAllData(reportAllData)
+    }
 }

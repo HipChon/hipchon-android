@@ -6,23 +6,21 @@ import android.database.Cursor
 import android.net.Uri
 import com.google.gson.Gson
 import com.gritbus.hipchon.data.api.feed.FeedService
-import com.gritbus.hipchon.data.model.feed.FeedAllData
-import com.gritbus.hipchon.data.model.feed.FeedAllDataItem
-import com.gritbus.hipchon.data.model.feed.FeedBestAllData
-import com.gritbus.hipchon.data.model.feed.FeedCreateData
-import com.gritbus.hipchon.data.model.feed.FeedWithPlaceAllData
+import com.gritbus.hipchon.data.model.feed.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONArray
 import java.io.File
 import javax.inject.Inject
 
 
 class FeedDataSourceImpl @Inject constructor(
     private val feedService: FeedService,
-    private val context: Context
+    private val context: Context,
+    private val feedReportManager: FeedReportManager
 ) : FeedDataSource {
 
     override suspend fun getFeedAllData(userId: Int, order: String): Result<FeedAllData> {
@@ -70,7 +68,10 @@ class FeedDataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun getFeedWithPlaceAllData(userId: Int, placeId: Int): Result<FeedWithPlaceAllData> {
+    override suspend fun getFeedWithPlaceAllData(
+        userId: Int,
+        placeId: Int
+    ): Result<FeedWithPlaceAllData> {
         return try {
             val data = feedService.getFeedWithPlaceAllData(userId, placeId)
             if (data.isSuccessful) {
@@ -132,8 +133,14 @@ class FeedDataSourceImpl @Inject constructor(
 
     private fun uriListToMultipart(filePathList: List<Uri>): ArrayList<MultipartBody.Part> {
         val files: ArrayList<MultipartBody.Part> = ArrayList()
-        if (filePathList.isNullOrEmpty()){
-            files.add(MultipartBody.Part.createFormData("file", "", "".toRequestBody(MultipartBody.FORM)))
+        if (filePathList.isNullOrEmpty()) {
+            files.add(
+                MultipartBody.Part.createFormData(
+                    "file",
+                    "",
+                    "".toRequestBody(MultipartBody.FORM)
+                )
+            )
             return files
         }
         for (i in filePathList.indices) {
@@ -159,8 +166,10 @@ class FeedDataSourceImpl @Inject constructor(
 
         return (cursor?.getString(cursor.getColumnIndex("_data")) ?: cursor?.close()) as String
     }
+
     private fun postInfoToMultipart(post: FeedCreateData): RequestBody {
-        return Gson().toJson(post).toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+        return Gson().toJson(post)
+            .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
     }
 
     override suspend fun deletePost(userId: Int, postId: Int): Result<Unit> {
@@ -176,5 +185,26 @@ class FeedDataSourceImpl @Inject constructor(
         } catch (e: Exception) {
             Result.failure(Throwable(e.message))
         }
+    }
+
+    override fun getFeedReportAllData(): ArrayList<Int>? {
+        return feedReportManager.getFeedReportAllData()?.let { feedReportAllData ->
+            val jsonArray = JSONArray(feedReportAllData)
+            val reportArrayList = ArrayList<Int>()
+            for (i in 0 until jsonArray.length()) {
+                reportArrayList.add(jsonArray.optInt(i))
+            }
+            reportArrayList
+        }
+    }
+
+    override fun setFeedReportAllData(reportAllData: ArrayList<Int>?) {
+        val jsonArray = JSONArray()
+        reportAllData?.let {
+            for (i in 0 until it.size) {
+                jsonArray.put(it[i])
+            }
+        }
+        feedReportManager.setFeedReportAllData(jsonArray.toString())
     }
 }
