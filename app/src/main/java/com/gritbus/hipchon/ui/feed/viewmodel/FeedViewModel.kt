@@ -35,7 +35,14 @@ class FeedViewModel @Inject constructor(
         viewModelScope.launch {
             feedRepository.getFeedAllData(UserData.userId, orderType)
                 .onSuccess {
-                    _reviewAllData.value = it
+                    val reportFeedAllData = feedRepository.getFeedReportAllData()
+                    _reviewAllData.value = it.filter { feed ->
+                        if (reportFeedAllData != null){
+                            !reportFeedAllData.contains(feed.postId)
+                        } else {
+                            true
+                        }
+                    }
                 }
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "review error")
@@ -95,5 +102,14 @@ class FeedViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun reportFeed(postId: Int) {
+        feedRepository.setFeedReportAllData(
+            feedRepository.getFeedReportAllData()?.apply {
+                add(postId)
+            }
+        )
+        initData()
     }
 }

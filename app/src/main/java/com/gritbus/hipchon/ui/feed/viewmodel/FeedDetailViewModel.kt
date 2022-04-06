@@ -69,7 +69,14 @@ class FeedDetailViewModel @Inject constructor(
         viewModelScope.launch {
             commentRepository.getPostCommentAllData(postId)
                 .onSuccess {
-                    _commentAllData.value = it
+                    val reportCommentAllData = commentRepository.getCommentReportAllData()
+                    _commentAllData.value = it.filter { comment ->
+                        if (reportCommentAllData != null) {
+                            !reportCommentAllData.contains(comment.commentId)
+                        } else {
+                            true
+                        }
+                    }
                 }
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "comment error")
@@ -181,5 +188,14 @@ class FeedDetailViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun reportComment(commentId: Int) {
+        commentRepository.setCommentReportAllData(
+            commentRepository.getCommentReportAllData()?.apply {
+                add(commentId)
+            }
+        )
+        getCommentAll()
     }
 }

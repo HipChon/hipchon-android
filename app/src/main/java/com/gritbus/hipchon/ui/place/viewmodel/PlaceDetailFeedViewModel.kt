@@ -36,7 +36,14 @@ class PlaceDetailFeedViewModel @Inject constructor(
         viewModelScope.launch {
             feedRepository.getFeedWithPlaceAllData(UserData.userId, _placeData.placeId)
                 .onSuccess {
-                    _placeReviewAllData.value = it
+                    val reportFeedAllData = feedRepository.getFeedReportAllData()
+                    _placeReviewAllData.value = it.filter { feed ->
+                        if (reportFeedAllData != null){
+                            !reportFeedAllData.contains(feed.postId)
+                        } else {
+                            true
+                        }
+                    }
                 }
                 .onFailure {
                     Log.e(this.javaClass.name, it.message ?: "place review more error")
@@ -71,5 +78,14 @@ class PlaceDetailFeedViewModel @Inject constructor(
 
     fun getPostData(): PlaceDetailData {
         return _placeData
+    }
+
+    fun reportFeed(postId: Int) {
+        feedRepository.setFeedReportAllData(
+            feedRepository.getFeedReportAllData()?.apply {
+                add(postId)
+            }
+        )
+        getReviewData()
     }
 }

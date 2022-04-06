@@ -56,9 +56,7 @@ class FeedFragment : BaseViewUtil.BaseFragment<FragmentReviewBinding>(R.layout.f
             setMessage("해당 게시글을 신고하시겠습니까?")
             setNegativeButton("취소") { _, _ -> }
             setPositiveButton("신고") { _, _ ->
-                feedAdapter.submitList(feedAdapter.currentList.mapNotNull {
-                    if (it.postId == postId) null else it
-                })
+                viewModel.reportFeed(postId)
             }
         }
         dialog.create()

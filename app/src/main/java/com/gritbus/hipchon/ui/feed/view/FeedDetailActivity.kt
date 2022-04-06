@@ -59,9 +59,7 @@ class FeedDetailActivity :
             setMessage("해당 댓글을 신고하시겠습니까?")
             setNegativeButton("취소") { _, _ -> }
             setPositiveButton("신고") { _, _ ->
-                commentAdapter.submitList(commentAdapter.currentList.mapNotNull {
-                    if (it.commentId == commentId) null else it
-                })
+                viewModel.reportComment(commentId)
             }
         }
         dialog.create()
