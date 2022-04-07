@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="black_alpha_50">#80000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_alpha_50">#80FFFFFF</color>
+
+    <color name="primary_green">#3FCC53</color>
+
+    <color name="secondary_yellow">#FFDF40</color>
+    <color name="secondary_red">#FF4A4A</color>
+    <color name="secondary_blue">#00C9FF</color>
+
+    <color name="gray01">#F0F1F5</color>
+    <color name="gray02">#E4E5EB</color>
+    <color name="gray03">#D1D2D7</color>
+    <color name="gray04">#9B9CA4</color>
+    <color name="gray05">#6C6E78</color>
+    <color name="gray06">#484950</color>
+    <color name="gray07">#36373C</color>
+
+    <!--  Special Color  -->
+    <color name="gray_border">#E5E5E5</color>
+    <color name="gray_border_apply_button">#F0F0F0</color>
+    <color name="gray_border_place_result_title">#D3D3D3</color>
+    <color name="gray_place_distance">#999999</color>
+    <color name="gray_home_local_hipster_pick">#F5F5F5</color>
+    <color name="yellow_kakao_counseling">#F5E04C</color>
+    <color name="gray_review_place">#F8F8FA</color>
+    <color name="gray_comment_input_hint">#9A9A9A</color>
+
+</resources>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <TextView
+            android:id="@+id/tv_onboarding_line_one_chon"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="90dp"
+            android:text="촌"
+            android:textColor="@color/primary_green"
+            android:textSize="34sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_onboarding_line_one"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스러운 것이"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            app:layout_constraintStart_toEndOf="@id/tv_onboarding_line_one_chon"
+            app:layout_constraintTop_toTopOf="@id/tv_onboarding_line_one_chon" />
+
+        <TextView
+            android:id="@+id/tv_onboarding_line_two_hip"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:text="힙"
+            android:textColor="@color/primary_green"
+            android:textSize="34sp"
+            app:layout_constraintStart_toStartOf="@id/tv_onboarding_line_one_chon"
+            app:layout_constraintTop_toBottomOf="@id/tv_onboarding_line_one_chon" />
+
+        <TextView
+            android:id="@+id/tv_onboarding_line_two"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="하다"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            app:layout_constraintStart_toEndOf="@id/tv_onboarding_line_two_hip"
+            app:layout_constraintTop_toTopOf="@id/tv_onboarding_line_two_hip" />
+
+        <TextView
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:text="힙촌과 함께 떠나보아요"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/tv_onboarding_line_one_chon"
+            app:layout_constraintTop_toBottomOf="@id/tv_onboarding_line_two_hip" />
+
+        <ImageView
+            android:id="@+id/iv_onboarding_hipchoni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-3dp"
+            android:src="@drawable/ic_hipchon_play"
+            app:layout_constraintBottom_toTopOf="@id/mb_onboarding_naver"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mb_onboarding_naver"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#3FCC53"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingStart="@dimen/spacing_16"
+            android:text="네이버 계정으로 시작하기"
+            android:textAlignment="viewStart"
+            android:textSize="@dimen/text_size_16"
+            app:cornerRadius="5dp"
+            app:icon="@drawable/ic_naver"
+            app:iconPadding="@dimen/spacing_16"
+            app:iconSize="28dp"
+            app:iconTint="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/mb_onboarding_kakao" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mb_onboarding_kakao"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="50dp"
+            android:backgroundTint="#FBE74D"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingStart="@dimen/spacing_16"
+            android:text="카카오 계정으로 시작하기"
+            android:textAlignment="viewStart"
+            android:textSize="@dimen/text_size_16"
+            app:cornerRadius="5dp"
+            app:icon="@drawable/ic_kakao"
+            app:iconPadding="@dimen/spacing_16"
+            app:iconSize="28dp"
+            app:iconTint="#371D1E"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_onboarding_problem"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="문제가 있으신가요?"
+            android:textColor="@color/gray02"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mb_onboarding_kakao" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

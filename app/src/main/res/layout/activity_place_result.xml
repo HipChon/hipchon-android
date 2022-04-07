@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.place.view.PlaceResultActivity">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mt_place_result_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_place_result_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/menu_place_result"
+            app:navigationIcon="@drawable/ic_chevron_left">
+
+            <TextView
+                android:id="@+id/tv_place_result"
+                style="@style/Gmarket.Weight500"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_rectangle_radius_21"
+                android:paddingHorizontal="57dp"
+                android:paddingVertical="10dp"
+                android:text="2명 | 제주 | 불멍" />
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_place_result"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingTop="@dimen/spacing_12"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mt_place_result_title"
+            tools:listitem="@layout/item_place_result" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

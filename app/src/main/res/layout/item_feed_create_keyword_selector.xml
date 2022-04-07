@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="2dp"
+        android:layout_marginVertical="@dimen/spacing_4"
+        android:background="@drawable/bg_rectangle_radius_5_filled"
+        android:backgroundTint="@color/white"
+        android:clipToPadding="false"
+        android:elevation="2dp"
+        android:paddingVertical="@dimen/spacing_8"
+        android:paddingStart="@dimen/spacing_12"
+        android:paddingEnd="@dimen/spacing_16">
+
+        <ImageView
+            android:id="@+id/iv_feed_create_keyword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_facility_toilet"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_feed_create_keyword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:text="화장실이 청결해요"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="@id/iv_feed_create_keyword"
+            app:layout_constraintStart_toEndOf="@id/iv_feed_create_keyword"
+            app:layout_constraintTop_toTopOf="@id/iv_feed_create_keyword" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

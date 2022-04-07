@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.feed.view.FeedFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mt_review_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_place_result_title"
+            android:textSize="24sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/menu_place_result"
+            app:title="@string/bottom_nav_feed"
+            app:titleTextAppearance="@style/MaterialToolbar.Gmarket.Weight500.24" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_review"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mt_review_title"
+            tools:listitem="@layout/item_feed_preview" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/fab_review_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="43dp"
+            android:background="@drawable/ic_feed_create"
+            android:minWidth="1dp"
+            android:minHeight="1dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

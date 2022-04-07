@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.save.view.SaveFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mt_save_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="저장"
+            app:titleTextAppearance="@style/MaterialToolbar.Gmarket.Weight500.24" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:tabTextColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/mt_save_title"
+            app:tabBackground="@color/white"
+            app:tabIndicatorColor="@color/black"
+            app:tabIndicatorFullWidth="true"
+            app:tabMode="fixed" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_save"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:saveEnabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tl_save" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="211dp"
+        android:layout_height="236dp"
+        android:layout_marginBottom="@dimen/spacing_16"
+        android:elevation="0dp"
+        app:cardCornerRadius="@dimen/spacing_2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_home_hipster_pick"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/tv_home_hipster_pick_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/bg_rectangle_radius_15_filled"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="3dp"
+                android:text="제주"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_home_hipster_pick_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="제주의 맛맛맛"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tv_home_hipster_pick_desc"
+                app:layout_constraintStart_toStartOf="@id/tv_home_hipster_pick_area" />
+
+            <TextView
+                android:id="@+id/tv_home_hipster_pick_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_16"
+                android:text="제주 해녀의 부엌 외 5곳"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_home_hipster_pick_area" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
