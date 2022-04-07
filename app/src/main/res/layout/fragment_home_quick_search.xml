@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.gritbus.hipchon.domain.model.FilterType" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_top_radius_15"
+        tools:context=".ui.home.view.HomeQuickSearchFragment">
+
+        <TextView
+            android:id="@+id/tv_home_quick_search_title"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_40"
+            android:text="@string/quick_search_title"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_home_quick_search_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:padding="7dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="@id/tv_home_quick_search_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_home_quick_search_title" />
+
+        <TextView
+            android:id="@+id/tv_home_quick_search_area_title"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="@dimen/spacing_40"
+            android:text="@string/filter_area_title"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_quick_search_title" />
+
+        <HorizontalScrollView
+            android:id="@+id/hsv_home_quick_search_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/spacing_20"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_quick_search_area_title">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cg_home_quick_search_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipSpacingHorizontal="20dp"
+                app:singleSelection="true"/>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/tv_home_quick_search_type_title"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/filter_type_title"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hsv_home_quick_search_area" />
+
+        <HorizontalScrollView
+            android:id="@+id/hsv_home_quick_search_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/spacing_20"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_quick_search_type_title">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cg_home_quick_search_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipSpacingHorizontal="20dp"
+                app:singleSelection="true"/>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/tv_home_quick_search_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_40"
+            android:text="@string/quick_search_reset"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hsv_home_quick_search_type" />
+
+        <TextView
+            android:id="@+id/tv_home_quick_search_apply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_40"
+            android:background="@drawable/bg_quick_search_apply_default"
+            android:paddingTop="17dp"
+            android:paddingBottom="50dp"
+            android:text="@string/quick_search_apply"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_quick_search_reset" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.feed.view.FeedCreatePlaceActivity">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mt_feed_create_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_chevron_left" />
+
+        <TextView
+            android:id="@+id/tv_feed_create_place_title"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:layout_marginTop="@dimen/spacing_4"
+            android:text="러스틱 라이프 카페"
+            android:textSize="@dimen/text_size_22"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mt_feed_create_place" />
+
+        <TextView
+            android:id="@+id/tv_feed_create_place_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:accessibilityTraversalBefore="@id/tv_feed_create_place_title"
+            android:text="어느 공간에서의 경험을 들려주고 싶으신가요?"
+            android:textColor="@color/gray04"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintStart_toStartOf="@id/tv_feed_create_place_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_feed_create_place_title" />
+
+        <EditText
+            android:id="@+id/et_feed_create_place"
+            style="@style/Gmarket.Weight500"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/spacing_20"
+            android:layout_marginTop="@dimen/spacing_32"
+            android:background="@drawable/bg_rectangle_radius_21"
+            android:drawablePadding="17dp"
+            android:hint="공간명을 검색하세요"
+            android:minHeight="1dp"
+            android:paddingVertical="10dp"
+            android:paddingStart="17dp"
+            android:paddingEnd="71dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray03"
+            app:backgroundTint="@null"
+            app:drawableStartCompat="@drawable/ic_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_feed_create_place_desc" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_feed_create_place"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/spacing_20"
+            android:layout_marginVertical="@dimen/spacing_32"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/acb_feed_create_place"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_feed_create_place"
+            tools:listitem="@layout/item_feed_create_place" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/acb_feed_create_place"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_20"
+            android:layout_marginBottom="@dimen/spacing_16"
+            android:background="@drawable/bg_rectangle_radius_5"
+            android:backgroundTint="@color/gray01"
+            android:paddingVertical="13dp"
+            android:text="완료"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

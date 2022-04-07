@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  FontTextView  -->
+    <style name="Gmarket.Weight500" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/gmarket_sans_medium</item>
+    </style>
+
+    <style name="Gmarket.Weight700" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/gmarket_sans_bold</item>
+    </style>
+
+    <style name="TextAppearance.12" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/text_size_12</item>
+    </style>
+
+    <!--  Chip  -->
+    <style name="Chip.Radius17" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipCornerRadius">17dp</item>
+        <item name="chipEndPadding">32dp</item>
+        <item name="chipStartPadding">32dp</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipBackgroundColor">@color/selector_chip_background</item>
+        <item name="android:textColor">@color/selector_chip_text</item>
+        <item name="chipStrokeColor">@color/selector_chip_stroke</item>
+        <item name="ensureMinTouchTargetSize">false</item>
+        <item name="textStartPadding">0dp</item>
+        <item name="textEndPadding">0dp</item>
+        <item name="rippleColor">@color/black</item>
+    </style>
+
+    <!--  BottomSheetDialog  -->
+    <style name="BottomSheetDialog" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+
+    <style name="BottomSheet" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="backgroundTint">@android:color/transparent</item>
+    </style>
+
+    <!--  Toolbar Title Text  -->
+    <style name="MaterialToolbar.Gmarket.Weight500.24" parent="@style/Base.TextAppearance.AppCompat.Title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/gmarket_sans_medium</item>
+    </style>
+
+    <style name="MaterialToolbar.Gmarket.Weight500.22" parent="@style/Base.TextAppearance.AppCompat.Title">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/gmarket_sans_medium</item>
+    </style>
+</resources>

@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">힙촌</string>
+    <string name="bottom_nav_home">홈</string>
+    <string name="bottom_nav_feed">후기</string>
+    <string name="bottom_nav_save">저장</string>
+    <string name="bottom_nav_my">마이</string>
+
+    <!--  Signup  -->
+    <string name="signup_terms_title">약관 동의</string>
+    <string name="signup_terms_all">전체 동의합니다</string>
+    <string name="signup_terms_age">만 14세 이상입니다 (필수)</string>
+    <string name="signup_terms_service"><u>서비스 이용약관 (필수)</u></string>
+    <string name="signup_terms_personal"><u>개인정보 수집 및 이용 동의 (필수)</u></string>
+    <string name="signup_terms_position"><u>위치서비스 이용 동의 (필수)</u></string>
+    <string name="signup_terms_event">이벤트 및 할인 혜택 안내 동의 (선택)</string>
+
+    <!--  Hashtag  -->
+    <string name="hashtag_fire">불멍</string>
+    <string name="hashtag_water">물멍</string>
+    <string name="hashtag_field">논밭뷰</string>
+    <string name="hashtag_vacation">촌캉스</string>
+
+    <!--  Home  -->
+    <string name="see_all">전체 보기</string>
+    <string name="see_detail">자세히 보기</string>
+    <string name="see_more">…더보기</string>
+    <string name="see_more_without_dot">더보기</string>
+
+    <string name="home_search_bar">지역, 유형을 검색하세요</string>
+    <string name="home_local_hipster_pick">로컬 힙스터 픽</string>
+    <string name="home_banner">%d / %d</string>
+    <string name="home_best_feed">베스트 후기</string>
+    <string name="home_weekly_feed">주간 힙플</string>
+    <string name="home_kakao_counseling_desc">어디서 살지 못 정하셨나요?</string>
+    <string name="home_kakao_counseling">카카오톡 상담하기</string>
+    <string name="home_place_register_question_desc">고객지원</string>
+    <string name="home_place_register_question">공간 등록 문의</string>
+
+    <!--  QuickSearch  -->
+    <string name="quick_search_title">빠른 검색</string>
+    <string name="quick_search_reset">초기화</string>
+    <string name="quick_search_apply">적용</string>
+
+    <!--  PersonCounter  -->
+    <string name="person_counter_one">나만의</string>
+    <string name="person_counter_over_one">%d명</string>
+    <string name="person_counter_help">최대 검색 가능 인원 : 9명</string>
+
+    <!--  Filter  -->
+    <string name="filter_person_title">인원</string>
+    <string name="filter_person_animal">반려동물</string>
+
+    <string name="filter_area_title">지역</string>
+
+    <string name="filter_type_title">유형</string>
+
+    <!--  Place Result  -->
+    <string name="place_result_filter_title">%s | %s</string>
+    <string name="place_result_filter_save">저장순</string>
+    <string name="place_result_filter_feed">후기순</string>
+    <string name="place_result_filter_distance">거리순</string>
+
+    <string name="place_result_thumbnail_count">%d / %d</string>
+
+    <!--  Place Detail  -->
+    <string name="place_detail_call">전화</string>
+    <string name="place_detail_share">공유</string>
+    <string name="place_detail_save">저장</string>
+    <string name="place_detail_place_update_suggest"><![CDATA[정보 수정 제안 >]]></string>
+    <string name="place_detail_map">지도</string>
+    <string name="place_detail_map_copy">복사</string>
+    <string name="place_detail_menu">메뉴</string>
+    <string name="place_detail_keyword">키워드 리뷰 top3</string>
+    <string name="place_detail_review">피드</string>
+
+    <!--  Feed  -->
+    <string name="feed_comment_report">신고하기</string>
+    <string name="feed_comment_reply">답글 달기</string>
+    <string name="feed_comment_input">댓글 달기 ...</string>
+    <string name="feed_comment_register">등록</string>
+
+    <!--  Keyword  -->
+    <string name="keyword_facility_toilet">화장실이 청결해요</string>
+    <string name="keyword_facility_parking">주차하기 용이해요</string>
+    <string name="keyword_facility_space">매장이 넓어요</string>
+    <string name="keyword_facility_comfortable">좌석이 편해요</string>
+    <string name="keyword_facility_internet">인터넷 접속이 원활해요</string>
+
+    <string name="keyword_mood_interior">인테리어가 멋있어요</string>
+    <string name="keyword_mood_landscape">주변 경관이 좋아요</string>
+    <string name="keyword_mood_photo">사진 찍기 좋아요</string>
+    <string name="keyword_mood_group">단체 모임 하기 좋아요</string>
+    <string name="keyword_mood_work">작업하기 좋아요</string>
+
+    <string name="keyword_satisfaction_staff">직원분들이 친절해요</string>
+    <string name="keyword_satisfaction_favor">음식이 맛있어요</string>
+    <string name="keyword_satisfaction_activity">체험활동이 재밌어요</string>
+    <string name="keyword_satisfaction_kid">아이들이 좋아해요</string>
+    <string name="keyword_satisfaction_friend">친구가 좋아해요</string>
+</resources>

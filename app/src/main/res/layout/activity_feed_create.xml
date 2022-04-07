@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.feed.view.FeedCreateActivity">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mt_feed_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_chevron_left" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mt_feed_create">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_feed_create_place_thumb"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_marginStart="@dimen/spacing_20"
+                    android:layout_marginTop="@dimen/spacing_4"
+                    android:background="@drawable/bg_rectangle_radius_5"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_feed_create_place_name"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:text="공간 이름"
+                    android:textSize="@dimen/text_size_22"
+                    app:layout_constraintStart_toEndOf="@id/iv_feed_create_place_thumb"
+                    app:layout_constraintTop_toTopOf="@id/iv_feed_create_place_thumb" />
+
+                <TextView
+                    android:id="@+id/tv_feed_create_place_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="방문 날짜"
+                    android:textColor="@color/black"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="@id/tv_feed_create_place_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_feed_create_place_name" />
+
+                <TextView
+                    android:id="@+id/tv_feed_create_place_review_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18번째 리뷰"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_feed_create_place_thumb"
+                    app:layout_constraintStart_toStartOf="@id/tv_feed_create_place_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_feed_create_place_date" />
+
+                <View
+                    android:id="@+id/view_between_place_and_keyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="23dp"
+                    android:background="@color/gray02"
+                    app:layout_constraintTop_toBottomOf="@id/iv_feed_create_place_thumb" />
+
+                <TextView
+                    android:id="@+id/tv_feed_create_keyword_title"
+                    style="@style/Gmarket.Weight500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_20"
+                    android:layout_marginTop="@dimen/spacing_32"
+                    android:text="어떤 점이 좋았나요?"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_between_place_and_keyword" />
+
+                <TextView
+                    android:id="@+id/tv_feed_create_keyword_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_12"
+                    android:text="어울리는 키워드를 골라주세요"
+                    android:textColor="@color/gray04"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintStart_toStartOf="@id/tv_feed_create_keyword_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_feed_create_keyword_title" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_feed_create_keyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_32"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/spacing_20"
+                    android:scrollbarFadeDuration="0"
+                    android:scrollbarSize="2dp"
+                    android:scrollbarThumbHorizontal="@color/black"
+                    android:scrollbarTrackHorizontal="@color/gray02"
+                    android:scrollbars="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_feed_create_keyword_desc"
+                    tools:listitem="@layout/item_feed_create_keyword" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_review_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_24"
+                    android:background="@color/gray_review_place"
+                    android:paddingBottom="@dimen/spacing_20"
+                    app:layout_constraintTop_toBottomOf="@id/rv_feed_create_keyword">
+
+                    <TextView
+                        android:id="@+id/tv_feed_create_review_content_title"
+                        style="@style/Gmarket.Weight500"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_20"
+                        android:layout_marginTop="@dimen/spacing_32"
+                        android:text="더 하고싶은 이야기"
+                        android:textSize="@dimen/text_size_20"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_feed_create_review_content_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:text="추가적으로 남기고 싶은 말들을 적어주세요"
+                        android:textColor="@color/gray04"
+                        android:textSize="@dimen/text_size_16"
+                        app:layout_constraintStart_toStartOf="@id/tv_feed_create_review_content_title"
+                        app:layout_constraintTop_toBottomOf="@id/tv_feed_create_review_content_title" />
+
+                    <EditText
+                        android:id="@+id/et_feed_create_review_content"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginEnd="@dimen/spacing_20"
+                        android:background="@drawable/bg_rectangle_radius_5_stroke_1"
+                        android:gravity="start"
+                        android:hint="내용을 입력하세요"
+                        android:maxLength="200"
+                        android:maxLines="4"
+                        android:minHeight="100dp"
+                        android:padding="17dp"
+                        android:scrollbars="vertical"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray05"
+                        android:textSize="@dimen/text_size_16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_feed_create_review_content_title"
+                        app:layout_constraintTop_toBottomOf="@id/tv_feed_create_review_content_desc" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/acb_feed_create_review_content_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_rectangle_radius_5"
+                        android:backgroundTint="@color/gray02"
+                        android:paddingHorizontal="@dimen/spacing_24"
+                        android:paddingVertical="11dp"
+                        android:text="사진 추가"
+                        android:textColor="@color/gray05"
+                        android:textSize="@dimen/text_size_16"
+                        app:layout_constraintStart_toStartOf="@id/tv_feed_create_review_content_title"
+                        app:layout_constraintTop_toBottomOf="@id/et_feed_create_review_content" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_feed_create_select_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/spacing_20"
+                        android:visibility="gone"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_feed_create_review_content_title"
+                        app:layout_constraintTop_toBottomOf="@id/acb_feed_create_review_content_photo"
+                        tools:listitem="@layout/item_feed_create_photo" />
+
+                    <TextView
+                        android:id="@+id/tv_feed_create_review_content_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 / 200"
+                        android:textColor="@color/gray04"
+                        app:layout_constraintEnd_toEndOf="@id/et_feed_create_review_content"
+                        app:layout_constraintTop_toTopOf="@id/acb_feed_create_review_content_photo" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/acb_feed_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_20"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="117dp"
+                    android:background="@drawable/bg_rectangle_radius_5"
+                    android:backgroundTint="@color/gray01"
+                    android:paddingVertical="13dp"
+                    android:text="완료"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_review_content" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

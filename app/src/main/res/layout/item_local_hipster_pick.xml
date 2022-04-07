@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_local_hipster_pick_thumb"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginTop="@dimen/spacing_24"
+            android:saveEnabled="false"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_local_hipster_pick_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:layout_marginTop="30dp"
+            android:text="첫번째. 해녀의 부엌"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vp_local_hipster_pick_thumb" />
+
+        <TextView
+            android:id="@+id/tv_local_hipster_pick_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_20"
+            android:layout_marginTop="@dimen/spacing_24"
+            android:text="공연과 이야기, 식사가 있는 국내 최초 [제주 해녀 다이닝]'해녀 이야기'는 90세 최고령 해녀, 권영희 할머니를 비롯하여 40년 넘게 물질해 온 해녀들을 직접 만나는 공연입니다.\n\n해녀의 삶을 담은 연극 공연과 직접 잡아온 해산물로 만든 식사가 제공됩니다. "
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintTop_toBottomOf="@id/tv_local_hipster_pick_title" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_local_hipster_pick_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_20"
+            android:layout_marginTop="@dimen/spacing_20"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/bg_radius_15_stroke_gray02"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_local_hipster_pick_desc">
+
+            <TextView
+                android:id="@+id/tv_local_hipster_pick_place_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="@dimen/spacing_12"
+                android:text="러스틱 라이프 카페"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_local_hipster_pick_place_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:layout_marginEnd="@dimen/spacing_20"
+                android:layout_marginBottom="10dp"
+                android:text="카페 • 경기 고양시 일산동구"
+                android:textColor="@color/gray04"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_local_hipster_pick_place_save"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_local_hipster_pick_place_title" />
+
+            <ImageView
+                android:id="@+id/iv_local_hipster_pick_place_save"
+                android:layout_width="14dp"
+                android:layout_height="@dimen/spacing_16"
+                android:layout_marginEnd="@dimen/spacing_20"
+                android:background="@drawable/ic_save_filled"
+                android:backgroundTint="@color/primary_green"
+                app:layout_constraintBottom_toTopOf="@id/tv_local_hipster_pick_place_save"
+                app:layout_constraintEnd_toStartOf="@id/iv_local_hipster_pick_place_share"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/tv_local_hipster_pick_place_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/place_detail_save"
+                android:textColor="@color/gray04"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/iv_local_hipster_pick_place_save"
+                app:layout_constraintStart_toStartOf="@id/iv_local_hipster_pick_place_save"
+                app:layout_constraintTop_toBottomOf="@id/iv_local_hipster_pick_place_save"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <ImageView
+                android:id="@+id/iv_local_hipster_pick_place_share"
+                android:layout_width="@dimen/spacing_16"
+                android:layout_height="@dimen/spacing_16"
+                android:layout_marginEnd="@dimen/spacing_20"
+                android:background="@drawable/ic_share"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_local_hipster_pick_place_save" />
+
+            <TextView
+                android:id="@+id/tv_local_hipster_pick_place_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/place_detail_share"
+                android:textColor="@color/gray04"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintEnd_toEndOf="@id/iv_local_hipster_pick_place_share"
+                app:layout_constraintStart_toStartOf="@id/iv_local_hipster_pick_place_share"
+                app:layout_constraintTop_toTopOf="@id/tv_local_hipster_pick_place_save" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/selector_home"
+        android:id="@+id/bottom_nav_home"
+        android:title="@string/bottom_nav_home" />
+    <item
+        android:icon="@drawable/selector_feed"
+        android:id="@+id/bottom_nav_feed"
+        android:title="@string/bottom_nav_feed" />
+    <item
+        android:icon="@drawable/selector_save"
+        android:id="@+id/bottom_nav_save"
+        android:title="@string/bottom_nav_save" />
+    <item
+        android:icon="@drawable/selector_my"
+        android:id="@+id/bottom_nav_my"
+        android:title="@string/bottom_nav_my" />
+</menu>

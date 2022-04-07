@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingHorizontal="@dimen/spacing_20"
+        android:paddingVertical="@dimen/spacing_12">
+
+        <ImageView
+            android:id="@+id/iv_my_review_comment_thumb"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/ic_hipchon_play"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_my_review_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:layout_marginTop="6dp"
+            android:text="너무 좋아보여요! 꼭 가봐야겠어요. 너무 좋아보여요! 꼭 가봐야겠어요"
+            android:textColor="@color/gray06"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_my_review_comment_thumb"
+            app:layout_constraintTop_toTopOf="@id/iv_my_review_comment_thumb" />
+
+        <TextView
+            android:id="@+id/tv_my_review_comment_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="25분전"
+            android:textColor="@color/gray04"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@id/tv_my_review_comment"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_review_comment" />
+
+        <ImageView
+            android:id="@+id/iv_my_review_comment_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_20"
+            android:src="@drawable/ic_erase"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_review_comment_date"
+            app:layout_constraintEnd_toStartOf="@id/iv_my_review_comment_delete"
+            app:layout_constraintTop_toTopOf="@id/tv_my_review_comment_date" />
+
+        <ImageView
+            android:id="@+id/iv_my_review_comment_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_review_comment_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_my_review_comment_date" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
