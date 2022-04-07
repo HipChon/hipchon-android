@@ -48,7 +48,7 @@ class CommentAdapter(
             binding.tvFeedCommentReport.setOnClickListener {
                 reportComment(commentAllDataItem.commentId)
             }
-            binding.tvFeedCommentBlock.setOnClickListener {
+            binding.ivFeedCommentProfile.setOnClickListener {
                 reportUser(commentAllDataItem.user.userId)
             }
 

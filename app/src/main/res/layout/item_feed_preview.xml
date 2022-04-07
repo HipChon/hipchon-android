@@ -115,17 +115,6 @@
             app:layout_constraintTop_toTopOf="@id/iv_feed_preview_comment" />
 
         <TextView
-            android:id="@+id/tv_feed_preview_block"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/spacing_16"
-            android:text="차단하기"
-            android:textColor="@color/gray04"
-            app:layout_constraintBottom_toBottomOf="@id/tv_feed_preview_report"
-            app:layout_constraintEnd_toStartOf="@id/tv_feed_preview_report"
-            app:layout_constraintTop_toTopOf="@id/tv_feed_preview_report" />
-
-        <TextView
             android:id="@+id/tv_feed_preview_report"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

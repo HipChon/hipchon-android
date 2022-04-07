@@ -102,17 +102,5 @@
             app:layout_constraintBottom_toBottomOf="@id/tv_feed_comment_time"
             app:layout_constraintStart_toEndOf="@id/iv_feed_comment_report"
             app:layout_constraintTop_toTopOf="@id/tv_feed_comment_time" />
-
-        <TextView
-            android:id="@+id/tv_feed_comment_block"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_12"
-            android:text="차단하기"
-            android:textColor="@color/gray04"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_feed_comment_time"
-            app:layout_constraintStart_toEndOf="@id/tv_feed_comment_report"
-            app:layout_constraintTop_toTopOf="@id/tv_feed_comment_time" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

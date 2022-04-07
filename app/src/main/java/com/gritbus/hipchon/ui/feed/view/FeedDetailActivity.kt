@@ -197,7 +197,7 @@ class FeedDetailActivity :
         binding.tvFeedDetailReport.setOnClickListener {
             showFeedReportDialog()
         }
-        binding.tvFeedDetailBlock.setOnClickListener {
+        binding.ivFeedDetailProfile.setOnClickListener {
             showFeedUserReportDialog()
         }
     }
