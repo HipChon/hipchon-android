@@ -101,6 +101,7 @@ class PlaceResultViewModel @Inject constructor(
 
     fun updateFilterData(filterData: PlaceSearchFilterData) {
         _searchOptionNormal.value = filterData
+        getPlaceData()
     }
 
     fun setOrderType(orderType: PlaceOrderType) {
