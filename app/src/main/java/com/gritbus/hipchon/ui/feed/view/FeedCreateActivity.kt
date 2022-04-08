@@ -85,8 +85,8 @@ class FeedCreateActivity :
         keywordAdapter.submitList(listOf("시설", "분위기", "만족도"))
     }
 
-    private fun keywordClickListener(checkedKeywordList: List<Int>) {
-        viewModel.updateCheckedKeywordList(checkedKeywordList)
+    private fun keywordClickListener(checkedKeywordList: List<Int>, position: Int) {
+        viewModel.updateCheckedKeywordList(checkedKeywordList, position)
     }
 
     private fun setClickListener() {
