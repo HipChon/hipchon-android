@@ -1,11 +1,13 @@
 package com.gritbus.hipchon.ui.place.adapter
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
@@ -51,6 +53,8 @@ class PlaceResultAdapter(
         private val binding: ItemPlaceResultBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        private var isViewpagerClick = false
+
         fun bind(
             fragmentManager: FragmentManager,
             lifecycle: Lifecycle,
@@ -60,9 +64,8 @@ class PlaceResultAdapter(
             binding.root.setOnClickListener {
                 detailClickCallback(placeData.placeId)
             }
-            binding.vpHomePlaceThumbnail.adapter =
-                PlaceResultImageAdapter(placeData.imageList, fragmentManager, lifecycle)
 
+            setAdapter(placeData, fragmentManager, lifecycle, detailClickCallback)
             setTitleSpannable(placeData)
 
             binding.tvHomePlaceSaveCount.text = placeData.myplaceCnt.toString()
@@ -70,6 +73,37 @@ class PlaceResultAdapter(
             placeData.keyword?.let { setKeyword(it) }
 
             binding.executePendingBindings()
+        }
+
+        @SuppressLint("ClickableViewAccessibility")
+        private fun setAdapter(
+            placeData: PlaceSearchAllDataItem,
+            fragmentManager: FragmentManager,
+            lifecycle: Lifecycle,
+            detailClickCallback: (Int) -> Unit
+        ) {
+            binding.vpHomePlaceThumbnail.adapter =
+                PlaceResultImageAdapter(placeData.imageList, fragmentManager, lifecycle)
+
+            binding.vpHomePlaceThumbnail.getChildAt(binding.vpHomePlaceThumbnail.currentItem)
+                .setOnTouchListener { v, event ->
+                    when (event.action) {
+                        MotionEvent.ACTION_DOWN -> {
+                            isViewpagerClick = true
+                        }
+                        MotionEvent.ACTION_UP -> {
+                            if (isViewpagerClick) {
+                                detailClickCallback(placeData.placeId)
+                            }
+                            isViewpagerClick = false
+
+                        }
+                        MotionEvent.ACTION_MOVE -> {
+                            isViewpagerClick = false
+                        }
+                    }
+                    false
+                }
         }
 
         private fun setKeyword(keyword: KeywordItem) {
