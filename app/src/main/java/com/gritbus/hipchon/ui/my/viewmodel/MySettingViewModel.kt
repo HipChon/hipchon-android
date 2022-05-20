@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gritbus.hipchon.data.model.UserData
+import com.gritbus.hipchon.data.repository.feed.CommentRepository
+import com.gritbus.hipchon.data.repository.feed.FeedRepository
 import com.gritbus.hipchon.data.repository.user.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,7 +15,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MySettingViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val commentRepository: CommentRepository,
+    private val feedRepository: FeedRepository
 ) : ViewModel() {
 
     private val _isLogoutSuccess = MutableLiveData<Boolean>()
@@ -25,6 +29,9 @@ class MySettingViewModel @Inject constructor(
     fun logoutUser() {
         userRepository.setAutoLoginId(null)
         userRepository.setAutoLoginPlatform(null)
+        userRepository.setUserReportAllData(null)
+        feedRepository.setFeedReportAllData(null)
+        commentRepository.setCommentReportAllData(null)
 
         _isLogoutSuccess.value =
             userRepository.getAutoLoginId() == null && userRepository.getAutoLoginPlatform() == null
@@ -34,6 +41,9 @@ class MySettingViewModel @Inject constructor(
         if (UserData.userLoginId == "masterId") {
             userRepository.setAutoLoginId(null)
             userRepository.setAutoLoginPlatform(null)
+            userRepository.setUserReportAllData(null)
+            feedRepository.setFeedReportAllData(null)
+            commentRepository.setCommentReportAllData(null)
 
             _isLeaveSuccess.value =
                 userRepository.getAutoLoginId() == null && userRepository.getAutoLoginPlatform() == null
@@ -44,6 +54,9 @@ class MySettingViewModel @Inject constructor(
                 .onSuccess {
                     userRepository.setAutoLoginId(null)
                     userRepository.setAutoLoginPlatform(null)
+                    userRepository.setUserReportAllData(null)
+                    feedRepository.setFeedReportAllData(null)
+                    commentRepository.setCommentReportAllData(null)
 
                     _isLeaveSuccess.value =
                         userRepository.getAutoLoginId() == null && userRepository.getAutoLoginPlatform() == null

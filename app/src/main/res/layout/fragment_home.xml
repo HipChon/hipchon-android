@@ -25,9 +25,10 @@
             <TextView
                 android:id="@+id/tv_home_search_bar"
                 style="@style/Gmarket.Weight500"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/spacing_48"
                 android:background="@drawable/bg_rectangle_radius_21"
                 android:drawablePadding="17dp"
                 android:minHeight="1dp"

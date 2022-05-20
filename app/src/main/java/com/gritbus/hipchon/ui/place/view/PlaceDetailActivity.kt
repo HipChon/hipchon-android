@@ -75,6 +75,7 @@ class PlaceDetailActivity :
     override fun onResume() {
         super.onResume()
         if (this::naverMap.isInitialized){
+            binding.llPlaceDetailKeyword.removeAllViews()
             initData()
         }
     }
@@ -244,6 +245,7 @@ class PlaceDetailActivity :
         }
         viewModel.keyword.observe(this) {
             it.forEach { keywordItem ->
+                Log.i("keyword", keywordItem.toString())
                 val keywordView = layoutInflater.inflate(
                     R.layout.item_place_detail_keyword,
                     binding.llPlaceDetailKeyword,
@@ -279,7 +281,6 @@ class PlaceDetailActivity :
                             )
                         )
                     }
-                    binding.llPlaceDetailKeyword.removeAllViews()
                     binding.llPlaceDetailKeyword.addView(keywordView)
                 }
             }
@@ -312,13 +313,12 @@ class PlaceDetailActivity :
             binding.acbPlaceDetailLink.text = it.homepage
             binding.tvPlaceDetailMapCopyAddress.text = it.address
 
-            it.longitude?.let { longitude ->
-                it.latitude?.let { latitude ->
-                    Marker().apply {
-                        position = LatLng(latitude, longitude)
-                        map = naverMap
-                        icon = OverlayImage.fromResource(R.drawable.ic_map_marker)
-                    }
+            it.latitude?.let{ latitude ->
+                it.longitude?.let { longitude ->
+                    val marker = Marker()
+                    marker.position = LatLng(latitude, longitude)
+                    marker.icon = OverlayImage.fromResource(R.drawable.ic_map_marker)
+                    marker.map = naverMap
                 }
             }
         }
