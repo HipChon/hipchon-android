@@ -29,6 +29,8 @@ class PlaceResultViewModel @Inject constructor(
 
     // 검색 방법 : 일반 검색 / 해시태그 검색
     private lateinit var _searchType: String
+    val searchType: String
+        get() = _searchType
 
     // 일반 검색 옵션
     private val _searchOptionNormal = MutableLiveData<PlaceSearchFilterData>()

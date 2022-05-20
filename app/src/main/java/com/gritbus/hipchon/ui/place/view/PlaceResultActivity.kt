@@ -86,14 +86,16 @@ class PlaceResultActivity :
                 else -> false
             }
         }
-        binding.tvPlaceResult.setOnClickListener {
-            val placeQuickSearchFragment = PlaceQuickSearchFragment().apply {
-                arguments = bundleOf(PLACE_QUICK_SEARCH to viewModel.getSearchFilter())
+        if (viewModel.searchType == PlaceResultViewModel.SEARCH_OPTION_NORMAL) {
+            binding.tvPlaceResult.setOnClickListener {
+                val placeQuickSearchFragment = PlaceQuickSearchFragment().apply {
+                    arguments = bundleOf(PLACE_QUICK_SEARCH to viewModel.getSearchFilter())
+                }
+                placeQuickSearchFragment.show(
+                    supportFragmentManager,
+                    placeQuickSearchFragment.tag
+                )
             }
-            placeQuickSearchFragment.show(
-                supportFragmentManager,
-                placeQuickSearchFragment.tag
-            )
         }
     }
 
