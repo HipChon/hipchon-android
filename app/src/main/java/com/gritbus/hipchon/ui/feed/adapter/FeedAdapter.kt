@@ -69,21 +69,21 @@ class FeedAdapter(
             reportPost: (Int) -> (Unit),
             reportUser: (Int) -> (Unit)
         ) {
-            binding.tvFeedPreviewReport.setOnClickListener {
-                reportPost(feedData.postId)
-            }
-            binding.tvFeedPreviewBlock.setOnClickListener {
-                reportUser(feedData.user.userId)
-            }
-            binding.root.setOnClickListener {
-                clickListener(feedData)
-            }
-
             Glide.with(binding.root.context)
                 .load(feedData.user.image)
                 .circleCrop()
                 .error(R.drawable.ic_profile_default)
                 .into(binding.ivFeedPreviewProfile)
+
+            binding.tvFeedPreviewReport.setOnClickListener {
+                reportPost(feedData.postId)
+            }
+            binding.ivFeedPreviewProfile.setOnClickListener {
+                reportUser(feedData.user.userId)
+            }
+            binding.root.setOnClickListener {
+                clickListener(feedData)
+            }
             binding.tvFeedPreviewNickname.text = feedData.user.name
             binding.tvFeedPreviewReviewCount.text = "${feedData.user.postCnt}번째 리뷰"
             binding.tvFeedPreviewCreatedAt.text = feedData.time.dateToFormattedString()
@@ -91,7 +91,7 @@ class FeedAdapter(
             binding.tvFeedPreviewComment.text = feedData.commentCnt.toString()
             binding.rmtvFeedPreviewContent.text = feedData.detail
             feedData.imageList?.let {
-                if (!it.isNullOrEmpty()){
+                if (!it.isNullOrEmpty()) {
                     feedThumbAdapter.submitList(it.filterNotNull())
                     binding.rvFeedPreview.visibility = View.VISIBLE
                 }

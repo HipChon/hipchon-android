@@ -25,11 +25,11 @@
             <TextView
                 android:id="@+id/tv_place_result"
                 style="@style/Gmarket.Weight500"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/spacing_20"
                 android:background="@drawable/bg_rectangle_radius_21"
-                android:paddingHorizontal="57dp"
+                android:gravity="center"
                 android:paddingVertical="10dp"
                 android:text="2명 | 제주 | 불멍" />
         </com.google.android.material.appbar.MaterialToolbar>

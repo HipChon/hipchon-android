@@ -25,7 +25,13 @@ class FeedCreateViewModel @Inject constructor(
     private val _placeData = MutableLiveData<PlaceDetailData>()
     val placeData: LiveData<PlaceDetailData> = _placeData
 
-    private var keywordList = listOf<Int>()
+    // 시설, 분위기, 만족도
+    private var keywordFacilityList = listOf<Int>()
+    private var keywordMoodList = listOf<Int>()
+    private var keywordSatisfactionList = listOf<Int>()
+
+    private val keywordList
+        get() = keywordFacilityList + keywordMoodList + keywordSatisfactionList
 
     private val _sendSuccess = MutableLiveData<Boolean>()
     val sendSuccess: LiveData<Boolean> = _sendSuccess
@@ -36,8 +42,12 @@ class FeedCreateViewModel @Inject constructor(
         }
     }
 
-    fun updateCheckedKeywordList(checkedKeywordList: List<Int>) {
-        keywordList = checkedKeywordList
+    fun updateCheckedKeywordList(checkedKeywordList: List<Int>, position: Int) {
+        when (position) {
+            0 -> keywordFacilityList = checkedKeywordList
+            1 -> keywordMoodList = checkedKeywordList
+            2 -> keywordSatisfactionList = checkedKeywordList
+        }
     }
 
     fun getCheckedKeywordList() = keywordList

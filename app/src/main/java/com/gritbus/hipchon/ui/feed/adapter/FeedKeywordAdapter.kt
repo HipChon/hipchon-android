@@ -18,7 +18,7 @@ import com.gritbus.hipchon.domain.model.KeywordMood
 import com.gritbus.hipchon.domain.model.KeywordSatisfaction
 
 class FeedKeywordAdapter(
-    private val keywordClickListener: (List<Int>) -> (Unit)
+    private val keywordClickListener: (List<Int>, Int) -> (Unit)
 ) : ListAdapter<String, FeedKeywordAdapter.FeedKeywordViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedKeywordViewHolder {
@@ -39,7 +39,7 @@ class FeedKeywordAdapter(
 
         private val checkedKeywordList = mutableListOf<Int>()
 
-        fun bind(data: String, keywordClickListener: (List<Int>) -> (Unit)) {
+        fun bind(data: String, keywordClickListener: (List<Int>, Int) -> (Unit)) {
             binding.tvKeywordTitle.text = data
             val keywordList = when (data) {
                 Keyword.FACILITY.value -> {
@@ -58,7 +58,7 @@ class FeedKeywordAdapter(
             setKeyword(keywordList, keywordClickListener)
         }
 
-        private fun setKeyword(keywordList: Array<*>, keywordClickListener: (List<Int>) -> (Unit)) {
+        private fun setKeyword(keywordList: Array<*>, keywordClickListener: (List<Int>, Int) -> (Unit)) {
             keywordList.forEach { keyword ->
                 val keywordView = LayoutInflater.from(binding.root.context)
                     .inflate(
@@ -92,7 +92,7 @@ class FeedKeywordAdapter(
             keywordView: ConstraintLayout,
             color: Int,
             keywordId: Int,
-            keywordClickListener: (List<Int>) -> (Unit)
+            keywordClickListener: (List<Int>, Int) -> (Unit)
         ) {
             keywordView.setOnClickListener {
                 if (keywordId in checkedKeywordList) {
@@ -109,7 +109,7 @@ class FeedKeywordAdapter(
                         ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, color))
                     checkedKeywordList.add(keywordId)
                 }
-                keywordClickListener(checkedKeywordList)
+                keywordClickListener(checkedKeywordList, layoutPosition)
             }
         }
 
